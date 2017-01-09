@@ -1,0 +1,35 @@
+PODS:
+  - Alamofire (3.5.1)
+  - BaiduMapKit (3.1.0)
+  - Charts (2.2.5):
+    - Charts/Core (= 2.2.5)
+  - Charts/Core (2.2.5)
+  - Kingfisher (2.3.1)
+  - SnapKit (0.20.0)
+  - SVProgressHUD (2.0.4)
+  - SwiftyJSON (2.4.0)
+  - UsefulPickerView (0.1.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - BaiduMapKit
+  - Charts (~> 2.2.5)
+  - Kingfisher (~> 2.3.1)
+  - SnapKit (~> 0.20.0)
+  - SVProgressHUD
+  - SwiftyJSON (~> 2.4.0)
+  - UsefulPickerView (~> 0.1.2)
+
+SPEC CHECKSUMS:
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  BaiduMapKit: 4cfaedb118cff7e157e9771859a4bf65a261b2a1
+  Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
+  Kingfisher: 6d3fbada4829cbc7b89e883e8218c28afeb64e42
+  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
+  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
+  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
+  UsefulPickerView: 889c0559f6817f0c10f0314e65221847f45d89cb
+
+PODFILE CHECKSUM: 587a4c117b339e855ea92b407d1baf2121579e2e
+
+COCOAPODS: 1.1.1

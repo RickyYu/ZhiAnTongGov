@@ -1,0 +1,6 @@
+framework module Pods_ZhiAnTongGov {
+  umbrella header "Pods-ZhiAnTongGov-umbrella.h"
+
+  export *
+  module * { export * }
+}
