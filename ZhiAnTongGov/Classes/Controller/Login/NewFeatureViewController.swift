@@ -66,7 +66,7 @@ class NewFeatureViewController: UICollectionViewController {
         // 能进入这儿, imageNames.count肯定有值了
         if indexPath.item == imageNames.count - 1 {
             // 进入首页
-            KeyWindow.rootViewController = LoginViewController()
+//            KeyWindow.rootViewController = LoginViewController()
         }
     }
     

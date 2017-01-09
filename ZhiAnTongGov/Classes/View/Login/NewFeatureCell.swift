@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class NewFeatureCell: UICollectionViewCell {
     // 显示的image

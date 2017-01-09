@@ -10,9 +10,12 @@ import UIKit
 
 class CpyInfoCell: UITableViewCell {
     
-    @IBOutlet weak var infoTitile: UILabel!
-    @IBOutlet weak var infoSubTitle: UILabel!
-    @IBOutlet weak var time: UILabel!
+    
+    @IBOutlet weak var cpyName: UILabel!
+    @IBOutlet weak var delegate: UILabel!
+    @IBOutlet weak var area: UILabel!
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,17 +26,16 @@ class CpyInfoCell: UITableViewCell {
         
         
     }
-    var  info: Info?
+    
+    var cpyInfoModel: CpyInfoModel?
         {
         didSet{
-            if let art = info {
+            if let art = cpyInfoModel {
                 // 设置数据
-                infoTitile.text = art.caption
-                infoSubTitle.text = art.publisher
-                time.text = art.modifyTime
+                cpyName.text = art.companyName
+                delegate.text = "负责人："+art.fdDelegate
+                area.text = "所属区域："+String(art.firstArea)
             }
-            
         }
     }
-    
 }

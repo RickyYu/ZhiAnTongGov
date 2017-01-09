@@ -9,8 +9,8 @@
 import UIKit
 
 //企业查询列表界面
-private let CpyInfoListReuseIdentifier = "CpyInfoCell"
-class GovReviewListExController:UITableViewController,UISearchBarDelegate{
+private let Identifier = "ReviewInfoCell"
+class LawPunListController:UITableViewController,UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -20,8 +20,8 @@ class GovReviewListExController:UITableViewController,UISearchBarDelegate{
     var currentPage : Int = 0  //加载更多时候+10
     //总条数
     var totalCount : Int = 0
-    var cpyInfoModels  = [CpyInfoModel]()
-    var result = [CpyInfoModel]()
+    var listDatas  = [PunishmentModel]()
+    var result = [PunishmentModel]()
     // 是否加载更多
     private var toLoadMore = false
     var searchStr : String = ""
@@ -36,8 +36,8 @@ class GovReviewListExController:UITableViewController,UISearchBarDelegate{
         // 设置navigation
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
         // 设置tableview相关
-        let nib = UINib(nibName: "CpyInfoCell",bundle: nil)
-        self.tableView.registerNib(nib, forCellReuseIdentifier: CpyInfoListReuseIdentifier)
+        let nib = UINib(nibName: Identifier,bundle: nil)
+        self.tableView.registerNib(nib, forCellReuseIdentifier: Identifier)
         tableView.rowHeight = 53;
         //配置搜索控制器
         self.countrySearchController = ({
@@ -53,26 +53,26 @@ class GovReviewListExController:UITableViewController,UISearchBarDelegate{
         
         // 设置下拉刷新控件
         refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
         refreshControl?.beginRefreshing()
-        getData()
+        getDatas()
     }
     
-    func getData(){
+    func getDatas(){
         
         if refreshControl!.refreshing{
             reSet()
         }
         var parameters = [String : AnyObject]()
-        parameters["pagination.pageSize"] = 10
+        parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
         parameters["pagination.totalCount"] = totalCount
         if !AppTools.isEmpty(searchStr){
-            parameters["company.companyName"] = searchStr
+            parameters["companyName"] = searchStr
         }
         
-        
-        NetworkTool.sharedTools.loadCompanys(parameters) { (cpyInfoModels, error,totalCount) in
+        //NetworkTool.sharedTools.loadPunLists
+        NetworkTool.sharedTools.loadUnpunLists(parameters) { (datas, error,totalCount) in
             
             // 停止加载数据
             if self.refreshControl!.refreshing{
@@ -87,7 +87,7 @@ class GovReviewListExController:UITableViewController,UISearchBarDelegate{
                     return
                 }
                 self.toLoadMore = false
-                self.cpyInfoModels += cpyInfoModels!
+                self.listDatas += datas!
                 
             }else{
                 // 获取数据失败后
@@ -104,22 +104,22 @@ class GovReviewListExController:UITableViewController,UISearchBarDelegate{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return self.cpyInfoModels.count ?? 0
+        return self.listDatas.count ?? 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(CpyInfoListReuseIdentifier, forIndexPath: indexPath) as! CpyInfoCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(Identifier, forIndexPath: indexPath) as! ReviewInfoCell
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        let count = cpyInfoModels.count ?? 0
+        let count = listDatas.count ?? 0
         if count > 0 {
-            let cpyInfoModel = cpyInfoModels[indexPath.row]
-            cell.cpyInfoModel = cpyInfoModel
+            let data = listDatas[indexPath.row]
+            cell.punishmentModel = data
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
             currentPage += 10
-            getData()
+            getDatas()
         }
         return cell
     }
@@ -130,7 +130,7 @@ class GovReviewListExController:UITableViewController,UISearchBarDelegate{
         searchBar.resignFirstResponder()
         searchBar.resignFirstResponder()
         reSet()
-        getData()
+        getDatas()
         
     }
     
@@ -141,7 +141,7 @@ class GovReviewListExController:UITableViewController,UISearchBarDelegate{
         searchBar.text = ""
         searchStr = ""
         reSet()
-        getData()
+        getDatas()
     }
     
     
@@ -155,24 +155,24 @@ class GovReviewListExController:UITableViewController,UISearchBarDelegate{
         return 1;
     }
     
-    //给新进入的界面进行传值
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        
-        if segue.identifier == "toCpyInfoDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                let str = cpyInfoModels[indexPath.row].companyName
-                self.navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: nil)
-                (segue.destinationViewController as! CpyInfoDetailController).titleStr = str
-            }
-        }
+   
+
+     //给新进入的界面进行传值
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let controller = PunInfoController()
+        let object : PunishmentModel = listDatas[indexPath.row] as PunishmentModel
+        controller.converyJcjlId = object.jcjlId
+        controller.converyCompanyId = object.companyId
+        self.navigationController?.pushViewController(controller, animated: true)
     }
+    
     
     func reSet(){
         // 重置当前页
         currentPage = 0
         // 重置数组
-        cpyInfoModels.removeAll()
-        cpyInfoModels = [CpyInfoModel]()
+        listDatas.removeAll()
+        listDatas = [PunishmentModel]()
     }
     
 }

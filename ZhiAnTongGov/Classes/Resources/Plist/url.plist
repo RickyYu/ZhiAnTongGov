@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   url.plist
-   ZhiAnTongGov
-
-   Created by Ricky on 2016/11/23.
-   Copyright (c) 2016年 safetysafetys. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<dict>
+	<key></key>
+	<string></string>
+	<key>LOAD_HISTORY_PRODUCE</key>
+	<string>/appProduceLocaleNote/nosecuritycheck/loadHistoryProduceCallBacks.xhtml</string>
+	<key>BASE_URL_DA</key>
+	<string>http://192.168.2.134:8010/huzhouArchives</string>
+	<key>CREATE_PUNISHMENT</key>
+	<string>/appPunishment/nosecuritycheck/createPunishment.xhtml</string>
+	<key>LOAD_DANGEROUS_CHEMICALS</key>
+	<string>/appDangerousChemicals/nosecuritycheck/loadDangerousChemicals.xhtml</string>
+	<key>LOAD_PRODUCE_CALLBACKS</key>
+	<string>/appProduceLocaleNote/nosecuritycheck/loadProduceCallBacks.xhtml</string>
+	<key>LOAD_COUNT_COM</key>
+	<string>/appDanger/nosecuritycheck/loadCountCom.xhtml</string>
+	<key>GET_COMPANY_GRID</key>
+	<string>/appCheckRecord/nosecuritycheck/loadCompanyGrid.xhtml</string>
+	<key>LOAD_GOV_COUNT</key>
+	<string>/appDanger/nosecuritycheck/loadGovCount.xhtml</string>
+	<key>GET_LAW_INFO_LIST</key>
+	<string>/appArticle/nosecuritycheck/loadArticles.xhtml</string>
+	<key>BASE_URL_YH</key>
+	<string>http://192.168.2.110:7090/huzhou</string>
+	<key>LOAD_GOV_RECORD_LIST</key>
+	<string>/appCheckRecord/nosecuritycheck/loadGovCheckRecordList.xhtml</string>
+	<key>LOAD_CHECK_RECORD</key>
+	<string>/appCheckRecord/nosecuritycheck/loadCheckRecord.xhtml</string>
+	<key>LOAD_COMPANY_INFO</key>
+	<string>/appCompany/nosecuritycheck/loadCompanyInfo.xhtml</string>
+	<key>GET_COMPANY_MESS_INFO</key>
+	<string>/appArticle/nosecuritycheck/loadArticles.xhtml</string>
+	<key>GET_LAW_INFO_LIST_DETAIL</key>
+	<string>/appArticle/nosecuritycheck/loadArticle.xhtml</string>
+	<key>CHANGE_PASSWORD</key>
+	<string>/appUser/nosecuritycheck/changePassword.xhtml</string>
+	<key>LOAD_COMPANY_GRID</key>
+	<string>/appCheckRecord/nosecuritycheck/loadCompanyGrid.xhtml</string>
+	<key>LOAD_PRO_DANGERS</key>
+	<string>/appDanger/nosecuritycheck/loadProDangers.xhtml</string>
+	<key>LOGIN</key>
+	<string>/appUser/nosecuritycheck/login.xhtml</string>
+	<key>LOAD_COUNT_GOV</key>
+	<string>/appDanger/nosecuritycheck/loadCountGov.xhtml</string>
+	<key>LOAD_UNPUN_LIST</key>
+	<string>/appPunishment/nosecuritycheck/loadNotPunishmentList.xhtml</string>
+	<key>LOAD_COMPANYS</key>
+	<string>/appCompany/nosecuritycheck/loadCompanys.xhtml</string>
+	<key>LOAD_PUN_LIST</key>
+	<string>/appPunishment/nosecuritycheck/loadPunishmentList.xhtml</string>
+	<key>LOAD_INDUSTRY_SELECT</key>
+	<string>/appCheckRecord/nosecuritycheck/loadIndustrySelect.xhtml</string>
+	<key>LOAD_INDUSTRY_SECOND_SELECT</key>
+	<string>/appCheckRecord/nosecuritycheck/loadIndustrySecondSelect.xhtml</string>
+	<key>New item - 3</key>
+	<string></string>
+	<key>LOAD_HIDDEN_TROUBLES</key>
+	<string>/appProduceLocaleNote/nosecuritycheck/loadHzHiddenTroubles.xhtml</string>
+</dict>
 </plist>

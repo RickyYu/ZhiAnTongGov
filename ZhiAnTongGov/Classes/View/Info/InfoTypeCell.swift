@@ -6,4 +6,11 @@
 //  Copyright © 2016年 safetysafetys. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class InfoTypeCell: UITableViewCell {
+    
+
+    @IBOutlet weak var headImg: UIImageView!
+    @IBOutlet weak var typeNameField: UILabel!
+}
