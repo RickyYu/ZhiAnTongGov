@@ -203,6 +203,37 @@ class NetworkTool: Alamofire.Manager {
     }
     
     
+    //提交，新增检查记录
+    func createCheckRecord(parameters:[String:AnyObject],finished:(data:CheckRecordInfoModel?,error:String?)->()){
+        SVProgressHUD.showWithStatus("正在加载...")
+        self.sendPostRequest(AppTools.getServiceURLWithYh("CREATE_CHECK_RECORD"), parameters: parameters) { (response) in
+            guard response!.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus("加载失败...")
+                finished(data:nil,error: "服务器异常")
+                return
+            }
+            if let dictValue = response!.result.value{
+                let dict = JSON(dictValue)
+                print("loadRecordDetail.dict = \(dict)")
+                let success = dict["success"].boolValue
+                let message = dict["msg"].stringValue
+                //  字典转成模型
+                if success {
+                    let data = CheckRecordInfoModel(dict:dict)
+                    finished(data: data, error: nil)
+                    
+                }else{
+                    finished(data: nil,error: message) //success  false
+                }
+                SVProgressHUD.dismiss()
+                
+            }else {
+                finished(data: nil,error: "数据异常")
+            }
+        }
+    }
+    
+    
     //MARK:  记录详情
     func loadRecordDetail(parameters:[String:AnyObject],finished:(data:RecordDetailModel?,error:String?)->()){
         SVProgressHUD.showWithStatus("正在加载...")

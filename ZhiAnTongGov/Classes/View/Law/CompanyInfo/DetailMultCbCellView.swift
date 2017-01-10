@@ -16,6 +16,11 @@ class DetailMultCbCellView: UIView {
     
     var lineView = UIView()
     var label = UILabel()
+  
+    var btn1 : UIButton!
+    var btn2 : UIButton!
+    var btn3 : UIButton!
+    var btn4 : UIButton!
 
     override init(frame: CGRect) {
        super.init(frame: frame)
@@ -88,6 +93,7 @@ class DetailMultCbCellView: UIView {
     
     func tapped1(button:UIButton){
         button.selected = !button.selected
+        self.btn1  = button
         if button.selected{
             
             print("tapped1+\(button.selected)")
@@ -99,6 +105,7 @@ class DetailMultCbCellView: UIView {
     }
     func tapped2(button:UIButton){
         button.selected = !button.selected
+        self.btn2  = button
         if button.selected{
             
             print("tapped2+\(button.selected)")
@@ -110,6 +117,7 @@ class DetailMultCbCellView: UIView {
     }
     func tapped3(button:UIButton){
         button.selected = !button.selected
+        self.btn3  = button
         if button.selected{
             
             print("tapped3+\(button.selected)")
@@ -121,6 +129,7 @@ class DetailMultCbCellView: UIView {
     }
     func tapped4(button:UIButton){
         button.selected = !button.selected
+        self.btn4  = button
         if button.selected{
             
             print("tapped4+\(button.selected)")

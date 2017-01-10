@@ -13,6 +13,8 @@ private let Identifier = "IndustrySelectSwitchCell"
 //检查记录 选择行业检查表
 class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
     
+    //传过来的model
+    var converyModels = CheckListVo()
     var industrySecondSelectModels  = [IndustrySecondSelectModel]()
     var result = [IndustrySelectModel]()
     // 当前页
@@ -191,14 +193,42 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
     
     func nextRecordHidden(){
         
-//        let modifyTime = customView1.rightLabel.text!
-//        if AppTools.isEmpty(modifyTime) {
-//            alert("检查时间不可为空", handler: {
-//                self.customView5.textField.becomeFirstResponder()
-//            })
-//            return
-//        }
-        self.navigationController?.pushViewController(RecordHiddenController(), animated: true)
+        //如果否选中
+        if nextBtn.selected {
+            
+            var parameters = [String : AnyObject]()
+             parameters["produceLocaleNote.hzCompany.id"] = PAGE_SIZE
+            parameters["produceLocaleNote.checkTimeBegin"] = PAGE_SIZE
+            parameters["produceLocaleNote.checkGround"] = PAGE_SIZE
+             parameters["produceLocaleNote.fdDelegateLink"] = PAGE_SIZE
+             parameters["gridIds"] = PAGE_SIZE
+             parameters["produceLocaleNote.noter"] = PAGE_SIZE
+             parameters["produceLocaleNote.executeUnit"] = PAGE_SIZE
+             parameters["hzProduceCleanUp.cleanUpTimeLimit"] = PAGE_SIZE
+             parameters["produceLocaleNote.content"] = PAGE_SIZE
+             parameters["hzTemplateCheckTable.id"] = PAGE_SIZE
+             parameters["hzCompanyCheckTableInfosJson"] = PAGE_SIZE
+             parameters["file"] = PAGE_SIZE
+             parameters["produceLocaleNote.sendCleanUp"] = PAGE_SIZE
+        
+           NetworkTool.sharedTools.createCheckRecord(parameters, finished: { (data, error) in
+          
+           })
+        
+        }else{
+        
+            
+            //        let modifyTime = customView1.rightLabel.text!
+            //        if AppTools.isEmpty(modifyTime) {
+            //            alert("检查时间不可为空", handler: {
+            //                self.customView5.textField.becomeFirstResponder()
+            //            })
+            //            return
+            //        }
+            self.navigationController?.pushViewController(RecordHiddenController(), animated: true)
+        
+        }
+
     
     }
     
@@ -385,10 +415,12 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
             customView1.hidden = true
             customView2.hidden = true
             yesBtn.selected = false
+            nextBtn.setTitle("提交", forState: .Normal)
         }else{
             customView1.hidden = false
             customView2.hidden = false
             yesBtn.selected = true
+            nextBtn.setTitle("下一步（隐患录入）", forState: .Normal)
             
         }
         

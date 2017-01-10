@@ -22,18 +22,57 @@ class AddRecordController: BaseViewController,ParameterDelegate{
     var customView5  = DetailCellView()
     var customView6  = DetailCellView()
     var customView7  = DetailMultCbCellView()
-     var customView8  = DetailCellView()
-     var customView9  = DetailCellView()
+    var customView8  = DetailCellView()
+    var customView9  = DetailCellView()
     var customView11  = DetailCellView()
-       var customView14  = DetailCellView()
-     var checkView  = UIView()
+    var customView14  = DetailCellView()
+    var customView12 = DetailEditCellView()
+    var checkView  = UIView()
     //选择行业检查表时传送回来的信息
     var industrySelectModel:IndustrySelectModel!
+    
+    var checkList = CheckListVo()
+    
+    
+    //获取值
+    var companyName:String!  //企业名称
+    var address:String!//企业地址
+    var cpyContact:String! //企业联系人
+    var content:String! //选中条目内容
+    var companyId:String!//g公司ID
+    var checkId:String!//行业检查表ID
+    var place:String!//检查场所
+    var phone:String!//联系方式
+    var people:String!//检查人记录人
+    var law:String!//执法单位
+    var checkTime:String!//检查时间
+    
+    
+    var nowcontent:String!//现场检查记录
+    var check:Bool!//发送整改通知书
+    var zgTime:String!//整改时间
+    
+    
+    var c1:Int!
+    var c2:Int!
+    var c3:Int!
+    var c4:Int!
+    
+    var cbName:String!
+    var cbName2:String!
+    var cbName3:String!
+    var cbName4:String!
+    
+    var list2 =  [Int]()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     self.navigationItem.title = "检查记录--基本信息"
         getDatas()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,21 +114,25 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         let customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()
         customView1.setLabelName("企业名称：")
-        customView1.setRCenterLabel(checkRecordInfoModel.companyName ?? "")
+        companyName = checkRecordInfoModel.companyName
+        customView1.setRCenterLabel(companyName ?? "")
         
         let customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
         customView2.setLabelName("企业地址：")
-        customView2.setRCenterLabel(checkRecordInfoModel.address ?? "")
+        address = checkRecordInfoModel.address
+        customView2.setRCenterLabel(address ?? "")
         
         let customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
         customView3.setLabelName("联系人：")
-        customView3.setRCenterLabel(checkRecordInfoModel.fdDelegate ?? "")
+        cpyContact = checkRecordInfoModel.fdDelegate
+        customView3.setRCenterLabel(cpyContact ?? "")
         
         
         
         customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
         customView4.setLabelName("检查时间：")
         getSystemTime { (time) in
+            self.checkTime = time
             self.customView4.setRRightLabel(time)
         }
         customView4.addOnClickListener(self, action: #selector(self.choiceCheckTimes))
@@ -98,16 +141,45 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("检查场所：")
         customView5.setRTextField("")
+
         customView5.textField.becomeFirstResponder()
         
         
         customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
         customView6.setLabelName("联系方式")
         customView6.setRTextField( "")
-        
+    
        
         customView7 = DetailMultCbCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45),models:checkRecordInfoModel.checkPersonModels)
         customView7.setLabelName("参与检查人：")
+        let models = checkRecordInfoModel.checkPersonModels
+       
+        if models.count == 1{
+          c1 = models[0].gridId
+          cbName = models[0].gridName
+        }else if models.count == 2{
+            c1 = models[0].gridId
+            cbName = models[0].gridName
+            c2 = models[1].gridId
+            cbName2 = models[1].gridName
+        }else if models.count == 3{
+            c1 = models[0].gridId
+            cbName = models[0].gridName
+            c2 = models[1].gridId
+            cbName2 = models[1].gridName
+            c3 = models[2].gridId
+            cbName3 = models[2].gridName
+        }else{
+            c1 = models[0].gridId
+            cbName = models[0].gridName
+            c2 = models[1].gridId
+            cbName2 = models[1].gridName
+            c3 = models[2].gridId
+            cbName3 = models[2].gridName
+            c4 = models[3].gridId
+            cbName4 = models[3].gridName
+        }
+        
                 
          customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
         customView8.setLabelName("检查人/记录人：")
@@ -138,7 +210,7 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         checkView = UIView(frame:CGRectMake(0, 495, SCREEN_WIDTH, 280))
         checkView.hidden = true
         
-        let customView12 = DetailEditCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 180))
+        customView12 = DetailEditCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 180))
         customView12.setLabelName("现场检查记录：")
         
         let customView13 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
@@ -148,7 +220,7 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         
         
         customView14 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
-        customView14.setLabelName("检查时间：")
+        customView14.setLabelName("整改时间：")
         customView14.setRRightLabel("")
         customView14.addOnClickListener(self, action: #selector(self.choiceModifyTimes))
         
@@ -203,68 +275,142 @@ class AddRecordController: BaseViewController,ParameterDelegate{
     func tapped1(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            print("tapped1+\(button.selected)")
+            check = true
+            print("tapped1+\(check)")
         }else{
-            print("tapped1+\(button.selected)")
+            check = false
+            print("tapped1+\(check)")
             
         }
         
     }
     
+    func verify(){
+        if AppTools.isEmpty(checkTime) {
+            alert("检查时间不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
+        if AppTools.isEmpty(place!) {
+            alert("检查场所不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
+        if AppTools.isEmpty(phone!) {
+            alert("联系方式不可为空", handler: {
+                self.customView6.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
+        if industrySelectModel == nil {
+            alert("行业检查表不可为空", handler: {
+                // self.customView6.textField.becomeFirstResponder()
+            })
+            return
+            
+        }
+        
+        people = checkRecordInfoModel.noter
+        law = checkRecordInfoModel.executeUnit
+        if people.isEmpty{
+            people = customView8.textField.text
+            if AppTools.isEmpty(people!) {
+                alert("检查人/记录人不可为空", handler: {
+                    self.customView6.textField.becomeFirstResponder()
+                })
+                return
+            }
+        }
+        if law.isEmpty{
+            law = customView9.textField.text
+            if AppTools.isEmpty(law!) {
+                alert("执法单位不可为空", handler: {
+                    self.customView6.textField.becomeFirstResponder()
+                })
+                return
+            }
+        }
+        
+        if customView7.btn1.selected{
+            list2.append(c1)
+        }
+        
+        if customView7.btn2.selected{
+            list2.append(c2)
+        }
+        
+        if customView7.btn3.selected{
+            list2.append(c3)
+        }
+        
+        if customView7.btn4.selected{
+            list2.append(c4)
+        }
+        
+        
+        //页面显示时
+        if self.checkView.hidden{
+          nowcontent = customView12.textField.text
+        }else{
+          nowcontent = ""
+        }
+    }
+    
     //下一步（行业检查表）
     func skip(sender: AnyObject) {
-        let checkTime = customView4.rightLabel.text!
-        let checkAddress = customView5.textField.text
-        let checkMobile = customView6.textField.text
+        companyId = String(hzCompanyId)
+        checkTime = customView4.rightLabel.text!
+        place = customView5.textField.text
+        phone = customView6.textField.text
+        content = customView11.rightLabel.text
+        
        
-        print(checkTime)
-//        if AppTools.isEmpty(checkTime) {
-//            alert("检查时间不可为空", handler: {
-//                self.customView5.textField.becomeFirstResponder()
-//            })
-//            return
-//        }
-//        
-//        if AppTools.isEmpty(checkAddress!) {
-//            alert("检查场所不可为空", handler: {
-//                self.customView5.textField.becomeFirstResponder()
-//            })
-//            return
-//        }
-//        
-//        if AppTools.isEmpty(checkMobile!) {
-//            alert("联系方式不可为空", handler: {
-//                self.customView6.textField.becomeFirstResponder()
-//            })
-//            return
-//        }
-//        
-//        if industrySelectModel == nil {
-//            alert("行业检查表不可为空", handler: {
-//               // self.customView6.textField.becomeFirstResponder()
-//            })
-//            return
-//
-//        }
-        var checkNoter:String!
-        var checkEunit:String!
-        if checkRecordInfoModel.noter.isEmpty{
-            checkNoter = customView8.textField.text
-        }
-        if checkRecordInfoModel.executeUnit.isEmpty{
-            checkEunit = customView9.textField.text
-        }
+        verify()
+        
+        checkList.companyname = companyName
+        checkList.companyadress = address
+        checkList.companylxr = cpyContact
+        checkList.content = content
+        checkList.companyId = companyId
+        checkList.checkId = ""
+        checkList.place = place
+        checkList.phone = phone
+        checkList.people = people
+        checkList.law = law
+        
+        //当行业检查选择无时
+        checkList.zgtime = zgTime
+        checkList.check = check
+        checkList.nowcontent = nowcontent
+        
         
         //
-        //        if AppTools.isEmpty(checkMobile!) {
-        //            alert("联系方式不可为空", handler: {
-        //                self.customView6.textField.becomeFirstResponder()
-        //            })
-        //            return
-        //        }
+        checkList.listCb = list2
         
+//        checkList.listCheck 可为空
+//        checkList.listAll  可为空
+//        checkList.listHy     可为空
+//        checkList.listfile   图片要传
+        checkList.lxr = phone
+//
+        checkList.c1 = c1
+        checkList.c2 = c2
+        checkList.c3 = c3
+        checkList.c4 = c4
         
+        checkList.cbname = cbName
+        checkList.cbname2 = cbName2
+        checkList.cbname3 = cbName3
+        checkList.cbname4 = cbName4
+        
+
         let  controller = IndustryHandleCheckListController()
+        controller.converyModels = checkList
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -327,6 +473,7 @@ class AddRecordController: BaseViewController,ParameterDelegate{
     
     func choiceModifyTimes(){
         choiceTime { (time) in
+            self.zgTime = time
             self.customView14.setRRightLabel(time)
             self.customView14.becomeFirstResponder()
         }
