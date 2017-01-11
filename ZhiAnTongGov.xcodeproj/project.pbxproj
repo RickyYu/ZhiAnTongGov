@@ -119,6 +119,9 @@
 		9CB208D21E14E57F009DF235 /* GovReviewDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D11E14E57F009DF235 /* GovReviewDetailController.swift */; };
 		9CB208D51E14F405009DF235 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D41E14F405009DF235 /* ChartModel.swift */; };
 		9CB208D71E1500E1009DF235 /* McountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D61E1500E1009DF235 /* McountModel.swift */; };
+		9CE87D691E24FC3300A355F2 /* HE_Dict2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE87D661E24FC3300A355F2 /* HE_Dict2Model.swift */; };
+		9CE87D6A1E24FC3300A355F2 /* HE_Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE87D671E24FC3300A355F2 /* HE_Foundation.swift */; };
+		9CE87D6B1E24FC3300A355F2 /* HE_Model2Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE87D681E24FC3300A355F2 /* HE_Model2Dict.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,6 +264,9 @@
 		9CB208D11E14E57F009DF235 /* GovReviewDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GovReviewDetailController.swift; sourceTree = "<group>"; };
 		9CB208D41E14F405009DF235 /* ChartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
 		9CB208D61E1500E1009DF235 /* McountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = McountModel.swift; sourceTree = "<group>"; };
+		9CE87D661E24FC3300A355F2 /* HE_Dict2Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HE_Dict2Model.swift; sourceTree = "<group>"; };
+		9CE87D671E24FC3300A355F2 /* HE_Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HE_Foundation.swift; sourceTree = "<group>"; };
+		9CE87D681E24FC3300A355F2 /* HE_Model2Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HE_Model2Dict.swift; sourceTree = "<group>"; };
 		AE9F8EC8318E9582C49DF326 /* Pods_ZhiAnTongGov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZhiAnTongGov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E729849BAAD541AC00D21F01 /* Pods-ZhiAnTongGov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhiAnTongGov.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZhiAnTongGov/Pods-ZhiAnTongGov.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -503,6 +509,7 @@
 		9C8619F21DE55EC700CD00FC /* Expand */ = {
 			isa = PBXGroup;
 			children = (
+				9CE87D651E24FC3300A355F2 /* HEExention */,
 				9C861A3E1DE57FD100CD00FC /* Enums */,
 				9C8619F31DE55EC700CD00FC /* Category */,
 				9C8619F41DE55EC700CD00FC /* Const */,
@@ -875,6 +882,16 @@
 			path = Charts;
 			sourceTree = "<group>";
 		};
+		9CE87D651E24FC3300A355F2 /* HEExention */ = {
+			isa = PBXGroup;
+			children = (
+				9CE87D661E24FC3300A355F2 /* HE_Dict2Model.swift */,
+				9CE87D671E24FC3300A355F2 /* HE_Foundation.swift */,
+				9CE87D681E24FC3300A355F2 /* HE_Model2Dict.swift */,
+			);
+			path = HEExention;
+			sourceTree = "<group>";
+		};
 		F9C96A9CA1441FABDAECA0F1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1088,8 +1105,11 @@
 				9CB208C61E126BD0009DF235 /* RecordDetailModel.swift in Sources */,
 				9CA9407E1DEEC17F00550044 /* Info.swift in Sources */,
 				9CAA28CD1E1F745F0085BB96 /* IndustrySelectSwitchCell.swift in Sources */,
+				9CE87D6B1E24FC3300A355F2 /* HE_Model2Dict.swift in Sources */,
+				9CE87D691E24FC3300A355F2 /* HE_Dict2Model.swift in Sources */,
 				9CB208B21E123EA0009DF235 /* GovReviewListController.swift in Sources */,
 				9CB208C01E1268F5009DF235 /* CompanyInfoModel.swift in Sources */,
+				9CE87D6A1E24FC3300A355F2 /* HE_Foundation.swift in Sources */,
 				9CB208291E0291D2009DF235 /* RecordInfoListController.swift in Sources */,
 				9CB208AE1E0BE95D009DF235 /* RecordInfoDetailController.swift in Sources */,
 				9C2BEB521E23683400C57F5D /* CheckListVo.swift in Sources */,

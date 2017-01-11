@@ -146,7 +146,7 @@ class NetworkTool: Alamofire.Manager {
                 let dict = JSON(dictValue)
                 print("loadGovRecords.dict = \(dict)")
                 let success = dict["success"].boolValue
-                let message = dict["msg"].stringValue
+                let message :String = dict["msg"].stringValue
                 let totalCount = dict["totalCount"].intValue
                 //  字典转成模型
                 if success {
@@ -207,6 +207,66 @@ class NetworkTool: Alamofire.Manager {
     func createCheckRecord(parameters:[String:AnyObject],finished:(data:CheckRecordInfoModel?,error:String?)->()){
         SVProgressHUD.showWithStatus("正在加载...")
         self.sendPostRequest(AppTools.getServiceURLWithYh("CREATE_CHECK_RECORD"), parameters: parameters) { (response) in
+            guard response!.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus("加载失败...")
+                finished(data:nil,error: "服务器异常")
+                return
+            }
+            if let dictValue = response!.result.value{
+                let dict = JSON(dictValue)
+                print("loadRecordDetail.dict = \(dict)")
+                let success = dict["success"].boolValue
+                let message = dict["msg"].stringValue
+                //  字典转成模型
+                if success {
+                    let data = CheckRecordInfoModel(dict:dict)
+                    finished(data: data, error: nil)
+                    
+                }else{
+                    finished(data: nil,error: message) //success  false
+                }
+                SVProgressHUD.dismiss()
+                
+            }else {
+                finished(data: nil,error: "数据异常")
+            }
+        }
+    }
+    //提交一般隐患记录
+    func createHiddenTrouble(parameters:[String:AnyObject],finished:(data:CheckRecordInfoModel?,error:String?)->()){
+        SVProgressHUD.showWithStatus("正在加载...")
+        self.sendPostRequest(AppTools.getServiceURLWithYh("CREATE_HIDDEN_TROUBLE"), parameters: parameters) { (response) in
+            guard response!.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus("加载失败...")
+                finished(data:nil,error: "服务器异常")
+                return
+            }
+            if let dictValue = response!.result.value{
+                let dict = JSON(dictValue)
+                print("loadRecordDetail.dict = \(dict)")
+                let success = dict["success"].boolValue
+                let message = dict["msg"].stringValue
+                //  字典转成模型
+                if success {
+                    let data = CheckRecordInfoModel(dict:dict)
+                    finished(data: data, error: nil)
+                    
+                }else{
+                    finished(data: nil,error: message) //success  false
+                }
+                SVProgressHUD.dismiss()
+                
+            }else {
+                finished(data: nil,error: "数据异常")
+            }
+        }
+    }
+    
+    
+    //提交重大隐患
+    func createDanger(parameters:[String:AnyObject],finished:(data:CheckRecordInfoModel?,error:String?)->()){
+        SVProgressHUD.showWithStatus("正在加载...")
+        self.sendPostRequest(AppTools.getServiceURLWithYh("CREATE_DANGER"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
                 finished(data:nil,error: "服务器异常")

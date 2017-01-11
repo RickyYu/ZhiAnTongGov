@@ -10,8 +10,15 @@ import UIKit
 //检查记录基本信息vo类
 class HyCheckItemInfo:BaseModel{
     
-    var gridId:Int!
-    var gridName:String!
+    var id :Int!
+    var content:String!
+    var descriptions:String!
+    
+    var isBig:String!
+    var noteID:String!
+    
+    var createTime:String!
+    var repaired:Bool!
     
     
     override init() {

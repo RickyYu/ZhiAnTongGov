@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class TestSnapController: UIViewController {
     var redView      = UIView()
@@ -23,6 +24,19 @@ class TestSnapController: UIViewController {
     var falseBtn = UIButton()
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
+        let models = IndustrySelectModel()
+        models.id = 1
+        models.title = "爱打打"
+        
+        var array = [JSON]()
+        let dict = ["one":"asd","two":"asd","three":"asd","four":"asd"]
+        print(dict)
+        print(JSON(dict))
+        array.append(JSON(dict))
+        array.append(JSON(dict))
+        print(array)
+        
+      
         
 
         let customView1 = TestCellView(frame:CGRectMake(0, 110, SCREEN_WIDTH, 45))

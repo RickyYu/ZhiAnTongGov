@@ -75,7 +75,7 @@ class CheckListVo:BaseModel{
      * 检查事项全部
      */
      var listAll = [Int]()
-    var listHy = [HyCheckItemInfo]()
+    var listHy = [IndustrySecondSelectModel]()
     
     // 照片
     var listfile = [FILE]()

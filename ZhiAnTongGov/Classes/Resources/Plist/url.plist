@@ -4,10 +4,10 @@
 <dict>
 	<key></key>
 	<string></string>
-	<key>LOAD_INDUSTRY_SECOND_SELECT</key>
-	<string>/appCheckRecord/nosecuritycheck/loadIndustrySecondSelect.xhtml</string>
 	<key>LOAD_HIDDEN_TROUBLES</key>
 	<string>/appProduceLocaleNote/nosecuritycheck/loadHzHiddenTroubles.xhtml</string>
+	<key>LOAD_HISTORY_PRODUCE</key>
+	<string>/appProduceLocaleNote/nosecuritycheck/loadHistoryProduceCallBacks.xhtml</string>
 	<key>BASE_URL_DA</key>
 	<string>http://192.168.2.134:8010/huzhouArchives</string>
 	<key>CREATE_PUNISHMENT</key>
@@ -28,6 +28,16 @@
 	<string>http://192.168.2.110:7090/huzhou</string>
 	<key>LOAD_GOV_RECORD_LIST</key>
 	<string>/appCheckRecord/nosecuritycheck/loadGovCheckRecordList.xhtml</string>
+	<key>CREATE_CHECK_RECORD</key>
+	<string>/appCheckRecord/nosecuritycheck/createCheckRecord.xhtml</string>
+	<key>CREATE_HIDDEN_TROUBLE</key>
+	<string>/appCheckRecord/nosecuritycheck/createHiddenTrouble.xhtml</string>
+	<key>CREATE_DANGER</key>
+	<string>/appDanger/nosecuritycheck/createDanger.xhtml</string>
+	<key>New item - 2</key>
+	<string></string>
+	<key>New item</key>
+	<string></string>
 	<key>LOAD_CHECK_RECORD</key>
 	<string>/appCheckRecord/nosecuritycheck/loadCheckRecord.xhtml</string>
 	<key>LOAD_COMPANY_INFO</key>
@@ -54,9 +64,7 @@
 	<string>/appCompany/nosecuritycheck/loadCompanys.xhtml</string>
 	<key>LOAD_PUN_LIST</key>
 	<string>/appPunishment/nosecuritycheck/loadPunishmentList.xhtml</string>
-	<key>CREATE_CHECK_RECORD</key>
-	<string>/appCheckRecord/nosecuritycheck/createCheckRecord.xhtml</string>
-	<key>LOAD_HISTORY_PRODUCE</key>
-	<string>/appProduceLocaleNote/nosecuritycheck/loadHistoryProduceCallBacks.xhtml</string>
+	<key>LOAD_INDUSTRY_SECOND_SELECT</key>
+	<string>/appCheckRecord/nosecuritycheck/loadIndustrySecondSelect.xhtml</string>
 </dict>
 </plist>

@@ -13,7 +13,7 @@ import UsefulPickerView
 class RecordHiddenNormalController: BaseViewController {
     
     var str : String = ""
-    
+    var converyModels = CheckListVo()
     //责令整改日期
     var customView1  = DetailCellView()
     //发送整改通知书
@@ -42,7 +42,7 @@ class RecordHiddenNormalController: BaseViewController {
         submitBtn.setTitle("保存", forState:.Normal)
         submitBtn.backgroundColor = YMGlobalDeapBlueColor()
         submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
-        submitBtn.addTarget(self, action: #selector(self.choiceTime), forControlEvents: UIControlEvents.TouchUpInside)
+        submitBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
         
         
         customView1.setLabelName("隐患类别：")
@@ -128,12 +128,65 @@ class RecordHiddenNormalController: BaseViewController {
     
     }
     
+    func submit(){
+        let type = customView1.rightLabel.text
+        let des = customView2.textField.text
+        if AppTools.isEmpty(des) {
+            alert("隐患描述不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        let planTime = customView4.rightLabel.text
+        if AppTools.isEmpty(planTime) {
+            alert("计划整改时间不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
+        
     
+        
+        
+    
+    }
+    
+    func submitGeneralTrouble(){
+        var parameters = [String : AnyObject]()
+        
+        
+        parameters["nomalDanger.hzCompany.id"] = converyModels.companyId
+        
+        parameters["produceLocaleNote.id"] = converyModels.checkId
+        
+        parameters["nomalDanger.linkMan"] = converyModels.lxr
+        
+        parameters["nomalDanger.linkManPhone"] = converyModels.phone
+        
+        parameters["nomalDanger.danger"] = true
+        parameters["nomalDanger.type"] = type
+        parameters["nomalDanger.content"] = des
+        parameters["nomalDanger.cleanUp"] = isReform
+        
+        
+        
+        parameters["nomalDanger.governDate"] = planTime
+        // parameters["deletedIds"] = converyModels.phone
+        parameters["file"] = converyModels.phone
+        NetworkTool.sharedTools.createHiddenTrouble(parameters) { (data, error) in
+            //上传完后再上传之前的记录
+        }
+    }
+    
+    var isReform :Bool  = false//是否整改
     func tapped1(button:UIButton){
         button.selected = !button.selected
         if button.selected{
+            isReform = true
             print("tapped1+\(button.selected)")
         }else{
+            isReform = false
             print("tapped1+\(button.selected)")
             
         }

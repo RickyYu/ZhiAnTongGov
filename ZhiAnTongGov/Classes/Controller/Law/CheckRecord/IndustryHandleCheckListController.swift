@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SwiftyJSON
 
 private let Identifier = "IndustrySelectSwitchCell"
 //检查记录 选择行业检查表
@@ -47,6 +48,10 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
     var yesBtn = UIButton()
     //否
     var falseBtn = UIButton()
+    //检查选项
+    var listHy = [IndustrySecondSelectModel]()
+    //检查选项是否通过
+    var listCheck = [Int]()
     
     
     override func viewDidLoad() {
@@ -59,11 +64,13 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
     private func initPage(){
         
         backBtn.setTitle("上一步（基本信息）", forState:.Normal)
+        backBtn.titleLabel?.font  = UIFont.systemFont(ofSize: 13)
         backBtn.backgroundColor = YMGlobalDeapBlueColor()
         backBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
         backBtn.addTarget(self, action: #selector(self.backBaseInfo), forControlEvents: UIControlEvents.TouchUpInside)
         
         nextBtn.setTitle("下一步（隐患录入）", forState:.Normal)
+        nextBtn.titleLabel?.font  = UIFont.systemFont(ofSize: 13)
         nextBtn.backgroundColor = YMGlobalDeapBlueColor()
         nextBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
         nextBtn.addTarget(self, action: #selector(self.nextRecordHidden), forControlEvents: UIControlEvents.TouchUpInside)
@@ -134,11 +141,6 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
             make.size.equalTo(CGSizeMake(100, 35))
         }
 
-//        customView2.snp_makeConstraints { make in
-//            make.bottom.equalTo(self.customView1.snp_top).offset(-15)
-//            make.left.equalTo(self.view.snp_left)
-//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
-//        }
   
         
         isHiddenView.snp_makeConstraints { make in
@@ -193,23 +195,63 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
     
     func nextRecordHidden(){
         
-        //如果否选中
-        if nextBtn.selected {
+        converyModels.listHy = listHy
+
+        if !yesBtn.selected {
             
             var parameters = [String : AnyObject]()
-             parameters["produceLocaleNote.hzCompany.id"] = PAGE_SIZE
-            parameters["produceLocaleNote.checkTimeBegin"] = PAGE_SIZE
-            parameters["produceLocaleNote.checkGround"] = PAGE_SIZE
-             parameters["produceLocaleNote.fdDelegateLink"] = PAGE_SIZE
-             parameters["gridIds"] = PAGE_SIZE
-             parameters["produceLocaleNote.noter"] = PAGE_SIZE
-             parameters["produceLocaleNote.executeUnit"] = PAGE_SIZE
-             parameters["hzProduceCleanUp.cleanUpTimeLimit"] = PAGE_SIZE
-             parameters["produceLocaleNote.content"] = PAGE_SIZE
-             parameters["hzTemplateCheckTable.id"] = PAGE_SIZE
-             parameters["hzCompanyCheckTableInfosJson"] = PAGE_SIZE
-             parameters["file"] = PAGE_SIZE
-             parameters["produceLocaleNote.sendCleanUp"] = PAGE_SIZE
+             parameters["produceLocaleNote.hzCompany.id"] = converyModels.companyId
+        
+            parameters["produceLocaleNote.checkTimeBegin"] = converyModels.checktime
+       
+            parameters["produceLocaleNote.checkGround"] = converyModels.place
+           
+             parameters["produceLocaleNote.fdDelegateLink"] = converyModels.phone
+            
+            if !converyModels.listCb.isEmpty{
+              parameters["gridIds"] = JSON(arrayLiteral: converyModels.listCb).string
+            }
+            
+             parameters["produceLocaleNote.noter"] = converyModels.people
+       
+             parameters["produceLocaleNote.executeUnit"] = converyModels.law
+        
+             parameters["hzProduceCleanUp.cleanUpTimeLimit"] = converyModels.zgtime
+            if !converyModels.nowcontent.isEmpty{
+                parameters["produceLocaleNote.content"] = converyModels.nowcontent
+            }
+            if(!converyModels.checkId.isEmpty){
+                 parameters["hzTemplateCheckTable.id"] = converyModels.checkId
+            }
+            if !converyModels.listHy.isEmpty{
+                var array = [String]()
+                for i in 0..<converyModels.listHy.count{
+                    print(converyModels.listHy[i].id)
+                    
+                    if let dict = converyModels.listHy[i].keyValues{
+                        do{ //转化为JSON 字符串
+                            let data = try NSJSONSerialization.dataWithJSONObject(dict, options: .PrettyPrinted)
+                            array.append(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                            print(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                        }catch{
+                            
+                        }
+                      
+                    }
+                }
+             print(array)
+             parameters["hzCompanyCheckTableInfosJson"] = array.description
+                
+                
+            }
+        
+            if !converyModels.listfile.isEmpty{
+               parameters["file"] = PAGE_SIZE
+            }
+            
+             parameters["produceLocaleNote.sendCleanUp"] = isReform
+            
+            print("parameters = \(parameters)")
         
            NetworkTool.sharedTools.createCheckRecord(parameters, finished: { (data, error) in
           
@@ -218,14 +260,24 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
         }else{
         
             
-            //        let modifyTime = customView1.rightLabel.text!
-            //        if AppTools.isEmpty(modifyTime) {
-            //            alert("检查时间不可为空", handler: {
-            //                self.customView5.textField.becomeFirstResponder()
-            //            })
-            //            return
-            //        }
-            self.navigationController?.pushViewController(RecordHiddenController(), animated: true)
+            let modifyTime = customView1.rightLabel.text!
+            if AppTools.isEmpty(modifyTime) {
+                alert("检查时间不可为空", handler: {
+                    self.customView5.textField.becomeFirstResponder()
+                })
+                return
+            }
+            converyModels.zgtime = modifyTime
+            converyModels.check = isReform
+            for i in 0..<converyModels.listHy.count{
+                if converyModels.listHy[i].description == "1"{
+                listCheck.append(converyModels.listHy[i].id)
+                }
+            }
+            converyModels.listCheck = listCheck
+            let controller = RecordHiddenController()
+            controller.converyModels = converyModels
+            self.navigationController?.pushViewController(controller, animated: true)
         
         }
 
@@ -235,7 +287,7 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
     func getDatas(){
 
         var parameters = [String : AnyObject]()
-        parameters["hzTemplateCheckTable.id"] = 4
+        parameters["hzTemplateCheckTable.id"] = converyModels.checkId
         if !AppTools.isEmpty(searchStr){
             parameters["hzTemplateCheckTable.title"] = searchStr
         }
@@ -282,15 +334,31 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
         if count > 0 {
             let industrySecondSelectModel = industrySecondSelectModels[indexPath.row]
             cell.industrySecondSelectModel = industrySecondSelectModel
+            
+            cell.customSwitch.addTarget(self, action:  #selector(self.switchDidChange), forControlEvents: .ValueChanged)
+            if cell.customSwitch.selected{
+            industrySecondSelectModel.descriptions = "1"
+            }else{
+            industrySecondSelectModel.descriptions = "0"
+            }
+             listHy.append(industrySecondSelectModel)
         }
+      
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
-            // 这儿写自增, 竟然有警告, swift语言更新确实有点快, 我记得1.2的时候还是可以的
             currentPage += 10
             getDatas()
         }
         return cell
     }
+    
+    func switchDidChange(){
+        
+        print("change")
+        
+    }
+    
+ 
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -316,20 +384,6 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
         searchStr = ""
         reSet()
         getDatas()
-    }
-     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let alertVC = UIAlertController(title: "提示", message: "确定选择这张表", preferredStyle: UIAlertControllerStyle.Alert)
-        let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
-            print("click Sure")
-        }
-        let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
-            print("click Cancel")
-        }
-        alertVC.addAction(acSure)
-        alertVC.addAction(acCancel)
-        self.presentViewController(alertVC, animated: true, completion: nil)
-        
-        
     }
     
     
@@ -399,11 +453,13 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
         if button.selected{
             customView1.hidden = false
             customView2.hidden = false
-            falseBtn.selected = false
+             falseBtn.selected = false
+             nextBtn.setTitle("下一步（隐患录入）", forState:.Normal)
         }else{
             customView1.hidden = true
             customView2.hidden = true
             falseBtn.selected = true
+            nextBtn.setTitle("提交", forState: .Normal)
         }
         
     }
@@ -425,13 +481,16 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
         }
         
     }
-    
+    var isReform:Bool = false
+    //是否发送整改通知书
     func tapped3(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            print("tapped1+\(button.selected)")
+            isReform = true
+            print("tapped3+\(isReform)")
         }else{
-            print("tapped1+\(button.selected)")
+            isReform = false
+            print("tapped3+\(isReform)")
             
         }
         

@@ -20,6 +20,8 @@ class IndustrySecondSelectModel:BaseModel{
         self.content = dict["content"] as? String
         self.descriptions = dict["description"] as? String
     }
+    
+    
 }
 
 

@@ -65,7 +65,7 @@ class AddRecordController: BaseViewController,ParameterDelegate{
     
     var list2 =  [Int]()
     
-    
+    var modelsCount = 0
     
     
     override func viewDidLoad() {
@@ -78,6 +78,7 @@ class AddRecordController: BaseViewController,ParameterDelegate{
     override func viewWillAppear(animated: Bool) {
         self.automaticallyAdjustsScrollViewInsets = false
         if(industrySelectModel != nil){
+            checkList.checkId = String(industrySelectModel.id)
             if(industrySelectModel.title == "无"){
             self.checkView.hidden = false
                 
@@ -153,23 +154,28 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         customView7 = DetailMultCbCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45),models:checkRecordInfoModel.checkPersonModels)
         customView7.setLabelName("参与检查人：")
         let models = checkRecordInfoModel.checkPersonModels
-       
-        if models.count == 1{
+         modelsCount = models.count
+        if modelsCount != 0 {
+         if modelsCount == 1{
           c1 = models[0].gridId
           cbName = models[0].gridName
-        }else if models.count == 2{
+        }
+            
+            if modelsCount == 2{
             c1 = models[0].gridId
             cbName = models[0].gridName
             c2 = models[1].gridId
             cbName2 = models[1].gridName
-        }else if models.count == 3{
+        }
+        if modelsCount == 3{
             c1 = models[0].gridId
             cbName = models[0].gridName
             c2 = models[1].gridId
             cbName2 = models[1].gridName
             c3 = models[2].gridId
             cbName3 = models[2].gridName
-        }else{
+        }
+        if modelsCount == 4 {
             c1 = models[0].gridId
             cbName = models[0].gridName
             c2 = models[1].gridId
@@ -179,8 +185,8 @@ class AddRecordController: BaseViewController,ParameterDelegate{
             c4 = models[3].gridId
             cbName4 = models[3].gridName
         }
+        }
         
-                
          customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
         customView8.setLabelName("检查人/记录人：")
         if checkRecordInfoModel.noter.isEmpty {
@@ -336,22 +342,58 @@ class AddRecordController: BaseViewController,ParameterDelegate{
             }
         }
         
-        if customView7.btn1.selected{
-            list2.append(c1)
+     
+        
+        if modelsCount != 0{
+        if modelsCount == 1 {
+            if customView7.btn1.selected{
+                list2.append(c1)
+            }
+        }
+       
+        if modelsCount == 2{
+            if customView7.btn1.selected{
+                list2.append(c1)
+            }
+            if customView7.btn2.selected{
+                list2.append(c2)
+            }
         }
         
-        if customView7.btn2.selected{
-            list2.append(c2)
+        if modelsCount == 3{
+        
+            if customView7.btn1.selected{
+                list2.append(c1)
+            }
+            if customView7.btn2.selected{
+                list2.append(c2)
+            }
+            
+            if customView7.btn3.selected{
+                list2.append(c3)
+            }
         }
         
-        if customView7.btn3.selected{
-            list2.append(c3)
+        if modelsCount == 4 {
+            
+            if customView7.btn1.selected{
+                list2.append(c1)
+            }
+            if customView7.btn2.selected{
+                list2.append(c2)
+            }
+            
+            if customView7.btn3.selected{
+                list2.append(c3)
+            }
+            if modelsCount == 4{
+                if customView7.btn4.selected{
+                    list2.append(c4)
+                }
+            }
         }
-        
-        if customView7.btn4.selected{
-            list2.append(c4)
         }
-        
+
         
         //页面显示时
         if self.checkView.hidden{
@@ -376,8 +418,9 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         checkList.companyadress = address
         checkList.companylxr = cpyContact
         checkList.content = content
+        checkList.checktime = checkTime
         checkList.companyId = companyId
-        checkList.checkId = ""
+        
         checkList.place = place
         checkList.phone = phone
         checkList.people = people
@@ -408,6 +451,7 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         checkList.cbname3 = cbName3
         checkList.cbname4 = cbName4
         
+       
 
         let  controller = IndustryHandleCheckListController()
         controller.converyModels = checkList

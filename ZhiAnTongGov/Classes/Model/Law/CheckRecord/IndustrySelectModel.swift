@@ -13,10 +13,18 @@ class IndustrySelectModel:BaseModel{
     
     var id:Int!
     var title:String!
+    
+    override init() {
+        super.init()
+    }
 
     init(dict: [String: AnyObject]) {
         self.id = dict["id"] as? Int
         self.title = dict["title"] as? String
+    }
+    
+    static func customClassMapping() -> [String: String]?{
+        return ["numbers":"User"];   //指定numbers数组中的元素类型是User
     }
 }
 

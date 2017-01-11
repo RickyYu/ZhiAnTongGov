@@ -26,6 +26,15 @@ class IndustrySelectSwitchCell: UITableViewCell {
         
     }
 
+    @IBAction func valueChange(sender: AnyObject) {
+        let sw = sender as! UISwitch
+        if sw.on{
+        industrySecondSelectModel?.descriptions = "1"
+        }else{
+        industrySecondSelectModel?.descriptions = "0"
+        }
+        
+    }
     
     var industrySecondSelectModel: IndustrySecondSelectModel?
         {
@@ -33,7 +42,11 @@ class IndustrySelectSwitchCell: UITableViewCell {
             if let art = industrySecondSelectModel {
                 // 设置数据
                 titile.text = art.content
-                
+                if art.descriptions == "1"{
+                  customSwitch.on = true
+                }else{
+                  customSwitch.on = false
+                }
             }
         }
     }
