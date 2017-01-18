@@ -12,7 +12,7 @@ import SwiftyJSON
 
 private let Identifier = "IndustrySelectSwitchCell"
 //检查记录 选择行业检查表
-class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
+class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
     
     //传过来的model
     var converyModels = CheckListVo()
@@ -56,6 +56,8 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(converyModels.listfile.count)
         initPage()
         getDatas()
         
@@ -64,13 +66,13 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
     private func initPage(){
         
         backBtn.setTitle("上一步（基本信息）", forState:.Normal)
-        backBtn.titleLabel?.font  = UIFont.systemFont(ofSize: 13)
+        backBtn.titleLabel?.font  = UIFont.boldSystemFontOfSize(13)
         backBtn.backgroundColor = YMGlobalDeapBlueColor()
         backBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
         backBtn.addTarget(self, action: #selector(self.backBaseInfo), forControlEvents: UIControlEvents.TouchUpInside)
         
         nextBtn.setTitle("下一步（隐患录入）", forState:.Normal)
-        nextBtn.titleLabel?.font  = UIFont.systemFont(ofSize: 13)
+        nextBtn.titleLabel?.font  =  UIFont.boldSystemFontOfSize(13)
         nextBtn.backgroundColor = YMGlobalDeapBlueColor()
         nextBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
         nextBtn.addTarget(self, action: #selector(self.nextRecordHidden), forControlEvents: UIControlEvents.TouchUpInside)
@@ -78,7 +80,7 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
 
         customView1.setLabelName("责令整改日期：")
         customView1.setRRightLabel("")
-        customView1.addOnClickListener(self, action: #selector(self.choiceTime))
+        customView1.addOnClickListener(self, action: #selector(self.choiceZgTimes))
         
         
         customView2 =  DetailCellView(frame:CGRectMake(0, 500, SCREEN_WIDTH, 45))
@@ -195,7 +197,17 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
     
     func nextRecordHidden(){
         
+        let modifyTime = customView1.rightLabel.text!
+   
+        converyModels.zgtime = modifyTime
         converyModels.listHy = listHy
+        converyModels.check = isReform
+        for i in 0..<converyModels.listHy.count{
+            if converyModels.listHy[i].description == "1"{
+                listCheck.append(converyModels.listHy[i].id)
+            }
+        }
+        converyModels.listCheck = listCheck
 
         if !yesBtn.selected {
             
@@ -215,8 +227,10 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
              parameters["produceLocaleNote.noter"] = converyModels.people
        
              parameters["produceLocaleNote.executeUnit"] = converyModels.law
-        
+            if !converyModels.zgtime.isEmpty{
              parameters["hzProduceCleanUp.cleanUpTimeLimit"] = converyModels.zgtime
+            }
+            
             if !converyModels.nowcontent.isEmpty{
                 parameters["produceLocaleNote.content"] = converyModels.nowcontent
             }
@@ -226,55 +240,66 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
             if !converyModels.listHy.isEmpty{
                 var array = [String]()
                 for i in 0..<converyModels.listHy.count{
-                    print(converyModels.listHy[i].id)
-                    
-                    if let dict = converyModels.listHy[i].keyValues{
-                        do{ //转化为JSON 字符串
-                            let data = try NSJSONSerialization.dataWithJSONObject(dict, options: .PrettyPrinted)
+                    do{ //转化为JSON 字符串
+                            let data = try NSJSONSerialization.dataWithJSONObject(converyModels.listHy[i].getParams1(), options: .PrettyPrinted)
                             array.append(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
                             print(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
                         }catch{
                             
                         }
-                      
-                    }
                 }
-             print(array)
-             parameters["hzCompanyCheckTableInfosJson"] = array.description
-                
+             let temp = array.joinWithSeparator(",")
+             let tempStr = "["+temp+"]"
+              print(tempStr)
+             parameters["hzCompanyCheckTableInfosJson"] = tempStr
                 
             }
         
-            if !converyModels.listfile.isEmpty{
-               parameters["file"] = PAGE_SIZE
-            }
+  
+//            if !converyModels.listfile.isEmpty{
+//               parameters["file[0]"] = converyModels.listfile
+//            }
             
-             parameters["produceLocaleNote.sendCleanUp"] = isReform
+             parameters["produceLocaleNote.sendCleanUp"] = String(Int(converyModels.check))
             
             print("parameters = \(parameters)")
-        
-           NetworkTool.sharedTools.createCheckRecord(parameters, finished: { (data, error) in
+         print("converyModels.listfile = \(converyModels.listfile)")
+//            NetworkTool.sharedTools.createCheckRecord(parameters,finished: { (data, error) in
+//                
+//                if error == nil{
+//                    self.showHint("添加成功", duration: 2, yOffset: 0)
+//                    // 获得视图控制器中的某一视图控制器
+//                    let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
+//                    viewController.isRefresh = true
+//                    self.navigationController?.popToViewController(viewController , animated: true)
+//                    
+//                }else{
+//                   self.showHint("\(error)", duration: 2, yOffset: 0)
+//                }
+//                
+//            })
+            
+           NetworkTool.sharedTools.createCheckRecordImage(parameters,imageArrays: converyModels.listfile,finished: { (data, error) in
+                            if error == nil{
+                                self.showHint("添加成功", duration: 2, yOffset: 0)
+                                // 获得视图控制器中的某一视图控制器
+                                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
+                                viewController.isRefresh = true
+                                self.navigationController?.popToViewController(viewController , animated: true)
+            
+                            }else{
+                               self.showHint("\(error)", duration: 2, yOffset: 0)
+                            }
           
            })
         
         }else{
-        
-            
-            let modifyTime = customView1.rightLabel.text!
             if AppTools.isEmpty(modifyTime) {
                 alert("检查时间不可为空", handler: {
-                    self.customView5.textField.becomeFirstResponder()
+                    // self.customView5.textField.becomeFirstResponder()
                 })
                 return
             }
-            converyModels.zgtime = modifyTime
-            converyModels.check = isReform
-            for i in 0..<converyModels.listHy.count{
-                if converyModels.listHy[i].description == "1"{
-                listCheck.append(converyModels.listHy[i].id)
-                }
-            }
-            converyModels.listCheck = listCheck
             let controller = RecordHiddenController()
             controller.converyModels = converyModels
             self.navigationController?.pushViewController(controller, animated: true)
@@ -283,6 +308,8 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
 
     
     }
+    
+
     
     func getDatas(){
 
@@ -409,34 +436,14 @@ class IndustryHandleCheckListController: UIViewController, UITableViewDelegate, 
         industrySecondSelectModels = [IndustrySecondSelectModel]()
     }
     
-    func choiceTime(){
-        let alertController:UIAlertController=UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        // 初始化 datePicker
-        let datePicker = UIDatePicker( )
-        //将日期选择器区域设置为中文，则选择器日期显示为中文
-        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
-        // 设置样式，当前设为同时显示日期和时间
-        datePicker.datePickerMode = UIDatePickerMode.Date
-        // 设置默认时间
-        datePicker.date = NSDate()
-        // 响应事件（只要滚轮变化就会触发）
-        // datePicker.addTarget(self, action:Selector("datePickerValueChange:"), forControlEvents: UIControlEvents.ValueChanged)
-        alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default){
-            (alertAction)->Void in
-            //更新提醒时间文本框
-            let formatter = NSDateFormatter()
-            //日期样式
-            formatter.dateFormat = "yyyy-MM-dd"
-            self.customView1.setRRightLabel(formatter.stringFromDate(datePicker.date))
-            
-            })
-        alertController.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel,handler:nil))
-        
-        alertController.view.addSubview(datePicker)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
+    func choiceZgTimes(){
+        choiceTime { (time) in
+            self.customView1.setRRightLabel(time)
+            self.customView1.becomeFirstResponder()
+        }
         
     }
+    
     
     func setButton(button:UIButton,str:String){
         button.setImage(UIImage(named: "cb_unselect"), forState: UIControlState.Normal)

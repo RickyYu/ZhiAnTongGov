@@ -8,8 +8,11 @@
 
 import UIKit
 import SwiftyJSON
-
-class TestSnapController: UIViewController {
+class TestSnapController: PhotoViewController {
+    enum PunTypeEnum : String{
+        case 警告 = "punishmentType02"
+        case punishmentType02 = "警告"
+    }
     var redView      = UIView()
     var yellowView   = UIView()
     var greenView    = UIView()
@@ -23,6 +26,17 @@ class TestSnapController: UIViewController {
     var yesBtn = UIButton()
     var falseBtn = UIButton()
     override func viewDidLoad() {
+        
+        self.view.addSubview(containerView)
+        setLoc(0, y: 300)
+        checkNeedAddButton()
+        renderView()
+
+         print("警告 = "+getPunType("警告"))
+         print("punishmentType02 = "+getPunType("punishmentType02"))
+      
+        
+        
         self.view.backgroundColor = UIColor.whiteColor()
         let models = IndustrySelectModel()
         models.id = 1
@@ -37,7 +51,6 @@ class TestSnapController: UIViewController {
         print(array)
         
       
-        
 
         let customView1 = TestCellView(frame:CGRectMake(0, 110, SCREEN_WIDTH, 45))
         customView1.setLabelName("企业：")
@@ -45,6 +58,7 @@ class TestSnapController: UIViewController {
 
  
         view.addSubview(customView1)
+        view.addSubview(containerView)
 
         
         redView.backgroundColor = UIColor.redColor()

@@ -8,47 +8,55 @@
 
 import UIKit
 import SnapKit
+import SwiftyJSON
 
 class RecordHiddenMajorController: BaseViewController {
     var converyModels = CheckListVo()
     var submitBtn = UIButton()
     var scrollView: UIScrollView!
      var recordDetailModel : RecordDetailModel!
+    
     override func viewDidLoad() {
         initPage()
-        
-
-       
-
     }
      //隐患地址
-     let address = ""
+     var address = ""
         //联系人
-    let people = ""
-    let phone  = ""
-    let mobile = ""
-    let hiddenDes = ""
-    let plantTime = ""
-    let governMoney = ""
-   let chargePerson = ""
-   let fillDate = ""
-   let fillMan = ""
+    var people = ""
+    var phone  = ""
+    var mobile = ""
+    var hiddenDes = ""
+    var plantTime = ""
+    var governMoney = ""
+    var chargePerson = ""
+    var fillDate = ""
+    var fillMan = ""
+    var customView2  = DetailCellView()
+    var customView4  = DetailCellView()
+    var customView5  = DetailCellView()
+    var customView6  = DetailCellView()
+    var customView7  = DetailCellView()
+    var customView16  = DetailCellView()
+    var customView17  = DetailCellView()
+    var customView18  = DetailCellView()
+    var customView19  = DetailCellView()
+    var customView20  = DetailCellView()
     func submit(){
-         address = customView2.textField.text
-        if AppTools.isEmpty(des) {
+         address = customView2.textField.text!
+        if AppTools.isEmpty(address) {
             alert("隐患地址不可为空", handler: {
                 self.customView2.textField.becomeFirstResponder()
             })
             return
         }
-        people = customView4.rightLabel.text
+        people = customView4.rightLabel.text!
         if AppTools.isEmpty(people) {
             alert("联系人不可为空", handler: {
                 self.customView4.textField.becomeFirstResponder()
             })
             return
         }
-        phone = customView5.rightLabel.text
+        phone = customView5.rightLabel.text!
         if AppTools.isEmpty(phone) {
             alert("联系电话不可为空", handler: {
                 self.customView5.textField.becomeFirstResponder()
@@ -56,14 +64,14 @@ class RecordHiddenMajorController: BaseViewController {
             return
         }
         
-         mobile = customView6.rightLabel.text
+         mobile = customView6.rightLabel.text!
         if AppTools.isEmpty(mobile) {
             alert("手机不可为空", handler: {
                 self.customView6.textField.becomeFirstResponder()
             })
             return
         }
-         hiddenDes = customView7.rightLabel.text
+         hiddenDes = customView7.rightLabel.text!
         if AppTools.isEmpty(hiddenDes) {
             alert("隐患基本情况不可为空", handler: {
                 self.customView7.textField.becomeFirstResponder()
@@ -71,7 +79,7 @@ class RecordHiddenMajorController: BaseViewController {
             return
         }
         
-        plantTime = customView16.rightLabel.text
+        plantTime = customView16.rightLabel.text!
         if AppTools.isEmpty(plantTime) {
             alert("计划完成治理时间不可为空", handler: {
                 self.customView7.textField.becomeFirstResponder()
@@ -80,7 +88,7 @@ class RecordHiddenMajorController: BaseViewController {
         }
         
         
-        governMoney = customView17.textField.text
+        governMoney = customView17.textField.text!
         if AppTools.isEmpty(plantTime) {
             alert("治理经费不可为空", handler: {
                 self.customView17.textField.becomeFirstResponder()
@@ -88,14 +96,14 @@ class RecordHiddenMajorController: BaseViewController {
             return
         }
         
-        chargePerson = customView18.textField.text
+        chargePerson = customView18.textField.text!
         if AppTools.isEmpty(plantTime) {
             alert("单位负责人不可为空", handler: {
                 self.customView18.textField.becomeFirstResponder()
             })
             return
         }
-        fillDate = customView19.rightLabel.text
+        fillDate = customView19.rightLabel.text!
         if AppTools.isEmpty(plantTime) {
             alert("录入时间不可为空", handler: {
                 
@@ -103,7 +111,7 @@ class RecordHiddenMajorController: BaseViewController {
             return
         }
         
-        fillMan = customView20.textField.text
+        fillMan = customView20.textField.text!
         if AppTools.isEmpty(plantTime) {
             alert("填报人不可为空", handler: {
                 
@@ -111,7 +119,18 @@ class RecordHiddenMajorController: BaseViewController {
             return
         }
        
-        //先上传普通记录，再上传重大隐患
+        
+        let alertVC = UIAlertController(title: "提示", message: "确认提交后，本次检查信息及隐患无法再更改", preferredStyle: UIAlertControllerStyle.Alert)
+        let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
+        
+                self.submitCheck()
+        }
+        let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
+            print("click Cancel")
+        }
+        alertVC.addAction(acSure)
+        alertVC.addAction(acCancel)
+        self.presentViewController(alertVC, animated: true, completion: nil)
     
         
         
@@ -181,7 +200,7 @@ class RecordHiddenMajorController: BaseViewController {
         customView1.setRCheckBtn()
         customView1.rightCheckBtn.addTarget(self, action:#selector(tapped1(_:)), forControlEvents:.TouchUpInside)
         
-        let customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
+         customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
         customView2.setLabelName("隐患地址：")
         customView2.setRTextField( "")
         
@@ -191,22 +210,22 @@ class RecordHiddenMajorController: BaseViewController {
         
         
         
-        let customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
+         customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
         customView4.setLabelName("联系人：")
         customView4.setRTextField( "")
         
         
-        let customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
+        customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("联系电话：")
         customView5.setRTextField( "")
         
         
-        let customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
+        customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
         customView6.setLabelName("手机")
         customView6.setRTextField( "")
         
         
-        let customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
+        customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
         customView7.setLabelName("隐患基本情况：")
         customView7.setRTextField( "") //ImagesInfo 字段
         
@@ -249,29 +268,29 @@ class RecordHiddenMajorController: BaseViewController {
         customView15.setRCheckBtn()
         customView15.rightCheckBtn.addTarget(self, action:#selector(tapped8(_:)), forControlEvents:.TouchUpInside)
         
-        let customView16 = DetailCellView(frame:CGRectMake(0, 685, SCREEN_WIDTH, 45))
+        customView16 = DetailCellView(frame:CGRectMake(0, 685, SCREEN_WIDTH, 45))
         customView16.setLabelName("计划完成治理时间：")
         customView16.setRRightLabel("")
         customView16.addOnClickListener(self, action: #selector(self.choicePlanTimes))
         
-        let customView17 = DetailCellView(frame:CGRectMake(0, 730, SCREEN_WIDTH, 45))
+        customView17 = DetailCellView(frame:CGRectMake(0, 730, SCREEN_WIDTH, 45))
         customView17.setLabelName("落实治理经费:(单位：万)")
         customView17.setRTextField( "")
         
-        let customView18 = DetailCellView(frame:CGRectMake(0, 775, SCREEN_WIDTH, 45))
+        customView18 = DetailCellView(frame:CGRectMake(0, 775, SCREEN_WIDTH, 45))
         customView18.setLabelName("单位负责人：")
         customView18.setRTextField( "")
         
         
-        let customView19 = DetailCellView(frame:CGRectMake(0, 820, SCREEN_WIDTH, 45))
-        customView20.setLabelName("录入时间：")
+        customView19 = DetailCellView(frame:CGRectMake(0, 820, SCREEN_WIDTH, 45))
+        customView19.setLabelName("录入时间：")
         getSystemTime { (time) in
-            customView20.setRRightLabel(time)
+            self.customView19.setRRightLabel(time)
         }
         
-        let customView20 = DetailCellView(frame:CGRectMake(0, 865, SCREEN_WIDTH, 45))
-        customView21.setLabelName("填报人：")
-        customView21.setRTextField( "")
+        customView20 = DetailCellView(frame:CGRectMake(0, 865, SCREEN_WIDTH, 45))
+        customView20.setLabelName("填报人：")
+        customView20.setRTextField( "")
         
         
         
@@ -515,5 +534,62 @@ class RecordHiddenMajorController: BaseViewController {
         }
     }
     
+    func submitCheck(){
+        var parameters = [String : AnyObject]()
+        parameters["produceLocaleNote.hzCompany.id"] = converyModels.companyId
+        
+        parameters["produceLocaleNote.checkTimeBegin"] = converyModels.checktime
+        
+        parameters["produceLocaleNote.checkGround"] = converyModels.place
+        
+        parameters["produceLocaleNote.fdDelegateLink"] = converyModels.phone
+        
+        if !converyModels.listCb.isEmpty{
+            parameters["gridIds"] = JSON(arrayLiteral: converyModels.listCb).string
+        }
+        
+        parameters["produceLocaleNote.noter"] = converyModels.people
+        
+        parameters["produceLocaleNote.executeUnit"] = converyModels.law
+        
+        parameters["hzProduceCleanUp.cleanUpTimeLimit"] = converyModels.zgtime
+        if !converyModels.nowcontent.isEmpty{
+            parameters["produceLocaleNote.content"] = converyModels.nowcontent
+        }
+        if(!converyModels.checkId.isEmpty){
+            parameters["hzTemplateCheckTable.id"] = converyModels.checkId
+        }
+        if !converyModels.listHy.isEmpty{
+            var array = [String]()
+            for i in 0..<converyModels.listHy.count{
+                do{ //转化为JSON 字符串
+                    let data = try NSJSONSerialization.dataWithJSONObject(converyModels.listHy[i].getParams1(), options: .PrettyPrinted)
+                    array.append(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                    print(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                }catch{
+                    
+                }
+            }
+            let temp = array.joinWithSeparator(",")
+            let tempStr = "["+temp+"]"
+            print(tempStr)
+            parameters["hzCompanyCheckTableInfosJson"] = tempStr
+            
+        }
+        
+        if !converyModels.listfile.isEmpty{
+            parameters["file"] = ""
+        }
+        
+        parameters["produceLocaleNote.sendCleanUp"] = converyModels.check
+        
+        print("parameters = \(parameters)")
+        
+//        NetworkTool.sharedTools.createCheckRecord(parameters,imageArrays: converyModels.listfile, finished: { (data, error) in
+//            
+//        })
+        
+
+    }
 
 }

@@ -24,10 +24,19 @@ class RecordInfoListController:UITableViewController,UISearchBarDelegate{
     var totalCount : Int = 0
     // 是否加载更多
     private var toLoadMore = false
+    var isRefresh:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.whiteColor()
         initPage()
         
+    }
+    override func viewWillAppear(animated: Bool) {
+        if isRefresh{
+         reSet()
+         getData()
+        }
+       
     }
     
     private func initPage(){
@@ -109,7 +118,7 @@ class RecordInfoListController:UITableViewController,UISearchBarDelegate{
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
-                self.showHint("\(error)", duration: 2, yOffset: 0)
+                self.showHint("\(error!)", duration: 2, yOffset: 0)
             }
             self.tableView.reloadData()
         }
@@ -134,7 +143,6 @@ class RecordInfoListController:UITableViewController,UISearchBarDelegate{
         
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
-            // 这儿写自增, 竟然有警告, swift语言更新确实有点快, 我记得1.2的时候还是可以的
             currentPage += 10
             getData()
         }
@@ -149,13 +157,11 @@ class RecordInfoListController:UITableViewController,UISearchBarDelegate{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-       self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let controller = RecordInfoDetailController()
         controller.converyDataModel = recordInfoModels[indexPath.row]
         self.navigationController?.pushViewController(controller, animated: true)
+      
     }
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {

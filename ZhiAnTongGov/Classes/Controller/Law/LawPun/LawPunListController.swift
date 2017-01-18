@@ -25,10 +25,17 @@ class LawPunListController:UITableViewController,UISearchBarDelegate{
     // 是否加载更多
     private var toLoadMore = false
     var searchStr : String = ""
+     var isRefresh:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initPage()
+    }
+    override func viewWillAppear(animated: Bool) {
+        if isRefresh{
+            reSet()
+            getDatas()
+        }
     }
     
     private func initPage(){
@@ -162,7 +169,7 @@ class LawPunListController:UITableViewController,UISearchBarDelegate{
         let controller = PunInfoController()
         let object : PunishmentModel = listDatas[indexPath.row] as PunishmentModel
         controller.converyJcjlId = object.jcjlId
-        controller.converyCompanyId = object.companyId
+        controller.converyCompanyId = String(object.companyId)
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import UsefulPickerView
+import SwiftyJSON
 
 class RecordHiddenNormalController: BaseViewController {
     
@@ -128,16 +129,21 @@ class RecordHiddenNormalController: BaseViewController {
     
     }
     
+    var type = ""
+    var des = ""
+    var planTime = ""
     func submit(){
-        let type = customView1.rightLabel.text
-        let des = customView2.textField.text
+        
+        
+        type = customView1.rightLabel.text!
+        des = customView2.textField.text!
         if AppTools.isEmpty(des) {
             alert("隐患描述不可为空", handler: {
                 self.customView5.textField.becomeFirstResponder()
             })
             return
         }
-        let planTime = customView4.rightLabel.text
+        planTime = customView4.rightLabel.text!
         if AppTools.isEmpty(planTime) {
             alert("计划整改时间不可为空", handler: {
                 self.customView5.textField.becomeFirstResponder()
@@ -145,6 +151,17 @@ class RecordHiddenNormalController: BaseViewController {
             return
         }
         
+        let alertVC = UIAlertController(title: "提示", message: "确认提交后，本次检查信息及隐患无法再更改", preferredStyle: UIAlertControllerStyle.Alert)
+        let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
+          
+                self.submitCheck()
+        }
+        let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
+            print("click Cancel")
+        }
+        alertVC.addAction(acSure)
+        alertVC.addAction(acCancel)
+        self.presentViewController(alertVC, animated: true, completion: nil)
         
     
         
@@ -208,4 +225,61 @@ class RecordHiddenNormalController: BaseViewController {
         }
         
     }
+    
+    func submitCheck(){
+        var parameters = [String : AnyObject]()
+        parameters["produceLocaleNote.hzCompany.id"] = converyModels.companyId
+        
+        parameters["produceLocaleNote.checkTimeBegin"] = converyModels.checktime
+        
+        parameters["produceLocaleNote.checkGround"] = converyModels.place
+        
+        parameters["produceLocaleNote.fdDelegateLink"] = converyModels.phone
+        
+        if !converyModels.listCb.isEmpty{
+            parameters["gridIds"] = JSON(arrayLiteral: converyModels.listCb).string
+        }
+        
+        parameters["produceLocaleNote.noter"] = converyModels.people
+        
+        parameters["produceLocaleNote.executeUnit"] = converyModels.law
+        
+        parameters["hzProduceCleanUp.cleanUpTimeLimit"] = converyModels.zgtime
+        if !converyModels.nowcontent.isEmpty{
+            parameters["produceLocaleNote.content"] = converyModels.nowcontent
+        }
+        if(!converyModels.checkId.isEmpty){
+            parameters["hzTemplateCheckTable.id"] = converyModels.checkId
+        }
+        if !converyModels.listHy.isEmpty{
+            var array = [String]()
+            for i in 0..<converyModels.listHy.count{
+                do{ //转化为JSON 字符串
+                    let data = try NSJSONSerialization.dataWithJSONObject(converyModels.listHy[i].getParams1(), options: .PrettyPrinted)
+                    array.append(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                    print(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                }catch{
+                    
+                }
+            }
+            let temp = array.joinWithSeparator(",")
+            let tempStr = "["+temp+"]"
+            print(tempStr)
+            parameters["hzCompanyCheckTableInfosJson"] = tempStr
+            
+        }
+        
+        if !converyModels.listfile.isEmpty{
+            parameters["file"] = ""
+        }
+        
+        parameters["produceLocaleNote.sendCleanUp"] = converyModels.check
+        
+        print("parameters = \(parameters)")
+        
+//        NetworkTool.sharedTools.createCheckRecord(parameters,imageArrays: converyModels.listfile, finished: { (data, error) in
+//            
+//        })
+        
+}
 }

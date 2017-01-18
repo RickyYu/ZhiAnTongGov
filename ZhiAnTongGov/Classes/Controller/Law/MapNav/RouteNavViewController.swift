@@ -11,36 +11,38 @@ import UIKit
 class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMapViewDelegate, BMKRouteSearchDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var _mapView: BMKMapView!
-    @IBOutlet weak var fromCityField: UITextField!
     @IBOutlet weak var fromAddressField: UITextField!
-    @IBOutlet weak var toCityField: UITextField!
     @IBOutlet weak var toAddressField: UITextField!
     var animatedAnnotation: BMKPointAnnotation!
     var routeSearch: BMKRouteSearch!
     var locService :BMKLocationService!
     var latitude:Double! = nil //纬度
     var longitude:Double! = nil//经度
-    var coordinator :CLLocationCoordinate2D!
-
+    var startCc2d  = CLLocationCoordinate2D() //路径起点位置
+    var endCc2d  = CLLocationCoordinate2D()//路径终点位置
+    //回传的CpyInfoModel
+    var cpyInfoModel :CpyInfoModel!
+    var isRefresh : Bool = false
+    var cityName :String = "宁波"
     override func viewDidLoad() {
         super.viewDidLoad()
         routeSearch = BMKRouteSearch()
         
         // 界面初始化
-        fromCityField.text = "宁波"
-        fromAddressField.text = "万金大厦"
-        toCityField.text = "宁波"
-        toAddressField.text = "海曙欧尚"
+    
+       // fromAddressField.text = "万金大厦"
+        fromAddressField.placeholder = "默认当前位置"
+       // toAddressField.text = "海曙欧尚"
+        toAddressField.placeholder = "默认企业位置"
         fromAddressField.delegate = self
         fromAddressField.delegate = self
-        toCityField.delegate = self
         toAddressField.delegate = self
         
         
          self.navigationItem.title = "地图导航"
         // 在导航栏上添加“途径点”按钮
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(RouteNavViewController.back))
-         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "选择企业", style: .Plain, target: self, action: #selector(RouteNavViewController.choiceCpy))
+         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "选择企业", style: .Plain, target: self, action: #selector(self.choiceCpy))
         
         
         locService = BMKLocationService()
@@ -63,6 +65,7 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
         
         latitude = userLocation.location.coordinate.latitude
         longitude = userLocation.location.coordinate.longitude
+        startCc2d = userLocation.location.coordinate
         _mapView!.updateLocationData(userLocation)
 
     }
@@ -75,6 +78,22 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
         _mapView.viewWillAppear()
         _mapView.delegate = self
         routeSearch.delegate = self
+        if isRefresh{
+            if cpyInfoModel.y != nil {
+            self._mapView!.centerCoordinate = CLLocationCoordinate2DMake(self.cpyInfoModel.y, self.cpyInfoModel.x)
+            self._mapView!.zoomLevel=16
+            if self.animatedAnnotation == nil {
+                self.animatedAnnotation = BMKPointAnnotation()
+                self.animatedAnnotation?.coordinate = CLLocationCoordinate2DMake(self.cpyInfoModel.y, self.cpyInfoModel.x)
+                self.animatedAnnotation?.title = "当前位置"
+            }
+            self._mapView!.addAnnotation(self.animatedAnnotation)
+            self.endCc2d = CLLocationCoordinate2DMake(cpyInfoModel.y, cpyInfoModel.x)
+            } else {
+                 self.showHint("当前企业不含地理位置信息", duration: 2, yOffset: 0)
+                
+                }
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -87,18 +106,12 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     // MARK: - IBAction
     
     @IBAction func busRouteSearch(sender: UIButton) {
-        let from = BMKPlanNode()
-       // from.pt = CLLocationCoordinate2D.init(latitude: latitude, longitude: longitude)
-        from.name = fromAddressField.text
-        from.cityName = fromCityField.text
-        let to = BMKPlanNode()
-        to.name = toAddressField.text
-        to.cityName = toCityField.text
-        
+        let loc = setLoc()
         let transitRouteSearchOption = BMKTransitRoutePlanOption()
-        transitRouteSearchOption.city = toCityField.text
-        transitRouteSearchOption.from = from
-        transitRouteSearchOption.to = to
+        transitRouteSearchOption.city = cityName
+        transitRouteSearchOption.from = loc.from
+        transitRouteSearchOption.to = loc.to
+        
         
         let flag = routeSearch.transitSearch(transitRouteSearchOption)
         if flag {
@@ -107,18 +120,14 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
             print("公交检索发送失败")
         }
     }
+   
     
     @IBAction func carRouteSearch(sender: UIButton) {
-        let from = BMKPlanNode()
-        from.name = fromAddressField.text
-        from.cityName = fromCityField.text
-        let to = BMKPlanNode()
-        to.name = toAddressField.text
-        to.cityName = toCityField.text
+       let  loc = setLoc()
         
         let drivingRouteSearchOption = BMKDrivingRoutePlanOption()
-        drivingRouteSearchOption.from = from
-        drivingRouteSearchOption.to = to
+        drivingRouteSearchOption.from = loc.from
+        drivingRouteSearchOption.to = loc.to
         
         let flag = routeSearch.drivingSearch(drivingRouteSearchOption)
         if flag {
@@ -129,16 +138,11 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     }
     
     @IBAction func walkRouteSearch(sender: UIButton) {
-        let from = BMKPlanNode()
-        from.name = fromAddressField.text
-        from.cityName = fromCityField.text
-        let to = BMKPlanNode()
-        to.name = toAddressField.text
-        to.cityName = toCityField.text
-        
+    
+         let loc = setLoc()
         let walkingRouteSearchOption = BMKWalkingRoutePlanOption()
-        walkingRouteSearchOption.from = from
-        walkingRouteSearchOption.to = to
+        walkingRouteSearchOption.from = loc.from
+        walkingRouteSearchOption.to = loc.to
         let flag = routeSearch.walkingSearch(walkingRouteSearchOption)
         
         if flag {
@@ -150,16 +154,10 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     }
     
     @IBAction func rideRouteSearch(sender: UIButton) {
-        let from = BMKPlanNode()
-        from.name = fromAddressField.text
-        from.cityName = fromCityField.text
-        let to = BMKPlanNode()
-        to.name = toAddressField.text
-        to.cityName = toCityField.text
-        
+        let loc = setLoc()
         let option = BMKRidingRoutePlanOption()
-        option.from = from
-        option.to = to
+        option.from = loc.from
+        option.to = loc.to
         let flag = routeSearch.ridingSearch(option)
         
         if flag {
@@ -178,11 +176,29 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     // MARK: - UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        fromCityField.resignFirstResponder()
         fromAddressField.resignFirstResponder()
-        toCityField.resignFirstResponder()
         toAddressField.resignFirstResponder()
         return true
+    }
+    
+    //导航信息设置
+    func setLoc()->(from:BMKPlanNode,to:BMKPlanNode){
+        let from = BMKPlanNode()
+        let to = BMKPlanNode()
+        if AppTools.isEmpty(fromAddressField.text!) && AppTools.isEmpty(toAddressField.text!){
+            //用经纬度查询路径
+            //起点经纬度为当前位置
+            from.pt = startCc2d
+            //目的地经纬度为公司经纬度
+            to.pt = endCc2d
+        }else {
+            from.name = fromAddressField.text
+            from.cityName = cityName
+            to.name = toAddressField.text
+            to.cityName = cityName
+            
+        }
+        return(from,to)
     }
     
     // MARK: - BMKRouteSearchDelegate
@@ -459,9 +475,14 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
      *@return 生成的标注View
      */
     func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
-        if let routeAnnotation = annotation as! RouteAnnotation? {
-            return getViewForRouteAnnotation(routeAnnotation)
+        let routeAnnotation = annotation
+        if routeAnnotation is RouteAnnotation{
+           return getViewForRouteAnnotation(routeAnnotation as? RouteAnnotation )
+        }else{
+        
         }
+        
+
         return nil
     }
     

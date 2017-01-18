@@ -32,7 +32,7 @@ class GovReviewListController:UITableViewController,UISearchBarDelegate{
     }
     
     private func initPage(){
-        
+        self.view.backgroundColor = UIColor.whiteColor()
         // 设置navigation
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
         // 设置tableview相关
@@ -42,10 +42,12 @@ class GovReviewListController:UITableViewController,UISearchBarDelegate{
         //配置搜索控制器
         self.countrySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
+        
             controller.searchBar.delegate = self  //两个样例使用不同的代理
             controller.hidesNavigationBarDuringPresentation = false
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
+            controller.searchBar.placeholder = "请输入企业名称"
             controller.searchBar.sizeToFit()
             self.tableView.tableHeaderView = controller.searchBar
             return controller

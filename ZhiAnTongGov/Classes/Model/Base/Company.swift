@@ -175,7 +175,7 @@ class Company: BaseModel {
         return (0, 0, "", "")
     }
     
-    func getClassAllPropertys() -> [String] {
+    override func getClassAllPropertys() -> [String] {
         var result = [String]()
         let count = UnsafeMutablePointer<UInt32>.alloc(0)
         let buff = class_copyPropertyList(object_getClass(self), count)

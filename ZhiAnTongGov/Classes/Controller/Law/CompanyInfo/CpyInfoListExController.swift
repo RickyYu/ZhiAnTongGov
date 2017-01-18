@@ -39,6 +39,7 @@ class CpyInfoListExController:UITableViewController,UISearchBarDelegate{
         let nib = UINib(nibName: "CpyInfoCell",bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: CpyInfoListReuseIdentifier)
         tableView.rowHeight = 53;
+        tableView.backgroundColor = UIColor.whiteColor()
         //配置搜索控制器
         self.countrySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -47,7 +48,9 @@ class CpyInfoListExController:UITableViewController,UISearchBarDelegate{
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
+            controller.searchBar.placeholder = "请输入企业名称"
             self.tableView.tableHeaderView = controller.searchBar
+            self.tableView.tableHeaderView?.backgroundColor = UIColor.whiteColor()
             return controller
         })()
         
@@ -72,7 +75,7 @@ class CpyInfoListExController:UITableViewController,UISearchBarDelegate{
         }
         
         
-        NetworkTool.sharedTools.loadCompanys(parameters) { (cpyInfoModels, error,totalCount) in
+        NetworkTool.sharedTools.loadCompanys(parameters,isYh: true) { (cpyInfoModels, error,totalCount) in
             
             // 停止加载数据
             if self.refreshControl!.refreshing{

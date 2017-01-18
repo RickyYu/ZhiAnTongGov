@@ -65,7 +65,7 @@ class RecordInfoModel:BaseModel,NSCoding{
     
     init(json:JSON){
         self.id = json["id"].int!
-        self.checkGround = json["companyName"].string!
+        self.checkGround = json["companyName"].string! ?? ""
         self.checkTimeBegin = json["fdDelegate"].string!
         self.content = json["firstArea"].string!
         self.executeUnit = json["secondArea"].string!
@@ -85,7 +85,12 @@ class RecordInfoModel:BaseModel,NSCoding{
     init(dict: [String: AnyObject]) {
         super.init()
         self.id = dict["id"] as? Int
-        self.checkGround = dict["checkGround"] as? String
+        
+        do{
+        try self.checkGround = dict["checkGround"] as? String ?? ""
+        }catch{
+            self.checkGround = ""
+        }
         self.checkTimeBegin = dict["checkTimeBegin"] as? String
         self.content = dict["content"] as? String
         self.executeUnit = dict["executeUnit"] as? String

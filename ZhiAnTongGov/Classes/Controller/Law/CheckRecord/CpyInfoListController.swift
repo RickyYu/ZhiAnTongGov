@@ -68,7 +68,7 @@ class CpyInfoListController:UITableViewController,UISearchBarDelegate{
         }
         
         
-        NetworkTool.sharedTools.loadCompanys(parameters) { (cpyInfoModels, error,totalCount) in
+        NetworkTool.sharedTools.loadCompanys(parameters,isYh: true) { (cpyInfoModels, error,totalCount) in
             
             // 停止加载数据
             if self.refreshControl!.refreshing{

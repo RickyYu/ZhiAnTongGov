@@ -102,7 +102,9 @@ class LawViewController: UIViewController,UIScrollViewDelegate {
 //            thirdViewController.getDates()
 //        }
         
-        self.navigationController?.pushViewController(TestSnapController(), animated: true)
+       self.navigationController?.pushViewController(TestSnapController(), animated: true)
+        
+     //   self.navigationController?.pushViewController(PhotoViewController(), animated: true)
 
     }
 }

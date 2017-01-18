@@ -87,7 +87,7 @@ public class AppTools {
     
     ///获取本地数据存储对象key对应的Value
     class func loadNSUserDefaultsValue(key: String) -> AnyObject? {
-        return self.getNSUserDefaults().objectForKey(key)
+        return self.getNSUserDefaults().objectForKey(key) ?? ""
     }
     
     class func loadNSUserDefaultsClassValue(key: String) -> AnyObject? {
@@ -105,7 +105,7 @@ public class AppTools {
     class func setNSUserDefaultsValue(key: String, _ value: AnyObject) {
         self.getNSUserDefaults().setObject(value, forKey: key)
     }
-    
+
     
     ///删除本地存储数据
     class func removeNSUserDefaultsKey(key: String) {
@@ -186,6 +186,29 @@ public class AppTools {
         } else {
             return ""
         }
+    }
+    
+    //随机数生成器函数
+    class func createRandomMan(start: Int, end: Int) ->() ->Int! {
+        //根据参数初始化可选值数组
+        var nums = [Int]();
+        for i in start...end{
+            nums.append(i)
+        }
+        
+        func randomMan() -> Int! {
+            if !nums.isEmpty {
+                //随机返回一个数，同时从数组里删除
+                let index = Int(arc4random_uniform(UInt32(nums.count)))
+                return nums.removeAtIndex(index)
+            }
+            else {
+                //所有值都随机完则返回nil
+                return nil
+            }
+        }
+        
+        return randomMan
     }
 }
 

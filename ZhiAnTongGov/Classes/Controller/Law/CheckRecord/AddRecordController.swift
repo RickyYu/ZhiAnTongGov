@@ -13,7 +13,7 @@ import SnapKit
 import Photos
 
 
-class AddRecordController: BaseViewController,ParameterDelegate{
+class AddRecordController: PhotoViewController,ParameterDelegate{
     
     var scrollView: UIScrollView!
     var hzCompanyId :Int!
@@ -71,12 +71,17 @@ class AddRecordController: BaseViewController,ParameterDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
     self.navigationItem.title = "检查记录--基本信息"
+       
         getDatas()
         
     }
     
     override func viewWillAppear(animated: Bool) {
         self.automaticallyAdjustsScrollViewInsets = false
+        if self.triggerRefresh {
+            self.triggerRefresh = false
+            self.updateView()
+        }
         if(industrySelectModel != nil){
             checkList.checkId = String(industrySelectModel.id)
             if(industrySelectModel.title == "无"){
@@ -207,7 +212,8 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         customView10.setLabelName("图片：")
         customView10.setRRightLabel("")
         customView10.addOnClickListener(self, action: #selector(self.choiceImage))
-        
+        initPhoto()
+
         customView11 = DetailCellView(frame:CGRectMake(0, 450, SCREEN_WIDTH, 45))
         customView11.setLabelName("选择行业检查表：")
         customView11.setRRightLabel("")
@@ -254,10 +260,8 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         self.scrollView.addSubview(customView9)
         self.scrollView.addSubview(customView10)
         self.scrollView.addSubview(customView11)
+        self.scrollView.addSubview(containerView)
         self.scrollView.addSubview(checkView)
-//        self.scrollView.addSubview(customView12)
-//        self.scrollView.addSubview(customView13)
-//        self.scrollView.addSubview(customView14)
         self.view.addSubview(scrollView)
         self.view.addSubview(nextBtn)
         
@@ -276,6 +280,13 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         
         
         
+    }
+    
+    func initPhoto(){
+        setLoc(0, y: 450)
+        checkNeedAddButton()
+        renderView()
+        containerView.hidden = true
     }
     
     func tapped1(button:UIButton){
@@ -450,6 +461,10 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         checkList.cbname2 = cbName2
         checkList.cbname3 = cbName3
         checkList.cbname4 = cbName4
+        print("listImageFile = \(listImageFile.count)")
+        print("selectModel = \(selectModel.count)")
+        checkList.listfile = listImageFile
+        
         
        
 
@@ -458,55 +473,14 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    func choiceImage(){
 
-        let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .ActionSheet)
-        
-        // change the style sheet text color
-        alert.view.tintColor = UIColor.blackColor()
-        
-        let actionCancel = UIAlertAction.init(title: "取消", style: .Cancel, handler: nil)
-        let actionCamera = UIAlertAction.init(title: "拍照", style: .Default) { (UIAlertAction) -> Void in
-            self.selectByCamera()
-        }
-        
-        let actionPhoto = UIAlertAction.init(title: "从手机照片中选择", style: .Default) { (UIAlertAction) -> Void in
-            self.selectFromPhoto()
-        }
-        
-        alert.addAction(actionCancel)
-        alert.addAction(actionCamera)
-        alert.addAction(actionPhoto)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
+    
+    func choiceImage(){
+       customView11.frame = CGRectMake(0, 500, SCREEN_WIDTH, 45)
+        checkView.frame = CGRectMake(0, 545, SCREEN_WIDTH, 280)
+        containerView.hidden = false
     }
-    
-    /**
-     拍照获取
-     */
-    private func selectByCamera(){
-        // todo take photo task
-    }
-    
-    /**
-     从相册中选择图片
-     */
-    private func selectFromPhoto(){
-        
-        PHPhotoLibrary.requestAuthorization { (status) -> Void in
-            switch status {
-            case .Authorized:
-                //self.showLocalPhotoGallery()
-                break
-            default:
-               // self.showNoPermissionDailog()
-                break
-            }
-        }
-    }
-    
-    
-    
+
     func choiceCheckTimes(){
        choiceTime { (time) in
         self.customView4.setRRightLabel(time)
@@ -535,5 +509,8 @@ class AddRecordController: BaseViewController,ParameterDelegate{
         self.industrySelectModel = industrySelectModel
          customView11.setRRightLabel(industrySelectModel.title)
     }
+    
 }
+
+
 

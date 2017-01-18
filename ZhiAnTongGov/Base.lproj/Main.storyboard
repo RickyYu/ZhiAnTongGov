@@ -210,7 +210,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CpyInfoListCell" rowHeight="53" id="CtY-bR-SAT" customClass="CpyInfoCell" customModule="ZhiAnTongGov" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="53"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CtY-bR-SAT" id="v9l-76-zdz">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="52.5"/>
@@ -277,7 +277,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="c6n-Nu-6iv">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c6n-Nu-6iv" id="xKQ-m5-5er">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -355,7 +355,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" id="qrl-cK-uWq">
-                                                    <rect key="frame" x="-9" y="51.5" width="397.5" height="0.0"/>
+                                                    <rect key="frame" x="-9" y="51" width="398" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -550,7 +550,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zCq-5M-SPk">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zCq-5M-SPk" id="fbN-jf-mvY">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -650,14 +650,14 @@
         <!--Record Info List Controller-->
         <scene sceneID="MMx-li-1it">
             <objects>
-                <tableViewController id="c8X-jo-VMy" customClass="RecordInfoListController" customModule="ZhiAnTongGov" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RecordInfoListController" id="c8X-jo-VMy" customClass="RecordInfoListController" customModule="ZhiAnTongGov" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="f9e-F4-asS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecordInfoCell" rowHeight="53" id="OCO-98-48P" customClass="RecordInfoCell" customModule="ZhiAnTongGov" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="53"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OCO-98-48P" id="KRb-oe-5kG">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="52.5"/>
@@ -1314,26 +1314,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="出发城市" borderStyle="roundedRect" minimumFontSize="17" id="Pni-v0-wth">
-                                <rect key="frame" x="66" y="70" width="65" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="出发地点" borderStyle="roundedRect" minimumFontSize="17" id="VmN-Ry-bRa">
-                                <rect key="frame" x="139" y="70" width="166" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="到达城市" borderStyle="roundedRect" minimumFontSize="17" id="bUC-wD-Kgl">
-                                <rect key="frame" x="66" y="106" width="65" height="31"/>
+                                <rect key="frame" x="61" y="70" width="244" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="到达地点" borderStyle="roundedRect" minimumFontSize="17" id="qSw-Ql-077">
-                                <rect key="frame" x="139" y="106" width="166" height="31"/>
+                                <rect key="frame" x="61" y="106" width="244" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1404,9 +1392,7 @@
                     <connections>
                         <outlet property="_mapView" destination="7Ki-gF-2Jr" id="DeG-yf-2VE"/>
                         <outlet property="fromAddressField" destination="VmN-Ry-bRa" id="pBY-dx-CrB"/>
-                        <outlet property="fromCityField" destination="Pni-v0-wth" id="dCR-nZ-HlD"/>
                         <outlet property="toAddressField" destination="qSw-Ql-077" id="GCX-kf-qkr"/>
-                        <outlet property="toCityField" destination="bUC-wD-Kgl" id="phT-1a-5pb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHa-vN-hjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1544,6 +1530,6 @@
         <image name="setting_selected" width="55" height="55"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DKc-EL-ucP"/>
+        <segue reference="SoI-Tx-0sD"/>
     </inferredMetricsTieBreakers>
 </document>

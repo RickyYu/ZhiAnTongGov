@@ -28,6 +28,20 @@ class HiddenModel:BaseModel{
         self.repaired = dict["repaired"] as? Bool
         self.isBig = dict["isBig"] as? String
     }
+    
+    func getParams1() -> Dictionary<String, AnyObject> {
+        var params = Dictionary<String, AnyObject>()
+        params = [
+            "hiddenId":String(self.hiddenId),
+            "createTime":self.createTime,
+            "content:":self.content,
+             "typeCN:":self.typeCN,
+              "repaired:":self.repaired,
+               "isBig:":self.isBig,
+               
+        ]
+        return  params
+    }
 }
 
 

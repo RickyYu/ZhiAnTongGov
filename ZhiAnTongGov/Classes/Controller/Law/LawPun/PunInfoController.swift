@@ -15,18 +15,24 @@ import UsefulPickerView
 private let Identifier = "HandleTypeCell"
 class PunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDataSource {
 
-    
-    var customView6 : DetailCellView! = nil
-    var customView8 : DetailCellView! = nil
+    var customView4  = DetailCellView()
+    var customView5  = DetailCellView()
+    var customView7  = DetailCellView()
+    var customView8  = DetailCellView()
+    var customView9  = DetailCellView()
+    var customView6  = DetailCellView()
     var tableView: UITableView!
     var scrollView: UIScrollView!
     var punData = ["罚款","警告","责令改正","没收违法所得","责令停产停业整顿","暂扣或则吊销有关","关闭","拘留","其它行政处罚"]
     //var conveyDataStr : String?
    // var conveyDataModel : PunishmentModel?
     var converyJcjlId :Int!
-    var converyCompanyId:Int!
+    var converyCompanyId:String!
     var companyInfoModel  = CompanyInfoModel()
     let arrayData = ["初查记录", "隐患列表", "历史复查记录"]
+
+    //如果是从CheckRecord页面进来则为true
+    var isCheck:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,30 +68,32 @@ class PunInfoController: BaseViewController ,UITableViewDelegate,UITableViewData
         
         
         
-        let customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
+        customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
         customView4.setLabelName("处罚单位：")
         customView4.setRTextField("")
         
-        let customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
+        customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("处罚原因：")
            customView5.setRTextField("")
         
         customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
         customView6.setLabelName("处罚类别")
-        customView6.setRRightLabel("")
+        customView6.setRRightLabel("警告")
         customView6.addOnClickListener(self, action: #selector(self.choicePunType))
         
         
-        let customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
+         customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
         customView7.setLabelName("处罚内容：")
          customView7.setRTextField("")
         
         customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
         customView8.setLabelName("处罚时间：")
-        customView8.setRCenterLabel("")
-        customView8.addOnClickListener(self, action: #selector(self.choiceTimes))
+        getSystemTime { (time) in
+            self.customView8.setRRightLabel(time)
+        }
+        customView8.addOnClickListener(self, action: #selector(self.choiceHandleTimes))
         
-        let customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
+       customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView9.setLabelName("备注：")
         
         let  submitBtn = UIButton(frame:CGRectMake(80, 565, 200, 45))
@@ -178,6 +186,7 @@ class PunInfoController: BaseViewController ,UITableViewDelegate,UITableViewData
            let  controller = HistoryRecordListController()
              controller.converyJcjlId = converyJcjlId
              controller.converyDataStr = str
+            controller.isHidden =  true
              self.navigationController?.pushViewController(controller, animated: true)
         }
         
@@ -207,33 +216,104 @@ class PunInfoController: BaseViewController ,UITableViewDelegate,UITableViewData
     }
     
 
-
+       var unit:String!
+       var cause:String!
+       var type:String!
+       var typeCode:String!
+       var time:String!
+       var content:String!
+       var remark:String!
        func submit(sender: AnyObject) {
+        unit = customView4.textField.text!
+        if AppTools.isEmpty(unit) {
+            alert("处罚单位不可为空", handler: {
+                self.customView4.textField.becomeFirstResponder()
+            })
+            return
+        }
+         cause = customView5.textField.text!
+        if AppTools.isEmpty(cause) {
+            alert("处罚原因不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+         type = customView6.rightLabel.text!
+         typeCode = getPunType(type)
+        if AppTools.isEmpty(type) {
+            alert("处罚类别不可为空", handler: {
+                
+            })
+            return
+        }
+  
+         content = customView7.textField.text!
+        if AppTools.isEmpty(content) {
+            alert("处罚内容不可为空", handler: {
+                self.customView7.textField.becomeFirstResponder()
+            })
+            return
+        }
+        time = customView8.rightLabel.text!
+        if AppTools.isEmpty(time) {
+            alert("处罚时间不可为空", handler: {
+                            })
+            return
+        }
+         remark = customView9.textField.text!
+        if AppTools.isEmpty(remark) {
+            alert("备注不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
+        
+        
+        
         var parameters = [String : AnyObject]()
-        parameters["punishment.hzProduceLocaleNote.id"] = self.converyCompanyId
-//        parameters["punishment.hzProduceLocaleNote.id"] = conveyDataStr
-//        parameters["punishment.punishmentUnit"] = conveyDataStr
-//        parameters["punishment.punishmentCause"] = conveyDataStr
-//        parameters["punishment.punishmentType"] = conveyDataStr
-//        parameters["punishment.punishmentTime"] = conveyDataStr
-//        parameters["punishment.content"] = conveyDataStr
-//        parameters["punishment.remark"] = conveyDataStr
-//        parameters["punishState"] = conveyDataStr
+        parameters["punishment.hzProduceLocaleNote.id"] = self.converyJcjlId
+        parameters["punishment.punishmentUnit"] = unit
+        parameters["punishment.punishmentCause"] = cause
+        parameters["punishment.punishmentType"] = typeCode
+        parameters["punishment.punishmentTime"] = time
+        parameters["punishment.content"] = content
+        parameters["punishment.remark"] = remark
+          parameters["punishState"] = true
         NetworkTool.sharedTools.submitPunishment(parameters) { (recordInfoModels, error) in
-            
+            if error == nil{
+           self.showHint("完成处罚", duration: 2, yOffset: 0)
+                // 获得视图控制器中的某一视图控制器
+             
+                if self.isCheck {
+                    let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
+                     viewController.isRefresh = true
+                    self.navigationController?.popToViewController(viewController , animated: true)
+
+                }else{
+                   let viewController = self.navigationController?.viewControllers[0] as! LawPunListController
+                    viewController.isRefresh = true
+                    self.navigationController?.popToViewController(viewController , animated: true)
+
+
+                }
+                           }else{
+            self.showHint("\(error)", duration: 2, yOffset: 0)
+            }
         }
     }
     
     func choicePunType(){
         UsefulPickerView.showSingleColPicker("请选择", data: punData, defaultSelectedIndex: 2) {[unowned self] (selectedIndex, selectedValue) in
-            self.customView6!.setRRightLabel(selectedValue)
+            self.customView6.setRRightLabel(selectedValue)
         }
         
     }
     
-    func choiceTimes(){
-        UsefulPickerView.showSingleColPicker("请选择", data: punData, defaultSelectedIndex: 2) {[unowned self] (selectedIndex, selectedValue) in
-            self.customView8!.setRCenterLabel(selectedValue)
+    func choiceHandleTimes(){
+        choiceTime { (time) in
+            self.customView8.setRRightLabel(time)
+            self.customView8.becomeFirstResponder()
         }
         
     }

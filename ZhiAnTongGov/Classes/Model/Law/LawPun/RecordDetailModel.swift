@@ -21,7 +21,7 @@ class RecordDetailModel:BaseModel{
     var address:String!
     var companyName :String!
     
-   // var imagesInfo :String! 类
+    var imageInfos = [ImageInfoModel]()
     var fdDelegate:String!
     var checkGround :String!
     var companyId :Int!
@@ -48,6 +48,15 @@ class RecordDetailModel:BaseModel{
         self.checkGround = dict["checkGround"] as? String
         self.companyId = dict["companyId"] as? Int
         self.sendCleanUp = dict["sendCleanUp"] as? Bool
+        
+        let image = JSON(dict["imagesInfo"]!)
+        if let items = image.arrayObject {
+            for item in items {
+                let homeItem = ImageInfoModel(dict: item as! [String: AnyObject])
+                self.imageInfos.append(homeItem)
+            }
+            
+        }
     }
 }
 

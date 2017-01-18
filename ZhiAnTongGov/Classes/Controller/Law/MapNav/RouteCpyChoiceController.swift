@@ -8,12 +8,23 @@
 
 import UIKit
 
+//企业查询列表界面
+private let CpyInfoListReuseIdentifier = "CpyInfoCell"
 class RouteCpyChoiceController:UITableViewController,UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    let array = ["test","beijing", "shanghai","guangzhou","shenzhen" ,"changsha","wuhan","tianjing","hangzhou"]
-    var result = [String]()
+    //搜索控制器
+    var countrySearchController = UISearchController()
+    // 当前页
+    var currentPage : Int = 0  //加载更多时候+10
+    //总条数
+    var totalCount : Int = 0
+    var cpyInfoModels  = [CpyInfoModel]()
+    var result = [CpyInfoModel]()
+    // 是否加载更多
+    private var toLoadMore = false
+    var searchStr : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,61 +34,106 @@ class RouteCpyChoiceController:UITableViewController,UISearchBarDelegate{
     private func initPage(){
         
         // 设置navigation
-        navigationItem.title="企业信息列表"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
-        // 搜索内容为空时，显示全部内容
-        self.result = self.array
-        self.searchBar.delegate = self
+        self.navigationItem.title = "选择企业"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(self.back))
+        // 设置tableview相关
+        let nib = UINib(nibName: "CpyInfoCell",bundle: nil)
+        self.tableView.registerNib(nib, forCellReuseIdentifier: CpyInfoListReuseIdentifier)
+        tableView.rowHeight = 53;
+        //配置搜索控制器
+        self.countrySearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchBar.delegate = self  //两个样例使用不同的代理
+            controller.hidesNavigationBarDuringPresentation = false
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.searchBarStyle = .Minimal
+            controller.searchBar.placeholder = "请输入企业名称"
+            controller.searchBar.sizeToFit()
+            self.tableView.tableHeaderView = controller.searchBar
+            return controller
+        })()
+        
+        // 设置下拉刷新控件
+        refreshControl = RefreshControl(frame: CGRectZero)
+        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
+        refreshControl?.beginRefreshing()
+        getData()
+    }
+    
+    func getData(){
+        
+        if refreshControl!.refreshing{
+            reSet()
+        }
+        var parameters = [String : AnyObject]()
+        parameters["pagination.pageSize"] = PAGE_SIZE
+        parameters["pagination.itemCount"] = currentPage
+        parameters["pagination.totalCount"] = totalCount
+        if !AppTools.isEmpty(searchStr){
+            parameters["company.companyName"] = searchStr
+        }
+        
+        
+        NetworkTool.sharedTools.loadCompanys(parameters,isYh: false) { (cpyInfoModels, error,totalCount) in
+            
+            // 停止加载数据
+            if self.refreshControl!.refreshing{
+                self.refreshControl!.endRefreshing()
+            }
+            
+            if error == nil{
+                if self.currentPage>totalCount{
+                    self.totalCount = totalCount!
+                    self.showHint("已经到最后了", duration: 2, yOffset: 0)
+                    self.currentPage -= 10
+                    return
+                }
+                self.toLoadMore = false
+                self.cpyInfoModels += cpyInfoModels!
+                
+            }else{
+                // 获取数据失败后
+                self.currentPage -= 10
+                if self.toLoadMore{
+                    self.toLoadMore = false
+                }
+                self.showHint("\(error)", duration: 2, yOffset: 0)
+            }
+            
+            self.tableView.reloadData()
+        }
+        
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.result.count
+        return self.cpyInfoModels.count ?? 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let identify: String = "RouteCpyInfoListExCell"
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier(identify, forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(CpyInfoListReuseIdentifier, forIndexPath: indexPath) as! CpyInfoCell
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        cell.textLabel?.text = self.result[indexPath.row]
-        
+        let count = cpyInfoModels.count ?? 0
+        if count > 0 {
+            let cpyInfoModel = cpyInfoModels[indexPath.row]
+            cell.cpyInfoModel = cpyInfoModel
+        }
+        if count > 0 && indexPath.row == count-1 && !toLoadMore{
+            toLoadMore = true
+            currentPage += 10
+            getData()
+        }
         return cell
     }
     
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        // 没有搜索内容时显示全部内容
-        if searchText == "" {
-            self.result = self.array
-        } else {
-            
-            // 匹配用户输入的前缀，不区分大小写
-            self.result = []
-            
-            for arr in self.array {
-                
-                if arr.lowercaseString.hasPrefix(searchText.lowercaseString) {
-                    self.result.append(arr)
-                }
-            }
-        }
-        
-        // 刷新tableView 数据显示
-        self.tableView.reloadData()
-    }
-    
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
         searchBar.resignFirstResponder()
-    }
-    
-    // 书签按钮触发事件
-    func searchBarBookmarkButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        reSet()
+        getData()
         
-        print("搜索历史")
     }
     
     // 取消按钮触发事件
@@ -85,30 +141,38 @@ class RouteCpyChoiceController:UITableViewController,UISearchBarDelegate{
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         // 搜索内容置空
         searchBar.text = ""
-        self.result = self.array
-        self.tableView.reloadData()
+        searchStr = ""
+        reSet()
+        getData()
     }
+    
     
     
     func back()
     {
-       // navigationController?.dismissViewControllerAnimated(true, completion: nil)
-        navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
     
-    //给新进入的界面进行传值
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if segue.identifier == "backRouteNav" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                (segue.destinationViewController as! RouteNavViewController).coordinator = CLLocationCoordinate2D.init()
-            }
-        }
+        let viewController = self.navigationController?.viewControllers[0] as! RouteNavViewController
+        viewController.cpyInfoModel = cpyInfoModels[indexPath.row]
+        viewController.isRefresh = true
+        self.navigationController?.popToViewController(viewController , animated: true)
+        
     }
     
+    func reSet(){
+        // 重置当前页
+        currentPage = 0
+        // 重置数组
+        cpyInfoModels.removeAll()
+        cpyInfoModels = [CpyInfoModel]()
+    }
     
 }

@@ -19,6 +19,8 @@ class CpyInfoModel:BaseModel,NSCoding{
     var firstArea:Int!
     var secondArea:Int!
     var thirdArea:Int!
+    var x:Double! //lng 经度
+    var y:Double! //lat 纬度
     
     override init() {
         super.init()
@@ -80,6 +82,9 @@ class CpyInfoModel:BaseModel,NSCoding{
         self.firstArea = dict["firstArea"] as? Int
         self.secondArea = dict["secondArea"] as? Int
         self.thirdArea = dict["thirdArea"] as? Int
+        self.x = dict["x"] as? Double
+        self.y = dict["y"] as? Double
+    
     }
     
     

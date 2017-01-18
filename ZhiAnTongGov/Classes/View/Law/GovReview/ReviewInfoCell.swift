@@ -72,4 +72,23 @@ class ReviewInfoCell: UITableViewCell {
             }
         }
     }
+    
+    var checkHiddenModel: CheckHiddenModel?
+        {
+        didSet{
+            if let art = checkHiddenModel {
+                // 设置数据
+                cpyName.text = art.content
+                hiddenNum.text = "录入日期："+art.createTime
+                let isRepaired = art.repaired as Bool
+                if isRepaired {
+                    reviewNum.text = "已整改"
+                }else{
+                    reviewNum.text = "未整改"
+                }
+                
+                reviewDate.text = ""
+            }
+        }
+    }
 }

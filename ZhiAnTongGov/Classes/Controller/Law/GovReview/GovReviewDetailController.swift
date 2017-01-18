@@ -8,11 +8,11 @@
 
 import UIKit
 private let Identifier = "HandleTypeCell"
-class GovReviewDetailController: BaseViewController,UITableViewDelegate,UITableViewDataSource  {
+class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITableViewDataSource,HiddenParameterDelegate  {
 
     var converyDataModel = PunishmentModel()
     var tableView: UITableView!
-    let arrayData = ["初查记录", "隐患列表", "历史复查记录"]
+    let arrayData = ["初查记录", "隐患列表确认", "历史复查记录"]
     override func viewDidLoad() {
        super.viewDidLoad()
         self.navigationItem.title = "政府复查"
@@ -20,44 +20,190 @@ class GovReviewDetailController: BaseViewController,UITableViewDelegate,UITableV
         initTableView()
         getDatas()
     }
-    
+    //是否生成复查表
+    var customView1  = DetailCellView()
+    var customView2  = DetailCellView()
+    var customView3  = DetailCellView()
+    var customView4  = DetailCellView()
+    var customView5  = DetailCellView()
+    var customView6  = DetailCellView()
+    var var2:String!//复查时间
+    var var3:String!//复查人员
+    var var4:String!//复查编号
+    var var5:String!//隐患整改情况
+        var majorHiddenId = [String]()
     func initPage(){
-        
-        let customView1 = DetailCellView(frame:CGRectMake(0,66, SCREEN_WIDTH, 45))
-        customView1.backgroundColor = UIColor.whiteColor()
+        customView1 =  DetailCellView(frame:CGRectMake(0, 66, SCREEN_WIDTH, 45))
         customView1.setLabelName("是否生成复查表：")
-       // customView1.setRTextField(dataModel.companyName ?? "")
+        customView1.setRCheckBtn()
+        customView1.rightCheckBtn.addTarget(self, action:#selector(tapped3(_:)), forControlEvents:.TouchUpInside)
         
-        let customView2 = DetailCellView(frame:CGRectMake(0, 111, SCREEN_WIDTH, 45))
+        customView2 = DetailCellView(frame:CGRectMake(0, 111, SCREEN_WIDTH, 45))
         customView2.setLabelName("复查时间：")
-        customView2.setRRightLabel("")
+        getSystemTime { (time) in
+             self.customView2.setRRightLabel(time)
+            
+        }
         
-        let customView3 = DetailCellView(frame:CGRectMake(0, 156, SCREEN_WIDTH, 45))
+        
+        customView3 = DetailCellView(frame:CGRectMake(0, 156, SCREEN_WIDTH, 45))
         customView3.setLabelName("复查人员：")
-          customView3.setRRightLabel("")
-      
+        customView3.setRTextField("")
         
-        let customView4 = DetailCellView(frame:CGRectMake(0, 201, SCREEN_WIDTH, 45))
         
+        customView4 = DetailCellView(frame:CGRectMake(0, 201, SCREEN_WIDTH, 45))
         customView4.setLabelName("复查编号：")
         customView4.setRTextField("")
         
         
-        let customView5 = DetailCellView(frame:CGRectMake(0, 246, SCREEN_WIDTH, 45))
-        customView5.setLabelName("现场图片：")
-        customView5.setRCenterLabel("")
+        customView5 = DetailCellView(frame:CGRectMake(0, 246, SCREEN_WIDTH, 45))
+        customView5.setLabelName("隐患整改情况：")
+        customView5.setRTextField("")
+        
+        
+        customView6 = DetailCellView(frame:CGRectMake(0, 291, SCREEN_WIDTH, 45))
+        customView6.setLabelName("图片:")
+         customView6.setRRightLabel("")
+        customView6.addOnClickListener(self, action: #selector(self.choiceImage))
+        initPhoto()
+        
+        
+        let  nextBtn = UIButton(frame:CGRectMake(0, 565, SCREEN_WIDTH, 45))
+        nextBtn.setTitle("提交", forState:.Normal)
+        nextBtn.backgroundColor = YMGlobalDeapBlueColor()
+        nextBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+        nextBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(customView1)
         self.view.addSubview(customView2)
         self.view.addSubview(customView3)
         self.view.addSubview(customView4)
         self.view.addSubview(customView5)
+        self.view.addSubview(customView6)
+        self.view.addSubview(nextBtn)
+        
+        nextBtn.snp_makeConstraints { make in
+            make.bottom.equalTo(self.view.snp_bottom).offset(-15)
+            make.left.equalTo(self.view.snp_left).offset(50)
+            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
+        }
     
     }
     
+    func submit(){
+        self.var2 = customView2.rightLabel.text
+        self.var3 = customView3.textField.text
+        self.var4 = customView4.textField.text
+        self.var5 = customView5.textField.text
+        if AppTools.isEmpty(var3) {
+            alert("复查人员不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        if AppTools.isEmpty(var4) {
+            alert("复查编号不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        if AppTools.isEmpty(var4) {
+            alert("隐患整改情况不可为空", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
+        var parameters = [String : AnyObject]()
+        if !hiddenModels.isEmpty{
+            
+            var tempStr:String = ""
+            var temp:String = ""
+            if(!majorHiddenIds.isEmpty){
+                var array = [String]()
+                for i in 0..<majorHiddenIds.count{
+                    do{ //转化为JSON 字符串
+                        let data = try NSJSONSerialization.dataWithJSONObject(majorHiddenIds[i], options: .PrettyPrinted)
+                        array.append(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                        print(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                    }catch{
+                        
+                    }
+                }
+                temp = array.joinWithSeparator(",")
+            }
+            
+            tempStr = "["+temp+"]"
+            parameters["dangerGorvers"]  = tempStr
+            NetworkTool.sharedTools.createDangerGorver(parameters) { (datas, error) in
+                if error == nil{
+                  self.submit2()
+                }else{
+                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                }
+            }
+            
+        }else{
+            alert("隐患列表需检查", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        
+        }
+    
+    }
+    //获取拍照的图片
+    var listfile = [UIImage]()
+    func submit2(){
+      var parameters = [String : AnyObject]()
+        parameters["produceCallback.hzProduceLocaleNote.id"] = String(self.converyDataModel.jcjlId)
+        parameters["produceCallback.isCallBack"] = String(Int(isReform))
+        parameters["produceCallback.callbackTime"] = var2
+        parameters["produceCallback.callBackNum"] = var4
+        parameters["produceCallback.executer"] = var3
+        parameters["produceCallback.hiddenState"] = var5
+
+        var arrays = [String]()
+        for i in 0..<hiddenModels.count{
+            do{ //转化为JSON 字符串
+                let data = try NSJSONSerialization.dataWithJSONObject(hiddenModels[i].getParams1(), options: .PrettyPrinted)
+                arrays.append(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                print(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+            }catch{
+                
+            }
+        }
+        let temp = arrays.joinWithSeparator(",")
+        let tempStr = "["+temp+"]"
+        print(tempStr)
+        parameters["result.list"]  = tempStr
+        NetworkTool.sharedTools.createProduceCallBack(parameters, imageArrays: listfile) { (data, error) in
+            
+            if error == nil{
+            self.showHint("新增成功", duration: 2, yOffset: 0)
+            }else{
+            self.showHint("\(error)", duration: 2, yOffset: 0)
+            }
+        
+        }
+        
+        
+    
+    }
+    
+    func initPhoto(){
+        setLoc(0, y: 336)
+        checkNeedAddButton()
+        renderView()
+        containerView.hidden = true
+    }
+    
+    func choiceImage(){
+        containerView.hidden = false
+    }
     
     func initTableView(){
-        let tableView = UITableView(frame: CGRectMake(0, 475, SCREEN_WIDTH, 160), style: .Grouped)
+        let tableView = UITableView(frame: CGRectMake(0, 405, SCREEN_WIDTH, 160), style: .Grouped)
         let headView = UIView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 1))
         headView.backgroundColor = UIColor.whiteColor()
         tableView.tableHeaderView = headView
@@ -73,6 +219,21 @@ class GovReviewDetailController: BaseViewController,UITableViewDelegate,UITableV
         //                       make.top.equalTo(scrollView.snp_bottom)
         //                        }
         self.view.addSubview(tableView)
+        
+    }
+    var isReform:Bool = false
+    //是否生成复查表
+    func tapped3(button:UIButton){
+        button.selected = !button.selected
+        if button.selected{
+            isReform = true
+            print("isReform+\(isReform)")
+        }else{
+            isReform = false
+            print("isReform+\(isReform)")
+            
+        }
+        
         
     }
     
@@ -125,16 +286,34 @@ class GovReviewDetailController: BaseViewController,UITableViewDelegate,UITableV
             controller.converyJcjlId = self.converyDataModel.jcjlId
             self.navigationController?.pushViewController(controller, animated: true)
             
-        }else{
+        }else if indexPath.row == 1{
+            
+            let  controller = HiddenConfirmListController()
+            controller.converyJcjlId = self.converyDataModel.jcjlId
+            controller.delegate = self
+            self.navigationController?.pushViewController(controller, animated: true)
+        }else {
             let  controller = HistoryRecordListController()
             controller.converyJcjlId = self.converyDataModel.jcjlId
             controller.converyDataStr = str
+            controller.isHistoryHidden = true
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
         tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
         
         
+    }
+    //反传回的数据
+    var hiddenModels = [HiddenModel]()
+    var majorHiddenIds = [String]()
+    func passParams(hiddenModels: [HiddenModel]) {
+        self.hiddenModels = hiddenModels
+        for checkHidden in hiddenModels{
+        if checkHidden.isBig == "1"{
+            majorHiddenId.append(String(checkHidden.hiddenId))
+         }
+        }
     }
 
 }

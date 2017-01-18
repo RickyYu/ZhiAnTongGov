@@ -15,10 +15,15 @@ class HistoryRecordListController: UITableViewController {
     //信息列表
     var listLawmSDSInfoModels:NSMutableArray!
 
+    //检查记录隐患数据源
+    var checkHiddenModels = [CheckHiddenModel]()
     //隐患列表数据
      var hiddenModels = [HiddenModel]()
     //历史复查记录数据
      var historyReviewModels = [HistoryReviewModel]()
+    
+    
+    
     //接受传进来的值
     var converyJcjlId:Int!
     var converyDataStr : String?
@@ -28,18 +33,20 @@ class HistoryRecordListController: UITableViewController {
     var totalCount : Int = 0
     // 是否加载更多
     private var toLoadMore = false
-    private var isHidden = true//true  加载隐患列表数据源  false 加载历史复查记录数据源
+    var isHidden = false //true  加载隐患列表数据源
+    var isHistoryHidden = false //加载历史复查记录数据源
     override func viewDidLoad() {
         initPage()
     }
     
     private func initPage(){
    
-        if converyDataStr == "隐患列表"{
-            isHidden = true
-        }else{
-            isHidden = false
-        }
+        
+//        if converyDataStr == "隐患列表"{
+//            isHidden = true
+//        }else{
+//            isHidden = false
+//        }
         self.navigationItem.title = converyDataStr
         // 设置navigation
         self.navigationController?.navigationBar.hidden = false
@@ -61,7 +68,7 @@ class HistoryRecordListController: UITableViewController {
         
         getDatas()
     }
-    
+    var isCheckHidden:Bool = false
     func getDatas(){
         if refreshControl!.refreshing{
             reSet()
@@ -69,6 +76,45 @@ class HistoryRecordListController: UITableViewController {
         }
         var parameters = [String : AnyObject]()
         parameters["produceLocaleNote.id"] = converyJcjlId
+        
+        //加载检查记录隐患列表
+        
+        if isCheckHidden{
+            NetworkTool.sharedTools.loadProDangers(parameters) { (datas, error,totalCount) in
+                // 停止加载数据
+                if self.refreshControl!.refreshing{
+                    self.refreshControl!.endRefreshing()
+                }
+                
+                if totalCount == 0{
+                    self.showHint("当前无数据", duration: 2, yOffset: 0)
+                    return
+                }
+                
+                if error == nil{
+                    if self.currentPage>totalCount{
+                        //self.showHint("已经到最后了", duration: 2, yOffset: 0)
+                        self.currentPage -= 10
+                        return
+                    }
+                    self.toLoadMore = false
+                    self.checkHiddenModels += datas!
+                    self.tableView.reloadData()
+                }else{
+                    
+                    // 获取数据失败后
+                    self.currentPage -= 10
+                    if self.toLoadMore{
+                        self.toLoadMore = false
+                    }
+                    self.showHint("\(error)", duration: 2, yOffset: 0)
+                    
+                }
+            }
+        }
+        
+        
+        
         if isHidden{
         NetworkTool.sharedTools.loadHideenTroubles(parameters) { (datas, error,totalCount) in
             // 停止加载数据
@@ -76,10 +122,7 @@ class HistoryRecordListController: UITableViewController {
                 self.refreshControl!.endRefreshing()
             }
             
-            if totalCount == 0{
-                self.showHint("当前无数据", duration: 2, yOffset: 0)
-                return
-            }
+  
 
             if error == nil{
                 if self.currentPage>totalCount{
@@ -101,18 +144,15 @@ class HistoryRecordListController: UITableViewController {
                 
              }
             }
-        }else{
+        }
+        
+        if isHistoryHidden{
             NetworkTool.sharedTools.loadHistoryProduces(parameters) { (datas, error,totalCount) in
                 // 停止加载数据
                 if self.refreshControl!.refreshing{
                     self.refreshControl!.endRefreshing()
                 }
-                
-                
-                if totalCount == 0{
-                    self.showHint("当前无数据", duration: 2, yOffset: 0)
-                    return
-                }
+   
                 
                 if self.currentPage>totalCount{
                   //  self.showHint("已经到最后了", duration: 2, yOffset: 0)
@@ -159,30 +199,51 @@ class HistoryRecordListController: UITableViewController {
     
     //返回某个节中的行数
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      
+        
         if isHidden{
             return hiddenModels.count ?? 0
-        }else{
-            return historyReviewModels.count ?? 0
         }
         
+        if isHistoryHidden{
+            return historyReviewModels.count ?? 0
+        }
+        return checkHiddenModels.count ?? 0
     }
     
     //为表视图单元格提供数据，该方法是必须实现的方法
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Identifier, forIndexPath: indexPath) as! ReviewInfoCell
-        let count :Int
+        var count :Int = 0
+        
+        if isCheckHidden {
+         count = checkHiddenModels.count ?? 0
+          if  count > 0 {
+                let checkHidden = checkHiddenModels[indexPath.row]
+                cell.checkHiddenModel = checkHidden
+            }
+        }
+        
         if isHidden {
         count = hiddenModels.count ?? 0
         if count > 0 {
             let hiddenModel = hiddenModels[indexPath.row]
             cell.hiddenModel = hiddenModel
-            }}else{
-             count = historyReviewModels.count ?? 0
+            
+         }
+        }
+        
+        
+        if isHistoryHidden{
+         count = historyReviewModels.count ?? 0
+
             if count > 0 {
                 let historyReviewModel = historyReviewModels[indexPath.row]
                 cell.historyReviewModel = historyReviewModel
+            
             }
         }
+        
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
             // 这儿写自增, 竟然有警告, swift语言更新确实有点快, 我记得1.2的时候还是可以的
@@ -191,6 +252,14 @@ class HistoryRecordListController: UITableViewController {
         }
         return cell
         
+    }
+   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if isCheckHidden{
+            let controller = NormalHiddenDetail()
+            controller.converyId = String(checkHiddenModels[indexPath.row].id)
+            self.navigationController?.pushViewController(controller, animated: true)
+        
+        }
     }
 
     
@@ -215,9 +284,17 @@ class HistoryRecordListController: UITableViewController {
         if isHidden{
             hiddenModels.removeAll()
             hiddenModels = [HiddenModel]()
-        }else{
+        }
+        
+        if isHistoryHidden{
             historyReviewModels.removeAll()
             historyReviewModels = [HistoryReviewModel]()
+        }
+        
+        if isCheckHidden{
+        
+            checkHiddenModels.removeAll()
+            checkHiddenModels = [CheckHiddenModel]()
         }
         
     }

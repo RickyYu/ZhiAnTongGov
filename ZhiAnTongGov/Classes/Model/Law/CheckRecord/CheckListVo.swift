@@ -78,7 +78,7 @@ class CheckListVo:BaseModel{
     var listHy = [IndustrySecondSelectModel]()
     
     // 照片
-    var listfile = [FILE]()
+    var listfile = [UIImage]()
     
     var nowcontent:String!
     var lxr:String!
