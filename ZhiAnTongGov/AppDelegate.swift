@@ -25,26 +25,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate {
             NSLog("manager start failed!")
         }
         
-        // 设置全局的UINavigationBar属性
-//        let bar = UINavigationBar.appearance()
-//        bar.tintColor = UIColor.blackColor()
-//        bar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(15), NSForegroundColorAttributeName : UIColor.blackColor()]
-//        
-//        // 设置window
-//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        
-//        // 根据版本号, 判断显示哪个控制器
-//        if toNewFeature() {
-//            window?.rootViewController = NewFeatureViewController()
-//            
-//        }else{
-//            window?.rootViewController = LoginViewController()
-//        }
-//        
-//        // 设置相关的appkey
-//        setAppKey()
-//        
-//        window?.makeKeyAndVisible()
+//         设置全局的UINavigationBar属性
+        let bar = UINavigationBar.appearance()
+        bar.tintColor = UIColor.blackColor()
+        bar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(15), NSForegroundColorAttributeName : UIColor.blackColor()]
+        
+        // 设置window
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        // 根据版本号, 判断显示哪个控制器
+        if toNewFeature() {
+            window?.rootViewController = NewFeatureViewController()
+            
+        }else{
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            window?.rootViewController = controller
+        }
+        
+        // 设置相关的appkey
+        setAppKey()
+        
+        window?.makeKeyAndVisible()
         return true
     }
 

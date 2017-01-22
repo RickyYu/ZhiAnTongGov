@@ -47,13 +47,13 @@ class CompanyInfoModel:BaseModel{
         self.tradeSma = dict["tradeSma"] as? String ?? ""
         self.isProduction = dict["isProduction"] as? Bool
         self.tradeMid = dict["tradeMid"] as? String ?? ""
-        self.tradeType = dict["tradeType"] as? String
-        self.address = dict["address"] as? String
-        self.tradeTypes = dict["tradeTypes"] as? String
-        self.companyName = dict["companyName"] as? String
-        self.economyKind = dict["economyKind"] as? String
-        self.fdDelegate = dict["fdDelegate"] as? String
-        self.isEnterprise = dict["isEnterprise"] as? String
+        self.tradeType = dict["tradeType"] as? String ?? ""
+        self.address = dict["address"] as? String  ?? ""
+        self.tradeTypes = dict["tradeTypes"] as? String ?? ""
+        self.companyName = dict["companyName"] as? String ?? ""
+        self.economyKind = dict["economyKind"] as? String ?? ""
+        self.fdDelegate = dict["fdDelegate"] as? String ?? ""
+        self.isEnterprise = dict["isEnterprise"] as? String ?? ""
         
     }
 }

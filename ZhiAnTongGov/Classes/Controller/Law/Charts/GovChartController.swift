@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class GovChartController:UIViewController,ChartViewDelegate{
+class GovChartController:BaseViewController,ChartViewDelegate{
 
     @IBOutlet weak var chartView: BarChartView!
     @IBOutlet weak var btn: UIButton!
@@ -34,15 +34,22 @@ class GovChartController:UIViewController,ChartViewDelegate{
             
             if error == nil{
                 self.dataModel = data!
+                self.label1.text = self.dataModel.checkNum
+                self.label2.text = self.dataModel.callbackNum
+                self.label3.text = self.dataModel.dangerNum
+                self.label4.text = self.dataModel.rectifyRateNum
+                self.mCountModels = self.dataModel.mcountModels
+                self.setChartData()
             }else{
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
-            self.label1.text = self.dataModel.checkNum
-            self.label2.text = self.dataModel.callbackNum
-            self.label3.text = self.dataModel.dangerNum
-            self.label4.text = self.dataModel.rectifyRateNum
-            self.mCountModels = self.dataModel.mcountModels
-            self.setChartData()
+            
         }
      
     

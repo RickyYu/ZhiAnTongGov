@@ -10,7 +10,7 @@ import UIKit
 
 //企业查询列表界面
 private let Identifier = "ReviewInfoCell"
-class LawPunListController:UITableViewController,UISearchBarDelegate{
+class LawPunListController:BaseTabViewController,UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -28,7 +28,16 @@ class LawPunListController:UITableViewController,UISearchBarDelegate{
      var isRefresh:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //修改导航栏按钮颜色为白色
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //修改导航栏文字颜色
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //修改导航栏背景颜色
+        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
+
+        //修改导航栏按钮返回只有箭头
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
         initPage()
     }
     override func viewWillAppear(animated: Bool) {
@@ -39,9 +48,9 @@ class LawPunListController:UITableViewController,UISearchBarDelegate{
     }
     
     private func initPage(){
-        
         // 设置navigation
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
+
         // 设置tableview相关
         let nib = UINib(nibName: Identifier,bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: Identifier)
@@ -54,6 +63,7 @@ class LawPunListController:UITableViewController,UISearchBarDelegate{
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
+            controller.searchBar.placeholder = NOTICE_CPY_NAME
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
@@ -103,6 +113,12 @@ class LawPunListController:UITableViewController,UISearchBarDelegate{
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
             
             self.tableView.reloadData()

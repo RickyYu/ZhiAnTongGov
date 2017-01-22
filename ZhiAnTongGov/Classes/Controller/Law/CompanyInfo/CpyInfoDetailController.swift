@@ -10,7 +10,7 @@ import UIKit
 import UsefulPickerView
 
 
-class CpyInfoDetailController: BaseViewController,LocationParameterDelegate {
+class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXMLParserDelegate {
     
 
     var scrollView: UIScrollView?
@@ -20,12 +20,14 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate {
     var converyDataModel  = CpyInfoModel()
     
     var dataModel:CompanyInfoModel!
+    var areaArr = [String]()
     
+    var lng:String = "" //经度
+    var lat:String = "" //纬度
     let singleData = ["规上企业", "规下企业", "小微企业"]
     let economyData = ["01国有经济", "02集体经济", "03私营经济","04有限责任公司","05联营经济","06股份合作","07外商投资","08港澳台投资","09其它经济","10股份有限公司"]
     
     override func viewDidLoad() {
-        
         self.navigationItem.title = "企业信息详情"
         self.view.backgroundColor = UIColor.whiteColor()
         let locationBtn = UIBarButtonItem(image: UIImage(named: "dw2"), style: .Done, target: self, action: #selector(self.toLocation))
@@ -163,24 +165,36 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate {
         self.scrollView!.addSubview(submitBtn)
         self.view.addSubview(scrollView!)
         
-//        submitBtn.snp_makeConstraints { make in
-//            make.bottom.equalTo(self.view.snp_bottom).offset(-15)
-//            make.left.equalTo(self.view.snp_left).offset(50)
-//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
-//        }
+        submitBtn.snp_makeConstraints { make in
+            make.bottom.equalTo(self.view.snp_bottom).offset(-15)
+            make.left.equalTo(self.view.snp_left).offset(50)
+            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
+        }
     }
-    
+    var secondAreaCode :String = ""
+    var thirdAreaCode :String = ""
     func setData(){
         
         customView1.setRTextField(dataModel.companyName ?? "")
         customView2.setRTextField(dataModel.address ?? "")
-        self.customView3.setRRightLabel("")
+        
+       let secondStr =  getSecondArea(String(dataModel.secondArea))
+       let thirdStr =  getThirdArea(String(dataModel.thirdArea))
+        
+        if secondStr != "" && thirdStr != ""{
+        areaArr = ["湖州",secondStr,thirdStr]
+        }else{
+        areaArr = ["湖州", "长兴县", "画溪街道"]
+        }
+        self.customView3.setRRightLabel("湖州 \(secondStr)\(thirdStr)")
         customView4.setRTextField(dataModel.businessRegNumber ?? "")
         print(dataModel.tradeTypes)
         customView5.setRCenterLabel(dataModel.tradeTypes)
-        customView6.setRCenterLabel(dataModel.tradeBig)
-        customView7.setRCenterLabel(dataModel.tradeMid)
-        customView8.setRCenterLabel(dataModel.tradeType)
+        let parse:NSXMLParser = NSXMLParser(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("huzhou_enum", ofType: "xml")!))!
+        parse.delegate = self
+        // 开始解析
+        parse.parse()
+
         customView9.setRTextField(dataModel.fdDelegate ?? "")
         customView10.setRTextField(dataModel.phone ?? "")
         let str11 : String = dataModel.economyKind
@@ -208,15 +222,10 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate {
     }
     
     func choiceArea(){
-        UsefulPickerView.showCitiesPicker("省市区选择", defaultSelectedValues: ["浙江", "湖州", "长兴县"]) {[unowned self] (selectedIndexs, selectedValues) in
-            // 处理数据
-            let combinedString = selectedValues.reduce("", combine: { (result, value) -> String in
-                result + " " + value
-            })
-            
-            self.customView3.setRRightLabel(combinedString)
-
-            
+        getChoiceArea(areaArr) { (area,areaArr) in
+            self.secondAreaCode =  getSecondArea(areaArr[1])
+            self.thirdAreaCode = getThirdArea(areaArr[2])
+            self.customView3.setRRightLabel(area)
         }
     }
     
@@ -287,9 +296,9 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate {
             parameters["company.address"] = str2
             parameters["company.businessRegNumber"] = str3
           //TODO 三个code
-            parameters["company.firstArea"] = PAGE_SIZE
-            parameters["company.secondArea"] = PAGE_SIZE
-            parameters["company.thirdArea"] = PAGE_SIZE
+            parameters["company.firstArea"] = dataModel.firstArea
+            parameters["company.secondArea"] = secondAreaCode
+            parameters["company.thirdArea"] = thirdAreaCode
             parameters["company.fdDelegate"] = str4
             parameters["company.phone"] = str5
            //TODO  三个code
@@ -307,11 +316,22 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate {
 
         NetworkTool.sharedTools.updateCompany(parameters) { (cpyInfoModels, error, totalCount) in
         
+            if error == nil{
+                self.showHint("保存成功", duration: 2, yOffset: 0)
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            }else{
+                self.showHint("\(error)", duration: 1, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
+            }
         }
         
-        
-        showHint("提交成功", duration: 2, yOffset: 2)
-        navigationController?.popViewControllerAnimated(true)
+    
    
     }
     
@@ -319,8 +339,20 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate {
         self.lng = lng
         self.lat = lat
     }
-    
-    var lng:String = "" //经度
-    var lat:String = "" //纬度
-    
+
+    // 监听解析节点的属性
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
+        // 保存当前的解析到的节点名称
+      //  self.currentNodeName = elementName
+        if(elementName == dataModel.tradeBig){
+             customView6.setRCenterLabel(attributeDict["name"]!)
+        }
+        if(elementName == dataModel.tradeMid){
+            customView7.setRCenterLabel(attributeDict["name"]!)
+        }
+        if(elementName == dataModel.tradeType){
+           customView8.setRCenterLabel(attributeDict["name"]!)
+        }
+        
+    }
 }

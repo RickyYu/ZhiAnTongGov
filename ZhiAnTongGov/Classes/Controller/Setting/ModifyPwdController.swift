@@ -74,6 +74,7 @@ class ModifyPwdController: BaseViewController {
              self.showHint("密码修改成功！", duration: 2, yOffset: 2)
             self.navigationController?.popViewControllerAnimated(true)
             }else{
+                
               self.showHint("密码修改失败！", duration: 2, yOffset: 2)
             }
             

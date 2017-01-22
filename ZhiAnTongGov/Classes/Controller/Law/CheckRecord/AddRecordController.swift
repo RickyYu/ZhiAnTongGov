@@ -71,7 +71,8 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
     self.navigationItem.title = "检查记录--基本信息"
-       
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
         getDatas()
         
     }
@@ -89,7 +90,6 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
                 
             }else{
             self.checkView.hidden = true
-            //self.customView11.rightLabel.text = ""
             }
         }
     }
@@ -105,6 +105,12 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
                 
             }else{
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
         }
     }
@@ -190,6 +196,8 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
             c4 = models[3].gridId
             cbName4 = models[3].gridName
         }
+        }else{
+         customView7.setLabel1Name("无")
         }
         
          customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
@@ -476,7 +484,7 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
 
     
     func choiceImage(){
-       customView11.frame = CGRectMake(0, 500, SCREEN_WIDTH, 45)
+        customView11.frame = CGRectMake(0, 500, SCREEN_WIDTH, 45)
         checkView.frame = CGRectMake(0, 545, SCREEN_WIDTH, 280)
         containerView.hidden = false
     }

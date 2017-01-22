@@ -10,109 +10,112 @@ import UIKit
 import SnapKit
 import SwiftyJSON
 
-class RecordHiddenMajorController: BaseViewController {
-    var converyModels = CheckListVo()
-    var submitBtn = UIButton()
-    var scrollView: UIScrollView!
-     var recordDetailModel : RecordDetailModel!
+class RecordHiddenMajorController: PhotoViewController {
+     var converyModels : CheckListVo!
+     var majorSubmitBtn = UIButton()
+     var majorScrollView: UIScrollView!
+     var majorRecordDetailModel : RecordDetailModel!
     
     override func viewDidLoad() {
-        initPage()
+        self.view.backgroundColor = UIColor.whiteColor()
+        self.navigationItem.title = "重大隐患"
+        majorInitPage()
     }
      //隐患地址
-     var address = ""
+     var majorAddress = ""
         //联系人
-    var people = ""
-    var phone  = ""
-    var mobile = ""
-    var hiddenDes = ""
-    var plantTime = ""
-    var governMoney = ""
-    var chargePerson = ""
-    var fillDate = ""
-    var fillMan = ""
-    var customView2  = DetailCellView()
-    var customView4  = DetailCellView()
-    var customView5  = DetailCellView()
-    var customView6  = DetailCellView()
-    var customView7  = DetailCellView()
-    var customView16  = DetailCellView()
-    var customView17  = DetailCellView()
-    var customView18  = DetailCellView()
-    var customView19  = DetailCellView()
-    var customView20  = DetailCellView()
+    var majorPeople = ""
+    var majorPhone  = ""
+    var majorMobile = ""
+    var majorHiddenDes = ""
+    var majorPlantTime = ""
+    var majorGovernMoney = ""
+    var majorChargePerson = ""
+    var majorFillDate = ""
+    var majorFillMan = ""
+    var majorCustomView2  = DetailCellView()
+    var majorCustomView3  = DetailCellView()
+    var majorCustomView4  = DetailCellView()
+    var majorCustomView5  = DetailCellView()
+    var majorCustomView6  = DetailCellView()
+    var majorCustomView7  = DetailCellView()
+    var majorCustomView16  = DetailCellView()
+    var majorCustomView17  = DetailCellView()
+    var majorCustomView18  = DetailCellView()
+    var majorCustomView19  = DetailCellView()
+    var majorCustomView20  = DetailCellView()
     func submit(){
-         address = customView2.textField.text!
-        if AppTools.isEmpty(address) {
+         majorAddress = majorCustomView2.textField.text!
+        if AppTools.isEmpty(majorAddress) {
             alert("隐患地址不可为空", handler: {
-                self.customView2.textField.becomeFirstResponder()
+                self.majorCustomView2.textField.becomeFirstResponder()
             })
             return
         }
-        people = customView4.rightLabel.text!
-        if AppTools.isEmpty(people) {
+        majorPeople = majorCustomView4.textField.text!
+        if AppTools.isEmpty(majorPeople) {
             alert("联系人不可为空", handler: {
-                self.customView4.textField.becomeFirstResponder()
+                self.majorCustomView4.textField.becomeFirstResponder()
             })
             return
         }
-        phone = customView5.rightLabel.text!
-        if AppTools.isEmpty(phone) {
+        majorPhone = majorCustomView5.textField.text!
+        if AppTools.isEmpty(majorPhone) {
             alert("联系电话不可为空", handler: {
-                self.customView5.textField.becomeFirstResponder()
+                self.majorCustomView5.textField.becomeFirstResponder()
             })
             return
         }
         
-         mobile = customView6.rightLabel.text!
-        if AppTools.isEmpty(mobile) {
+         majorMobile = majorCustomView6.textField.text!
+        if AppTools.isEmpty(majorMobile) {
             alert("手机不可为空", handler: {
-                self.customView6.textField.becomeFirstResponder()
+                self.majorCustomView6.textField.becomeFirstResponder()
             })
             return
         }
-         hiddenDes = customView7.rightLabel.text!
-        if AppTools.isEmpty(hiddenDes) {
+         majorHiddenDes = majorCustomView7.textField.text!
+        if AppTools.isEmpty(majorHiddenDes) {
             alert("隐患基本情况不可为空", handler: {
-                self.customView7.textField.becomeFirstResponder()
+                self.majorCustomView7.textField.becomeFirstResponder()
             })
             return
         }
         
-        plantTime = customView16.rightLabel.text!
-        if AppTools.isEmpty(plantTime) {
+        majorPlantTime = majorCustomView16.rightLabel.text!
+        if AppTools.isEmpty(majorPlantTime) {
             alert("计划完成治理时间不可为空", handler: {
-                self.customView7.textField.becomeFirstResponder()
+                self.majorCustomView7.textField.becomeFirstResponder()
             })
             return
         }
         
         
-        governMoney = customView17.textField.text!
-        if AppTools.isEmpty(plantTime) {
+        majorGovernMoney = majorCustomView17.textField.text!
+        if AppTools.isEmpty(majorPlantTime) {
             alert("治理经费不可为空", handler: {
-                self.customView17.textField.becomeFirstResponder()
+                self.majorCustomView17.textField.becomeFirstResponder()
             })
             return
         }
         
-        chargePerson = customView18.textField.text!
-        if AppTools.isEmpty(plantTime) {
+        majorChargePerson = majorCustomView18.textField.text!
+        if AppTools.isEmpty(majorPlantTime) {
             alert("单位负责人不可为空", handler: {
-                self.customView18.textField.becomeFirstResponder()
+                self.majorCustomView18.textField.becomeFirstResponder()
             })
             return
         }
-        fillDate = customView19.rightLabel.text!
-        if AppTools.isEmpty(plantTime) {
+        majorFillDate = majorCustomView19.rightLabel.text!
+        if AppTools.isEmpty(majorPlantTime) {
             alert("录入时间不可为空", handler: {
                 
             })
             return
         }
         
-        fillMan = customView20.textField.text!
-        if AppTools.isEmpty(plantTime) {
+        majorFillMan = majorCustomView20.textField.text!
+        if AppTools.isEmpty(majorPlantTime) {
             alert("填报人不可为空", handler: {
                 
             })
@@ -120,372 +123,326 @@ class RecordHiddenMajorController: BaseViewController {
         }
        
         
-        let alertVC = UIAlertController(title: "提示", message: "确认提交后，本次检查信息及隐患无法再更改", preferredStyle: UIAlertControllerStyle.Alert)
-        let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
-        
-                self.submitCheck()
+        alertNotice("提示", message: "确认提交后，本次检查信息及隐患无法再更改") {
+            self.submitCheck()
         }
-        let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
-            print("click Cancel")
-        }
-        alertVC.addAction(acSure)
-        alertVC.addAction(acCancel)
-        self.presentViewController(alertVC, animated: true, completion: nil)
-    
-        
-        
     }
 
-    func submitMajorTrouble(){
-        var parameters = [String : AnyObject]()
-         parameters["danger.hzCompany.id"] = converyModels.companyId
-         parameters["danger.noteId"] = converyModels.checkId
-        //市级以上重点企业
-         parameters["danger.emphasisProject"] = isMagorCpy
-        //隐患地址
-         parameters["danger.dangerAdd"] = address
-        //隐患区域三级
-         parameters["danger.firstArea"] = converyModels.companyId
-         parameters["danger.secondArea"] = converyModels.companyId
-         parameters["danger.thirdArea"] = converyModels.companyId
-        //联系人
-         parameters["danger.linkMan"] = people
-         parameters["danger.linkTel"] = phone
-         parameters["danger.linkMobile"] = mobile
-         parameters["danger.description"] = hiddenDes
-        
-        parameters["danger.govCoordination"] = is2
-        parameters["danger.partStopProduct"] = is3
-        parameters["danger.fullStopProduct"] = is4
-        parameters["danger.target"] = is5
-        parameters["danger.resource"] = is6
-        parameters["danger.safetyMethod"] = is7
-        parameters["danger.goods"] = is8
-        
-        
-        parameters["danger.finishDate"] = plantTime
-        parameters["danger.governMoney"] = governMoney
-        
-        parameters["danger.chargePerson"] = chargePerson
-        parameters["danger.fillDate"] = fillDate
-        parameters["danger.fillMan"] = fillMan
-        
-       // parameters["file"] = converyModels.companyId
-        NetworkTool.sharedTools.createDanger(parameters) { (data, error) in
-        
-        }
+ 
     
-    }
-    
-    func initPage(){
+    func majorInitPage(){
         
         
-        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 950))
-        scrollView!.pagingEnabled = true
-        scrollView!.scrollEnabled = true
-        scrollView!.showsHorizontalScrollIndicator = true
-        scrollView!.showsVerticalScrollIndicator = false
-        scrollView!.scrollsToTop = true
-        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 950)
+        majorScrollView = UIScrollView(frame: CGRectMake(0, 0, SCREEN_WIDTH, 950))
+        majorScrollView!.pagingEnabled = true
+        majorScrollView!.scrollEnabled = true
+        majorScrollView!.showsHorizontalScrollIndicator = true
+        majorScrollView!.showsVerticalScrollIndicator = false
+        majorScrollView!.scrollsToTop = true
+        majorScrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 950)
         
         
-        submitBtn.setTitle("保存", forState:.Normal)
-        submitBtn.backgroundColor = YMGlobalDeapBlueColor()
-        submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
-        submitBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
+        majorSubmitBtn.setTitle("保存", forState:.Normal)
+        majorSubmitBtn.backgroundColor = YMGlobalDeapBlueColor()
+        majorSubmitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+        majorSubmitBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
         
         let customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()
         customView1.setLabelName("市级以上重点企业：")
         customView1.setRCheckBtn()
-        customView1.rightCheckBtn.addTarget(self, action:#selector(tapped1(_:)), forControlEvents:.TouchUpInside)
+        customView1.rightCheckBtn.addTarget(self, action:#selector(majortapped1(_:)), forControlEvents:.TouchUpInside)
         
-         customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
-        customView2.setLabelName("隐患地址：")
-        customView2.setRTextField( "")
+         majorCustomView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
+        majorCustomView2.setLabelName("隐患地址：")
+        majorCustomView2.setRTextField( "")
         
-        let customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
-        customView3.setLabelName("隐患区域：")
-        customView3.setRCenterLabel("")
-        
-        
-        
-         customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
-        customView4.setLabelName("联系人：")
-        customView4.setRTextField( "")
+         majorCustomView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
+        majorCustomView3.setLabelName("隐患区域：")
+        majorCustomView3.setRRightLabel("")
+        majorAreaArr = ["湖州", "长兴县", "画溪街道"]
+        majorCustomView3.addOnClickListener(self, action: #selector(self.majorChoiceArea))
         
         
-        customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
-        customView5.setLabelName("联系电话：")
-        customView5.setRTextField( "")
+        
+         majorCustomView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
+        majorCustomView4.setLabelName("联系人：")
+        majorCustomView4.setRTextField( "")
         
         
-        customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
-        customView6.setLabelName("手机")
-        customView6.setRTextField( "")
+        majorCustomView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
+        majorCustomView5.setLabelName("联系电话：")
+        majorCustomView5.setRTextField( "")
         
         
-        customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
-        customView7.setLabelName("隐患基本情况：")
-        customView7.setRTextField( "") //ImagesInfo 字段
+        majorCustomView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
+        majorCustomView6.setLabelName("手机:")
+        majorCustomView6.setRTextField( "")
+        
+        
+        majorCustomView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
+        majorCustomView7.setLabelName("隐患基本情况：")
+        majorCustomView7.setRTextField( "") //ImagesInfo 字段
         
         let  customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
-        customView8.setLabelName("现场图片：")
+        customView8.setLabelName("")
         customView8.setRCenterLabel("")
         
         let customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView9.setLabelName("是否需要政府协调：")
         customView9.setRCheckBtn()
-        customView9.rightCheckBtn.addTarget(self, action:#selector(tapped2(_:)), forControlEvents:.TouchUpInside)
+        customView9.rightCheckBtn.addTarget(self, action:#selector(majortapped2(_:)), forControlEvents:.TouchUpInside)
         
         let customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
         customView10.setLabelName("是否需要局部停产停业：")
         customView10.setRCheckBtn()
-        customView10.rightCheckBtn.addTarget(self, action:#selector(tapped3(_:)), forControlEvents:.TouchUpInside)
+        customView10.rightCheckBtn.addTarget(self, action:#selector(majortapped3(_:)), forControlEvents:.TouchUpInside)
         
-        let customView11 = DetailCellView(frame:CGRectMake(0, 460, SCREEN_WIDTH, 45))
+        let customView11 = DetailCellView(frame:CGRectMake(0, 415, SCREEN_WIDTH, 45))
         customView11.setLabelName("是否需要全部停产停业：")
         customView11.setRCheckBtn()
-        customView11.rightCheckBtn.addTarget(self, action:#selector(tapped4(_:)), forControlEvents:.TouchUpInside)
+        customView11.rightCheckBtn.addTarget(self, action:#selector(majortapped4(_:)), forControlEvents:.TouchUpInside)
         
-        let customView12 = DetailCellView(frame:CGRectMake(0, 505, SCREEN_WIDTH, 45))
+        let customView12 = DetailCellView(frame:CGRectMake(0, 460, SCREEN_WIDTH, 45))
         customView12.setLabelName("落实治理目标：")
         customView12.setRCheckBtn()
-        customView12.rightCheckBtn.addTarget(self, action:#selector(tapped5(_:)), forControlEvents:.TouchUpInside)
+        customView12.rightCheckBtn.addTarget(self, action:#selector(majortapped5(_:)), forControlEvents:.TouchUpInside)
         
-        let customView13 = DetailCellView(frame:CGRectMake(0, 550, SCREEN_WIDTH, 45))
+        let customView13 = DetailCellView(frame:CGRectMake(0, 505, SCREEN_WIDTH, 45))
         customView13.setLabelName("落实治理机构人员：")
         customView13.setRCheckBtn()
-        customView13.rightCheckBtn.addTarget(self, action:#selector(tapped6(_:)), forControlEvents:.TouchUpInside)
+        customView13.rightCheckBtn.addTarget(self, action:#selector(majortapped6(_:)), forControlEvents:.TouchUpInside)
         
-        let customView14 = DetailCellView(frame:CGRectMake(0, 595, SCREEN_WIDTH, 45))
+        let customView14 = DetailCellView(frame:CGRectMake(0, 550, SCREEN_WIDTH, 45))
         customView14.setLabelName("落实安全促使及应急预案：")
         customView14.setRCheckBtn()
-        customView14.rightCheckBtn.addTarget(self, action:#selector(tapped7(_:)), forControlEvents:.TouchUpInside)
+        customView14.rightCheckBtn.addTarget(self, action:#selector(majortapped7(_:)), forControlEvents:.TouchUpInside)
         
-        let customView15 = DetailCellView(frame:CGRectMake(0, 640, SCREEN_WIDTH, 45))
+        let customView15 = DetailCellView(frame:CGRectMake(0, 595, SCREEN_WIDTH, 45))
         customView15.setLabelName("落实治理经费物资：")
         customView15.setRCheckBtn()
-        customView15.rightCheckBtn.addTarget(self, action:#selector(tapped8(_:)), forControlEvents:.TouchUpInside)
+        customView15.rightCheckBtn.addTarget(self, action:#selector(majorTapped8(_:)), forControlEvents:.TouchUpInside)
         
-        customView16 = DetailCellView(frame:CGRectMake(0, 685, SCREEN_WIDTH, 45))
-        customView16.setLabelName("计划完成治理时间：")
-        customView16.setRRightLabel("")
-        customView16.addOnClickListener(self, action: #selector(self.choicePlanTimes))
+        majorCustomView16 = DetailCellView(frame:CGRectMake(0, 640, SCREEN_WIDTH, 45))
+        majorCustomView16.setLabelName("计划完成治理时间：")
+        majorCustomView16.setRRightLabel("")
+        majorCustomView16.addOnClickListener(self, action: #selector(self.majorChoicePlanTimes))
         
-        customView17 = DetailCellView(frame:CGRectMake(0, 730, SCREEN_WIDTH, 45))
-        customView17.setLabelName("落实治理经费:(单位：万)")
-        customView17.setRTextField( "")
+        majorCustomView17 = DetailCellView(frame:CGRectMake(0, 685, SCREEN_WIDTH, 45))
+        majorCustomView17.setLabelName("落实治理经费:(单位：万)")
+        majorCustomView17.setRTextField( "")
         
-        customView18 = DetailCellView(frame:CGRectMake(0, 775, SCREEN_WIDTH, 45))
-        customView18.setLabelName("单位负责人：")
-        customView18.setRTextField( "")
+        majorCustomView18 = DetailCellView(frame:CGRectMake(0, 730, SCREEN_WIDTH, 45))
+        majorCustomView18.setLabelName("单位负责人：")
+        majorCustomView18.setRTextField( "")
         
         
-        customView19 = DetailCellView(frame:CGRectMake(0, 820, SCREEN_WIDTH, 45))
-        customView19.setLabelName("录入时间：")
+        majorCustomView19 = DetailCellView(frame:CGRectMake(0, 775, SCREEN_WIDTH, 45))
+        majorCustomView19.setLabelName("录入时间：")
         getSystemTime { (time) in
-            self.customView19.setRRightLabel(time)
+            self.majorCustomView19.setRRightLabel(time)
         }
         
-        customView20 = DetailCellView(frame:CGRectMake(0, 865, SCREEN_WIDTH, 45))
-        customView20.setLabelName("填报人：")
-        customView20.setRTextField( "")
+        majorCustomView20 = DetailCellView(frame:CGRectMake(0, 820, SCREEN_WIDTH, 45))
+        majorCustomView20.setLabelName("填报人：")
+        majorCustomView20.setRTextField( "")
+        
+        let  customView21 = DetailCellView(frame:CGRectMake(0, 865, SCREEN_WIDTH, 45))
+        customView21.setLabelName("现场图片：")
+        customView21.setRCenterLabel("")
+         customView21.addOnClickListener(self, action: #selector(self.majorChoiceImage))
+        
+        majorInitPhoto()
         
         
         
         
         
         
-        self.scrollView.addSubview(customView1)
-        self.scrollView.addSubview(customView2)
-        self.scrollView.addSubview(customView3)
-        self.scrollView.addSubview(customView4)
-        self.scrollView.addSubview(customView5)
-        self.scrollView.addSubview(customView6)
-        self.scrollView.addSubview(customView7)
-        self.scrollView.addSubview(customView8)
-        self.scrollView.addSubview(customView9)
-        self.scrollView.addSubview(customView10)
-        self.scrollView.addSubview(customView11)
+        self.majorScrollView.addSubview(customView1)
+        self.majorScrollView.addSubview(majorCustomView2)
+        self.majorScrollView.addSubview(majorCustomView3)
+        self.majorScrollView.addSubview(majorCustomView4)
+        self.majorScrollView.addSubview(majorCustomView5)
+        self.majorScrollView.addSubview(majorCustomView6)
+        self.majorScrollView.addSubview(majorCustomView7)
+        self.majorScrollView.addSubview(customView8)
+        self.majorScrollView.addSubview(customView9)
+        self.majorScrollView.addSubview(customView10)
+        self.majorScrollView.addSubview(customView11)
 
-        self.scrollView.addSubview(customView12)
-        self.scrollView.addSubview(customView13)
-        self.scrollView.addSubview(customView14)
-        self.scrollView.addSubview(customView15)
-        self.scrollView.addSubview(customView16)
-        self.scrollView.addSubview(customView17)
-        self.scrollView.addSubview(customView18)
-        self.scrollView.addSubview(customView19)
-        self.scrollView.addSubview(customView20)
+        self.majorScrollView.addSubview(customView12)
+        self.majorScrollView.addSubview(customView13)
+        self.majorScrollView.addSubview(customView14)
+        self.majorScrollView.addSubview(customView15)
+        self.majorScrollView.addSubview(majorCustomView16)
+        self.majorScrollView.addSubview(majorCustomView17)
+        self.majorScrollView.addSubview(majorCustomView18)
+        self.majorScrollView.addSubview(majorCustomView19)
+        self.majorScrollView.addSubview(majorCustomView20)
+        self.majorScrollView.addSubview(customView21)
         
-        self.view.addSubview(submitBtn)
-        self.view.addSubview(scrollView)
-        submitBtn.snp_makeConstraints { make in
+        self.view.addSubview(majorSubmitBtn)
+        self.view.addSubview(majorScrollView)
+        majorSubmitBtn.snp_makeConstraints { make in
             make.bottom.equalTo(self.view.snp_bottom).offset(-15)
             make.left.equalTo(self.view.snp_left).offset(50)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
         }
         
-        scrollView.snp_makeConstraints { make in
-            make.top.equalTo(self.view.snp_top).offset(120)
+        majorScrollView.snp_makeConstraints { make in
+            make.top.equalTo(self.view.snp_top).offset(64)
             make.left.equalTo(self.view.snp_left)
-            make.bottom.equalTo(submitBtn.snp_top).offset(-5)
+            make.bottom.equalTo(majorSubmitBtn.snp_top).offset(-5)
             make.right.equalTo(self.view.snp_right)
         }
         
         customView1.snp_makeConstraints { make in
-            make.top.equalTo(self.scrollView.snp_top)
-            make.left.equalTo(self.scrollView.snp_left)
+            make.top.equalTo(self.majorScrollView.snp_top)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        customView2.snp_makeConstraints { make in
+        majorCustomView2.snp_makeConstraints { make in
             make.top.equalTo(customView1.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        customView3.snp_makeConstraints { make in
-            make.top.equalTo(customView2.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
+        majorCustomView3.snp_makeConstraints { make in
+            make.top.equalTo(majorCustomView2.snp_bottom)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        customView4.snp_makeConstraints { make in
-            make.top.equalTo(customView3.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
+        majorCustomView4.snp_makeConstraints { make in
+            make.top.equalTo(majorCustomView3.snp_bottom)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        customView5.snp_makeConstraints { make in
-            make.top.equalTo(customView4.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
+        majorCustomView5.snp_makeConstraints { make in
+            make.top.equalTo(majorCustomView4.snp_bottom)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        customView6.snp_makeConstraints { make in
-            make.top.equalTo(customView5.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
+        majorCustomView6.snp_makeConstraints { make in
+            make.top.equalTo(majorCustomView5.snp_bottom)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        customView7.snp_makeConstraints { make in
-            make.top.equalTo(customView6.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
+        majorCustomView7.snp_makeConstraints { make in
+            make.top.equalTo(majorCustomView6.snp_bottom)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        customView8.snp_makeConstraints { make in
-            make.top.equalTo(customView7.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
-            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
-        }
+//        customView8.snp_makeConstraints { make in
+//            make.top.equalTo(customView7.snp_bottom)
+//            make.left.equalTo(self.scrollView.snp_left)
+//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
+//        }
         
         customView9.snp_makeConstraints { make in
-            make.top.equalTo(customView8.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
+            make.top.equalTo(majorCustomView7.snp_bottom)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
         customView10.snp_makeConstraints { make in
-            make.top.equalTo(customView9.snp_bottom)
-            make.left.equalTo(self.scrollView.snp_left)
+            make.top.equalTo(customView8.snp_bottom)
+            make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
     
     }
     
-    func choicePlanTimes(){
+    func majorChoiceImage(){
+        containerView.hidden = false
+    }
+    
+    func majorInitPhoto(){
+        setLoc(0, y: 910)
+        listImageFile.removeAll()
+        checkNeedAddButton()
+        renderView()
+        self.majorScrollView.addSubview(containerView)
+        containerView.hidden = true
+    }
+    
+    func majorChoicePlanTimes(){
         choiceTime { (time) in
-            self.customView16.setRRightLabel(time)
-            self.customView16.becomeFirstResponder()
+            self.majorCustomView16.setRRightLabel(time)
+            self.majorCustomView16.becomeFirstResponder()
         }
         
     }
-    
-    
-    func choiceTime(){
-        let alertController:UIAlertController=UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        // 初始化 datePicker
-        let datePicker = UIDatePicker( )
-        //将日期选择器区域设置为中文，则选择器日期显示为中文
-        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
-        // 设置样式，当前设为同时显示日期和时间
-        datePicker.datePickerMode = UIDatePickerMode.Date
-        // 设置默认时间
-        datePicker.date = NSDate()
-        // 响应事件（只要滚轮变化就会触发）
-        // datePicker.addTarget(self, action:Selector("datePickerValueChange:"), forControlEvents: UIControlEvents.ValueChanged)
-        alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default){
-            (alertAction)->Void in
-            //更新提醒时间文本框
-            let formatter = NSDateFormatter()
-            //日期样式
-            formatter.dateFormat = "yyyy-MM-dd"
-            //self.customView1.setRRightLabel(formatter.stringFromDate(datePicker.date))
-            
-            })
-        alertController.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel,handler:nil))
-        
-        alertController.view.addSubview(datePicker)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-        
+     var majorAreaArr = [String]()
+    var majorFirstAreaCode :String = "330500"
+    var majorSecondAreaCode :String = ""
+    var majorThirdAreaCode :String = ""
+    func majorChoiceArea(){
+        getChoiceArea(majorAreaArr) { (area,areaArr) in
+            self.majorSecondAreaCode =  getSecondArea(areaArr[1])
+            self.majorThirdAreaCode = getThirdArea(areaArr[2])
+            self.majorCustomView3.setRRightLabel(area)
+        }
     }
     
     
     //市级以上重点企业
-    var isMagorCpy = false
-    func tapped1(button:UIButton){
+    var majorisMagorCpy = false
+    func majortapped1(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            isMagorCpy = true
+            majorisMagorCpy = true
             print("tapped1+\(button.selected)")
         }else{
-            isMagorCpy = false
+            majorisMagorCpy = false
             print("tapped1+\(button.selected)")
             
         }
         
     }
     //是否需要政府协调
-    var is2 = false
-    func tapped2(button:UIButton){
+    var majoris2 = false
+    func majortapped2(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            is2 = true
+            majoris2 = true
             print("tapped1+\(button.selected)")
         }else{
-            is2 = false
+            majoris2 = false
             print("tapped1+\(button.selected)")
             
         }
         
     }
     //是否需局部停产停业
-    var is3 = false
-    func tapped3(button:UIButton){
+    var majoris3 = false
+    func majortapped3(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            is3 = true
+            majoris3 = true
             print("tapped1+\(button.selected)")
         }else{
-            is3 = false
+            majoris3 = false
             print("tapped1+\(button.selected)")
             
         }
         
     }
     //是否需全部停产停业
-    var is4 = false
-    func tapped4(button:UIButton){
+    var majoris4 = false
+    func majortapped4(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            is4 = true
+            majoris4 = true
             print("tapped1+\(button.selected)")
         }else{
-            is4 = false
+            majoris4 = false
             print("tapped1+\(button.selected)")
             
         }
@@ -493,44 +450,44 @@ class RecordHiddenMajorController: BaseViewController {
     }
     
     //落实治理目标
-    var is5 = false
-    func tapped5(button:UIButton){
+    var majoris5 = false
+    func majortapped5(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            is5 = true
+            majoris5 = true
         }else{
-            is5 = false
+            majoris5 = false
         }
         
     }
     //落实治理机构人员
-    var is6 = false
-    func tapped6(button:UIButton){
+    var majoris6 = false
+    func majortapped6(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            is6 = true
+            majoris6 = true
         }else{
-            is6 = false
+            majoris6 = false
         }
     }
     //落实安全促使及应急预案
-    var is7 = false
-    func tapped7(button:UIButton){
+    var majoris7 = false
+    func majortapped7(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            is7 = true
+            majoris7 = true
         }else{
-            is7 = false
+            majoris7 = false
         }
     }
     //落实治理经费物资
-    var is8 = false
-    func tapped8(button:UIButton){
+    var majoris8 = false
+    func majorTapped8(button:UIButton){
         button.selected = !button.selected
         if button.selected{
-            is8 = true
+            majoris8 = true
         }else{
-            is8 = false
+            majoris8 = false
         }
     }
     
@@ -551,8 +508,11 @@ class RecordHiddenMajorController: BaseViewController {
         parameters["produceLocaleNote.noter"] = converyModels.people
         
         parameters["produceLocaleNote.executeUnit"] = converyModels.law
+        print(converyModels.zgtime)
+        if !converyModels.zgtime.isEmpty{
+            parameters["hzProduceCleanUp.cleanUpTimeLimit"] = converyModels.zgtime
+        }
         
-        parameters["hzProduceCleanUp.cleanUpTimeLimit"] = converyModels.zgtime
         if !converyModels.nowcontent.isEmpty{
             parameters["produceLocaleNote.content"] = converyModels.nowcontent
         }
@@ -577,19 +537,84 @@ class RecordHiddenMajorController: BaseViewController {
             
         }
         
-        if !converyModels.listfile.isEmpty{
-            parameters["file"] = ""
-        }
-        
-        parameters["produceLocaleNote.sendCleanUp"] = converyModels.check
+        parameters["produceLocaleNote.sendCleanUp"] = String(Int(converyModels.check))
         
         print("parameters = \(parameters)")
+        print("converyModels.listfile = \(converyModels.listfile)")
         
-//        NetworkTool.sharedTools.createCheckRecord(parameters,imageArrays: converyModels.listfile, finished: { (data, error) in
-//            
-//        })
-        
-
+        NetworkTool.sharedTools.createCheckRecordImage(parameters,imageArrays: converyModels.listfile,finished: { (data, error,noteId) in
+            if error == nil{
+                self.showHint("添加成功", duration: 1, yOffset: 0)
+                self.notedIdStr = noteId
+                self.submitMajorTrouble()
+                
+            }else{
+                self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
+            }
+            
+        })
     }
+    var notedIdStr:String = ""
+    func submitMajorTrouble(){
+        var parameters = [String : AnyObject]()
+        parameters["danger.hzCompany.id"] = converyModels.companyId
+        parameters["danger.noteId"] = notedIdStr
+        //市级以上重点企业
+        parameters["danger.emphasisProject"] = String(Int(majorisMagorCpy))
+        //隐患地址
+        parameters["danger.dangerAdd"] = majorAddress
+        //隐患区域三级
+        parameters["danger.firstArea"] = majorFirstAreaCode
+        parameters["danger.secondArea"] = majorSecondAreaCode
+        parameters["danger.thirdArea"] = majorThirdAreaCode
+        //联系人
+        parameters["danger.linkMan"] = majorPeople
+        parameters["danger.linkTel"] = majorPhone
+        parameters["danger.linkMobile"] = majorMobile
+        parameters["danger.description"] = majorHiddenDes
+        
+        parameters["danger.govCoordination"] = String(Int(majoris2))
+        parameters["danger.partStopProduct"] = String(Int(majoris3))
+        parameters["danger.fullStopProduct"] = String(Int(majoris4))
+        parameters["danger.target"] = String(Int(majoris5))
+        parameters["danger.resource"] = String(Int(majoris6))
+        parameters["danger.safetyMethod"] = String(Int(majoris7))
+        parameters["danger.goods"] = String(Int(majoris8))
+        
+        
+        parameters["danger.finishDate"] = majorPlantTime
+        parameters["danger.governMoney"] = majorGovernMoney
+        
+        parameters["danger.chargePerson"] = majorChargePerson
+        parameters["danger.fillDate"] = majorFillDate
+        parameters["danger.fillMan"] = majorFillMan
+        
+        // parameters["file"] = converyModels.companyId
+        NetworkTool.sharedTools.createDanger(parameters,imageArrays: listImageFile) { (data, error) in
+            if error == nil{
+                self.showHint("重大隐患上传成功", duration: 1, yOffset: 0)
+                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
+                viewController.isRefresh = true
+                self.navigationController?.popToViewController(viewController , animated: true)
 
+                
+            }else{
+                self.showHint("\(error!)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
+            }
+
+        }
+        
+    }
 }

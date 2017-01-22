@@ -34,7 +34,7 @@ class IndustrySecondSelectModel:BaseModel{
         params = [
         "id":String(self.id),
         "content":self.content,
-        "descriptions:":self.descriptions
+        "description:":self.descriptions
         ]
         return  params
     }

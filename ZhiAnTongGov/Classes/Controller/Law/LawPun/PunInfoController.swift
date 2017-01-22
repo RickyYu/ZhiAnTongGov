@@ -282,23 +282,29 @@ class PunInfoController: BaseViewController ,UITableViewDelegate,UITableViewData
           parameters["punishState"] = true
         NetworkTool.sharedTools.submitPunishment(parameters) { (recordInfoModels, error) in
             if error == nil{
-           self.showHint("完成处罚", duration: 2, yOffset: 0)
+                self.showHint("完成处罚", duration: 2, yOffset: 0)
                 // 获得视图控制器中的某一视图控制器
-             
+                
                 if self.isCheck {
                     let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
-                     viewController.isRefresh = true
-                    self.navigationController?.popToViewController(viewController , animated: true)
-
-                }else{
-                   let viewController = self.navigationController?.viewControllers[0] as! LawPunListController
                     viewController.isRefresh = true
                     self.navigationController?.popToViewController(viewController , animated: true)
-
-
+                    
+                }else{
+                    let viewController = self.navigationController?.viewControllers[0] as! LawPunListController
+                    viewController.isRefresh = true
+                    self.navigationController?.popToViewController(viewController , animated: true)
+                    
+                    
                 }
-                           }else{
-            self.showHint("\(error)", duration: 2, yOffset: 0)
+            }else{
+                self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
         }
     }

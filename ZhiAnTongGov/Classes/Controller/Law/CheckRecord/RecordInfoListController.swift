@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecordInfoListController:UITableViewController,UISearchBarDelegate{
+class RecordInfoListController:BaseTabViewController,UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     var cpyId :Int? //检查单位ID
@@ -44,7 +44,9 @@ class RecordInfoListController:UITableViewController,UISearchBarDelegate{
         // 设置navigation
         navigationItem.title = "检查记录"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "新增", style: UIBarButtonItemStyle.Done, target: self, action: #selector(RecordInfoListController.addRecord))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(RecordInfoListController.back))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
         // 搜索内容为空时，显示全部内容
         // self.result = self.array
         //配置搜索控制器
@@ -55,6 +57,7 @@ class RecordInfoListController:UITableViewController,UISearchBarDelegate{
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
+            controller.searchBar.placeholder = "请输入检查场所"
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
@@ -119,6 +122,12 @@ class RecordInfoListController:UITableViewController,UISearchBarDelegate{
                     self.toLoadMore = false
                 }
                 self.showHint("\(error!)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
             self.tableView.reloadData()
         }

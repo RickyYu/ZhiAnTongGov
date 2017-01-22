@@ -34,7 +34,9 @@ class CpyInfoCell: UITableViewCell {
                 // 设置数据
                 cpyName.text = art.companyName
                 delegate.text = "负责人："+art.fdDelegate
-                area.text = "所属区域："+String(art.firstArea)
+                let secondStr =  getSecondArea(String(art.secondArea))
+                let thirdStr =  getThirdArea(String(art.thirdArea))
+                area.text = "所属区域："+String("湖州市 \(secondStr)\(thirdStr)")
             }
         }
     }

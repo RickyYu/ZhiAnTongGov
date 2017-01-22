@@ -10,7 +10,7 @@ import UIKit
 
 //企业查询列表界面
 private let CpyInfoListReuseIdentifier = "CpyInfoCell"
-class RouteCpyChoiceController:UITableViewController,UISearchBarDelegate{
+class RouteCpyChoiceController:BaseTabViewController,UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -98,6 +98,12 @@ class RouteCpyChoiceController:UITableViewController,UISearchBarDelegate{
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
             
             self.tableView.reloadData()

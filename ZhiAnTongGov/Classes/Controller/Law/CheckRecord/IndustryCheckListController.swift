@@ -14,7 +14,7 @@ protocol ParameterDelegate{
     func passParams(industrySelectModel: IndustrySelectModel)
 }
 //检查记录 选择行业检查表
-class IndustryCheckListController: UITableViewController ,UISearchBarDelegate{
+class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
     
     var industrySelectModels  = [IndustrySelectModel]()
     var result = [IndustrySelectModel]()
@@ -51,6 +51,7 @@ class IndustryCheckListController: UITableViewController ,UISearchBarDelegate{
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
+            controller.searchBar.placeholder = "请输入检查表名"
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
@@ -100,6 +101,12 @@ class IndustryCheckListController: UITableViewController ,UISearchBarDelegate{
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
             
             self.tableView.reloadData()

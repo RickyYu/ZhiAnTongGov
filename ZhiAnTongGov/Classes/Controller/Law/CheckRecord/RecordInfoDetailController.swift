@@ -17,7 +17,7 @@ class RecordInfoDetailController: BaseViewController {
      var converyDataModel : RecordInfoModel!
      var recordDetailModel : RecordDetailModel!
         var imageArray = [ImageInfoModel]()
-      var customView1  = DetailCellView()
+      var customViewT  = DetailCellView()
       var customView2  = DetailCellView()
       var customView3  = DetailCellView()
       var customView4  = DetailCellView()
@@ -35,6 +35,7 @@ class RecordInfoDetailController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "记录详情"
+        print(converyDataModel.punishState)
         isHandle = converyDataModel.punishState
         if !isHandle{
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "处罚", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.addPun))
@@ -54,13 +55,19 @@ class RecordInfoDetailController: BaseViewController {
                 self.setData()
             }else{
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
     }
     
     
     }
     func setData(){
-        customView1.setRCenterLabel(recordDetailModel.companyName ?? "")
+        customViewT.setRCenterLabel(recordDetailModel.companyName ?? "")
         customView2.setRCenterLabel(recordDetailModel.address ?? "")
         customView3.setRCenterLabel(recordDetailModel.fdDelegate ?? "")
         customView4.setRCenterLabel(recordDetailModel.checkTimeBegin ?? "")
@@ -69,13 +76,14 @@ class RecordInfoDetailController: BaseViewController {
         customView7.setRCenterLabel(recordDetailModel.fdDelegate ?? "") //ImagesInfo 字段
         customView8.setRCenterLabel(recordDetailModel.noter ?? "")
         customView9.setRCenterLabel(recordDetailModel.executeUnit ?? "")
-        let isSendCleanUp = recordDetailModel.sendCleanUp as Bool
-        if  isSendCleanUp {
-            customView10.setRCenterLabel("是")
-        }else{
-            customView10.setRCenterLabel("否")
-        }
-        customView11.setRCenterLabel(recordDetailModel.cleanUpTimeLimit ?? "")
+        customView10.setRCenterLabel(recordDetailModel.checkTable ?? "")
+//        let isSendCleanUp = recordDetailModel.sendCleanUp as Bool
+//        if  isSendCleanUp {
+//            customView10.setRCenterLabel("是")
+//        }else{
+//            customView10.setRCenterLabel("否")
+//        }
+       // customView11.setRCenterLabel(recordDetailModel.cleanUpTimeLimit ?? "")
         self.imageArray = (recordDetailModel?.imageInfos)!
         if !imageArray.isEmpty{
             submitBtn = UIButton(frame:CGRectMake(0, 650, SCREEN_WIDTH, 45))
@@ -83,13 +91,13 @@ class RecordInfoDetailController: BaseViewController {
         let base_path = PlistTools.loadStringValue("BASE_URL_YH")
         for i in 0..<self.imageArray.count{
             let x = 70*i+5+5*i
-            let image = UIImageView(frame: CGRectMake(CGFloat(x), 540, 70, 100))
-            image.kf_setImageWithURL(NSURL(string: base_path+self.imageArray[i].path)!, placeholderImage: UIImage(named: "image_select"))
+            let image = UIImageView(frame: CGRectMake(CGFloat(x), 500, 70, 100))
+            image.kf_setImageWithURL(NSURL(string: base_path+self.imageArray[i].path)!, placeholderImage: UIImage(named: "default"))
            
             self.scrollView.addSubview(image)
          }
         }else{
-            submitBtn = UIButton(frame:CGRectMake(0, 565, SCREEN_WIDTH, 45))
+            submitBtn = UIButton(frame:CGRectMake(0, 560, SCREEN_WIDTH, 45))
         }
         
         submitBtn.setTitle("隐患列表", forState:.Normal)
@@ -99,15 +107,15 @@ class RecordInfoDetailController: BaseViewController {
         self.scrollView.addSubview(submitBtn)
     }
     func initPage(){
-        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 765))
+        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 799))
         scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
         scrollView!.scrollsToTop = false
         scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 800)
-       customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
-        customView1.setLabelName("企业名称：")
+        customViewT = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
+        customViewT.setLabelName("企业名称：")
         customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
         customView2.setLabelName("企业地址：")
         customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
@@ -117,23 +125,21 @@ class RecordInfoDetailController: BaseViewController {
         customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("检查场所：")
         customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
-        customView6.setLabelName("联系方式")
+        customView6.setLabelName("联系方式:")
         customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
         customView7.setLabelName("参与检查人：")
-         customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
+        customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
         customView8.setLabelName("检查人/记录人：")
-       customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
+        customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView9.setLabelName("执法单位：")
-    
+        
         customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
-        customView10.setLabelName("发送整改通知书：")
-        customView11 = DetailCellView(frame:CGRectMake(0, 450, SCREEN_WIDTH, 45))
-        customView11.setLabelName("责令整改日期：")
-       customView12 = DetailCellView(frame:CGRectMake(0, 495, SCREEN_WIDTH, 45))
+        customView10.setLabelName("行业检查表：")
+        customView12 = DetailCellView(frame:CGRectMake(0, 450, SCREEN_WIDTH, 45))
         customView12.setLabelName("图片：")
 
 
-        self.scrollView.addSubview(customView1)
+        self.scrollView.addSubview(customViewT)
         self.scrollView.addSubview(customView2)
         self.scrollView.addSubview(customView3)
         self.scrollView.addSubview(customView4)

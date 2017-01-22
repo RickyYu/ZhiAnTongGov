@@ -101,6 +101,31 @@ class CheckListVo:BaseModel{
      var cbname4:String!
     
     
+//    // MARK: - 序列化和反序列化
+//    private let modifyTime_Key = "modifyTime"
+//    private let createTime_Key = "createTime"
+//    private let id_Key = "id"
+//    private let caption_Key = "caption"
+//    private let publisher_Key = "publisher"
+//    
+//    //序列化
+//    func encodeWithCoder(aCoder: NSCoder) {
+//        aCoder.encodeObject(modifyTime, forKey: modifyTime_Key)
+//        aCoder.encodeObject(createTime, forKey: createTime_Key)
+//        aCoder.encodeObject(id, forKey: id_Key)
+//        aCoder.encodeObject(caption, forKey: caption_Key)
+//        aCoder.encodeObject(publisher, forKey: publisher_Key)
+//    }
+//    
+//    //反序列化
+//    required init?(coder aDecoder: NSCoder) {
+//        modifyTime = aDecoder.decodeObjectForKey(modifyTime_Key) as? String
+//        createTime =  aDecoder.decodeObjectForKey(createTime_Key) as? String
+//        id =  aDecoder.decodeObjectForKey(id_Key) as? Int
+//        caption = aDecoder.decodeObjectForKey(caption_Key) as? String
+//        publisher = aDecoder.decodeObjectForKey(publisher_Key) as? String
+//    }
+    
     
     
     override init() {

@@ -8,8 +8,9 @@
 
 import UIKit
 
+//暂时弃用，UITabBarController 无法传值
 class RecordHiddenController: UITabBarController {
-    var converyModels = CheckListVo()
+    var converyModels : CheckListVo!
     override func viewDidLoad() {
         
         self.title = "隐患录入"
@@ -30,9 +31,14 @@ class RecordHiddenController: UITabBarController {
     }
     
     func creatSubViewControllers(){
+//        let userDefaults = NSUserDefaults.standardUserDefaults()
+//        let converyModels = userDefaults.objectForKey("converyModels") as? CheckListVo
+        
+        
         let firstVC  = RecordHiddenNormalController ()
         firstVC.converyModels = converyModels
         let item1 : UITabBarItem = UITabBarItem (title: "一般隐患", image: UIImage(named: "tabbar_home"), selectedImage: UIImage(named: "dot_orange"))
+        
         firstVC.tabBarItem = item1
         
         let secondVC = RecordHiddenMajorController ()

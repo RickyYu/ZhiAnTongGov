@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9530592E689AD270841869C5 /* Pods_ZhiAnTongGov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9F8EC8318E9582C49DF326 /* Pods_ZhiAnTongGov.framework */; };
+		9C11298D1E3086BB00E2C73E /* huzhou_enum.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9C11298C1E3086BB00E2C73E /* huzhou_enum.xml */; };
+		9C11298F1E31B38000E2C73E /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C11298E1E31B38000E2C73E /* test.xib */; };
+		9C1129911E31D3C200E2C73E /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129901E31D3C200E2C73E /* TestController.swift */; };
+		9C1129931E31F53F00E2C73E /* RecordHideenPassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129921E31F53F00E2C73E /* RecordHideenPassController.swift */; };
+		9C1129951E32077300E2C73E /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129941E32077300E2C73E /* BaseTabViewController.swift */; };
 		9C2BEB521E23683400C57F5D /* CheckListVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BEB511E23683400C57F5D /* CheckListVo.swift */; };
 		9C2BEB541E2369DC00C57F5D /* HyCheckItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BEB531E2369DC00C57F5D /* HyCheckItemInfo.swift */; };
 		9C2C42581DEE770B001859CB /* ModifyPwdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2C42571DEE770B001859CB /* ModifyPwdController.swift */; };
@@ -58,7 +63,6 @@
 		9C861A421DE57FF900CD00FC /* iPhoneVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C861A411DE57FF900CD00FC /* iPhoneVersion.swift */; };
 		9C861A451DE5886F00CD00FC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C861A441DE5886F00CD00FC /* BaseViewController.swift */; };
 		9C861A471DE58B2800CD00FC /* NetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C861A461DE58B2800CD00FC /* NetworkTool.swift */; };
-		9C8858701E28B12500573C6D /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C88586F1E28B12500573C6D /* TestController.swift */; };
 		9C8858721E2C543E00573C6D /* HiddenConfirmListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8858711E2C543E00573C6D /* HiddenConfirmListController.swift */; };
 		9C8858741E2C5B8900573C6D /* HiddenConfirmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8858731E2C5B8900573C6D /* HiddenConfirmCell.swift */; };
 		9C8858761E2C5B9A00573C6D /* HiddenConfirmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C8858751E2C5B9A00573C6D /* HiddenConfirmCell.xib */; };
@@ -104,7 +108,6 @@
 		9CB2088A1E0904BC009DF235 /* CpyInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB208891E0904BC009DF235 /* CpyInfoCell.xib */; };
 		9CB208AC1E0BE726009DF235 /* AddRecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208AB1E0BE726009DF235 /* AddRecordController.swift */; };
 		9CB208AE1E0BE95D009DF235 /* RecordInfoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208AD1E0BE95D009DF235 /* RecordInfoDetailController.swift */; };
-		9CB208B01E0BEB96009DF235 /* PunishmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208AF1E0BEB96009DF235 /* PunishmentController.swift */; };
 		9CB208B21E123EA0009DF235 /* GovReviewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208B11E123EA0009DF235 /* GovReviewListController.swift */; };
 		9CB208B41E123EAA009DF235 /* LawPunListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208B31E123EAA009DF235 /* LawPunListController.swift */; };
 		9CB208B61E1242C9009DF235 /* ReviewInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208B51E1242C9009DF235 /* ReviewInfoCell.swift */; };
@@ -173,6 +176,11 @@
 
 /* Begin PBXFileReference section */
 		6A1C344B1D662DBA427ED140 /* Pods-ZhiAnTongGov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhiAnTongGov.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZhiAnTongGov/Pods-ZhiAnTongGov.release.xcconfig"; sourceTree = "<group>"; };
+		9C11298C1E3086BB00E2C73E /* huzhou_enum.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = huzhou_enum.xml; sourceTree = "<group>"; };
+		9C11298E1E31B38000E2C73E /* test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
+		9C1129901E31D3C200E2C73E /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
+		9C1129921E31F53F00E2C73E /* RecordHideenPassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordHideenPassController.swift; sourceTree = "<group>"; };
+		9C1129941E32077300E2C73E /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
 		9C2BEB511E23683400C57F5D /* CheckListVo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListVo.swift; sourceTree = "<group>"; };
 		9C2BEB531E2369DC00C57F5D /* HyCheckItemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyCheckItemInfo.swift; sourceTree = "<group>"; };
 		9C2C42561DED1BED001859CB /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
@@ -231,7 +239,6 @@
 		9C861A411DE57FF900CD00FC /* iPhoneVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iPhoneVersion.swift; sourceTree = "<group>"; };
 		9C861A441DE5886F00CD00FC /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9C861A461DE58B2800CD00FC /* NetworkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTool.swift; sourceTree = "<group>"; };
-		9C88586F1E28B12500573C6D /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		9C8858711E2C543E00573C6D /* HiddenConfirmListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenConfirmListController.swift; sourceTree = "<group>"; };
 		9C8858731E2C5B8900573C6D /* HiddenConfirmCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenConfirmCell.swift; sourceTree = "<group>"; };
 		9C8858751E2C5B9A00573C6D /* HiddenConfirmCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HiddenConfirmCell.xib; sourceTree = "<group>"; };
@@ -279,7 +286,6 @@
 		9CB208891E0904BC009DF235 /* CpyInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CpyInfoCell.xib; sourceTree = "<group>"; };
 		9CB208AB1E0BE726009DF235 /* AddRecordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecordController.swift; sourceTree = "<group>"; };
 		9CB208AD1E0BE95D009DF235 /* RecordInfoDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordInfoDetailController.swift; sourceTree = "<group>"; };
-		9CB208AF1E0BEB96009DF235 /* PunishmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunishmentController.swift; sourceTree = "<group>"; };
 		9CB208B11E123EA0009DF235 /* GovReviewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GovReviewListController.swift; sourceTree = "<group>"; };
 		9CB208B31E123EAA009DF235 /* LawPunListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LawPunListController.swift; sourceTree = "<group>"; };
 		9CB208B51E1242C9009DF235 /* ReviewInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewInfoCell.swift; sourceTree = "<group>"; };
@@ -365,6 +371,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9C11298B1E3086BB00E2C73E /* Xml */ = {
+			isa = PBXGroup;
+			children = (
+				9C11298C1E3086BB00E2C73E /* huzhou_enum.xml */,
+			);
+			path = Xml;
+			sourceTree = "<group>";
+		};
 		9C66DF491DDC35A400F00E1F = {
 			isa = PBXGroup;
 			children = (
@@ -424,8 +438,10 @@
 			isa = PBXGroup;
 			children = (
 				9C8308D71DF4FFFE001B107E /* LawViewController.swift */,
+				9C1129901E31D3C200E2C73E /* TestController.swift */,
 				9C5FE6CA1E1B7357009DB317 /* TestSnapController.swift */,
 				9C5FE6CC1E1B791B009DB317 /* TestCellView.swift */,
+				9C11298E1E31B38000E2C73E /* test.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -499,14 +515,13 @@
 				9CB208281E0291D2009DF235 /* RecordInfoListController.swift */,
 				9CB208AB1E0BE726009DF235 /* AddRecordController.swift */,
 				9CB208AD1E0BE95D009DF235 /* RecordInfoDetailController.swift */,
-				9CB208AF1E0BEB96009DF235 /* PunishmentController.swift */,
 				9CAA28B41E1B9DF60085BB96 /* IndustryCheckListController.swift */,
 				9CAA28BC1E1C9B010085BB96 /* IndustryHandleCheckListController.swift */,
 				9CAA28C01E1CDE020085BB96 /* RecordHiddenController.swift */,
+				9C1129921E31F53F00E2C73E /* RecordHideenPassController.swift */,
 				9CAA28C21E1CF41F0085BB96 /* RecordHiddenNormalController.swift */,
 				9CAA28C41E1CF4B60085BB96 /* RecordHiddenMajorController.swift */,
 				9CE87DA01E27A42C00A355F2 /* NormalHiddenDetail.swift */,
-				9C88586F1E28B12500573C6D /* TestController.swift */,
 			);
 			path = CheckRecord;
 			sourceTree = "<group>";
@@ -744,6 +759,7 @@
 		9C861A051DE55EC700CD00FC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C11298B1E3086BB00E2C73E /* Xml */,
 				9C861A061DE55EC700CD00FC /* Font */,
 				9C861A0B1DE55EC700CD00FC /* Image */,
 				9C861A0C1DE55EC700CD00FC /* Plist */,
@@ -914,6 +930,7 @@
 			children = (
 				9C861A441DE5886F00CD00FC /* BaseViewController.swift */,
 				9CE87D9C1E2657F100A355F2 /* PhotoViewController.swift */,
+				9C1129941E32077300E2C73E /* BaseTabViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1107,11 +1124,13 @@
 				9CE87D861E26528700A355F2 /* PhotoAlbumTableViewCell.xib in Resources */,
 				9C8308F51DF95591001B107E /* Province.plist in Resources */,
 				9CB2088A1E0904BC009DF235 /* CpyInfoCell.xib in Resources */,
+				9C11298F1E31B38000E2C73E /* test.xib in Resources */,
 				9C7D8AC71DE430B9005644E7 /* Classes in Resources */,
 				9CAA28BB1E1BA4D30085BB96 /* IndustrySelectCell.xib in Resources */,
 				9CB208361E03F657009DF235 /* Main.storyboard in Resources */,
 				9CB208CA1E1275AE009DF235 /* HandleTypeCell.xib in Resources */,
 				9C66DF5D1DDC35A400F00E1F /* Assets.xcassets in Resources */,
+				9C11298D1E3086BB00E2C73E /* huzhou_enum.xml in Resources */,
 				9C861A281DE573E600CD00FC /* url.plist in Resources */,
 				9CAA28CF1E1F747E0085BB96 /* IndustrySelectSwitchCell.xib in Resources */,
 				9C8858761E2C5B9A00573C6D /* HiddenConfirmCell.xib in Resources */,
@@ -1213,7 +1232,6 @@
 				9C861A391DE57ED300CD00FC /* Image.swift in Sources */,
 				9CE87D841E26528700A355F2 /* PhotoAlbumsTableViewController.swift in Sources */,
 				9CB208311E03E3AB009DF235 /* InfoCell.swift in Sources */,
-				9C8858701E28B12500573C6D /* TestController.swift in Sources */,
 				9CA940781DEEACB200550044 /* UIViewController+HUD.swift in Sources */,
 				9CE87D901E26528700A355F2 /* PhotoPreviewCell.swift in Sources */,
 				9C5FE6CB1E1B7357009DB317 /* TestSnapController.swift in Sources */,
@@ -1225,6 +1243,7 @@
 				9C8309051DFE8365001B107E /* RouteAnnotation.swift in Sources */,
 				9CE87D8A1E26528700A355F2 /* PhotoFetchOptions.swift in Sources */,
 				9CB208C81E127591009DF235 /* HandleTypeCell.swift in Sources */,
+				9C1129931E31F53F00E2C73E /* RecordHideenPassController.swift in Sources */,
 				9CE87D8B1E26528700A355F2 /* PhotoImage.swift in Sources */,
 				9CB2081F1E0233AB009DF235 /* CpyInfoCell.swift in Sources */,
 				9CA940CE1DF1615200550044 /* InfoTypeCell.swift in Sources */,
@@ -1265,9 +1284,11 @@
 				9CE87D821E26528700A355F2 /* ImageModel.swift in Sources */,
 				9CAA28B91E1BA4BC0085BB96 /* IndustrySelectCell.swift in Sources */,
 				9CA9407C1DEEAD0D00550044 /* MBProgressHUD.m in Sources */,
+				9C1129951E32077300E2C73E /* BaseTabViewController.swift in Sources */,
 				9CE87D851E26528700A355F2 /* PhotoAlbumTableViewCell.swift in Sources */,
 				9C2BEB541E2369DC00C57F5D /* HyCheckItemInfo.swift in Sources */,
 				9CAA28BF1E1C9E690085BB96 /* IndustrySecondSelectModel.swift in Sources */,
+				9C1129911E31D3C200E2C73E /* TestController.swift in Sources */,
 				9C8308F91DFA997A001B107E /* InfoListCell.swift in Sources */,
 				9C8308DD1DF51445001B107E /* CpyChartController.swift in Sources */,
 				9CE87D8E1E26528700A355F2 /* PhotoPickerController.swift in Sources */,
@@ -1283,7 +1304,6 @@
 				9CAA28C71E1DF5EE0085BB96 /* CheckPersonModel.swift in Sources */,
 				9CAA28C31E1CF41F0085BB96 /* RecordHiddenNormalController.swift in Sources */,
 				9C5FE6CD1E1B791B009DB317 /* TestCellView.swift in Sources */,
-				9CB208B01E0BEB96009DF235 /* PunishmentController.swift in Sources */,
 				9C7D8ACB1DE4315E005644E7 /* AppDelegate.swift in Sources */,
 				9CB208B41E123EAA009DF235 /* LawPunListController.swift in Sources */,
 				9CB2082F1E03D8A8009DF235 /* RefreshTipView.swift in Sources */,

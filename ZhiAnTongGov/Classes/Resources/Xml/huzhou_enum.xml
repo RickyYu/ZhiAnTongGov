@@ -1,0 +1,1881 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+ <fk-enum>
+  <troubleType name="隐患行业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+	<one001_type001 name="非煤矿山" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<one002_type002 name="烟花爆竹企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+		<one002_type003 name="生产" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+		<one002_type004 name="经营（批发）" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+		<one002_type005 name="经营（零售）" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	</one002_type002>
+	<one003_type005 name="冶金企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<one004_type007 name="有色企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<one005_type008 name="石油天然气开采企业重大基础设施" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<one006_type009 name="危险化学品企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+		<one006_type010 name="危险化学品道路运输企业或单位" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+		<one006_type011 name="生产" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+		<one006_type012 name="经营" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+		<one006_type013 name="储存" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+		<one006_type014 name="使用危险化学品的生产企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+			<one006_type015 name="化工企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+			<one006_type016 name="医药生产企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+			<one006_type017 name="其他企业或单位" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+		</one006_type014>
+	</one006_type009>
+  <one007_type018 name="其他企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two001_type001 name="道路运输企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two001_type002 name="城市公交" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two001_type003 name="其他" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two001_type001>
+  <two002_type004 name="公路（桥、涵、隧）养护施工企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two002_type005 name="市政" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two002_type006 name="交通" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two002_type007 name="其他" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two002_type004>
+  <two003_type008 name="水上运输企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two003_type009 name="水上运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two003_type010 name="港口" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two003_type011 name="通航设施等" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two003_type008>
+  <two004_type012 name="铁路" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two004_type013 name="运输企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two004_type014 name="施工企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two004_type012>
+  <two005_type015 name="航空公司" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two006_type016 name="机场和油料企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two007_type017 name="渔业企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two008_type018 name="农机行业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two009_type019 name="水利工程设施" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two009_type020 name="水库" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two009_type021 name="堤防、海塘、涵洞等" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two009_type019>
+  <two010_type022 name="学校" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two010_type023 name="大中专" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two010_type024 name="中小学" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two010_type025 name="幼儿园" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two010_type022>
+  <two011_type026 name="人员密集场所" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two011_type027 name="商场、市场、餐饮" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two011_type028 name="公共娱乐、网吧" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two011_type029 name="文物保护" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two011_type030 name="宗教" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two011_type031 name="公园" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two011_type032 name="其他" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two011_type026>
+  <two012_type028 name="建筑施工企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two012_type029 name="房屋建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two012_type030 name="市政公用工程" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two012_type031 name="电力设施" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two012_type032 name="交通工程" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two012_type033 name="其它" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two012_type028>
+  <two013_type034 name="民爆器材" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two013_type035 name="生产" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two013_type036 name="经营" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two013_type034>
+  <two014_type037 name="电力企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two014_type038 name="生产" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two014_type039 name="供电" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two014_type037>
+  <two015_type040 name="机械制造企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two015_type041 name="渔船修造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two015_type042 name="其他船舶修造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two015_type043 name="其他机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two015_type040>
+  <two016_type044 name="其他企业和单位" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <two016_type045 name="旅游景区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two016_type046 name="星级饭店" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two016_type047 name="燃气" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two016_type048 name="医院、医疗机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two016_type049 name="废旧物资回收利用经营" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two016_type050 name="供排水" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two016_type051 name="公共人防工程" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <two016_type052 name="其他" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </two016_type044>
+  <two004_type009 name="纺织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </troubleType>
+  <tradeType name="企业行业国标分类" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01 name="A 农、林、牧、渔业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_1 name="01农业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_1_2 name="蔬菜、园艺作物的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_1_2_3 name="其他园艺作物的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_2_1 name="蔬菜的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_2_2 name="花卉的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_1_2>
+  <tradeType01_1_3 name="水果、坚果、饮料和香料作物的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1 name="谷物及其他作物的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_1_1_6 name="麻类的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1_2 name="薯类的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1_8 name="烟草的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1_4 name="豆类的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1_5 name="棉花的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1_9 name="其他作物的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1_7 name="糖料的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1_3 name="油料的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_1_1_1 name="谷物的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_1_1>
+  <tradeType01_1_4 name="中药材的种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_1>
+  <tradeType01_2 name="02林业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_2_3 name="林产品的采集" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_2_1 name="林木的培育和种植" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_2_1_3 name="林木的抚育和管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_2_1_1 name="育种和育苗" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_2_1_2 name="造林" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_2_1>
+  <tradeType01_2_2 name="木材和竹材的采运" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_2_2_1 name="木材的采运" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_2_2_2 name="竹材的采运" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_2_2>
+  </tradeType01_2>
+  <tradeType01_3 name="03畜牧业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_3_5 name="其他畜牧业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_3_1 name="牲畜的饲养" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_3_4 name="狩猎和捕捉动物" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_3_3 name="家禽的饲养" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_3_2 name="猪的饲养" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_3>
+  <tradeType01_5 name="04渔业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_5_2 name="内陆渔业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_5_2_1 name="内陆养殖" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_5_2_2 name="内陆捕捞" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_5_2>
+  <tradeType01_5_1 name="海洋渔业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_5_1_2 name="海洋捕捞" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_5_1_1 name="海水养殖" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_5_1>
+  </tradeType01_5>
+  <tradeType01_6 name="05农、林、牧、渔服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_6_2 name="林业服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_6_1 name="农业服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_6_1_2 name="农产品初加工服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_6_1_3 name="其他农业服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_6_1_1 name="灌溉服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_6_1>
+  <tradeType01_6_3 name="畜牧服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType01_6_3_2 name="其他畜牧服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType01_6_3_1 name="兽医服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_6_3>
+  <tradeType01_6_4 name="渔业服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType01_6>
+  </tradeType01>
+  <tradeType02 name="B 采矿业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_1 name="06煤炭采选业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_1_3 name="其他煤炭采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_1_1 name="烟煤和无烟煤的开采洗选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_1_2 name="褐煤的开采洗选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_1>
+  <tradeType02_2 name="07石油和天然气开采业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_2_1 name="天然原油和天然气开采" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_2_2 name="与石油和天然气开采有关的服务活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_2>
+  <tradeType02_3 name="08黑色金属矿采选业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_3_2 name="其他黑色金属矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_3_1 name="铁矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_3>
+  <tradeType02_4 name="09有色金属矿采选业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_4_3 name="稀有稀土金属矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_4_1 name="常用有色金属矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_4_1_3 name="镍钴矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_4_1_8 name="其他常用有色金属矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_4_1_5 name="锑矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_4_1_6 name="铝矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_4_1_7 name="镁矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_4_1_2 name="铅锌矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_4_1_1 name="铜矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_4_1_4 name="锡矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_4_1>
+  <tradeType02_4_2 name="贵金属矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_4>
+  <tradeType02_5 name="10非金属矿采选业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_5_4 name="石棉及其他非金属矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_5_4_4 name="其他非金属矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_5_4_3 name="宝石、玉石开采" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_5_4_1 name="石棉、云母矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_5_4_2 name="石墨、滑石采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_5_4>
+  <tradeType02_5_1 name="土砂石开采" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_5_1_2 name="建筑装饰用石开采" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_5_1_3 name="耐火土石开采" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_5_1_1 name="石灰石、石膏开采" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_5_1_4 name="粘土及其他土砂石开采" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_5_1>
+  <tradeType02_5_3 name="采盐" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType02_5_2 name="化学矿采选" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_5>
+  <tradeType02_6 name="11其他采矿业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType02_6_1 name="其他采矿业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType02_6>
+  </tradeType02>
+  <tradeType03 name="C 制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_1 name="13农副食品加工业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_1_8 name="其他农副食品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_1_8_4 name="其他未列明的农副食品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_8_1 name="淀粉及淀粉制品的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_8_3 name="蛋品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_8_2 name="豆制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_1_8>
+  <tradeType03_1_7 name="蔬菜、水果和坚果加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_6 name="水产品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_1_6_5 name="其他水产品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_6_1 name="水产品冷冻加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_6_3 name="水产饲料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_6_2 name="鱼糜制品及水产品干腌制加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_6_4 name="鱼油提取及制品的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_1_6>
+  <tradeType03_1_5 name="屠宰及肉类加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_1_5_1 name="畜禽屠宰" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_5_2 name="肉制品及副产品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_1_5>
+  <tradeType03_1_3 name="植物油加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_1_3_1 name="食用植物油加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_3_2 name="非食用植物油加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_1_3>
+  <tradeType03_1_1 name="谷物磨制" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_4 name="制糖" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_1_2 name="饲料加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_1>
+  <tradeType03_2 name="14食品制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_2_7 name="其他食品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_2_7_2 name="酱油、食醋及类似制品的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_7_3 name="其他调味品、发酵制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_7_1 name="味精制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_2_7>
+  <tradeType03_2_2 name="糖果、巧克力及蜜饯制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_2_2_1 name="糖果、巧克力制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_2_2 name="蜜饯制作" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_2_2>
+  <tradeType03_2_4 name="液体乳及乳制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_1 name="焙烤食品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_2_1_1 name="糕点、面包制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_1_2 name="饼干及其他焙烤食品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_2_1>
+  <tradeType03_2_3 name="方便食品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_2_3_2 name="速冻食品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_3_3 name="方便面及其他方便食品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_3_1 name="米、面制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_2_3>
+  <tradeType03_2_5 name="罐头制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_2_5_1 name="肉、禽类罐头制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_5_3 name="蔬菜、水果罐头制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_2_5_2 name="水产品罐头制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_2_5>
+  <tradeType03_2_6 name="调味品、发酵制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_2_6_4 name="其他罐头食品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_2_6>
+  </tradeType03_2>
+  <tradeType03_3 name="15饮料制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_3_4 name="精制茶加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_2 name="酒的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_3_2_4 name="葡萄酒制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_2_1 name="白酒制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_2_3 name="黄酒制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_2_2 name="啤酒制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_2_5 name="其他酒制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_3_2>
+  <tradeType03_3_1 name="酒精制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_3 name="软饮料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_3_3_1 name="碳酸饮料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_3_5 name="固体饮料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_3_2 name="瓶（罐）装饮用水制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_3_6 name="茶饮料及其他软饮料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_3_3 name="果菜汁及果菜汁饮料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_3_3_4 name="含乳饮料和植物蛋白饮料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_3_3>
+  </tradeType03_3>
+  <tradeType03_4 name="16烟草制品业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_4_2 name="卷烟制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_4_3 name="其他烟草制品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_4_1 name="烟叶复烤" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_4>
+  <tradeType03_5 name="17纺织业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_5_3 name="麻纺织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_2 name="毛纺织和染整精加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_5_2_2 name="毛纺织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_2_1 name="毛条加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_2_3 name="毛染整精加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_5_2>
+  <tradeType03_5_1 name="棉、化纤纺织及印染精加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_5_1_1 name="棉、化纤纺织加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_1_2 name="棉、化纤印染精加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_5_1>
+  <tradeType03_5_4 name="丝绢纺织及精加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_5_4_1 name="缫丝加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_4_2 name="绢纺和丝织加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_4_3 name="丝印染精加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_5_4>
+  <tradeType03_5_6 name="针织品、编织品及其制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_5_6_1 name="棉、化纤针织品及编织品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_6_4 name="其他针织品及编织品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_6_3 name="丝针织品及编织品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_6_2 name="毛针织品及编织品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_5_6>
+  <tradeType03_5_5 name="纺织制成品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_5_5_2 name="毛制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_5_1 name="棉及化纤制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_5_8 name="其他纺织制成品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_5_5 name="绳、索、缆的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_5_4 name="丝制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_5_7 name="无纺布制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_5_6 name="纺织带和帘子布制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_5_5_3 name="麻制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_5_5>
+  </tradeType03_5>
+  <tradeType03_6 name="18纺织服装、鞋、帽制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_6_1 name="纺织服装制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_6_2 name="纺织面料鞋的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_6_3 name="制帽" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_6>
+  <tradeType03_7 name="19皮革、毛皮、羽毛(绒);及其制品业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_7_3 name="毛皮鞣制及制品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_7_3_1 name="毛皮鞣制加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_7_3_3 name="其他毛皮制品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_7_3_2 name="毛皮服装加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_7_3>
+  <tradeType03_7_1 name="皮革鞣制加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_7_2 name="皮革制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_7_2_2 name="皮革服装制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_7_2_3 name="皮箱、包(袋);制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_7_2_1 name="皮鞋制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_7_2_5 name="其他皮革制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_7_2_4 name="皮手套及皮装饰制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_7_2>
+  <tradeType03_7_4 name="羽毛(绒);加工及制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_7_4_1 name="羽毛(绒);加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_7_4_2 name="羽毛(绒);制品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_7_4>
+  </tradeType03_7>
+  <tradeType03_8 name="20木材加工及木、竹、藤、棕、草制品业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_8_1 name="锯材、木片加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_8_1_1 name="锯材加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_8_1_2 name="木片加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_8_1>
+  <tradeType03_8_3 name="木制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_8_3_2 name="木容器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_8_3_3 name="软木制品及其他木制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_8_3_1 name="建筑用木料及木材组件加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_8_3>
+  <tradeType03_8_2 name="人造板制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_8_2_1 name="胶合板制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_8_2_3 name="刨花板制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_8_2_4 name="其他人造板、材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_8_2_2 name="纤维板制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_8_2>
+  <tradeType03_8_4 name="竹、藤、棕、草制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_8>
+  <tradeType03_9 name="21家具制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_9_3 name="金属家具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_9_1 name="木质家具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_9_5 name="其他家具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_9_4 name="塑料家具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_9_2 name="竹、藤家具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_9>
+  <tradeType03_10 name="22造纸及纸制品业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_10_1 name="纸浆制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_10_3 name="纸制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_10_3_1 name="纸和纸板容器的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_10_3_2 name="其他纸制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_10_3>
+  <tradeType03_10_2 name="造纸" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_10_2_2 name="手工纸制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_10_2_1 name="机制纸及纸板制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_10_2_3 name="手工纸制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_10_2>
+  </tradeType03_10>
+  <tradeType03_11 name="23印刷业和记录媒介的复制" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_11_1 name="印刷" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_11_1_3 name="包装装潢及其他印刷" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_11_1_1 name="书、报、刊印刷" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_11_1_2 name="本册印制" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_11_1>
+  <tradeType03_11_3 name="记录媒介的复制" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_11_2 name="装订及其他印刷服务活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_11>
+  <tradeType03_12 name="24文教体育用品制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_12_3 name="乐器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_12_3_2 name="西乐器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_3_3 name="电子乐器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_3_1 name="中乐器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_3_4 name="其他乐器及零件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_12_3>
+  <tradeType03_12_2 name="体育用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_12_2_5 name="其他体育用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_2_4 name="运动防护用具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_2_1 name="球类制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_2_2 name="体育器材及配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_2_3 name="训练健身器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_12_2>
+  <tradeType03_12_4 name="玩具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_1 name="文化用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_12_1_1 name="文具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_1_3 name="教学用模型及教具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_1_4 name="墨水、墨汁制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_1_5 name="其他文化用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_1_2 name="笔的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_12_1>
+  <tradeType03_12_5 name="游艺器材及娱乐用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_12_5_1 name="露天游乐场所游乐设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_12_5_2 name="游艺用品及室内游艺器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_12_5>
+  </tradeType03_12>
+  <tradeType03_13 name="25石油加工、炼焦及核燃料加工业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_13_1 name="精炼石油产品的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_13_1_2 name="人造原油生产" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_13_1_1 name="原油加工及石油制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_13_1>
+  <tradeType03_13_2 name="炼焦" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_13_3 name="核燃料加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_13>
+  <tradeType03_14 name="26化学原料及化学制品制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_14_3 name="农药制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_14_3_2 name="生物化学农药及微生物农药制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_3_1 name="化学农药制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_14_3>
+  <tradeType03_14_7 name="日用化学产品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_14_7_5 name="其他日用化学产品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_7_4 name="香料、香精制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_7_1 name="肥皂及合成洗涤剂制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_7_2 name="化妆品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_7_3 name="口腔清洁用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_14_7>
+  <tradeType03_14_4 name="涂料、油墨、颜料及类似产品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_14_4_5 name="密封用填料及类似品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_4_1 name="涂料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_4_2 name="油墨及类似产品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_4_4 name="染料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_4_3 name="颜料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_14_4>
+  <tradeType03_14_2 name="肥料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_14_2_2 name="磷肥制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_2_6 name="其他肥料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_2_5 name="有机肥料及微生物肥料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_2_1 name="氮肥制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_2_4 name="复混肥料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_2_3 name="钾肥制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_14_2>
+  <tradeType03_14_5 name="合成材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_14_5_1 name="初级形态的塑料及合成树脂制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_5_2 name="合成橡胶制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_5_4 name="其他合成材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_5_3 name="合成纤维单(聚合);体的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_14_5>
+  <tradeType03_14_1 name="基础化学原料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_14_1_5 name="其他基础化学原料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_1_1 name="无机酸制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_1_4 name="有机化学原料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_1_2 name="无机碱制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_1_3 name="无机盐制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_14_1>
+  <tradeType03_14_6 name="专用化学产品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_14_6_5 name="炸药及火工产品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_6_1 name="化学试剂和助剂制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_6_6 name="环境污染处理专用药剂材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_6_2 name="专项化学用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_6_3 name="林产化学产品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_6_8 name="其他专用化学产品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_14_6_7 name="动物胶制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_14_6>
+  </tradeType03_14>
+  <tradeType03_15 name="27医药制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_15_6 name="生物、生化制品的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_15_5 name="兽用药品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_15_7 name="卫生材料及医药用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_15_1 name="化学药品原药制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_15_2 name="化学药品制剂制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_15_4 name="中成药制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_15_3 name="中药饮片加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_15>
+  <tradeType03_16 name="28化学纤维制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_16_1 name="纤维素纤维原料及纤维制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_16_1_2 name="人造纤维（纤维素纤维）制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_16_1_1 name="化纤浆粕制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_16_1>
+  <tradeType03_16_2 name="合成纤维制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_16_2_1 name="锦纶纤维制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_16_2_3 name="腈纶纤维制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_16_2_5 name="其他合成纤维制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_16_2_4 name="维纶纤维制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_16_2_2 name="涤纶纤维制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_16_2>
+  </tradeType03_16>
+  <tradeType03_17 name="29橡胶制品业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_17_1 name="轮胎制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_17_1_2 name="力车胎制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_17_1_3 name="轮胎翻新加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_17_1_1 name="车辆、飞机及工程机械轮胎制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_17_1>
+  <tradeType03_17_7 name="其他橡胶制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_17_5 name="日用及医用橡胶制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_17_2 name="橡胶板、管、带的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_17_3 name="橡胶零件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_17_6 name="橡胶靴鞋制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_17_4 name="再生橡胶制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_17>
+  <tradeType03_18 name="30塑料制品业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_18_3 name="泡沫塑料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_18_8 name="其他塑料制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_18_7 name="日用塑料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_18_7_2 name="日用塑料杂品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_18_7_1 name="塑料鞋制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_18_7>
+  <tradeType03_18_2 name="塑料板、管、型材的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_18_5 name="塑料包装箱及容器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_18_1 name="塑料薄膜制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_18_6 name="塑料零件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_18_4 name="塑料人造革、合成革制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_18>
+  <tradeType03_19 name="31非金属矿物制品业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_19_6 name="耐火材料制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_19_6_3 name="耐火陶瓷制品及其他耐火材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_6_1 name="石棉制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_6_2 name="云母制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_19_6>
+  <tradeType03_19_7 name="石墨及其他非金属矿物制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_19_7_2 name="其他非金属矿物制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_7_1 name="石墨及碳素制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_19_7>
+  <tradeType03_19_1 name="水泥、石灰和石膏的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_19_1_1 name="水泥制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_1_2 name="石灰和石膏制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_19_1>
+  <tradeType03_19_5 name="陶瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_19_5_3 name="日用陶瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_5_1 name="卫生陶瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_5_4 name="园林、陈设艺术及其他陶瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_5_2 name="特种陶瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_19_5>
+  <tradeType03_19_3 name="砖瓦、石材及其他建筑材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_19_3_6 name="其他建筑材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_3_1 name="粘土砖瓦及建筑砌块制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_3_5 name="隔热和隔音材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_3_2 name="建筑陶瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_3_4 name="防水建筑材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_3_3 name="建筑用石加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_19_3>
+  <tradeType03_19_2 name="水泥及石膏制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_19_2_4 name="轻质建筑材料制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_2_3 name="石棉水泥制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_2_2 name="砼结构构件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_2_5 name="其他水泥制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_2_1 name="水泥制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_19_2>
+  <tradeType03_19_4 name="玻璃及玻璃制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_19_4_1 name="平板玻璃制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_4_5 name="日用玻璃制品及玻璃包装容器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_4_7 name="玻璃纤维及制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_4_8 name="玻璃纤维增强塑料制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_4_3 name="光学玻璃制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_4_2 name="技术玻璃制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_4_9 name="其他玻璃制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_4_6 name="玻璃保温容器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_19_4_4 name="玻璃仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_19_4>
+  </tradeType03_19>
+  <tradeType03_20 name="32黑色金属冶炼及压延加工业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_20_2 name="炼钢" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_20_1 name="炼铁" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_20_4 name="铁合金冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_20_3 name="钢压延加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_20>
+  <tradeType03_21 name="33有色金属冶炼及压延加工业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_21_3 name="稀有稀土金属冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_21_3_3 name="其他稀有金属冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_3_1 name="钨钼冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_3_2 name="稀土金属冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_21_3>
+  <tradeType03_21_4 name="有色金属合金制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_5 name="有色金属压延加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_21_5_3 name="稀有稀土金属压延加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_5_1 name="常用有色金属压延加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_5_2 name="贵金属压延加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_21_5>
+  <tradeType03_21_2 name="贵金属冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_21_2_1 name="金冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_2_2 name="银冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_2_3 name="其他贵金属冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_21_2>
+  <tradeType03_21_1 name="常用有色金属冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_21_1_6 name="铝冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_1_7 name="镁冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_1_2 name="铅锌冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_1_5 name="锑冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_1_1 name="铜冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_1_4 name="锡冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_1_8 name="镁冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_21_1_3 name="镍钴冶炼" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_21_1>
+  </tradeType03_21>
+  <tradeType03_22 name="34金属制品业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_22_1 name="结构性金属制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_22_1_1 name="金属结构制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_1_2 name="金属门窗制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_22_1>
+  <tradeType03_22_6 name="金属表面处理及热处理加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_2 name="金属工具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_22_2_5 name="其他金属工具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_2_1 name="切削工具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_2_4 name="刀剪及类似日用金属工具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_2_3 name="农用及园林用金属工具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_2_2 name="手工具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_22_2>
+  <tradeType03_22_4 name="金属丝绳及其制品的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_9 name="其他金属制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_22_9_2 name="其他未列明的金属制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_9_1 name="铸币及贵金属制实验室用品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_22_9>
+  <tradeType03_22_7 name="搪瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_22_7_2 name="搪瓷卫生洁具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_7_3 name="搪瓷日用品及其他搪瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_7_1 name="工业生产配套用搪瓷制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_22_7>
+  <tradeType03_22_3 name="集装箱及金属包装容器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_22_3_2 name="金属压力容器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_3_3 name="金属包装容器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_3_1 name="集装箱制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_22_3>
+  <tradeType03_22_5 name="建筑、安全用金属制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_22_5_4 name="其他建筑、安全用金属制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_5_1 name="建筑、家具用金属配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_5_2 name="建筑装饰及水暖管道零件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_5_3 name="安全、消防用金属制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_22_5>
+  <tradeType03_22_8 name="不锈钢及类似日用金属制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_22_8_1 name="金属制厨房调理及卫生器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_8_2 name="金属制厨用器皿及餐具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_22_8_3 name="其他日用金属制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_22_8>
+  </tradeType03_22>
+  <tradeType03_23 name="35通用设备制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_23_2 name="金属加工机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_23_2_2 name="金属成形机床制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_2_4 name="金属切割及焊接设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_2_6 name="其他金属加工机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_2_3 name="铸造机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_2_1 name="金属切削机床制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_2_5 name="机床附件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_23_2>
+  <tradeType03_23_9 name="金属铸、锻加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_23_9_2 name="钢铁铸件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_9_1 name="钢铁铸件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_23_9>
+  <tradeType03_23_3 name="起重运输设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_8 name="通用零部件制造及机械修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_23_8_2 name="紧固件、弹簧制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_8_4 name="其他通用零部件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_8_1 name="金属密封件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_8_3 name="机械零部件加工及设备修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_23_8>
+  <tradeType03_23_4 name="泵、阀门、压缩机及类似机械的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_23_4_2 name="气体压缩机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_4_4 name="液压和气压动力机械及元件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_4_1 name="泵及真空设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_4_3 name="阀门和旋塞的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_23_4>
+  <tradeType03_23_7 name="风机、衡器、包装设备等通用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_23_7_1 name="风机、风扇制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_7_7 name="衡器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_7_3 name="制冷、空调设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_7_5 name="喷枪及类似器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_7_8 name="其他通用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_7_2 name="气体、液体分离及纯净设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_7_6 name="包装专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_7_4 name="风动和电动工具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_23_7>
+  <tradeType03_23_1 name="锅炉及原动机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_23_1_3 name="汽轮机及辅机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_1_4 name="水轮机及辅机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_1_1 name="锅炉及辅助设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_1_2 name="内燃机及配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_1_5 name="其他原动机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_23_1>
+  <tradeType03_23_6 name="烘炉、熔炉及电炉制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_5 name="轴承、齿轮、传动和驱动部件的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_23_5_2 name="齿轮、传动和驱动部件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_23_5_1 name="轴承制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_23_5>
+  </tradeType03_23>
+  <tradeType03_24 name="36专用设备制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_1 name="矿山、冶金、建筑专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_1_2 name="石油钻采专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_1_5 name="冶金专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_1_1 name="采矿、采石设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_1_4 name="建筑材料生产专用机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_1_3 name="建筑工程用机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_1>
+  <tradeType03_24_7 name="农、林、牧、渔专用机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_7_6 name="农林牧渔机械配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_7_7 name="其他农林牧渔业机械制造及机械修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_7_3 name="营林及木竹采伐机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_7_5 name="渔业机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_7_2 name="机械化农业及园艺机具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_7_1 name="拖拉机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_7_4 name="畜牧机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_7>
+  <tradeType03_24_3 name="食品、饮料、烟草及饲料生产专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_3_1 name="食品、饮料、烟草工业专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_3_2 name="农副食品加工专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_3_3 name="饲料生产专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_3>
+  <tradeType03_24_6 name="电子和电工机械专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_6_2 name="电子工业专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_6_4 name="航空、航天及其他专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_6_3 name="武器弹药制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_6_1 name="电工机械专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_6>
+  <tradeType03_24_5 name="纺织、服装和皮革工业专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_5_2 name="皮革、毛皮及其制品加工专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_5_1 name="纺织专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_5_4 name="其他服装加工专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_5_3 name="缝纫机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_5>
+  <tradeType03_24_2 name="化工、木材、非金属加工专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_2_5 name="模具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_2_1 name="炼油、化工生产专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_2_4 name="木材加工机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_2_6 name="其他非金属加工专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_2_3 name="塑料加工专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_2_2 name="橡胶加工专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_2>
+  <tradeType03_24_9 name="环保、社会公共安全及其他专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_9_6 name="交通安全及管制专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_9_8 name="其他专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_9_5 name="社会公共安全设备及器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_9_7 name="水资源专用机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_9_3 name="邮政专用机械及器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_9_2 name="地质勘查专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_9_1 name="环境污染防治专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_9_4 name="商业、饮食、服务业专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_9>
+  <tradeType03_24_8 name="医疗仪器设备及器械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_8_2 name="口腔科用设备及器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_8_3 name="实验室及医用消毒设备和器具的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_8_4 name="医疗、外科及兽医用器械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_8_5 name="机械治疗及病房护理设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_8_7 name="其他医疗设备及器械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_8_1 name="医疗诊断、监护及治疗设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_8_6 name="假肢、人工器官及植（介）入器械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_8>
+  <tradeType03_24_4 name="印刷、制药、日化生产专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_24_4_6 name="玻璃、陶瓷和搪瓷制品生产专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_4_1 name="制浆和造纸专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_4_4 name="制药专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_4_7 name="其他日用品生产专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_4_3 name="日用化工专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_4_2 name="印刷专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_24_4_5 name="照明器具生产专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_24_4>
+  </tradeType03_24>
+  <tradeType03_25 name="37交通运输设备制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_25_7 name="交通器材及其他交通运输设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_25_7_2 name="交通管理用金属标志及设施制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_7_3 name="其他交通运输设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_7_1 name="潜水及水下救捞装备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_25_7>
+  <tradeType03_25_3 name="摩托车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_25_3_2 name="摩托车零部件及配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_3_1 name="摩托车整车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_25_3>
+  <tradeType03_25_2 name="汽车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_25_2_1 name="汽车整车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_2_3 name="电车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_2_4 name="汽车车身、挂车的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_2_5 name="汽车零部件及配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_2_6 name="汽车修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_2_2 name="改装汽车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_25_2>
+  <tradeType03_25_1 name="铁路运输设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_25_1_1 name="铁路机车车辆及动车组制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_1_4 name="铁路专用设备及器材、配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_1_2 name="工矿有轨专用车辆制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_1_5 name="其他铁路设备制造及设备修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_1_3 name="铁路机车车辆配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_25_1>
+  <tradeType03_25_5 name="船舶及浮动装置制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_25_5_5 name="船舶修理及拆船" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_5_4 name="船用配套设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_5_2 name="非金属船舶制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_5_6 name="航标器材及其他浮动装置的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_5_1 name="金属船舶制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_5_3 name="娱乐船和运动船的建造和修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_25_5>
+  <tradeType03_25_6 name="航空航天器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_25_6_2 name="航天器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_6_3 name="其他飞行器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_6_1 name="飞机制造及修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_25_6>
+  <tradeType03_25_4 name="自行车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_25_4_1 name="脚踏自行车及残疾人座车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_25_4_2 name="助动自行车制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_25_4>
+  </tradeType03_25>
+  <tradeType03_26 name="39电气机械及器材制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_26_8 name="其他电气机械及器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_26_8_1 name="车辆专用照明及电气信号设备装置制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_8_2 name="其他未列明的电气机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_26_8>
+  <tradeType03_26_2 name="输配电及控制设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_26_2_3 name="配电开关控制设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_2_5 name="其他输配电及控制设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_2_1 name="变压器、整流器和电感器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_2_2 name="电容器及其配套设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_2_4 name="电力电子元器件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_26_2>
+  <tradeType03_26_4 name="电池制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_6 name="非电力家用器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_26_6_2 name="其他非电力家用器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_6_1 name="燃气、太阳能及类似能源的器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_26_6>
+  <tradeType03_26_5 name="家用电力器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_26_5_4 name="家用厨房电器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_5_2 name="家用空气调节器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_5_5 name="家用清洁卫生电器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_5_3 name="家用通风电器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_5_1 name="家用制冷电器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_5_8 name="其他家用电力器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_5_7 name="家用电力器具专用配件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_5_6 name="家用美容、保健电器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_26_5>
+  <tradeType03_26_7 name="照明器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_26_7_2 name="照明灯具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_7_3 name="灯用电器附件及其他照明器具制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_7_1 name="电光源制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_26_7>
+  <tradeType03_26_1 name="电机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_26_1_2 name="电动机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_1_3 name="微电机及其他电机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_1_1 name="发电机及发电机组制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_26_1>
+  <tradeType03_26_3 name="电线、电缆、光缆及电工器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_26_3_3 name="绝缘制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_3_1 name="电线电缆制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_3_4 name="其他电工器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_26_3_2 name="光纤、光缆制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_26_3>
+  </tradeType03_26>
+  <tradeType03_27 name="40通信设备、计算机及其他电子设备制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_27_2 name="雷达及配套设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_8 name="其他电子设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_1 name="通信设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_27_1_5 name="其他通信设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_1_1 name="通信传输设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_1_4 name="移动通信及终端设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_1_2 name="通信交换设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_1_3 name="通信终端设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_27_1>
+  <tradeType03_27_5 name="电子器件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_27_5_1 name="电子真空器件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_5_4 name="光电子器件及其他电子器件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_5_3 name="集成电路制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_5_2 name="半导体分立器件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_27_5>
+  <tradeType03_27_6 name="电子元件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_27_6_2 name="印制电路板制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_6_1 name="电子元件及组件制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_27_6>
+  <tradeType03_27_3 name="广播电视设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_27_3_3 name="应用电视设备及其他广播电视设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_3_1 name="广播电视节目制作及发射设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_3_2 name="广播电视接收设备及器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_27_3>
+  <tradeType03_27_7 name="家用视听设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_27_7_1 name="家用影视设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_7_2 name="家用音响设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_27_7>
+  <tradeType03_27_4 name="电子计算机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_27_4_1 name="电子计算机整机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_4_2 name="计算机网络设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_27_4_3 name="电子计算机外部设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_27_4>
+  </tradeType03_27>
+  <tradeType03_28 name="41仪器仪表及文化、办公用机械制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_28_6 name="其他仪器仪表的制造及修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_1 name="通用仪器仪表制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_28_1_2 name="电工仪器仪表制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_1_1 name="工业自动控制系统装置制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_1_6 name="供应用仪表及其他通用仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_1_3 name="绘图、计算及测量仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_1_4 name="实验分析仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_1_5 name="试验机制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_28_1>
+  <tradeType03_28_5 name="文化、办公用机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_28_5_6 name="其他文化、办公用机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_5_3 name="照相机及器材制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_5_1 name="电影机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_5_4 name="复印和胶印设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_5_2 name="幻灯及投影设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_5_5 name="计算器及货币专用设备制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_28_5>
+  <tradeType03_28_4 name="光学仪器及眼镜制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_28_4_2 name="眼镜制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_4_1 name="光学仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_28_4>
+  <tradeType03_28_3 name="钟表与计时仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2 name="专用仪器仪表制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_28_2_6 name="教学专用仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2_4 name="农林牧渔专用仪器仪表制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2_2 name="汽车及其他用计数仪表制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2_8 name="电子测量仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2_9 name="其他专用仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2_3 name="导航、气象及海洋专用仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2_5 name="地质勘探和地震专用仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2_7 name="核子及核辐射测量仪器制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_28_2_1 name="环境监测专用仪器仪表制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_28_2>
+  </tradeType03_28>
+  <tradeType03_29 name="42工艺品及其他制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_29_3 name="煤制品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_5 name="其他未列明的制造业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_2 name="日用杂品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_29_2_3 name="其他日用杂品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_2_1 name="制镜及类似品加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_2_2 name="鬃毛加工、制刷及清扫工具的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_29_2>
+  <tradeType03_29_1 name="工艺美术品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_29_1_2 name="金属工艺品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_1_3 name="漆器工艺品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_1_9 name="其他工艺美术品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_1_4 name="花画工艺品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_1_8 name="珠宝首饰及有关物品的制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_1_5 name="天然植物纤维编织工艺品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_1_6 name="抽纱刺绣工艺品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_1_7 name="地毯、挂毯制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_29_1_1 name="雕塑工艺品制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_29_1>
+  <tradeType03_29_4 name="核辐射加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_29>
+  <tradeType03_30 name="43废弃资源和废旧材料回收加工业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType03_30_1 name="金属废料和碎屑的加工处理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType03_30_2 name="非金属废料和碎屑的加工处理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType03_30>
+  </tradeType03>
+  <tradeType04 name="D 电力、燃气及水的生产和供应业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType04_1 name="44电力、热力的生产和供应业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType04_1_3 name="热力生产和供应" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType04_1_2 name="电力供应" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType04_1_1 name="电力生产" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType04_1_1_2 name="水力发电" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType04_1_1_3 name="核力发电" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType04_1_1_4 name="其他能源发电" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType04_1_1_1 name="火力发电" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType04_1_1>
+  </tradeType04_1>
+  <tradeType04_2 name="45燃气生产和供应业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType04_2_1 name="燃气生产和供应业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType04_2>
+  <tradeType04_3 name="46水的生产和供应业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType04_3_3 name="其他水的处理、利用与分配" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType04_3_2 name="污水处理及其再生利用" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType04_3_1 name="自来水的生产和供应" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType04_3>
+  </tradeType04>
+  <tradeType05 name="E 建筑业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType05_1 name="47房屋和土木工程建筑业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType05_1_2 name="土木工程建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType05_1_2_5 name="其他土木工程建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType05_1_2_1 name="铁路、道路、隧道和桥梁工程建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType05_1_2_4 name="架线和管道工程建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType05_1_2_2 name="水利和港口工程建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType05_1_2_3 name="工矿工程建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType05_1_2>
+  <tradeType05_1_1 name="房屋工程建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType05_1>
+  <tradeType05_2 name="48建筑安装业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType05_2_1 name="建筑安装业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType05_2>
+  <tradeType05_3 name="49建筑装饰业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType05_3_1 name="建筑装饰业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType05_3>
+  <tradeType05_4 name="50其他建筑业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType05_4_3 name="其他未列明的建筑活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType05_4_2 name="提供施工设备服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType05_4_1 name="工程准备" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType05_4>
+  </tradeType05>
+  <tradeType06 name="F 交通运输、仓储和邮政业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_1 name="51铁路运输业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_1_2 name="铁路货物运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_1_1 name="铁路旅客运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_1_3 name="铁路运输辅助活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_1_3_1 name="客运火车站" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_1_3_3 name="其他铁路运输辅助活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_1_3_2 name="货运火车站" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_1_3>
+  </tradeType06_1>
+  <tradeType06_2 name="52道路运输业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_2_2 name="道路货物运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_2_3 name="道路运输辅助活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_2_3_3 name="其他道路运输辅助活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_2_3_2 name="公路管理与养护" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_2_3_1 name="客运汽车站" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_2_3>
+  <tradeType06_2_1 name="公路旅客运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_2>
+  <tradeType06_3 name="53城市公共交通业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_3_5 name="其他城市公共交通" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_3_4 name="城市轮渡" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_3_3 name="出租车客运" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_3_1 name="公共电汽车客运" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_3_2 name="轨道交通" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_3>
+  <tradeType06_4 name="54水上运输业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_4_2 name="水上货物运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_4_2_2 name="沿海货物运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_4_2_1 name="远洋货物运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_4_2_3 name="内河货物运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_4_2>
+  <tradeType06_4_1 name="水上旅客运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_4_1_3 name="内河旅客运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_4_1_1 name="远洋旅客运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_4_1_2 name="沿海旅客运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_4_1>
+  <tradeType06_4_3 name="水上运输辅助活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_4_3_3 name="其他水上运输辅助活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_4_3_2 name="货运港口" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_4_3_1 name="客运港口" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_4_3>
+  </tradeType06_4>
+  <tradeType06_5 name="55航空运输业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_5_2 name="通用航空服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_5_1 name="航空客货运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_5_1_1 name="航空旅客运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_5_1_2 name="航空货物运输" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_5_1>
+  <tradeType06_5_3 name="航空运输辅助活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_5_3_2 name="空中交通管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_5_3_3 name="其他航空运输辅助活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_5_3_1 name="机场" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_5_3>
+  </tradeType06_5>
+  <tradeType06_6 name="56管道运输业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_6_1 name="管道运输业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_6>
+  <tradeType06_7 name="57装卸搬运和其他运输服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_7_2 name="运输代理服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_7_1 name="装卸搬运" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_7>
+  <tradeType06_8 name="58仓储业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_8_2 name="其他仓储" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_8_1 name="谷物、棉花等农产品仓储" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_8>
+  <tradeType06_9 name="59邮政业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType06_9_1 name="国家邮政" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType06_9_2 name="其他寄递服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType06_9>
+  </tradeType06>
+  <tradeType07 name="G 信息传输、计算机服务和软件业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType07_1 name="60电信和其他信息传输服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType07_1_4 name="卫星传输服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_1_1 name="电信" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType07_1_1_3 name="其他电信服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_1_1_2 name="移动电信服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_1_1_1 name="固定电信服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType07_1_1>
+  <tradeType07_1_3 name="广播电视传输服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType07_1_3_2 name="无线广播电视传输服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_1_3_1 name="有线广播电视传输服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType07_1_3>
+  <tradeType07_1_2 name="互联网信息服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType07_1>
+  <tradeType07_2 name="61计算机服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType07_2_4 name="其他计算机服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_2_2 name="数据处理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_2_3 name="计算机维修" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_2_1 name="计算机系统服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType07_2>
+  <tradeType07_3 name="62软件业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType07_3_2 name="其他软件服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_3_1 name="公共软件服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType07_3_1_2 name="应用软件服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType07_3_1_1 name="基础软件服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType07_3_1>
+  </tradeType07_3>
+  </tradeType07>
+  <tradeType08 name="H 批发和零售业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1 name="63批发业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_6 name="矿产品、建材及化工产品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_6_1 name="煤炭及制品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_6_8 name="农用薄膜批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_6_9 name="其他化工产品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_6_3 name="非金属矿及制品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_6_5 name="建材批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_6_4 name="金属及金属矿批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_6_7 name="农药批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_6_2 name="石油及制品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_6_6 name="化肥批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_1_6>
+  <tradeType08_1_8 name="贸易经纪与代理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_1 name="农畜产品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_1_3 name="棉、麻批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_1_5 name="其他农畜产品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_1_1 name="谷物、豆及薯类批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_1_2 name="种子、饲料批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_1_4 name="牲畜批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_1_1>
+  <tradeType08_1_9 name="其他批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_9_2 name="其他未列明的批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_9_1 name="再生物资回收与批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_1_9>
+  <tradeType08_1_2 name="食品、饮料及烟草制品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_2_1 name="米、面制品及食用油批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_2_8 name="其他食品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_2_4 name="肉、禽、蛋及水产品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_2_5 name="盐及调味品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_2_6 name="饮料及茶叶批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_2_3 name="果品、蔬菜批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_2_7 name="烟草制品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_2_2 name="糕点、糖果及糖批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_1_2>
+  <tradeType08_1_4 name="文化、体育用品及器材批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_4_7 name="其他文化用品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_4_6 name="首饰、工艺品及收藏品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_4_2 name="体育用品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_4_3 name="图书批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_4_5 name="音像制品及电子出版物批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_4_1 name="文具用品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_4_4 name="报刊批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_1_4>
+  <tradeType08_1_5 name="医药及医疗器材批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_5_1 name="西药批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_5_3 name="医疗用品及器材批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_5_2 name="中药材及中成药批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_1_5>
+  <tradeType08_1_3 name="纺织、服装及日用品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_3_6 name="其他日用品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_3_3 name="鞋帽批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_3_5 name="化妆品及卫生用品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_3_4 name="厨房、卫生间用具及日用杂货批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_3_1 name="纺织品、针织品及原料批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_3_2 name="服装批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_1_3>
+  <tradeType08_1_7 name="机械设备、五金交电及电子产品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_1_7_1 name="农业机械批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_7_7 name="其他机械设备及电子产品批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_7_2 name="汽车、摩托车及零配件批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_7_6 name="通讯及广播电视设备批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_7_4 name="家用电器批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_7_3 name="五金、交电批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_1_7_5 name="计算机、软件及辅助设备批发" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_1_7>
+  </tradeType08_1>
+  <tradeType08_2 name="65零售业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_6 name="汽车、摩托车、燃料及零配件专门零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_6_2 name="汽车零配件零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_6_1 name="汽车零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_6_4 name="机动车燃料零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_6_3 name="摩托车及零配件零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_6>
+  <tradeType08_2_2 name="食品、饮料及烟草制品专门零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_2_1 name="粮油零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_2_6 name="烟草制品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_2_3 name="果品、蔬菜零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_2_7 name="其他食品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_2_4 name="肉、禽、蛋及水产品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_2_5 name="饮料及茶叶零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_2_2 name="糕点、面包零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_2>
+  <tradeType08_2_4 name="文化、体育用品及器材专门零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_4_2 name="体育用品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_4_1 name="文具用品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_4_8 name="照相器材零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_4_4 name="报刊零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_4_7 name="工艺美术品及收藏品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_4_6 name="珠宝首饰零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_4_9 name="其他文化用品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_4_3 name="图书零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_4_5 name="音像制品及电子出版物零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_4>
+  <tradeType08_2_9 name="无店铺及其他零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_9_3 name="生活用燃料零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_9_4 name="花卉零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_9_5 name="旧货零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_9_1 name="流动货摊零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_9_6 name="其他未列明的零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_9_2 name="邮购及电子销售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_9>
+  <tradeType08_2_8 name="五金、家具及室内装修材料专门零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_8_1 name="五金零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_8_4 name="其他室内装修材料零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_8_3 name="涂料零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_8_2 name="家具零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_8>
+  <tradeType08_2_3 name="纺织、服装及日用品专门零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_3_6 name="其他日用品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_3_3 name="鞋帽零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_3_1 name="纺织品及针织品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_3_2 name="服装零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_3_4 name="钟表、眼镜零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_3_5 name="化妆品及卫生用品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_3>
+  <tradeType08_2_1 name="综合零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_1_3 name="其他综合零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_1_1 name="百货零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_1_2 name="超级市场零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_1>
+  <tradeType08_2_5 name="医药及医疗器材专门零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_5_1 name="药品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_5_2 name="医疗用品及器材零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_5>
+  <tradeType08_2_7 name="家用电器及电子产品专门零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType08_2_7_4 name="其他电子产品零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_7_3 name="通信设备零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_7_2 name="计算机、软件及辅助设备零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType08_2_7_1 name="家用电器零售" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType08_2_7>
+  </tradeType08_2>
+  </tradeType08>
+  <tradeType09 name="I 住宿和餐饮业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType09_1 name="66住宿业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType09_1_1 name="旅游饭店" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType09_1_3 name="其他住宿服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType09_1_2 name="一般旅馆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType09_1>
+  <tradeType09_2 name="67餐饮业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType09_2_2 name="快餐服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType09_2_4 name="其他餐饮服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType09_2_1 name="正餐服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType09_2_3 name="饮料及冷饮服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType09_2>
+  </tradeType09>
+  <tradeType10 name="J 金融业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType10_1 name="68银行业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType10_1_3 name="其他银行" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_1_2 name="商业银行" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_1_1 name="中央银行" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType10_1>
+  <tradeType10_2 name="69证券业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType10_2_2 name="证券经纪与交易" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_2_1 name="证券市场管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_2_4 name="证券分析与咨询" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_2_3 name="证券投资" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType10_2>
+  <tradeType10_3 name="70保险业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType10_3_1 name="人寿保险" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_3_2 name="非人寿保险" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_3_3 name="保险辅助服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType10_3>
+  <tradeType10_4 name="71其他金融活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType10_4_1 name="金融信托与管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_4_2 name="金融租赁" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_4_6 name="其他未列明的金融活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_4_4 name="邮政储蓄" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_4_3 name="财务公司" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType10_4_5 name="典当" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType10_4>
+  </tradeType10>
+  <tradeType11 name="K 房地产业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType11_1 name="72房地产业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType11_1_4 name="其他房地产活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType11_1_2 name="物业管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType11_1_1 name="房地产开发经营" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType11_1_3 name="房地产中介服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType11_1>
+  </tradeType11>
+  <tradeType12 name="L 租赁和商务服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_1 name="73租赁业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_1_2 name="文化及日用品出租" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_1_2_2 name="其他文化及日用品出租" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_1_2_1 name="图书及音像制品出租" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType12_1_2>
+  <tradeType12_1_1 name="机械设备租赁" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_1_1_4 name="计算机及通讯设备租赁" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_1_1_2 name="农业机械租赁" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_1_1_5 name="其他机械与设备租赁" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_1_1_1 name="汽车租赁" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_1_1_3 name="建筑工程机械与设备租赁" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType12_1_1>
+  </tradeType12_1>
+  <tradeType12_2 name="74商务服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_2_8 name="旅行社" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_9 name="其他商务服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_2_9_4 name="办公服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_9_2 name="包装服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_9_1 name="会议及展览服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_9_5 name="其他未列明的商务服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_9_3 name="保安服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType12_2_9>
+  <tradeType12_2_1 name="企业管理服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_2_1_3 name="其他企业管理服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_1_1 name="企业管理机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_1_2 name="投资与资产管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType12_2_1>
+  <tradeType12_2_7 name="市场管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_5 name="知识产权服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_2 name="法律服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_2_2_3 name="其他法律服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_2_1 name="律师及相关的法律服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_2_2 name="公证服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType12_2_2>
+  <tradeType12_2_4 name="广告业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_3 name="咨询与调查" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType12_2_3_4 name="其他专业咨询" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_3_3 name="社会经济咨询" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_3_2 name="市场调查" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType12_2_3_1 name="会计、审计及税务服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType12_2_3>
+  <tradeType12_2_6 name="职业中介服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType12_2>
+  </tradeType12>
+  <tradeType13 name="M 科学研究、技术服务和地质勘查业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType13_1 name="75研究与试验发展" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType13_1_3 name="农业科学研究与试验发展" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_1_5 name="社会人文科学研究与试验发展" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_1_4 name="医学研究与试验发展" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_1_2 name="工程和技术研究与试验发展" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_1_1 name="自然科学研究与试验发展" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType13_1>
+  <tradeType13_3 name="77科技交流和推广服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType13_3_2 name="科技中介服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_3_3 name="其他科技服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_3_1 name="技术推广服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType13_3>
+  <tradeType13_4 name="78地质勘查业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType13_4_1 name="矿产地质勘查" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType13_4_1_3 name="其他矿产地质勘查" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_4_1_1 name="能源矿产地质勘查" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_4_1_2 name="固体矿产地质勘查" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType13_4_1>
+  <tradeType13_4_3 name="地质勘查技术服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_4_2 name="基础地质勘查" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType13_4>
+  <tradeType13_2 name="76专业技术服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType13_2_8 name="其他专业技术服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_2_1 name="气象服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_2_7 name="工程技术与规划管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType13_2_7_1 name="工程管理服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_2_7_3 name="规划管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_2_7_2 name="工程勘察设计" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType13_2_7>
+  <tradeType13_2_3 name="海洋服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_2_6 name="环境监测" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_2_5 name="技术检测" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_2_4 name="测绘服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType13_2_2 name="地震服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType13_2>
+  </tradeType13>
+  <tradeType14 name="N 水利、环境和公共设施管理业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType14_2 name="80环境管理业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType14_2_2 name="环境治理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType14_2_2_4 name="危险废物治理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_2_2_1 name="城市市容管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_2_2_5 name="其他环境治理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_2_2_3 name="水污染治理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_2_2_2 name="城市环境卫生管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType14_2_2>
+  <tradeType14_2_1 name="自然保护" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType14_2_1_3 name="其他自然保护" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_2_1_1 name="自然保护区管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_2_1_2 name="野生动植物保护" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType14_2_1>
+  </tradeType14_2>
+  <tradeType14_3 name="81公共设施管理业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType14_3_1 name="市政公共设施管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_3_3 name="游览景区管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType14_3_3_3 name="其他游览景区管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_3_3_1 name="风景名胜区管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_3_3_2 name="公园管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType14_3_3>
+  <tradeType14_3_2 name="城市绿化管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType14_3>
+  <tradeType14_1 name="79水利管理业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType14_1_3 name="其他水利管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_1_2 name="水资源管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType14_1_2_2 name="调水、引水管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_1_2_3 name="其他水资源管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType14_1_2_1 name="水库管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType14_1_2>
+  <tradeType14_1_1 name="防洪管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType14_1>
+  </tradeType14>
+ <tradeType15 name="O 居民服务和其他服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType15_2 name="83其他服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType15_2_3 name="其他未列明的服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_2_2 name="清洁服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType15_2_2_2 name="其他清洁服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_2_2_1 name="建筑物清洁服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType15_2_2>
+  <tradeType15_2_1 name="修理与维护" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType15_2_1_4 name="其他日用品修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_2_1_1 name="汽车、摩托车维护与保养" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_2_1_2 name="办公设备维修" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_2_1_3 name="家用电器修理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType15_2_1>
+  </tradeType15_2>
+  <tradeType15_1 name="82居民服务业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType15_1_4 name="理发及美容保健服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_1_8 name="摄影扩印服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_1_2 name="托儿所" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_1_3 name="洗染服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_1_5 name="洗浴服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_1_7 name="殡葬服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_1_6 name="婚姻服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_1_9 name="其他居民服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType15_1_1 name="家庭服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType15_1>
+  </tradeType15>
+  <tradeType16 name="P 教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType16_1 name="84教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType16_1_1 name="学前教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_4 name="高等教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType16_1_4_1 name="普通高等教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_4_2 name="成人高等教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType16_1_4>
+  <tradeType16_1_3 name="中等教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType16_1_3_6 name="其他中等教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_3_1 name="初中教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_3_2 name="高中教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_3_5 name="技工学校教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_3_3 name="中等专业教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_3_4 name="职业中学教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType16_1_3>
+  <tradeType16_1_5 name="其他教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType16_1_5_3 name="其他未列明的教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_5_2 name="特殊教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType16_1_5_1 name="职业技能培训" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType16_1_5>
+  <tradeType16_1_2 name="初等教育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType16_1>
+  </tradeType16>
+  <tradeType17 name="Q 卫生、社会保障和社会福利业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType17_2 name="86社会保障业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType17_2_1 name="社会保障业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType17_2>
+  <tradeType17_1 name="85卫生" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType17_1_4 name="门诊部医疗活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_8 name="其他卫生活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_2 name="社区卫生医疗活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_3 name="卫生院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_1 name="医院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType17_1_1_6 name="疗养院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_1_3 name="中西医结合医院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_1_2 name="中医医院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_1_5 name="专科医院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_1_1 name="综合医院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_1_4 name="民族医院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType17_1_1>
+  <tradeType17_1_5 name="妇幼保健活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_6 name="专科疾病防治活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_1_7 name="疾病预防控制及防疫活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType17_1>
+  <tradeType17_3 name="87社会福利业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType17_3_1 name="提供住宿的社会福利" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType17_3_1_2 name="收养收容服务" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType17_3_1_1 name="干部休养所" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType17_3_1>
+  <tradeType17_3_2 name="不提供住宿的社会福利" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType17_3>
+  </tradeType17>
+  <tradeType18 name="R 文化、体育和娱乐业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_1 name="88新闻出版业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_1_1 name="新闻业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_1_2 name="出版业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_1_2_1 name="图书出版" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_1_2_4 name="音像制品出版" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_1_2_2 name="报纸出版" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_1_2_3 name="期刊出版" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_1_2_6 name="其他出版" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_1_2_5 name="电子出版物出版" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType18_1_2>
+  </tradeType18_1>
+  <tradeType18_4 name="91体育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_4_3 name="其他体育" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_4_2 name="体育场馆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_4_1 name="体育组织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType18_4>
+  <tradeType18_5 name="92娱乐业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_5_4 name="其他娱乐活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_5_1 name="室内娱乐活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_5_3 name="休闲健身娱乐活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_5_2 name="游乐园" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType18_5>
+  <tradeType18_3 name="90文化艺术业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_3_6 name="烈士陵园、纪念馆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_3_7 name="群众文化活动" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_3_3 name="图书馆与档案馆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_3_3_1 name="图书馆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_3_3_2 name="档案馆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType18_3_3>
+  <tradeType18_3_8 name="文化艺术经纪代理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_3_9 name="文化艺术经纪代理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_3_4 name="文物及文化保护" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_3_1 name="文艺创作与表演" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_3_2 name="艺术表演场馆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_3_5 name="博物馆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType18_3>
+  <tradeType18_2 name="89广播、电视、电影和音像业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_2_4 name="音像制作" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_2_2 name="电视" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_2_3 name="电影" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType18_2_3_2 name="电影放映" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType18_2_3_1 name="电影制作与发行" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType18_2_3>
+  <tradeType18_2_1 name="广播" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType18_2>
+  </tradeType18>
+  <tradeType19 name="S 公共管理和社会组织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_2 name="94国家机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_2_3 name="人民法院和人民检察院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_2_3_1 name="人民法院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_2_3_2 name="人民检察院" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_2_3>
+  <tradeType19_2_1 name="国家权力机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_2_2 name="国家行政机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_2_2_7 name="行政监督检查机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_2_2_2 name="对外事务管理机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_2_2_1 name="综合事务管理机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_2_2_5 name="经济事务管理机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_2_2_4 name="社会事务管理机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_2_2_6 name="政府事务管理机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_2_2_3 name="公共安全管理机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_2_2>
+  <tradeType19_2_4 name="其他国家机构" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_2>
+  <tradeType19_4 name="96群众团体、社会团体和宗教组织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_4_1 name="群众团体" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_4_1_4 name="其他群众团体" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_4_1_2 name="妇联" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_4_1_1 name="工会" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_4_1_3 name="共青团" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_4_1>
+  <tradeType19_4_2 name="社会团体" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_4_2_3 name="其他社会团体" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_4_2_1 name="专业性团体" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_4_2_2 name="行业性团体" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_4_2>
+  <tradeType19_4_3 name="宗教组织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_4>
+  <tradeType19_1 name="93中国共产党机关" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_1_1 name="中国共产党机关" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_1>
+  <tradeType19_5 name="97基层群众自治组织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_5_1 name="社区自治组织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_5_2 name="村民自治组织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_5>
+  <tradeType19_3 name="95人民政协和民主党派" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeType19_3_2 name="民主党派" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeType19_3_1 name="人民政协" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeType19_3>
+  </tradeType19>
+  </tradeType>
+  <punishmentType name="处罚类型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <punishmentType01 name="警告" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <punishmentType02 name="罚款" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <punishmentType03 name="责令改正" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <punishmentType04 name="没收违法所得" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <punishmentType05 name="责令停产停业整顿" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <punishmentType06 name="暂扣或者吊销有关许可证" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <punishmentType07 name="关闭" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <punishmentType08 name="拘留" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <punishmentType09 name="其他行政处罚" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </punishmentType>
+  <accidentTrade name="事故行业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <accidentTrade01 name="建筑" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade02 name="纺织" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade03 name="建材" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade04 name="金属制品" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade05 name="矿山" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade06 name="冶金" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade07 name="化工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade08 name="机械制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade09 name="造纸" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade10 name="木材加工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade11 name="船舶制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade12 name="制造" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentTrade13 name="旅游" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </accidentTrade>
+  <supervisionType name="分类监管" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <supervisionType_80 name="A级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <supervisionType_60 name="B级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <supervisionType_40 name="C级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <supervisionType_0 name="D级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <supervisionType05 name="未定级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </supervisionType>
+  <cityDept name="市级处室" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <dept1 name="办公室" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dept2 name="法规处" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dept3 name="综合处" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dept4 name="矿山处" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dept5 name="危化处" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dept6 name="执法支队" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dept7 name="安科中心" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dept8 name="安全生产协会" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dept9 name="党总支" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </cityDept>
+  <countyDept name="县级科室" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <county_dept1 name="危化科" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <county_dept2 name="矿山科" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <county_dept3 name="综合监管科" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <county_dept4 name="执法大队" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </countyDept>
+  <isEnterprise name="规模以上单位" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <isEnterprise1 name="规上企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <isEnterprise2 name="规下企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <isEnterprise3 name="小微企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </isEnterprise>
+  <check_unit name="检查单位" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <check_unit_city name="市级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <check_unit_county name="县级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <check_unit_town name="乡镇" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </check_unit>
+  <workType name="工种" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <workType03 name="其他" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <workType04 name="车工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <workType05 name="电工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <workType01 name="木工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </workType>
+  <tradeDept name="行业主管部门" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <tradeDept05 name="城管" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeDept06 name="工商" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeDept01 name="安监" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeDept02 name="交通" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeDept03 name="环保" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <tradeDept04 name="水利" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </tradeDept>
+  <personType name="人员类型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <personType01 name="法定代表人" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType02 name="主要负责人" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType03 name="分管安全生产负责人" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType04 name="专职安全管理员" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType05 name="兼职安全管理员" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06 name="特种作业人员" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <personType06_01 name="电工作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_02 name="起重机械作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <personType06_02_01 name="塔式起重机司机" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_02_02 name="固定式起重机司机" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_02_03 name="桥门式起重机司机" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_02_04 name="流动式起重机司机" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_02_05 name="卷扬式司机" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_02_06 name="施工升降机司机" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_02_07 name="起重司索" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_02_08 name="电梯安装维修" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </personType06_02>
+  <personType06_03 name="矿山安全作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <personType06_03_01 name="爆破员" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_03_02 name="押运员" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_03_03 name="矿山安全检查作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </personType06_03>
+  <personType06_04 name="烟花爆竹生产涉药作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_05 name="金属焊接切割作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_06 name="登高架设作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <personType06_06_01 name="高处安装、维护、拆除作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_06_02 name="脚手架搭设" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </personType06_06>
+  <personType06_07 name="企业内机动车辆驾驶" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <personType06_07_01 name="铲车作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_07_02 name="叉车作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_07_03 name="装载机作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_07_04 name="挖掘机作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_07_05 name="自卸车作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_07_06 name="电瓶车作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </personType06_07>
+  <persontype06_09 name="剧毒品管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_08 name="易制毒管理" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_10 name="危化品操作人员" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_11 name="司炉工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <personType06_12 name="压力容器工" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </personType06>
+  <personType07 name="其他" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </personType>
+  <culture name="文化程度" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <culture08 name="中专" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <culture01 name="小学" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <culture02 name="初中" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <culture03 name="高中" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <culture04 name="大专" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <culture05 name="本科" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <culture06 name="硕士" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <culture07 name="博士" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </culture>
+  <accidentBigType name="事故大类" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <accidentBigType_yycb name="渔业船舶" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentBigType_gkqy name="工矿企业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentBigType_dljt name="道路交通" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentBigType_ssjt name="水上交通" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentBigType_hz name="火灾" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentBigType_qt name="其它" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </accidentBigType>
+  <accidentType name="事故类型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <accidentType01 name="01物体打击" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType02 name="02车辆伤害" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType03 name="03机械伤害" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType04 name="04起重伤害" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType05 name="05触电" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType06 name="06淹溺" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType07 name="07灼烫" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType08 name="08火灾" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType09 name="09高处坠落" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType10 name="10坍塌" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType11 name="11冒顶片帮" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType12 name="12透水" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType13 name="13放炮" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType14 name="14火药爆炸" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType15 name="15瓦斯爆炸" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType16 name="16锅炉爆炸" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType17 name="17容器爆炸" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType18 name="18其它爆炸" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType19 name="19中毒和窒息" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType20 name="1A急性工业中毒" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType21 name="21环境污染" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType22 name="20其它伤害" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType23 name="30消防火灾" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType24 name="31道路交通" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType25 name="32水上交通" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType26 name="33铁路路外" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType27 name="38铁路路内" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType28 name="34航空" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType29 name="35锅炉容器" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType30 name="36其它道路" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType31 name="37其它水上" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType32 name="3A农机" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType33 name="3B农垦" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType34 name="3C渔业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType35 name="3D农电" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <accidentType36 name="39其他类别" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </accidentType>
+  <economyType name="经济类型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <economyType01 name="01国有经济" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType02 name="02集体经济" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType03 name="03私营经济" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType04 name="04有限责任公司" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType05 name="05联营经济" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType06 name="06股份合作" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType07 name="07外商投资" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType08 name="08港澳台投资" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType09 name="09其它经济" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <economyType10 name="10股份有限公司" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </economyType>
+  <trainType name="培训类型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <type1 name="电工作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type2 name="金属焊接和切割作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type3 name="登高架设作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type4 name="起重机械安装维修" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type5 name="电梯司机" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type6 name="电梯安装维护作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type7 name="企业场机动车辆驾驶" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type8 name="锅炉安装维修" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type9 name="司炉作业" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type10 name="司炉" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type11 name="游乐设施操作" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type12 name="压力容器操作" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <type13 name="其他" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </trainType>
+  <sizeAndCapacity name="生产规模和能力" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <sizeAndCapacity01 name="01大型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <sizeAndCapacity02 name="02中型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <sizeAndCapacity03 name="03小型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </sizeAndCapacity>
+  <damageDegree name="伤害程度" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <damageDegree01 name="死亡" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <damageDegree02 name="重伤" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <damageDegree03 name="轻伤" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <damageDegree04 name="其它" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </damageDegree>
+  <statisticUrl name="隐患统计链接" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <hazardous name="危险化学品" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <ncoalmine name="非煤矿山" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <fireworks name="烟花爆竹" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </statisticUrl>
+  <hangDistinction name="挂牌级别" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <province_city name="省级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <city_city name="市级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <county_county name="县级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <town_town name="乡镇" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </hangDistinction>
+  <WXAREAEPA name="吴兴区环保局" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <NXAREAEPA name="南浔区环保局" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <DQAREAEPA name="德清县环保局" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <CXAREAEPA name="长兴县环保局" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <checkType name="检查类型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <normal name="正常" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <violation name="违规" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </checkType>
+  <planType name="计划类型" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <temporaryPlan name="临时计划" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dailyPlan name="日常计划" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <yearPlan name="年度计划" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </planType>
+  <equipmentType name="设备类别" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <equipmentType07 name="其他" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <equipmentType01 name="电梯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <equipmentType02 name="起重机械" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <equipmentType03 name="场内机动车辆" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <equipmentType04 name="锅炉" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <equipmentType05 name="压力容器" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <equipmentType06 name="游乐设施" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </equipmentType>
+  <environment name="所处环境功能区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <environment01 name="1工业区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <environment02 name="2农业区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <environment03 name="3商业区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <environment04 name="4居民区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <environment05 name="5行政办公区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <environment06 name="6交通枢纽区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <environment07 name="7水源保护区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <environment08 name="8科技文化区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <environment09 name="9文物保护区" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </environment>
+ <dangerLevel name="重大危险源级别" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <dangerLevel01 name="一级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dangerLevel02 name="二级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dangerLevel03 name="三级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <dangerLevel04 name="四级" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </dangerLevel>
+  <storeName name="贮罐名称" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <storeName01 name="贮罐一" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </storeName>
+  <storeFigure name="贮罐形状" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <storeFigure01 name="立式圆筒罐" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <storeFigure02 name="卧式圆筒罐" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <storeFigure03 name="球形罐" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </storeFigure>
+  <storeFormat name="贮罐形式" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <storeFormat01 name="固定顶罐" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <storeFormat02 name="浮顶罐" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </storeFormat>
+  <installFormat name="安装形式" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+  <installFormat01 name="地上" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <installFormat02 name="地下" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  <installFormat03 name="半地下" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </installFormat>
+  <storeMatterName name="贮存物质名称" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+	<matterName0001_1 name="雷(酸)汞" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0002_1 name="硝化丙三醇" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0003_1 name="二硝基重氮酚" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0004_1 name="二乙二醇二硝酸酯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0005_1 name="脒基亚硝氨基脒基四氮烯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0006_1 name="迭氮(化)钡" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0007_1 name="迭氮(化)铅" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0008_1 name="三硝基间苯二酚铅" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0009_50 name="六硝基二苯胺" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0010_50 name="2,4,6-三硝基苯酚" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0011_50 name="2,4,6-三硝基苯甲硝胺" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0012_50 name="2,4,6-三硝基苯胺" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0013_50 name="三硝基苯甲醚" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0014_50 name="2,4,6-三硝基苯甲酸" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0015_50 name="二硝基(苯)酚" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0016_50 name="环三次甲基三硝胺" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0017_50 name="2,4,6-三硝基甲苯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0018_50 name="季戊四醇四硝酸酯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0019_100 name="硝化纤维素" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0020_250 name="硝酸铵" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0021_50 name="1,3,5-三硝基苯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0022_50 name="2,4,6-三硝基氯(化)苯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0023_50 name="2,4,6-三硝基间苯二酚" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0024_50 name="环四次甲基四硝胺" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0025_50 name="六硝基-1,2-二苯乙烯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<matterName0026_50 name="硝酸乙酯" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </storeMatterName>
+  <materialType name="物质状态" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+	<materialType01 name="液态" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<materialType02 name="气态" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<materialType03 name="液、气共存" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </materialType>
+  <jinliaoType name="进料方式" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+	<jinliaoType01 name="管道" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<jinliaoType02 name="铁路槽车" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<jinliaoType03 name="槽车" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </jinliaoType>
+  <chuliaoType name="出料方式" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false">
+	<chuliaoType01 name="管道" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<chuliaoType02 name="铁路槽车" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+	<chuliaoType03 name="槽车" isSearch="false" isSearchList="false" isStatistic="false" isStatisticList="false" /> 
+  </chuliaoType>
+</fk-enum>

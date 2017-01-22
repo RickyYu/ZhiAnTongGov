@@ -1,8 +1,8 @@
 //
-//  RecordHiddenNormalController.swift
+//  TestController.swift
 //  ZhiAnTongGov
 //
-//  Created by Ricky on 2017/1/4.
+//  Created by Ricky on 2017/1/20.
 //  Copyright © 2017年 safetysafetys. All rights reserved.
 //
 
@@ -10,15 +10,14 @@ import UIKit
 import SnapKit
 import UsefulPickerView
 import SwiftyJSON
-
-class RecordHiddenNormalController: PhotoViewController {
+class TestController: PhotoViewController {
     
-
     var normalType : String = ""
     var normalTypeCode : String = ""
     var normalDes : String = ""
     var normalPlanTime : String = ""
     var converyModels : CheckListVo!
+    var normalScrollView: UIScrollView!
     //责令整改日期
     var customView1normal  = DetailCellView()
     //发送整改通知书
@@ -34,17 +33,72 @@ class RecordHiddenNormalController: PhotoViewController {
     var customView6normal = DetailCellView()
     var normalIsReform :Bool  = false//是否整改
     var submitBtnnormal = UIButton()
+    var buttonNormal = UIButton()
+    var buttonMajor = UIButton()
     let singleDatanormal = ["人", "物", "管理"]
-    
+
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationItem.title = "一般隐患"
-        initNormalPage()
+        
+  
+        alertNotice("提示", message: "你好") {
+            print("123")
+        }
+        
+        buttonNormal = UIButton(frame:CGRectMake(0, 64, SCREEN_WIDTH/2, 30))
+        buttonNormal.setTitle("一般隐患", forState:.Normal)
+        buttonNormal.backgroundColor = YMGlobalDeapBlueColor()
+        buttonNormal.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+        buttonNormal.addTarget(self, action: #selector(self.showNormal), forControlEvents: UIControlEvents.TouchUpInside)
+        buttonNormal.setTitleColor(YMGlobalBlueColor(),forState: .Normal) //普通状态下文字的颜色
+ 
+        
+        buttonMajor = UIButton(frame:CGRectMake(SCREEN_WIDTH/2, 64, SCREEN_WIDTH/2, 30))
+        buttonMajor.setTitle("重大隐患", forState:.Normal)
+        buttonMajor.backgroundColor = YMGlobalDeapBlueColor()
+        buttonMajor.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+        buttonMajor.addTarget(self, action: #selector(self.showMajor), forControlEvents: UIControlEvents.TouchUpInside)
+        buttonMajor.setTitleColor(UIColor.grayColor(),forState: .Normal) //普通状态下文字的颜色
 
+ 
+         self.view.addSubview(buttonNormal)
+         self.view.addSubview(buttonMajor)
+        
+        //选项除了文字还可以是图片
+//        let items=["一般隐患","重大隐患"] as [AnyObject]
+//        let segmented=UISegmentedControl(items:items)
+//        segmented.frame = CGRectMake(0, 64, SCREEN_WIDTH, 40)
+//        segmented.selectedSegmentIndex=0 //默认选中第二项
+//       // segmented.setImage(UIImage(named:"icon"),forSegmentAtIndex:2)
+//        segmented.addTarget(self, action: #selector(self.segmentDidchange(_:)),
+//                            forControlEvents: UIControlEvents.ValueChanged)  //添加值改变监听
+//        self.view.addSubview(segmented)
+       initNormalPage()
     }
-
+//    func segmentDidchange(segmented:UISegmentedControl){
+//        //获得选项的索引
+//        print(segmented.selectedSegmentIndex)
+//        //获得选择的文字
+//        print(segmented.titleForSegmentAtIndex(segmented.selectedSegmentIndex))
+//        if segmented.selectedSegmentIndex == 0{
+//
+//            normalScrollView.hidden = false
+//            
+//        }else{
+//            normalScrollView.hidden = true
+//            
+//        }
+//    }
     func initNormalPage(){
-
+        
+        normalScrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 600))
+        normalScrollView!.pagingEnabled = true
+        normalScrollView!.scrollEnabled = true
+        normalScrollView!.showsHorizontalScrollIndicator = true
+        normalScrollView!.showsVerticalScrollIndicator = false
+        normalScrollView!.scrollsToTop = true
+        normalScrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 601)
+        
         submitBtnnormal.setTitle("保存", forState:.Normal)
         submitBtnnormal.backgroundColor = YMGlobalDeapBlueColor()
         submitBtnnormal.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
@@ -57,14 +111,14 @@ class RecordHiddenNormalController: PhotoViewController {
         
         customView2normal.setLabelName("隐患描述：")
         customView2normal.setRTextField( "")
-
+        
         customView3normal.setLabelName("计划整改时间：")
         customView3normal.setRRightLabel("")
         customView3normal.addOnClickListener(self, action: #selector(self.normalChoicePlanTime))
         
         customView4normal.setLabelName("录入时间：")
         getSystemTime({ (time) in
-          self.customView4normal.setRCenterLabel(time)
+            self.customView4normal.setRCenterLabel(time)
         })
         
         customView5normal =  DetailCellView(frame:CGRectMake(0, 235, SCREEN_WIDTH, 45))
@@ -77,63 +131,65 @@ class RecordHiddenNormalController: PhotoViewController {
         customView6normal.addOnClickListener(self, action: #selector(self.choiceNormalImage))
         initNormalPhoto()
         
-        self.view.addSubview(submitBtnnormal)
-        self.view.addSubview(customView1normal)
-        self.view.addSubview(customView2normal)
-        self.view.addSubview(customView3normal)
-        self.view.addSubview(customView4normal)
-        self.view.addSubview(customView5normal)
-        self.view.addSubview(customView6normal)
-
+        self.normalScrollView.addSubview(submitBtnnormal)
+        self.normalScrollView.addSubview(customView1normal)
+        self.normalScrollView.addSubview(customView2normal)
+        self.normalScrollView.addSubview(customView3normal)
+        self.normalScrollView.addSubview(customView4normal)
+        self.normalScrollView.addSubview(customView5normal)
+        self.normalScrollView.addSubview(customView6normal)
         
         
-        customView1normal.snp_makeConstraints { make in
-            make.top.equalTo(self.view.snp_top).offset(64)
-            make.left.equalTo(self.view.snp_left)
-            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
-        }
+        self.view.addSubview(normalScrollView)
         
-        customView2normal.snp_makeConstraints { make in
-            make.top.equalTo(self.customView1normal.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
-        }
-        
-        customView3normal.snp_makeConstraints { make in
-            make.top.equalTo(self.customView2normal.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
-        }
-        
-        customView4normal.snp_makeConstraints { make in
-            make.top.equalTo(self.customView3normal.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
-        }
-        
-//        customView5normal.snp_makeConstraints { make in
-//            make.top.equalTo(self.customView4normal.snp_bottom)
+//        
+//        customView1normal.snp_makeConstraints { make in
+//            make.top.equalTo(self.view.snp_top).offset(120)
 //            make.left.equalTo(self.view.snp_left)
 //            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
 //        }
+//        
+//        customView2normal.snp_makeConstraints { make in
+//            make.top.equalTo(self.customView1normal.snp_bottom)
+//            make.left.equalTo(self.view.snp_left)
+//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
+//        }
+//        
+//        customView3normal.snp_makeConstraints { make in
+//            make.top.equalTo(self.customView2normal.snp_bottom)
+//            make.left.equalTo(self.view.snp_left)
+//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
+//        }
+//        
+//        customView4normal.snp_makeConstraints { make in
+//            make.top.equalTo(self.customView3normal.snp_bottom)
+//            make.left.equalTo(self.view.snp_left)
+//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
+//        }
+//        
+//        //        customView5normal.snp_makeConstraints { make in
+//        //            make.top.equalTo(self.customView4normal.snp_bottom)
+//        //            make.left.equalTo(self.view.snp_left)
+//        //            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
+//        //        }
+//        
+//        customView6normal.snp_makeConstraints { make in
+//            make.top.equalTo(self.customView5normal.snp_bottom)
+//            make.left.equalTo(self.view.snp_left)
+//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
+//        }
+//        
+//        submitBtnnormal.snp_makeConstraints { make in
+//            make.bottom.equalTo(self.view.snp_bottom)
+//            make.left.equalTo(self.view.snp_left).offset(50)
+//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
+//        }
         
-        customView6normal.snp_makeConstraints { make in
-            make.top.equalTo(self.customView5normal.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
-        }
-
-        submitBtnnormal.snp_makeConstraints { make in
-            make.bottom.equalTo(self.view.snp_bottom)
-            make.left.equalTo(self.view.snp_left).offset(50)
-            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
-        }
-    
     }
-   
+    
     
     func initNormalPhoto(){
-        setLoc(0, y: 325)
+        setLoc(0, y: 380)
         checkNeedAddButton()
         renderView()
         self.view.addSubview(containerView)
@@ -144,8 +200,22 @@ class RecordHiddenNormalController: PhotoViewController {
         containerView.hidden = false
     }
     
-    func normalSubmit(){
+    func showNormal(){
+        
+   // self.normalScrollView.hidden = false
+        buttonNormal.setTitleColor(YMGlobalBlueColor(),forState: .Normal) //普通状态下文字的颜色
+        buttonMajor.setTitleColor(UIColor.grayColor(),forState: .Normal) //普通状态下文字的颜色
+    }
     
+    func showMajor(){
+       // self.normalScrollView.hidden = true
+        buttonMajor.setTitleColor(YMGlobalBlueColor(),forState: .Normal) //普通状态下文字的颜色
+        buttonNormal.setTitleColor(UIColor.grayColor(),forState: .Normal) //普通状态下文字的颜色
+
+    }
+    
+    func normalSubmit(){
+        
         normalType = customView1normal.rightLabel.text!
         normalTypeCode = getTroubleType(normalType)
         normalDes = customView2normal.textField.text!
@@ -163,12 +233,24 @@ class RecordHiddenNormalController: PhotoViewController {
             return
         }
         
-        alertNotice("提示", message: "确认提交后，本次检查信息及隐患无法再更改") {
+        let alertVC = UIAlertController(title: "提示", message: "确认提交后，本次检查信息及隐患无法再更改", preferredStyle: UIAlertControllerStyle.Alert)
+        let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.Destructive) { (UIAlertAction) -> Void in
+            
             self.submitCheck()
         }
-
+        let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
+            print("click Cancel")
+        }
+        alertVC.addAction(acSure)
+        alertVC.addAction(acCancel)
+        self.presentViewController(alertVC, animated: true, completion: nil)
+        
+        
+        
+        
+        
     }
-
+    
     func normalTapped1(button:UIButton){
         button.selected = !button.selected
         if button.selected{
@@ -183,7 +265,7 @@ class RecordHiddenNormalController: PhotoViewController {
     }
     
     func normalHiddenType(){
-    
+        
         UsefulPickerView.showSingleColPicker("请选择", data: singleDatanormal, defaultSelectedIndex: 1) {[unowned self] (selectedIndex, selectedValue) in
             self.customView1normal.setRRightLabel(selectedValue)
         }
@@ -249,32 +331,15 @@ class RecordHiddenNormalController: PhotoViewController {
         print("parameters = \(parameters)")
         print("converyModels.listfile = \(converyModels.listfile)")
         
-        NetworkTool.sharedTools.createCheckRecordImage(parameters,imageArrays: converyModels.listfile,finished: { (data, error,notedId) in
-            if error == nil{
-                self.showHint("添加成功", duration: 1, yOffset: 0)
-                self.notedIdStr = notedId
-                self.submitGeneralTrouble()
-                
-            }else{
-                self.showHint("\(error)", duration: 2, yOffset: 0)
-                if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
-                }
-            }
-            
-        })
-
+ 
         
-}
-    var notedIdStr:String = ""
+        
+    }
     //上传一般隐患，等新增上传完毕后上传
     func submitGeneralTrouble(){
         var parameters = [String : AnyObject]()
         parameters["nomalDanger.hzCompany.id"] = converyModels.companyId
-        parameters["produceLocaleNote.id"] = notedIdStr
+        parameters["produceLocaleNote.id"] = converyModels.checkId
         parameters["nomalDanger.linkMan"] = converyModels.lxr
         parameters["nomalDanger.linkManPhone"] = converyModels.phone
         parameters["nomalDanger.danger"] = String(Int(true))
@@ -282,23 +347,7 @@ class RecordHiddenNormalController: PhotoViewController {
         parameters["nomalDanger.content"] = normalDes
         parameters["nomalDanger.cleanUp"] = String(Int(normalIsReform))
         parameters["nomalDanger.governDate"] = normalPlanTime
-        NetworkTool.sharedTools.createHiddenTrouble(parameters,imageArrays: listImageFile) { (data, error) in
-            if error == nil{
-                self.showHint("添加成功", duration: 1, yOffset: 0)
-                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
-                viewController.isRefresh = true
-                self.navigationController?.popToViewController(viewController , animated: true)
-
-                
-            }else{
-                self.showHint("\(error!)", duration: 2, yOffset: 0)
-                if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
-                }
-            }
-        }
+  
     }
+
 }

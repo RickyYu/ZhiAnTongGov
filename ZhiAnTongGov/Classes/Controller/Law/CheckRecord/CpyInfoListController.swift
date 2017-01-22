@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CpyInfoListController:UITableViewController,UISearchBarDelegate{
+class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
 
     var cpyInfoModels  = [CpyInfoModel]()
     var result = [CpyInfoModel]()
@@ -19,6 +19,15 @@ class CpyInfoListController:UITableViewController,UISearchBarDelegate{
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        //修改导航栏按钮颜色为白色
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //修改导航栏文字颜色
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //修改导航栏背景颜色
+        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
+        //修改导航栏按钮返回只有箭头
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
         initPage()
        
     }
@@ -32,6 +41,9 @@ class CpyInfoListController:UITableViewController,UISearchBarDelegate{
         // 设置navigation
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
         self.view.backgroundColor = UIColor.whiteColor()
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
+
         //配置搜索控制器
         self.countrySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -40,6 +52,7 @@ class CpyInfoListController:UITableViewController,UISearchBarDelegate{
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
+            controller.searchBar.placeholder = NOTICE_CPY_NAME
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
@@ -92,6 +105,12 @@ class CpyInfoListController:UITableViewController,UISearchBarDelegate{
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                   self.alertNotice("提示", message: error, handler: {
+                          let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                    self.presentViewController(controller, animated: true, completion: nil)
+                   })
+                }
             }
             
             self.tableView.reloadData()

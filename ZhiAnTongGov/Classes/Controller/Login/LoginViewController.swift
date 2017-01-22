@@ -69,8 +69,11 @@ class LoginViewController: BaseViewController, UIAlertViewDelegate {
                     AppTools.setNSUserDefaultsClassValue("login", login!)
                     AppTools.setNSUserDefaultsClassValue("user", user)
                     AppTools.setNSUserDefaultsValue("identify", (login?.identify)!)
-                    UIAlertView(title: "提醒", message: login?.msg, delegate: self
-                        , cancelButtonTitle: "确定").show()
+                    
+                    self.performSegueWithIdentifier("toMain", sender: self)
+
+//                    UIAlertView(title: "提醒", message: login?.msg, delegate: self
+//                        , cancelButtonTitle: "确定").show()
                 }else{
                     self.alert((login?.msg)!)
                 }
@@ -148,11 +151,10 @@ class LoginViewController: BaseViewController, UIAlertViewDelegate {
     }
 
     
-    //MARK:- Delegate
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        self.performSegueWithIdentifier("toMain", sender: self)
-
-    }
+//    //MARK:- Delegate
+//    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+//      
+//    }
 
 }
 

@@ -10,7 +10,7 @@ import UIKit
 
 //隐患列表和历史复查记录页面
 private let Identifier = "ReviewInfoCell"
-class HistoryRecordListController: UITableViewController {
+class HistoryRecordListController: BaseTabViewController {
     
     //信息列表
     var listLawmSDSInfoModels:NSMutableArray!
@@ -48,9 +48,6 @@ class HistoryRecordListController: UITableViewController {
 //            isHidden = false
 //        }
         self.navigationItem.title = converyDataStr
-        // 设置navigation
-        self.navigationController?.navigationBar.hidden = false
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(InfoListController.back))
         // 设置tableview相关
         // tableView.registerClass(InfoDemoCell.self, forCellReuseIdentifier: InfoListReuseIdentifier)
         let nib = UINib(nibName: Identifier,bundle: nil)
@@ -171,6 +168,12 @@ class HistoryRecordListController: UITableViewController {
                         self.toLoadMore = false
                     }
                     self.showHint("\(error)", duration: 2, yOffset: 0)
+                    if error == NOTICE_SECURITY_NAME {
+                        self.alertNotice("提示", message: error, handler: {
+                            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                            self.presentViewController(controller, animated: true, completion: nil)
+                        })
+                    }
                     
                 }
             }

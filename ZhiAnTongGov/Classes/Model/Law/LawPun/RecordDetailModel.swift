@@ -26,13 +26,16 @@ class RecordDetailModel:BaseModel{
     var checkGround :String!
     var companyId :Int!
     var sendCleanUp:Bool!
+    var checkTable:String!
 
     
     
     
     init(dict: [String: AnyObject]) {
         super.init()
-        self.content = dict["content"] as? String
+        self.content = dict["content"] as? String ?? ""
+        self.checkTable = dict["checkTable"] as? String
+
         self.noter = dict["noter"] as? String
         self.fdDelegateLink = dict["fdDelegateLink"] as? String
         self.cleanUpTimeLimit = dict["cleanUpTimeLimit"] as? String

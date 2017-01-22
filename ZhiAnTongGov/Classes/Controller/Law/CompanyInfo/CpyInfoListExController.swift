@@ -10,7 +10,7 @@ import UIKit
 
 //企业查询列表界面
 private let CpyInfoListReuseIdentifier = "CpyInfoCell"
-class CpyInfoListExController:UITableViewController,UISearchBarDelegate{
+class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -27,14 +27,23 @@ class CpyInfoListExController:UITableViewController,UISearchBarDelegate{
     var searchStr : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //修改导航栏按钮颜色为白色
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //修改导航栏文字颜色
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //修改导航栏背景颜色
+        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
+
+        //修改导航栏按钮返回只有箭头
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
         initPage()
     }
     
     private func initPage(){
-        
         // 设置navigation
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
+
         // 设置tableview相关
         let nib = UINib(nibName: "CpyInfoCell",bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: CpyInfoListReuseIdentifier)
@@ -99,6 +108,12 @@ class CpyInfoListExController:UITableViewController,UISearchBarDelegate{
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
             
             self.tableView.reloadData()

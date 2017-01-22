@@ -16,6 +16,8 @@ class DetailMultCbCellView: UIView {
     
     var lineView = UIView()
     var label = UILabel()
+     var label1 = UILabel()
+    var labelNotice = UILabel()
   
     var btn1 : UIButton!
     var btn2 : UIButton!
@@ -33,6 +35,11 @@ class DetailMultCbCellView: UIView {
         label.font = UIFont.boldSystemFontOfSize(13)
         label.frame = CGRectMake(6, 5, 100, 35)
         label.textColor = YMGlobalDeapBlueColor()
+        
+        label1.font = UIFont.boldSystemFontOfSize(13)
+        label1.frame = CGRectMake(106, 5, 100, 35)
+        label1.textColor = UIColor.blackColor()
+        label1.hidden = true
 
         lineView.frame = CGRectMake(3, 42, SCREEN_WIDTH-6, 2)
         lineView.backgroundColor = UIColor.lightGrayColor()
@@ -40,6 +47,8 @@ class DetailMultCbCellView: UIView {
         
         
         self.addSubview(label)
+        self.addSubview(label1)
+        self.addSubview(labelNotice)
         self.addSubview(lineView)
         
         label.snp_makeConstraints { make in
@@ -73,20 +82,25 @@ class DetailMultCbCellView: UIView {
             })
             switch i {
             case 0:
+                self.btn1  = button
                 button.addTarget(self, action:#selector(tapped1(_:)), forControlEvents:.TouchUpInside)
             case 1:
+                self.btn2  = button
                 button.addTarget(self, action:#selector(tapped2(_:)), forControlEvents:.TouchUpInside)
             case 2:
+                self.btn3  = button
                 button.addTarget(self, action:#selector(tapped3(_:)), forControlEvents:.TouchUpInside)
             case 3:
+                self.btn4  = button
                 button.addTarget(self, action:#selector(tapped4(_:)), forControlEvents:.TouchUpInside)
                 
             default: break
                 
             }
-            
-            
-        }
+          }
+        }else{
+        
+        
         }
         
     }
@@ -143,6 +157,10 @@ class DetailMultCbCellView: UIView {
     
     func setLabelName(name:String) {
         label.text = name
+    }
+    func setLabel1Name(name:String) {
+        label1.text = name
+        label1.hidden = false
     }
     
 

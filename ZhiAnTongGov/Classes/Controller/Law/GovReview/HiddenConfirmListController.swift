@@ -15,7 +15,7 @@ private let Identifier = "HiddenConfirmCell"
 protocol HiddenParameterDelegate{
     func passParams(hiddenModels: [HiddenModel])
 }
-class HiddenConfirmListController: UITableViewController {
+class HiddenConfirmListController: BaseTabViewController {
 
     //隐患列表数据
     var hiddenModels :[HiddenModel] = []
@@ -36,9 +36,6 @@ class HiddenConfirmListController: UITableViewController {
     private func initPage(){
 
         self.navigationItem.title = "隐患列表"
-        // 设置navigation
-        self.navigationController?.navigationBar.hidden = false
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(self.back))
         // 设置tableview相关
         // tableView.registerClass(InfoDemoCell.self, forCellReuseIdentifier: InfoListReuseIdentifier)
         let nib = UINib(nibName: Identifier,bundle: nil)
@@ -86,6 +83,12 @@ class HiddenConfirmListController: UITableViewController {
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
                 
             }
         }

@@ -6,11 +6,23 @@
 //  Copyright © 2016年 safetysafetys. All rights reserved.
 //
 import UIKit
+import UsefulPickerView
 
 
 
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
+        //修改导航栏按钮颜色为白色
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //修改导航栏文字颜色
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //修改导航栏背景颜色
+        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
+
+        //修改导航栏按钮返回只有箭头
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
+        
         self.view.backgroundColor = UIColor.whiteColor()
     }
     
@@ -85,6 +97,24 @@ class BaseViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func alertNotice(titile:String,message:String,handler:()->Void){
+        let alertController = UIAlertController(title: titile, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.Destructive, handler: {
+            action in
+            handler()
+        })
+        let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
+            print("click Cancel")
+        }
+        
+        
+        alertController.addAction(acSure)
+        alertController.addAction(acCancel)
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -127,6 +157,18 @@ class BaseViewController: UIViewController {
          finished(time: formatter.stringFromDate(date) as String)
     }
     
-
+    internal func getChoiceArea(areaArr:[String],finished:(area:String,areaArr:[String])->()){
+//        UsefulPickerView.showCitiesPicker("市区镇选择", defaultSelectedValues: areaArr) { (selectedIndexs, selectedValues) in
+//          
+//        }
+        UsefulPickerView.showCitiesPicker("市区镇选择", defaultSelectedValues: areaArr) {[unowned self] (selectedIndexs, selectedValues) in
+            // 处理数据
+            let combinedString = selectedValues.reduce("", combine: { (result, value) -> String in
+                result + " " + value
+            })
+            finished(area:combinedString,areaArr: selectedValues)
+        }
+    
+    }
     
 }

@@ -23,7 +23,16 @@ class LawViewController: UIViewController,UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //修改导航栏按钮颜色为白色
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //修改导航栏文字颜色
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //修改导航栏背景颜色
+        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
 
+        //修改导航栏按钮返回只有箭头
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
         self.title="行政执法"
         let rightBar = UIBarButtonItem(title: "刷新", style: UIBarButtonItemStyle.Done, target: self, action: #selector(LawViewController.toCodeViewPad))
         self.navigationItem.rightBarButtonItem = rightBar
@@ -31,7 +40,7 @@ class LawViewController: UIViewController,UIScrollViewDelegate {
         let screenWidth = self.contentView.bounds.width
         let screenHeight = self.contentView.bounds.height
 
-        scrollView = UIScrollView(frame: CGRectMake(0, 60, screenWidth, screenHeight - 60))
+        scrollView = UIScrollView(frame: CGRectMake(0, 52, screenWidth, screenHeight - 55))
         pageControl = UIPageControl(frame: CGRectMake(0, screenHeight - 40, screenWidth, 40))
         scrollView!.pagingEnabled = true
         scrollView!.showsHorizontalScrollIndicator = false
@@ -102,7 +111,7 @@ class LawViewController: UIViewController,UIScrollViewDelegate {
 //            thirdViewController.getDates()
 //        }
         
-       self.navigationController?.pushViewController(TestSnapController(), animated: true)
+       self.navigationController?.pushViewController(TestController(), animated: true)
         
      //   self.navigationController?.pushViewController(PhotoViewController(), animated: true)
 

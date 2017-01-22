@@ -11,7 +11,7 @@ import UIKit
 protocol LocationParameterDelegate{
     func passParams(lng: String,lat:String)
 }
-class LocationSaveController:UIViewController,BMKLocationServiceDelegate,BMKMapViewDelegate{
+class LocationSaveController:BaseViewController,BMKLocationServiceDelegate,BMKMapViewDelegate{
     var _mapView: BMKMapView?
     var _locService :BMKLocationService?
     var pointAnnotation: BMKPointAnnotation?
@@ -100,9 +100,15 @@ class LocationSaveController:UIViewController,BMKLocationServiceDelegate,BMKMapV
 //            animatedAnnotation?.title = "当前位置"
 //        }
 //        _mapView!.addAnnotation(animatedAnnotation)
-        self._mapView!.centerCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
-        self._mapView!.zoomLevel=16
-         print("当前位置 = 纬度 = \(latitude) + 经度 = \(longitude)")
+        print("当前位置 = 纬度 = \(latitude) + 经度 = \(longitude)")
+        if latitude != nil{
+            self._mapView!.centerCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            self._mapView!.zoomLevel=16
+        }else{
+         self.showHint("自动定位失败，请打开百度定位权限", duration: 2, yOffset: 2)
+        }
+       
+        
     }
     
     @IBAction func modifyLoc(sender: AnyObject) {
@@ -151,7 +157,7 @@ class LocationSaveController:UIViewController,BMKLocationServiceDelegate,BMKMapV
         parameters["point.y"] = lat
         NetworkTool.sharedTools.savePoint(parameters) { (cpyInfoModels, error, totalCount) in
             if error == nil{
-            self.showHint("位置更新成功", duration: 2, yOffset: 0)
+            self.showHint("位置更新成功", duration: 1, yOffset: 0)
                 if self.delegate != nil{
                  self.delegate.passParams(self.lng, lat: self.lat)
                 }
@@ -160,6 +166,12 @@ class LocationSaveController:UIViewController,BMKLocationServiceDelegate,BMKMapV
            
             }else{
             self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
         }
         

@@ -21,19 +21,28 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     var startCc2d  = CLLocationCoordinate2D() //路径起点位置
     var endCc2d  = CLLocationCoordinate2D()//路径终点位置
     //回传的CpyInfoModel
-    var cpyInfoModel :CpyInfoModel!
+    var cpyInfoModel  = CpyInfoModel()
     var isRefresh : Bool = false
     var cityName :String = "宁波"
     override func viewDidLoad() {
         super.viewDidLoad()
+        //修改导航栏按钮颜色为白色
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //修改导航栏文字颜色
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //修改导航栏背景颜色
+        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
+
+        //修改导航栏按钮返回只有箭头
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
         routeSearch = BMKRouteSearch()
         
         // 界面初始化
-    
-       // fromAddressField.text = "万金大厦"
         fromAddressField.placeholder = "默认当前位置"
-       // toAddressField.text = "海曙欧尚"
-        toAddressField.placeholder = "默认企业位置"
+        fromAddressField.text = ""
+        toAddressField.placeholder = "请选择企业位置"
+        toAddressField.text = ""
         fromAddressField.delegate = self
         fromAddressField.delegate = self
         toAddressField.delegate = self
@@ -106,7 +115,8 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     // MARK: - IBAction
     
     @IBAction func busRouteSearch(sender: UIButton) {
-        let loc = setLoc()
+        verify()
+        let loc = setLoc(isAddress)
         let transitRouteSearchOption = BMKTransitRoutePlanOption()
         transitRouteSearchOption.city = cityName
         transitRouteSearchOption.from = loc.from
@@ -123,7 +133,8 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
    
     
     @IBAction func carRouteSearch(sender: UIButton) {
-       let  loc = setLoc()
+        verify()
+       let  loc = setLoc(isAddress)
         
         let drivingRouteSearchOption = BMKDrivingRoutePlanOption()
         drivingRouteSearchOption.from = loc.from
@@ -138,8 +149,8 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     }
     
     @IBAction func walkRouteSearch(sender: UIButton) {
-    
-         let loc = setLoc()
+        verify()
+         let loc = setLoc(isAddress)
         let walkingRouteSearchOption = BMKWalkingRoutePlanOption()
         walkingRouteSearchOption.from = loc.from
         walkingRouteSearchOption.to = loc.to
@@ -154,7 +165,8 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     }
     
     @IBAction func rideRouteSearch(sender: UIButton) {
-        let loc = setLoc()
+         verify()
+        let loc = setLoc(isAddress)
         let option = BMKRidingRoutePlanOption()
         option.from = loc.from
         option.to = loc.to
@@ -164,6 +176,23 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
             print("骑行检索发送成功")
         }else {
             print("骑行检索发送失败")
+        }
+    }
+    
+    func verify(){
+    
+        if AppTools.isEmpty(fromAddressField.text!) && AppTools.isEmpty(toAddressField.text!){
+            //用经纬度查询路径
+            //如果没有经纬度信息
+            if cpyInfoModel.y != nil{
+                isAddress = false
+            }else{
+                self.showHint("请选择企业或输入起点终点", duration: 2, yOffset: 2)
+                return
+            }
+            
+        }else {
+            isAddress = true
         }
     }
     
@@ -181,23 +210,33 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
         return true
     }
     
+    //true : 使用地理位置  false：使用坐标
+    var isAddress : Bool = false
     //导航信息设置
-    func setLoc()->(from:BMKPlanNode,to:BMKPlanNode){
+    func setLoc(isAddress:Bool)->(from:BMKPlanNode,to:BMKPlanNode){
+        
         let from = BMKPlanNode()
         let to = BMKPlanNode()
-        if AppTools.isEmpty(fromAddressField.text!) && AppTools.isEmpty(toAddressField.text!){
-            //用经纬度查询路径
-            //起点经纬度为当前位置
-            from.pt = startCc2d
-            //目的地经纬度为公司经纬度
-            to.pt = endCc2d
-        }else {
+        
+        if isAddress{
             from.name = fromAddressField.text
             from.cityName = cityName
             to.name = toAddressField.text
             to.cityName = cityName
-            
+        
+        }else{
+            //起点经纬度为当前位置
+            print("startCc2d.latitude = \(startCc2d.latitude)")
+            if startCc2d.latitude != 0{
+                from.pt = startCc2d
+                //目的地经纬度为公司经纬度
+                to.pt = endCc2d
+            }else{
+             self.showHint("自定定位失败，请确保您已打开百度定位权限", duration: 2, yOffset: 2)
+            }
+           
         }
+
         return(from,to)
     }
     

@@ -108,7 +108,7 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate {
             let index = line * lineImageTotal + i
             self.renderItemView(itemX, itemY: itemY, itemWidth: itemWidth, index: index)
         }
-  
+//  
 //        listImageFile.removeAll()
 //
 //        for i in 0 ..< selectModel.count-1{
@@ -122,21 +122,21 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate {
 //                        self.listImageFile.append(image!)
 //                        print("listImageFile\(self.listImageFile.count)")
 //                   
-////                        //将选择的图片保存到Document目录下
-////                        let fileManager = NSFileManager.defaultManager()
-////                        
-////                        let rootPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
-////                            .UserDomainMask, true)[0] as String
-////                        let i:Int = self.createRandomMan(1, end: 1000000)()
-////                        let filePath = "\(rootPath)/pickedimage\(i).jpg"
-////                        let imageData = UIImageJPEGRepresentation(image!, 1.0)
-////                        fileManager.createFileAtPath(filePath, contents: imageData, attributes: nil)
-////                        //上传图片
-////                        if (fileManager.fileExistsAtPath(filePath)){
-////                            //取得NSURL
-////                            let imageNSURL:NSURL = NSURL.init(fileURLWithPath: filePath)
-////                               self.listImageFile.append(imageNSURL)
-////                        }
+//                        //将选择的图片保存到Document目录下
+//                        let fileManager = NSFileManager.defaultManager()
+//                        
+//                        let rootPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+//                            .UserDomainMask, true)[0] as String
+//                        let i:Int = self.createRandomMan(1, end: 1000000)()
+//                        let filePath = "\(rootPath)/pickedimage\(i).jpg"
+//                        let imageData = UIImageJPEGRepresentation(image!, 1.0)
+//                        fileManager.createFileAtPath(filePath, contents: imageData, attributes: nil)
+//                        //上传图片
+//                        if (fileManager.fileExistsAtPath(filePath)){
+//                            //取得NSURL
+//                            let imageNSURL:NSURL = NSURL.init(fileURLWithPath: filePath)
+//                               self.listImageFile.append(imageNSURL)
+//                        }
 //                        
 //                    }
 //                })

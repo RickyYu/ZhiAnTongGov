@@ -12,7 +12,7 @@ import SwiftyJSON
 
 //初查记录详情
 class CheckRecordDetailController: BaseViewController {
-    
+     var imageArray = [ImageInfoModel]()
       var scrollView: UIScrollView!
    //var converyDataModel : PunishmentModel?
      var converyJcjlId:Int!
@@ -33,6 +33,12 @@ class CheckRecordDetailController: BaseViewController {
                 self.recordDetailModel = data!
             }else{
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
             }
             
             self.initPage()
@@ -97,6 +103,17 @@ class CheckRecordDetailController: BaseViewController {
         let customView11 = DetailCellView(frame:CGRectMake(0, 460, SCREEN_WIDTH, 45))
         customView11.setLabelName("图片：")
 
+        self.imageArray = (recordDetailModel?.imageInfos)!
+        if !imageArray.isEmpty{
+            let base_path = PlistTools.loadStringValue("BASE_URL_YH")
+            for i in 0..<self.imageArray.count{
+                let x = 70*i+5+5*i
+                let image = UIImageView(frame: CGRectMake(CGFloat(x), 500, 70, 100))
+                image.kf_setImageWithURL(NSURL(string: base_path+self.imageArray[i].path)!, placeholderImage: UIImage(named: "default"))
+                
+                self.scrollView.addSubview(image)
+            }
+        }
         
         
         self.scrollView.addSubview(customView1)

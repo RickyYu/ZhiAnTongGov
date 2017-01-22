@@ -198,7 +198,6 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
     func nextRecordHidden(){
         
         let modifyTime = customView1.rightLabel.text!
-   
         converyModels.zgtime = modifyTime
         converyModels.listHy = listHy
         converyModels.check = isReform
@@ -212,95 +211,86 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         if !yesBtn.selected {
             
             var parameters = [String : AnyObject]()
-             parameters["produceLocaleNote.hzCompany.id"] = converyModels.companyId
-        
+            parameters["produceLocaleNote.hzCompany.id"] = converyModels.companyId
+            
             parameters["produceLocaleNote.checkTimeBegin"] = converyModels.checktime
-       
+            
             parameters["produceLocaleNote.checkGround"] = converyModels.place
-           
-             parameters["produceLocaleNote.fdDelegateLink"] = converyModels.phone
+            
+            parameters["produceLocaleNote.fdDelegateLink"] = converyModels.phone
             
             if !converyModels.listCb.isEmpty{
-              parameters["gridIds"] = JSON(arrayLiteral: converyModels.listCb).string
+                parameters["gridIds"] = JSON(arrayLiteral: converyModels.listCb).string
             }
             
-             parameters["produceLocaleNote.noter"] = converyModels.people
-       
-             parameters["produceLocaleNote.executeUnit"] = converyModels.law
+            parameters["produceLocaleNote.noter"] = converyModels.people
+            
+            parameters["produceLocaleNote.executeUnit"] = converyModels.law
             if !converyModels.zgtime.isEmpty{
-             parameters["hzProduceCleanUp.cleanUpTimeLimit"] = converyModels.zgtime
+                parameters["hzProduceCleanUp.cleanUpTimeLimit"] = converyModels.zgtime
             }
             
             if !converyModels.nowcontent.isEmpty{
                 parameters["produceLocaleNote.content"] = converyModels.nowcontent
             }
             if(!converyModels.checkId.isEmpty){
-                 parameters["hzTemplateCheckTable.id"] = converyModels.checkId
+                parameters["hzTemplateCheckTable.id"] = converyModels.checkId
             }
             if !converyModels.listHy.isEmpty{
                 var array = [String]()
                 for i in 0..<converyModels.listHy.count{
                     do{ //转化为JSON 字符串
-                            let data = try NSJSONSerialization.dataWithJSONObject(converyModels.listHy[i].getParams1(), options: .PrettyPrinted)
-                            array.append(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
-                            print(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
-                        }catch{
-                            
-                        }
+                        let data = try NSJSONSerialization.dataWithJSONObject(converyModels.listHy[i].getParams1(), options: .PrettyPrinted)
+                        array.append(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                        print(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+                    }catch{
+                        
+                    }
                 }
-             let temp = array.joinWithSeparator(",")
-             let tempStr = "["+temp+"]"
-              print(tempStr)
-             parameters["hzCompanyCheckTableInfosJson"] = tempStr
+                let temp = array.joinWithSeparator(",")
+                let tempStr = "["+temp+"]"
+                print(tempStr)
+                parameters["hzCompanyCheckTableInfosJson"] = tempStr
                 
             }
-        
-  
-//            if !converyModels.listfile.isEmpty{
-//               parameters["file[0]"] = converyModels.listfile
-//            }
             
-             parameters["produceLocaleNote.sendCleanUp"] = String(Int(converyModels.check))
+            parameters["produceLocaleNote.sendCleanUp"] = String(Int(converyModels.check))
             
             print("parameters = \(parameters)")
-         print("converyModels.listfile = \(converyModels.listfile)")
-//            NetworkTool.sharedTools.createCheckRecord(parameters,finished: { (data, error) in
-//                
-//                if error == nil{
-//                    self.showHint("添加成功", duration: 2, yOffset: 0)
-//                    // 获得视图控制器中的某一视图控制器
-//                    let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
-//                    viewController.isRefresh = true
-//                    self.navigationController?.popToViewController(viewController , animated: true)
-//                    
-//                }else{
-//                   self.showHint("\(error)", duration: 2, yOffset: 0)
-//                }
-//                
-//            })
+            print("converyModels.listfile = \(converyModels.listfile)")
             
-           NetworkTool.sharedTools.createCheckRecordImage(parameters,imageArrays: converyModels.listfile,finished: { (data, error) in
-                            if error == nil{
-                                self.showHint("添加成功", duration: 2, yOffset: 0)
-                                // 获得视图控制器中的某一视图控制器
-                                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
-                                viewController.isRefresh = true
-                                self.navigationController?.popToViewController(viewController , animated: true)
-            
-                            }else{
-                               self.showHint("\(error)", duration: 2, yOffset: 0)
-                            }
-          
-           })
+            NetworkTool.sharedTools.createCheckRecordImage(parameters,imageArrays: converyModels.listfile,finished: { (data, error,notedId) in
+                if error == nil{
+                    self.showHint("添加成功", duration: 2, yOffset: 0)
+                    // 获得视图控制器中的某一视图控制器
+                    let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
+                    viewController.isRefresh = true
+                    self.navigationController?.popToViewController(viewController , animated: true)
+                    
+                }else{
+                    self.showHint("\(error)", duration: 2, yOffset: 0)
+                    if error == NOTICE_SECURITY_NAME {
+                        self.alertNotice("提示", message: error, handler: {
+                            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                            self.presentViewController(controller, animated: true, completion: nil)
+                        })
+                    }
+                }
+                
+            })
         
         }else{
             if AppTools.isEmpty(modifyTime) {
-                alert("检查时间不可为空", handler: {
+                alert("责令整改日期不可为空", handler: {
                     // self.customView5.textField.becomeFirstResponder()
                 })
                 return
             }
-            let controller = RecordHiddenController()
+//            let userDefaults = NSUserDefaults.standardUserDefaults()
+//            userDefaults.setObject(converyModels, forKey: "converyModels")
+//            userDefaults.synchronize()
+            
+            let controller = RecordHideenPassController()
             controller.converyModels = converyModels
             self.navigationController?.pushViewController(controller, animated: true)
         
@@ -440,6 +430,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         choiceTime { (time) in
             self.customView1.setRRightLabel(time)
             self.customView1.becomeFirstResponder()
+            self.converyModels.zgtime = time
         }
         
     }
