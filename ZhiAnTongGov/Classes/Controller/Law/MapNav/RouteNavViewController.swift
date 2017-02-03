@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMapViewDelegate, BMKRouteSearchDelegate, UITextFieldDelegate {
     
@@ -115,6 +116,7 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     // MARK: - IBAction
     
     @IBAction func busRouteSearch(sender: UIButton) {
+        SVProgressHUD.showWithStatus("正在加载...")
         verify()
         let loc = setLoc(isAddress)
         let transitRouteSearchOption = BMKTransitRoutePlanOption()
@@ -129,28 +131,30 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
         }else {
             print("公交检索发送失败")
         }
+        SVProgressHUD.dismiss()
     }
    
     
     @IBAction func carRouteSearch(sender: UIButton) {
+        SVProgressHUD.showWithStatus("正在加载...")
         verify()
-       let  loc = setLoc(isAddress)
-        
+        let loc = setLoc(isAddress)
         let drivingRouteSearchOption = BMKDrivingRoutePlanOption()
         drivingRouteSearchOption.from = loc.from
         drivingRouteSearchOption.to = loc.to
-        
         let flag = routeSearch.drivingSearch(drivingRouteSearchOption)
         if flag {
             print("驾乘检索发送成功")
         }else {
             print("驾乘检索发送失败")
         }
+        SVProgressHUD.dismiss()
     }
     
     @IBAction func walkRouteSearch(sender: UIButton) {
+        SVProgressHUD.showWithStatus("正在加载...")
         verify()
-         let loc = setLoc(isAddress)
+        let loc = setLoc(isAddress)
         let walkingRouteSearchOption = BMKWalkingRoutePlanOption()
         walkingRouteSearchOption.from = loc.from
         walkingRouteSearchOption.to = loc.to
@@ -161,11 +165,12 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
         }else {
             print("步行检索发送失败")
         }
-        
+        SVProgressHUD.dismiss()
     }
     
     @IBAction func rideRouteSearch(sender: UIButton) {
-         verify()
+        SVProgressHUD.showWithStatus("正在加载...")
+        verify()
         let loc = setLoc(isAddress)
         let option = BMKRidingRoutePlanOption()
         option.from = loc.from
@@ -177,6 +182,7 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
         }else {
             print("骑行检索发送失败")
         }
+        SVProgressHUD.dismiss()
     }
     
     func verify(){
@@ -187,6 +193,7 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
             if cpyInfoModel.y != nil{
                 isAddress = false
             }else{
+                SVProgressHUD.dismiss()
                 self.showHint("请选择企业或输入起点终点", duration: 2, yOffset: 2)
                 return
             }
@@ -232,6 +239,7 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
                 //目的地经纬度为公司经纬度
                 to.pt = endCc2d
             }else{
+             SVProgressHUD.dismiss()
              self.showHint("自定定位失败，请确保您已打开百度定位权限", duration: 2, yOffset: 2)
             }
            

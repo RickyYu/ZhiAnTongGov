@@ -40,29 +40,54 @@ class TestController: PhotoViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         
-  
-        alertNotice("提示", message: "你好") {
-            print("123")
-        }
+        //搜索按钮
+        let button1 = UIButton(frame:CGRectMake(0, 0, 36, 36))
+        button1.setImage(UIImage(named: "daily_mgr_selected"), forState: .Normal)
+        button1.addTarget(self,action:#selector(TestController.tapped1),forControlEvents:.TouchUpInside)
+        let barButton1 = UIBarButtonItem(customView: button1)
         
-        buttonNormal = UIButton(frame:CGRectMake(0, 64, SCREEN_WIDTH/2, 30))
-        buttonNormal.setTitle("一般隐患", forState:.Normal)
-        buttonNormal.backgroundColor = YMGlobalDeapBlueColor()
-        buttonNormal.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
-        buttonNormal.addTarget(self, action: #selector(self.showNormal), forControlEvents: UIControlEvents.TouchUpInside)
-        buttonNormal.setTitleColor(YMGlobalBlueColor(),forState: .Normal) //普通状态下文字的颜色
- 
+        //设置按钮
+        let button2 = UIButton(frame:CGRectMake(0, 0, 36, 36))
+        button2.setImage(UIImage(named: "daily_mgr_selected"), forState: .Normal)
+        button2.addTarget(self,action:#selector(TestController.tapped2),forControlEvents:.TouchUpInside)
+        let barButton2 = UIBarButtonItem(customView: button2)
         
-        buttonMajor = UIButton(frame:CGRectMake(SCREEN_WIDTH/2, 64, SCREEN_WIDTH/2, 30))
-        buttonMajor.setTitle("重大隐患", forState:.Normal)
-        buttonMajor.backgroundColor = YMGlobalDeapBlueColor()
-        buttonMajor.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
-        buttonMajor.addTarget(self, action: #selector(self.showMajor), forControlEvents: UIControlEvents.TouchUpInside)
-        buttonMajor.setTitleColor(UIColor.grayColor(),forState: .Normal) //普通状态下文字的颜色
-
- 
-         self.view.addSubview(buttonNormal)
-         self.view.addSubview(buttonMajor)
+        //按钮间的空隙
+        let gap = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
+                                  action: nil)
+        gap.width = 15;
+        
+        //用于消除右边边空隙，要不然按钮顶不到最边上
+        let spacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
+                                     action: nil)
+        spacer.width = -10;
+        
+        //设置按钮（注意顺序）
+        self.navigationItem.rightBarButtonItems = [spacer,barButton2,gap,barButton1]
+        
+//  
+//        alertNotice("提示", message: "你好") {
+//            print("123")
+//        }
+//        
+//        buttonNormal = UIButton(frame:CGRectMake(0, 64, SCREEN_WIDTH/2, 30))
+//        buttonNormal.setTitle("一般隐患", forState:.Normal)
+//        buttonNormal.backgroundColor = YMGlobalDeapBlueColor()
+//        buttonNormal.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+//        buttonNormal.addTarget(self, action: #selector(self.showNormal), forControlEvents: UIControlEvents.TouchUpInside)
+//        buttonNormal.setTitleColor(YMGlobalBlueColor(),forState: .Normal) //普通状态下文字的颜色
+// 
+//        
+//        buttonMajor = UIButton(frame:CGRectMake(SCREEN_WIDTH/2, 64, SCREEN_WIDTH/2, 30))
+//        buttonMajor.setTitle("重大隐患", forState:.Normal)
+//        buttonMajor.backgroundColor = YMGlobalDeapBlueColor()
+//        buttonMajor.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+//        buttonMajor.addTarget(self, action: #selector(self.showMajor), forControlEvents: UIControlEvents.TouchUpInside)
+//        buttonMajor.setTitleColor(UIColor.grayColor(),forState: .Normal) //普通状态下文字的颜色
+//
+// 
+//         self.view.addSubview(buttonNormal)
+//         self.view.addSubview(buttonMajor)
         
         //选项除了文字还可以是图片
 //        let items=["一般隐患","重大隐患"] as [AnyObject]
@@ -73,7 +98,7 @@ class TestController: PhotoViewController {
 //        segmented.addTarget(self, action: #selector(self.segmentDidchange(_:)),
 //                            forControlEvents: UIControlEvents.ValueChanged)  //添加值改变监听
 //        self.view.addSubview(segmented)
-       initNormalPage()
+    //   initNormalPage()
     }
 //    func segmentDidchange(segmented:UISegmentedControl){
 //        //获得选项的索引
@@ -89,15 +114,25 @@ class TestController: PhotoViewController {
 //            
 //        }
 //    }
+    
+    func tapped1(){
+        print("搜索按钮点击")
+    }
+    
+    func tapped2(){
+        print("设置按钮点击")
+    }
+    
     func initNormalPage(){
         
-        normalScrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 600))
+        normalScrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT))
         normalScrollView!.pagingEnabled = true
+        normalScrollView.backgroundColor = UIColor.redColor()
         normalScrollView!.scrollEnabled = true
         normalScrollView!.showsHorizontalScrollIndicator = true
         normalScrollView!.showsVerticalScrollIndicator = false
         normalScrollView!.scrollsToTop = true
-        normalScrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 601)
+        normalScrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 901)
         
         submitBtnnormal.setTitle("保存", forState:.Normal)
         submitBtnnormal.backgroundColor = YMGlobalDeapBlueColor()

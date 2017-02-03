@@ -47,13 +47,13 @@ class CheckRecordDetailController: BaseViewController {
     
     func initPage(){
         
-        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 600))
+        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT))
         scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
         scrollView!.scrollsToTop = true
-        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 600)
+        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT+10)
         let customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()
         customView1.setLabelName("企业名称：")
@@ -102,6 +102,8 @@ class CheckRecordDetailController: BaseViewController {
 
         let customView11 = DetailCellView(frame:CGRectMake(0, 460, SCREEN_WIDTH, 45))
         customView11.setLabelName("图片：")
+        customView11.setRCenterLabel("")
+        customView11.setLineViewHidden()
 
         self.imageArray = (recordDetailModel?.imageInfos)!
         if !imageArray.isEmpty{

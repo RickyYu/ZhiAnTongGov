@@ -120,7 +120,10 @@ class HistoryRecordListController: BaseTabViewController {
             }
             
   
-
+            if totalCount == 0{
+                self.showHint("当前无数据", duration: 2, yOffset: 0)
+                return
+            }
             if error == nil{
                 if self.currentPage>totalCount{
                     //self.showHint("已经到最后了", duration: 2, yOffset: 0)
@@ -149,7 +152,10 @@ class HistoryRecordListController: BaseTabViewController {
                 if self.refreshControl!.refreshing{
                     self.refreshControl!.endRefreshing()
                 }
-   
+                if totalCount == 0{
+                    self.showHint("当前无数据", duration: 2, yOffset: 0)
+                    return
+                }
                 
                 if self.currentPage>totalCount{
                   //  self.showHint("已经到最后了", duration: 2, yOffset: 0)

@@ -20,8 +20,8 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
     var currentPage : Int = 0  //加载更多时候+10
     //总条数
     var totalCount : Int = 0
-    var listDatas  = [PunishmentModel]()
-    var result = [PunishmentModel]()
+    var listDatas  = [UnPunishmentModel]()
+    var result = [UnPunishmentModel]()
     // 是否加载更多
     private var toLoadMore = false
     var searchStr : String = ""
@@ -130,7 +130,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         let count = listDatas.count ?? 0
         if count > 0 {
             let data = listDatas[indexPath.row]
-            cell.punishmentModel = data
+            cell.unPunishmentModel = data
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
@@ -196,7 +196,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         currentPage = 0
         // 重置数组
         listDatas.removeAll()
-        listDatas = [PunishmentModel]()
+        listDatas = [UnPunishmentModel]()
     }
     
 }

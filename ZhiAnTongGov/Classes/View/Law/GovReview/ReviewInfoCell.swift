@@ -25,15 +25,28 @@ class ReviewInfoCell: UITableViewCell {
         
     }
     
+    var unPunishmentModel: UnPunishmentModel?
+        {
+        didSet{
+            if let art = unPunishmentModel {
+                // 设置数据
+                cpyName.text = art.companyName
+                hiddenNum.text = "未整改隐患数量（"+String(art.hiddenNum)+")个"
+                reviewNum.text = "复查次数"+String(art.fcNum)+"次"
+                reviewDate.text = "责令整改日期："+art.cleanUpTimeLimit
+            }
+        }
+    }
+    
     var punishmentModel: PunishmentModel?
         {
         didSet{
             if let art = punishmentModel {
                 // 设置数据
                 cpyName.text = art.companyName
-                hiddenNum.text = "未整改隐患数量（"+String(art.hiddenNum)+")个"
-                reviewNum.text = "复查次数"+String(art.fcNum)+"次"
-                reviewDate.text = "责令整改日期："+art.cleanUpTimeLimit
+                hiddenNum.text = "处罚类型"+getPunType(art.punishmentType)
+                reviewNum.text = ""
+                reviewDate.text = "处罚日期："+art.punishmentTime
             }
         }
     }

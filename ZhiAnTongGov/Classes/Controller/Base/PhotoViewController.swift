@@ -9,14 +9,14 @@
 import UIKit
 import Photos
 
-class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate {
+class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     let IMAGE_MAX_SELECTEDNUM = 9
     var selectModel = [PhotoImageModel]()
     var containerView = UIView()
     var triggerRefresh = false
     var x:CGFloat = 0.0
     var y:CGFloat = 0.0
-    var listImageFile = [UIImage]()
+    private var listImageFile = [UIImage]()
   
     
     override func viewDidLoad() {
@@ -150,6 +150,9 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate {
     }
     
     func getListImage() ->[UIImage]{
+        if listImageFile.count != 0 {
+            listImageFile.removeAtIndex(0)
+        }
        return self.listImageFile
     }
     
@@ -251,8 +254,24 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate {
     /**
      拍照获取
      */
+    let imagePicker  = UIImagePickerController()
     private func selectByCamera(){
         // todo take photo task
+        dispatch_async(dispatch_get_main_queue()) {
+            let imagePicker  = UIImagePickerController()
+            imagePicker.delegate      = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .Camera
+            imagePicker.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        self.listImageFile.append(image)
+       imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     /**

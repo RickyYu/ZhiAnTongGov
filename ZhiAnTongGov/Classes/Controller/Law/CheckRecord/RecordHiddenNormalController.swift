@@ -60,12 +60,14 @@ class RecordHiddenNormalController: PhotoViewController {
 
         customView3normal.setLabelName("计划整改时间：")
         customView3normal.setRRightLabel("")
+        customView3normal.setTimeImg()
         customView3normal.addOnClickListener(self, action: #selector(self.normalChoicePlanTime))
         
         customView4normal.setLabelName("录入时间：")
         getSystemTime({ (time) in
           self.customView4normal.setRCenterLabel(time)
         })
+        customView4normal.setTimeImg()
         
         customView5normal =  DetailCellView(frame:CGRectMake(0, 235, SCREEN_WIDTH, 45))
         customView5normal.setLabelName("是否整改：")
@@ -282,7 +284,7 @@ class RecordHiddenNormalController: PhotoViewController {
         parameters["nomalDanger.content"] = normalDes
         parameters["nomalDanger.cleanUp"] = String(Int(normalIsReform))
         parameters["nomalDanger.governDate"] = normalPlanTime
-        NetworkTool.sharedTools.createHiddenTrouble(parameters,imageArrays: listImageFile) { (data, error) in
+        NetworkTool.sharedTools.createHiddenTrouble(parameters,imageArrays: getListImage()) { (data, error) in
             if error == nil{
                 self.showHint("添加成功", duration: 1, yOffset: 0)
                 let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController

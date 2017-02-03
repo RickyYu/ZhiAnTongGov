@@ -226,6 +226,7 @@ class RecordHiddenMajorController: PhotoViewController {
         majorCustomView16 = DetailCellView(frame:CGRectMake(0, 640, SCREEN_WIDTH, 45))
         majorCustomView16.setLabelName("计划完成治理时间：")
         majorCustomView16.setRRightLabel("")
+        majorCustomView16.setTimeImg()
         majorCustomView16.addOnClickListener(self, action: #selector(self.majorChoicePlanTimes))
         
         majorCustomView17 = DetailCellView(frame:CGRectMake(0, 685, SCREEN_WIDTH, 45))
@@ -242,6 +243,7 @@ class RecordHiddenMajorController: PhotoViewController {
         getSystemTime { (time) in
             self.majorCustomView19.setRRightLabel(time)
         }
+        majorCustomView19.setTimeImg()
         
         majorCustomView20 = DetailCellView(frame:CGRectMake(0, 820, SCREEN_WIDTH, 45))
         majorCustomView20.setLabelName("填报人：")
@@ -365,6 +367,8 @@ class RecordHiddenMajorController: PhotoViewController {
     
     func majorInitPhoto(){
         setLoc(0, y: 910)
+        var listImageFile = [UIImage]()
+        listImageFile = getListImage()
         listImageFile.removeAll()
         checkNeedAddButton()
         renderView()
@@ -596,7 +600,7 @@ class RecordHiddenMajorController: PhotoViewController {
         parameters["danger.fillMan"] = majorFillMan
         
         // parameters["file"] = converyModels.companyId
-        NetworkTool.sharedTools.createDanger(parameters,imageArrays: listImageFile) { (data, error) in
+        NetworkTool.sharedTools.createDanger(parameters,imageArrays: getListImage()) { (data, error) in
             if error == nil{
                 self.showHint("重大隐患上传成功", duration: 1, yOffset: 0)
                 let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController

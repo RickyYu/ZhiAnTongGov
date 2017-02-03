@@ -32,6 +32,8 @@
 	<string>/appCheckRecord/nosecuritycheck/createCheckRecord.xhtml</string>
 	<key>LOAD_PUN_LIST</key>
 	<string>/appPunishment/nosecuritycheck/loadPunishmentList.xhtml</string>
+	<key>LOAD_PUNISHMENT</key>
+	<string>/appPunishment/nosecuritycheck/loadPunishment.xhtml</string>
 	<key>CHANGE_PASSWORD</key>
 	<string>/appUser/nosecuritycheck/changePassword.xhtml</string>
 	<key>GET_POINT</key>

@@ -79,11 +79,13 @@ class NormalHiddenDetail: BaseViewController {
         
         customView4 = DetailCellView(frame:CGRectMake(0, 210, SCREEN_WIDTH, 45))
         customView4.setLabelName("计划整改时间：")
+        customView4.setTimeImg()
         customView4.setRCenterLabel( "")
         
         
         customView5 = DetailCellView(frame:CGRectMake(0, 245, SCREEN_WIDTH, 45))
         customView5.setLabelName("录入时间：")
+        customView5.setTimeImg()
         customView5.setRCenterLabel( "")
         
         customView6 = DetailCellView(frame:CGRectMake(0, 165, SCREEN_WIDTH, 45))

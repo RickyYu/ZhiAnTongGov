@@ -10,15 +10,25 @@ import UIKit
 private let Identifier = "HandleTypeCell"
 class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITableViewDataSource,HiddenParameterDelegate  {
 
-    var converyDataModel = PunishmentModel()
+    var converyDataModel = UnPunishmentModel()
     var tableView: UITableView!
     let arrayData = ["初查记录", "隐患列表确认", "历史复查记录"]
     override func viewDidLoad() {
        super.viewDidLoad()
         self.navigationItem.title = "政府复查"
-        initPage()
         initTableView()
+        initPage()
         getDatas()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
+    }
+    
+    func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            customView3.textField.resignFirstResponder()
+            customView4.textField.resignFirstResponder()
+            customView5.textView.resignFirstResponder()
+        }
+        sender.cancelsTouchesInView = false
     }
     //是否生成复查表
     var customView1  = DetailCellView()
@@ -44,6 +54,7 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
              self.customView2.setRRightLabel(time)
             
         }
+        customView2.setTimeImg()
         
         
         customView3 = DetailCellView(frame:CGRectMake(0, 156, SCREEN_WIDTH, 45))
@@ -56,14 +67,15 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
         customView4.setRTextField("")
         
         
-        customView5 = DetailCellView(frame:CGRectMake(0, 246, SCREEN_WIDTH, 45))
+        customView5 = DetailCellView(frame:CGRectMake(0, 246, SCREEN_WIDTH, 145))
         customView5.setLabelName("隐患整改情况：")
-        customView5.setRTextField("")
+        customView5.setTextViewShow()
         
         
-        customView6 = DetailCellView(frame:CGRectMake(0, 291, SCREEN_WIDTH, 45))
+        customView6 = DetailCellView(frame:CGRectMake(0, 381, SCREEN_WIDTH, 45))
         customView6.setLabelName("图片:")
          customView6.setRRightLabel("")
+        customView6.setLineViewHidden()
         customView6.addOnClickListener(self, action: #selector(self.choiceImage))
         initPhoto()
         
@@ -198,7 +210,7 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
     }
     
     func initPhoto(){
-        setLoc(0, y: 336)
+        setLoc(0, y: 406)
         checkNeedAddButton()
         renderView()
         containerView.hidden = true
@@ -209,7 +221,7 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
     }
     
     func initTableView(){
-        let tableView = UITableView(frame: CGRectMake(0, 405, SCREEN_WIDTH, 160), style: .Grouped)
+        let tableView = UITableView(frame: CGRectMake(0, 450, SCREEN_WIDTH, 160), style: .Grouped)
         let headView = UIView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 1))
         headView.backgroundColor = UIColor.whiteColor()
         tableView.tableHeaderView = headView
@@ -221,9 +233,6 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
         tableView.dataSource = self
         let nib = UINib(nibName: Identifier,bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: Identifier)
-        //                      tableView.snp_makeConstraints { (make) in
-        //                       make.top.equalTo(scrollView.snp_bottom)
-        //                        }
         self.view.addSubview(tableView)
         
     }

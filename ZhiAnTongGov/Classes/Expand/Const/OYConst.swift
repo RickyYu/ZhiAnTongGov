@@ -46,7 +46,8 @@ func YMGlobalBlueColor() -> UIColor {
 }
 
 
-
+/// 间距
+let kMargin: CGFloat = 10.0
 
 /// iPhone 5
 let isIPhone5 = SCREEN_WIDTH == 568 ? true : false

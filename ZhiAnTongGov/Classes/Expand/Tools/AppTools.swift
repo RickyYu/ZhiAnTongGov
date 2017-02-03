@@ -87,7 +87,7 @@ public class AppTools {
     
     ///获取本地数据存储对象key对应的Value
     class func loadNSUserDefaultsValue(key: String) -> AnyObject? {
-        return self.getNSUserDefaults().objectForKey(key) ?? ""
+        return self.getNSUserDefaults().objectForKey(key)
     }
     
     class func loadNSUserDefaultsClassValue(key: String) -> AnyObject? {

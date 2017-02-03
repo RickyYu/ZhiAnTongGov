@@ -24,6 +24,7 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
     var customView7  = DetailMultCbCellView()
     var customView8  = DetailCellView()
     var customView9  = DetailCellView()
+    var customView10  = DetailCellView()
     var customView11  = DetailCellView()
     var customView14  = DetailCellView()
     var customView12 = DetailEditCellView()
@@ -70,11 +71,20 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    self.navigationItem.title = "检查记录--基本信息"
+        self.navigationItem.title = "检查记录--基本信息"
         let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = item;
         getDatas()
-        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
+    }
+    
+    func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            customView5.textField.resignFirstResponder()
+            customView6.textField.resignFirstResponder()
+         
+        }
+        sender.cancelsTouchesInView = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -147,6 +157,7 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
             self.checkTime = time
             self.customView4.setRRightLabel(time)
         }
+        customView4.setTimeImg()
         customView4.addOnClickListener(self, action: #selector(self.choiceCheckTimes))
         
         
@@ -216,7 +227,7 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
             customView9.setRCenterLabel(checkRecordInfoModel.executeUnit ?? "")
         }
         
-        let customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
+        customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
         customView10.setLabelName("图片：")
         customView10.setRRightLabel("")
         customView10.addOnClickListener(self, action: #selector(self.choiceImage))
@@ -242,6 +253,7 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
         customView14 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
         customView14.setLabelName("整改时间：")
         customView14.setRRightLabel("")
+        customView14.setTimeImg()
         customView14.addOnClickListener(self, action: #selector(self.choiceModifyTimes))
         
         checkView.addSubview(customView12)
@@ -469,9 +481,8 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
         checkList.cbname2 = cbName2
         checkList.cbname3 = cbName3
         checkList.cbname4 = cbName4
-        print("listImageFile = \(listImageFile.count)")
-        print("selectModel = \(selectModel.count)")
-        checkList.listfile = listImageFile
+
+        checkList.listfile = getListImage()
         
         
        
@@ -486,6 +497,7 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
     func choiceImage(){
         customView11.frame = CGRectMake(0, 500, SCREEN_WIDTH, 45)
         checkView.frame = CGRectMake(0, 545, SCREEN_WIDTH, 280)
+        customView10.setLineViewHidden()
         containerView.hidden = false
     }
 

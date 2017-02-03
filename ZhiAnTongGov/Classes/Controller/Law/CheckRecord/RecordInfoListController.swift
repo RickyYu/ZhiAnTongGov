@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecordInfoListController:BaseTabViewController,UISearchBarDelegate{
+class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSortTableViewDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     var cpyId :Int? //检查单位ID
@@ -43,10 +43,32 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate{
         
         // 设置navigation
         navigationItem.title = "检查记录"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "新增", style: UIBarButtonItemStyle.Done, target: self, action: #selector(RecordInfoListController.addRecord))
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "新增", style: UIBarButtonItemStyle.Done, target: self, action: #selector(RecordInfoListController.addRecord))
+        let barButton1 = UIBarButtonItem(title: "新增", style: UIBarButtonItemStyle.Done, target: self, action: #selector(RecordInfoListController.addRecord))
+        //设置按钮
+        let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
+        button2.setImage(UIImage(named: "daily_mgr_selected"), forState: .Normal)
+        button2.addTarget(self,action:#selector(self.sortButtonClick),forControlEvents:.TouchUpInside)
+        let barButton2 = UIBarButtonItem(customView: button2)
+        //按钮间的空隙
+        let gap = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
+                                  action: nil)
+        gap.width = 15;
+        
+        //用于消除右边边空隙，要不然按钮顶不到最边上
+        let spacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
+                                     action: nil)
+        spacer.width = -10;
+        
+        //设置按钮（注意顺序）
+        self.navigationItem.rightBarButtonItems = [spacer,barButton2,gap,barButton1]
+        
         navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
         let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = item;
+        popView.cells = ["全部","未处罚", "已处罚"]
+        popView.sorts =  ["all","unPun", "pun"]
         // 搜索内容为空时，显示全部内容
         // self.result = self.array
         //配置搜索控制器
@@ -69,6 +91,25 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate{
         getData()
         
         
+    }
+    
+    private lazy var popView: YMSortTableView = {
+        let popView = YMSortTableView()
+        popView.delegate = self
+        return popView
+    }()
+    /// 搜索条件点击
+    func sortButtonClick() {
+        popView.show()
+    }
+    var appCode = "all"
+    // MARK: - YMSortTableViewDelegate
+    func sortView(sortView: YMSortTableView, didSelectSortAtIndexPath sort: String) {
+        print(sort)
+        sortView.dismiss()
+        appCode = sort
+        reSet()
+        getData()
     }
     
     //新增
@@ -94,6 +135,8 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate{
             parameters["produceLocaleNote.appCode"] = "all"  //unPun、pun
             parameters["produceLocaleNote.checkGround"] = searchStr  //检查场所
         }
+        parameters["produceLocaleNote.appCode"] = appCode  //unPun、pun
+
        
         
         NetworkTool.sharedTools.loadGovRecords(parameters) { (recordInfoModels, error,totalCount) in

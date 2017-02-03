@@ -11,6 +11,9 @@ import UsefulPickerView
 
 
 class BaseViewController: UIViewController {
+    
+    var editText : UITextField!
+    var editView : UITextView!
     override func viewDidLoad() {
         //修改导航栏按钮颜色为白色
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -24,6 +27,21 @@ class BaseViewController: UIViewController {
         self.navigationItem.backBarButtonItem = item;
         
         self.view.backgroundColor = UIColor.whiteColor()
+//        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
+    }
+    
+//    func resignEdit(sender: UITapGestureRecognizer) {
+//        if sender.state == .Ended {
+//            print("收回键盘")
+//            handleEditText({
+//            
+//          })
+//        }
+//        sender.cancelsTouchesInView = false
+//    }
+    
+    func handleEditText(handler: () -> Void){
+       handler()
     }
     
     override func viewWillAppear(animated: Bool) {

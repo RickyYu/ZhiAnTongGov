@@ -52,7 +52,6 @@ class PhotoPickerController: UINavigationController {
                     if model.count > 0 {
                         let layout = PhotoCollectionViewController.configCustomCollectionLayout()
                         let controller = PhotoCollectionViewController(collectionViewLayout: layout)
-                        
                         controller.fetchResult = model
                         self.pushViewController(controller, animated: false)
                     }
@@ -81,8 +80,5 @@ class PhotoPickerController: UINavigationController {
             self.imageSelectDelegate?.onImageSelectFinished(PhotoImage.instance.selectedImage)
         }
     }
-    
-    
-    
 
 }

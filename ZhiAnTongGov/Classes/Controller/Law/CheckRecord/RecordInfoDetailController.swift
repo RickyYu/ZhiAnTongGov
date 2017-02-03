@@ -77,13 +77,6 @@ class RecordInfoDetailController: BaseViewController {
         customView8.setRCenterLabel(recordDetailModel.noter ?? "")
         customView9.setRCenterLabel(recordDetailModel.executeUnit ?? "")
         customView10.setRCenterLabel(recordDetailModel.checkTable ?? "")
-//        let isSendCleanUp = recordDetailModel.sendCleanUp as Bool
-//        if  isSendCleanUp {
-//            customView10.setRCenterLabel("是")
-//        }else{
-//            customView10.setRCenterLabel("否")
-//        }
-       // customView11.setRCenterLabel(recordDetailModel.cleanUpTimeLimit ?? "")
         self.imageArray = (recordDetailModel?.imageInfos)!
         if !imageArray.isEmpty{
             submitBtn = UIButton(frame:CGRectMake(0, 650, SCREEN_WIDTH, 45))
@@ -107,13 +100,13 @@ class RecordInfoDetailController: BaseViewController {
         self.scrollView.addSubview(submitBtn)
     }
     func initPage(){
-        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 799))
+        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT))
         scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
         scrollView!.scrollsToTop = false
-        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 800)
+        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT+150)
         customViewT = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customViewT.setLabelName("企业名称：")
         customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
@@ -122,6 +115,7 @@ class RecordInfoDetailController: BaseViewController {
         customView3.setLabelName("联系人：")
         customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
         customView4.setLabelName("检查时间：")
+        customView4.setTimeImg()
         customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("检查场所：")
         customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
@@ -137,6 +131,7 @@ class RecordInfoDetailController: BaseViewController {
         customView10.setLabelName("行业检查表：")
         customView12 = DetailCellView(frame:CGRectMake(0, 450, SCREEN_WIDTH, 45))
         customView12.setLabelName("图片：")
+        customView12.setLineViewHidden()
 
 
         self.scrollView.addSubview(customViewT)
@@ -157,7 +152,7 @@ class RecordInfoDetailController: BaseViewController {
 
     
     func addPun(){
-        let controller = PunInfoController()
+        let controller = UnPunInfoController()
         controller.converyJcjlId = recordDetailModel.produceLocaleNoteId
         controller.converyCompanyId = String(recordDetailModel.companyId)
         controller.isCheck = true

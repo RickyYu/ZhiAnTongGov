@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		9530592E689AD270841869C5 /* Pods_ZhiAnTongGov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9F8EC8318E9582C49DF326 /* Pods_ZhiAnTongGov.framework */; };
 		9C11298D1E3086BB00E2C73E /* huzhou_enum.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9C11298C1E3086BB00E2C73E /* huzhou_enum.xml */; };
-		9C11298F1E31B38000E2C73E /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C11298E1E31B38000E2C73E /* test.xib */; };
 		9C1129911E31D3C200E2C73E /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129901E31D3C200E2C73E /* TestController.swift */; };
 		9C1129931E31F53F00E2C73E /* RecordHideenPassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129921E31F53F00E2C73E /* RecordHideenPassController.swift */; };
 		9C1129951E32077300E2C73E /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129941E32077300E2C73E /* BaseTabViewController.swift */; };
+		9C1129991E35F1E300E2C73E /* YMSortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129961E35F1E300E2C73E /* YMSortCell.swift */; };
+		9C11299A1E35F1E300E2C73E /* YMSortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C1129971E35F1E300E2C73E /* YMSortCell.xib */; };
+		9C11299B1E35F1E300E2C73E /* YMSortTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129981E35F1E300E2C73E /* YMSortTableView.swift */; };
+		9C11299D1E3601C300E2C73E /* PunishmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C11299C1E3601C300E2C73E /* PunishmentModel.swift */; };
+		9C11299F1E36FB0B00E2C73E /* PunInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C11299E1E36FB0B00E2C73E /* PunInfoController.swift */; };
+		9C1129A11E37047E00E2C73E /* PunishmentInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1129A01E37047E00E2C73E /* PunishmentInfoModel.swift */; };
 		9C2BEB521E23683400C57F5D /* CheckListVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BEB511E23683400C57F5D /* CheckListVo.swift */; };
 		9C2BEB541E2369DC00C57F5D /* HyCheckItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BEB531E2369DC00C57F5D /* HyCheckItemInfo.swift */; };
 		9C2C42581DEE770B001859CB /* ModifyPwdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2C42571DEE770B001859CB /* ModifyPwdController.swift */; };
@@ -112,8 +117,8 @@
 		9CB208B41E123EAA009DF235 /* LawPunListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208B31E123EAA009DF235 /* LawPunListController.swift */; };
 		9CB208B61E1242C9009DF235 /* ReviewInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208B51E1242C9009DF235 /* ReviewInfoCell.swift */; };
 		9CB208B81E1242E7009DF235 /* ReviewInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB208B71E1242E7009DF235 /* ReviewInfoCell.xib */; };
-		9CB208BA1E124AEC009DF235 /* PunishmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208B91E124AEC009DF235 /* PunishmentModel.swift */; };
-		9CB208BE1E125A27009DF235 /* PunInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208BD1E125A27009DF235 /* PunInfoController.swift */; };
+		9CB208BA1E124AEC009DF235 /* UnPunishmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208B91E124AEC009DF235 /* UnPunishmentModel.swift */; };
+		9CB208BE1E125A27009DF235 /* UnPunInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208BD1E125A27009DF235 /* UnPunInfoController.swift */; };
 		9CB208C01E1268F5009DF235 /* CompanyInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208BF1E1268F5009DF235 /* CompanyInfoModel.swift */; };
 		9CB208C21E126AA7009DF235 /* HiddenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208C11E126AA7009DF235 /* HiddenModel.swift */; };
 		9CB208C41E126B64009DF235 /* HistoryReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208C31E126B64009DF235 /* HistoryReviewModel.swift */; };
@@ -126,6 +131,7 @@
 		9CB208D21E14E57F009DF235 /* GovReviewDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D11E14E57F009DF235 /* GovReviewDetailController.swift */; };
 		9CB208D51E14F405009DF235 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D41E14F405009DF235 /* ChartModel.swift */; };
 		9CB208D71E1500E1009DF235 /* McountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D61E1500E1009DF235 /* McountModel.swift */; };
+		9CD3CA011E44707600A33DBF /* PViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3CA001E44707600A33DBF /* PViewController.swift */; };
 		9CD75EDD1E2DA58A00097566 /* LocInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD75EDC1E2DA58A00097566 /* LocInfoModel.swift */; };
 		9CD75EDF1E2DDB9800097566 /* PunTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD75EDE1E2DDB9800097566 /* PunTypeEnum.swift */; };
 		9CE87D811E26528700A355F2 /* AlbumToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE87D6D1E26528700A355F2 /* AlbumToolbarView.swift */; };
@@ -177,10 +183,15 @@
 /* Begin PBXFileReference section */
 		6A1C344B1D662DBA427ED140 /* Pods-ZhiAnTongGov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhiAnTongGov.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZhiAnTongGov/Pods-ZhiAnTongGov.release.xcconfig"; sourceTree = "<group>"; };
 		9C11298C1E3086BB00E2C73E /* huzhou_enum.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = huzhou_enum.xml; sourceTree = "<group>"; };
-		9C11298E1E31B38000E2C73E /* test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
 		9C1129901E31D3C200E2C73E /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		9C1129921E31F53F00E2C73E /* RecordHideenPassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordHideenPassController.swift; sourceTree = "<group>"; };
 		9C1129941E32077300E2C73E /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
+		9C1129961E35F1E300E2C73E /* YMSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YMSortCell.swift; sourceTree = "<group>"; };
+		9C1129971E35F1E300E2C73E /* YMSortCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMSortCell.xib; sourceTree = "<group>"; };
+		9C1129981E35F1E300E2C73E /* YMSortTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YMSortTableView.swift; sourceTree = "<group>"; };
+		9C11299C1E3601C300E2C73E /* PunishmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunishmentModel.swift; sourceTree = "<group>"; };
+		9C11299E1E36FB0B00E2C73E /* PunInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunInfoController.swift; sourceTree = "<group>"; };
+		9C1129A01E37047E00E2C73E /* PunishmentInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunishmentInfoModel.swift; sourceTree = "<group>"; };
 		9C2BEB511E23683400C57F5D /* CheckListVo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListVo.swift; sourceTree = "<group>"; };
 		9C2BEB531E2369DC00C57F5D /* HyCheckItemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyCheckItemInfo.swift; sourceTree = "<group>"; };
 		9C2C42561DED1BED001859CB /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
@@ -290,8 +301,8 @@
 		9CB208B31E123EAA009DF235 /* LawPunListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LawPunListController.swift; sourceTree = "<group>"; };
 		9CB208B51E1242C9009DF235 /* ReviewInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewInfoCell.swift; sourceTree = "<group>"; };
 		9CB208B71E1242E7009DF235 /* ReviewInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewInfoCell.xib; sourceTree = "<group>"; };
-		9CB208B91E124AEC009DF235 /* PunishmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunishmentModel.swift; sourceTree = "<group>"; };
-		9CB208BD1E125A27009DF235 /* PunInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunInfoController.swift; sourceTree = "<group>"; };
+		9CB208B91E124AEC009DF235 /* UnPunishmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnPunishmentModel.swift; sourceTree = "<group>"; };
+		9CB208BD1E125A27009DF235 /* UnPunInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnPunInfoController.swift; sourceTree = "<group>"; };
 		9CB208BF1E1268F5009DF235 /* CompanyInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyInfoModel.swift; sourceTree = "<group>"; };
 		9CB208C11E126AA7009DF235 /* HiddenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenModel.swift; sourceTree = "<group>"; };
 		9CB208C31E126B64009DF235 /* HistoryReviewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryReviewModel.swift; sourceTree = "<group>"; };
@@ -304,6 +315,7 @@
 		9CB208D11E14E57F009DF235 /* GovReviewDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GovReviewDetailController.swift; sourceTree = "<group>"; };
 		9CB208D41E14F405009DF235 /* ChartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
 		9CB208D61E1500E1009DF235 /* McountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = McountModel.swift; sourceTree = "<group>"; };
+		9CD3CA001E44707600A33DBF /* PViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PViewController.swift; sourceTree = "<group>"; };
 		9CD75EDC1E2DA58A00097566 /* LocInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocInfoModel.swift; sourceTree = "<group>"; };
 		9CD75EDE1E2DDB9800097566 /* PunTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunTypeEnum.swift; sourceTree = "<group>"; };
 		9CE87D6D1E26528700A355F2 /* AlbumToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToolbarView.swift; sourceTree = "<group>"; };
@@ -437,11 +449,11 @@
 		9C8308D61DF4FFE3001B107E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9CD3CA001E44707600A33DBF /* PViewController.swift */,
 				9C8308D71DF4FFFE001B107E /* LawViewController.swift */,
 				9C1129901E31D3C200E2C73E /* TestController.swift */,
 				9C5FE6CA1E1B7357009DB317 /* TestSnapController.swift */,
 				9C5FE6CC1E1B791B009DB317 /* TestCellView.swift */,
-				9C11298E1E31B38000E2C73E /* test.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -550,7 +562,8 @@
 			isa = PBXGroup;
 			children = (
 				9CB208B31E123EAA009DF235 /* LawPunListController.swift */,
-				9CB208BD1E125A27009DF235 /* PunInfoController.swift */,
+				9CB208BD1E125A27009DF235 /* UnPunInfoController.swift */,
+				9C11299E1E36FB0B00E2C73E /* PunInfoController.swift */,
 				9CB208CB1E135D4D009DF235 /* CheckRecordDetailController.swift */,
 				9CB208CD1E135E13009DF235 /* HistoryRecordListController.swift */,
 			);
@@ -717,11 +730,13 @@
 		9C8619FF1DE55EC700CD00FC /* LawPun */ = {
 			isa = PBXGroup;
 			children = (
-				9CB208B91E124AEC009DF235 /* PunishmentModel.swift */,
+				9CB208B91E124AEC009DF235 /* UnPunishmentModel.swift */,
+				9C11299C1E3601C300E2C73E /* PunishmentModel.swift */,
 				9CB208BF1E1268F5009DF235 /* CompanyInfoModel.swift */,
 				9CB208C11E126AA7009DF235 /* HiddenModel.swift */,
 				9CB208C31E126B64009DF235 /* HistoryReviewModel.swift */,
 				9CB208C51E126BD0009DF235 /* RecordDetailModel.swift */,
+				9C1129A01E37047E00E2C73E /* PunishmentInfoModel.swift */,
 			);
 			path = LawPun;
 			sourceTree = "<group>";
@@ -873,6 +888,9 @@
 		9C861A161DE55EC700CD00FC /* LawPun */ = {
 			isa = PBXGroup;
 			children = (
+				9C1129961E35F1E300E2C73E /* YMSortCell.swift */,
+				9C1129971E35F1E300E2C73E /* YMSortCell.xib */,
+				9C1129981E35F1E300E2C73E /* YMSortTableView.swift */,
 			);
 			path = LawPun;
 			sourceTree = "<group>";
@@ -1079,6 +1097,7 @@
 				TargetAttributes = {
 					9C66DF511DDC35A400F00E1F = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = FVHBBAMN6R;
 					};
 					9C66DF651DDC35A400F00E1F = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1124,7 +1143,6 @@
 				9CE87D861E26528700A355F2 /* PhotoAlbumTableViewCell.xib in Resources */,
 				9C8308F51DF95591001B107E /* Province.plist in Resources */,
 				9CB2088A1E0904BC009DF235 /* CpyInfoCell.xib in Resources */,
-				9C11298F1E31B38000E2C73E /* test.xib in Resources */,
 				9C7D8AC71DE430B9005644E7 /* Classes in Resources */,
 				9CAA28BB1E1BA4D30085BB96 /* IndustrySelectCell.xib in Resources */,
 				9CB208361E03F657009DF235 /* Main.storyboard in Resources */,
@@ -1137,6 +1155,7 @@
 				9CB2083A1E041713009DF235 /* InfoDemoCell.xib in Resources */,
 				9C8308F31DF95591001B107E /* Area.plist in Resources */,
 				9CE87D881E26528700A355F2 /* photoCollectionViewCell.xib in Resources */,
+				9C11299A1E35F1E300E2C73E /* YMSortCell.xib in Resources */,
 				9C861A1E1DE55EC700CD00FC /* CODE LIGHT.OTF in Resources */,
 				9C861A1F1DE55EC700CD00FC /* FZXQJW_0.TTF in Resources */,
 			);
@@ -1213,7 +1232,7 @@
 			files = (
 				9C861A1B1DE55EC700CD00FC /* LoginViewController.swift in Sources */,
 				9CB208861E07E663009DF235 /* InfoMsdsDetailCell.swift in Sources */,
-				9CB208BA1E124AEC009DF235 /* PunishmentModel.swift in Sources */,
+				9CB208BA1E124AEC009DF235 /* UnPunishmentModel.swift in Sources */,
 				9CB208C61E126BD0009DF235 /* RecordDetailModel.swift in Sources */,
 				9CA9407E1DEEC17F00550044 /* Info.swift in Sources */,
 				9CE87D8C1E26528700A355F2 /* PhotoImageManager.swift in Sources */,
@@ -1275,6 +1294,7 @@
 				9CB2083E1E0429F5009DF235 /* InfoMsdsListController.swift in Sources */,
 				9CAA28C51E1CF4B60085BB96 /* RecordHiddenMajorController.swift in Sources */,
 				9C861A311DE57A8B00CD00FC /* BaseModel.swift in Sources */,
+				9C11299D1E3601C300E2C73E /* PunishmentModel.swift in Sources */,
 				9CE87DA51E27AEAF00A355F2 /* ImageInfoModel.swift in Sources */,
 				9CE87D9F1E279B2300A355F2 /* CheckHiddenModel.swift in Sources */,
 				9C861A3D1DE57F7F00CD00FC /* Cell.swift in Sources */,
@@ -1294,7 +1314,7 @@
 				9CE87D8E1E26528700A355F2 /* PhotoPickerController.swift in Sources */,
 				9C8308E71DF66D72001B107E /* CpyInfoDetailController.swift in Sources */,
 				9CB2082E1E03D8A8009DF235 /* RefreshControl.swift in Sources */,
-				9CB208BE1E125A27009DF235 /* PunInfoController.swift in Sources */,
+				9CB208BE1E125A27009DF235 /* UnPunInfoController.swift in Sources */,
 				9CE87D911E26528700A355F2 /* PhotoPreviewToolbarView.swift in Sources */,
 				9CE87D8D1E26528700A355F2 /* PhotoPickerConfig.swift in Sources */,
 				9CE87D831E26528700A355F2 /* NSIndexSet+Extension.swift in Sources */,
@@ -1309,17 +1329,21 @@
 				9CB2082F1E03D8A8009DF235 /* RefreshTipView.swift in Sources */,
 				9CB208CE1E135E13009DF235 /* HistoryRecordListController.swift in Sources */,
 				9C8308EF1DF7E7F3001B107E /* DetailCellView.swift in Sources */,
+				9CD3CA011E44707600A33DBF /* PViewController.swift in Sources */,
 				9CAA28CB1E1F5D650085BB96 /* DetailEditCellView.swift in Sources */,
 				9CE87D8F1E26528700A355F2 /* PhotoPreviewBottomBarView.swift in Sources */,
 				9CE87DA11E27A42C00A355F2 /* NormalHiddenDetail.swift in Sources */,
 				9C8309031DFE80B1001B107E /* RouteNavViewController.swift in Sources */,
 				9CD75EDD1E2DA58A00097566 /* LocInfoModel.swift in Sources */,
+				9C11299B1E35F1E300E2C73E /* YMSortTableView.swift in Sources */,
 				9C8309011DFE6BA1001B107E /* LocationSaveController.swift in Sources */,
 				9CB208AC1E0BE726009DF235 /* AddRecordController.swift in Sources */,
 				9CA9408E1DF0164200550044 /* Category.swift in Sources */,
 				9C861A3B1DE57F1700CD00FC /* Company.swift in Sources */,
+				9C11299F1E36FB0B00E2C73E /* PunInfoController.swift in Sources */,
 				9CB208C21E126AA7009DF235 /* HiddenModel.swift in Sources */,
 				9CB208271E028C55009DF235 /* RecordInfoCell.swift in Sources */,
+				9C1129991E35F1E300E2C73E /* YMSortCell.swift in Sources */,
 				9CB208841E07E5DA009DF235 /* InfoMsdsDetailController.swift in Sources */,
 				9CB208401E077C4B009DF235 /* InfoDetailController.swift in Sources */,
 				9CB208331E03EED1009DF235 /* InfoListController.swift in Sources */,
@@ -1329,6 +1353,7 @@
 				9CE87D941E26528700A355F2 /* UIImage+Extension.swift in Sources */,
 				9CE87D891E26528700A355F2 /* PhotoCollectionViewController.swift in Sources */,
 				9C8308E11DF64B8C001B107E /* CpyInfoListExController.swift in Sources */,
+				9C1129A11E37047E00E2C73E /* PunishmentInfoModel.swift in Sources */,
 				9C8308E31DF658A0001B107E /* CpyInfoListController.swift in Sources */,
 				9C2C42581DEE770B001859CB /* ModifyPwdController.swift in Sources */,
 				9CB208461E07C75B009DF235 /* UILabel+LeftTopAlign.swift in Sources */,
@@ -1426,6 +1451,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "ba269420-2374-41d6-9c04-ecd40d7d677a";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1464,6 +1490,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "ba269420-2374-41d6-9c04-ecd40d7d677a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1474,6 +1501,8 @@
 			baseConfigurationReference = E729849BAAD541AC00D21F01 /* Pods-ZhiAnTongGov.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
@@ -1484,9 +1513,11 @@
 					"\"${PODS_ROOT}/BaiduMapKit/BaiduMapKit\"",
 				);
 				INFOPLIST_FILE = ZhiAnTongGov/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.smartergov.ZhiAnTongGov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ZhiAnTongGov/Classes/ZhiAnTongGov_Bridge.h;
 			};
 			name = Debug;
@@ -1496,6 +1527,8 @@
 			baseConfigurationReference = 6A1C344B1D662DBA427ED140 /* Pods-ZhiAnTongGov.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
@@ -1506,9 +1539,11 @@
 					"\"${PODS_ROOT}/BaiduMapKit/BaiduMapKit\"",
 				);
 				INFOPLIST_FILE = ZhiAnTongGov/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.smartergov.ZhiAnTongGov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ZhiAnTongGov/Classes/ZhiAnTongGov_Bridge.h;
 			};
 			name = Release;

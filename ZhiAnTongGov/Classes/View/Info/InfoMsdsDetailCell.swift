@@ -7,12 +7,8 @@
 //
 
 import UIKit
-
-
-
-
 class InfoMsdsDetailCell: UIView {
-    
+
     /// 标题
     private lazy var infoTitile : UILabel = {
         let label = UILabel()

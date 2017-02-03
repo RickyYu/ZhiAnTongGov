@@ -85,12 +85,7 @@ class RecordInfoModel:BaseModel,NSCoding{
     init(dict: [String: AnyObject]) {
         super.init()
         self.id = dict["id"] as? Int
-        
-        do{
-        try self.checkGround = dict["checkGround"] as? String ?? ""
-        }catch{
-            self.checkGround = ""
-        }
+        self.checkGround = dict["checkGround"] as? String ?? ""
         self.checkTimeBegin = dict["checkTimeBegin"] as? String
         self.content = dict["content"] as? String
         self.executeUnit = dict["executeUnit"] as? String

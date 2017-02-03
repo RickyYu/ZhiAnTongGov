@@ -25,20 +25,29 @@ class NetworkTool: Alamofire.Manager {
     //MARK: - 登陆
     func login(parameters:[String:AnyObject],finished:(login:Login!,error:String!)->()){
           SVProgressHUD.showWithStatus("正在加载...")
-        sendPostRequest(AppTools.getServiceURLWithYh("LOGIN"), parameters: parameters) { (response) in
-            guard response!.result.isSuccess else {
+        let identify = ""
+        var addParameters = parameters
+        addParameters["client"] = "ios"
+        let key = "SAFETYS_CLIENT_AUTH_KEY_2016="+identify
+        let headers = [
+            "Cookie": key,
+            "Accept-Language" : "zh-CN,zh;q=0.8,en;q=0.6"
+        ]
+        //"Content-Type": "application/json;charset=UTF-8"  加上此header报type不能为空
+        request(.POST, AppTools.getServiceURLWithYh("LOGIN"), parameters: addParameters, encoding: .URL, headers: headers).responseJSON(queue: dispatch_get_main_queue(), options: []){(response) in
+            guard response.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
                 finished(login:nil,error: "服务器异常")
                 return
             }
-            if let dictValue = response!.result.value{
+            if let dictValue = response.result.value{
                 let dict = JSON(dictValue)
                 print("login.dict = \(dict)")
                 let success = dict["success"].boolValue
                 let message = dict["msg"].stringValue
                 //  字典转成模型
                 if success {
-                  let login = Login(json:dict)
+                    let login = Login(json:dict)
                     finished(login: login, error: nil)
                     
                 }else{
@@ -49,9 +58,37 @@ class NetworkTool: Alamofire.Manager {
             }else {
                 finished(login: nil,error: "数据异常")
             }
-            
-            
         }
+        
+        
+        
+//        sendPostRequest(AppTools.getServiceURLWithYh("LOGIN"), parameters: parameters) { (response) in
+//            guard response!.result.isSuccess else {
+//                SVProgressHUD.showErrorWithStatus("加载失败...")
+//                finished(login:nil,error: "服务器异常")
+//                return
+//            }
+//            if let dictValue = response!.result.value{
+//                let dict = JSON(dictValue)
+//                print("login.dict = \(dict)")
+//                let success = dict["success"].boolValue
+//                let message = dict["msg"].stringValue
+//                //  字典转成模型
+//                if success {
+//                  let login = Login(json:dict)
+//                    finished(login: login, error: nil)
+//                    
+//                }else{
+//                    
+//                    finished(login: nil,error: message) //success  false
+//                }
+//                SVProgressHUD.dismiss()
+//            }else {
+//                finished(login: nil,error: "数据异常")
+//            }
+//            
+//            
+//        }
         
     }
     //MARK: - 修改密码
@@ -961,10 +998,10 @@ class NetworkTool: Alamofire.Manager {
                     }
                     
                 }else{
-                    finished(mSDSInfoModels: nil,error: message,totalCount: nil) //success  false
+                    finished(mSDSInfoModels: nil,error: message,totalCount: 0) //success  false
                 }
             }else {
-                finished(mSDSInfoModels: nil,error: "数据异常",totalCount: nil)
+                finished(mSDSInfoModels: nil,error: "数据异常",totalCount: 0)
             }
             
         }
@@ -1110,7 +1147,7 @@ class NetworkTool: Alamofire.Manager {
     
     //MARK:  政府复查
     //获取待复查列表
-    func loadProduceCallBacks(parameters:[String:AnyObject],finished: (datas: [PunishmentModel]!, error: String!,totalCount:Int!)->()) {
+    func loadProduceCallBacks(parameters:[String:AnyObject],finished: (datas: [UnPunishmentModel]!, error: String!,totalCount:Int!)->()) {
         SVProgressHUD.showWithStatus("正在加载...")
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_PRODUCE_CALLBACKS"), parameters: parameters) { (response) in
             
@@ -1128,9 +1165,9 @@ class NetworkTool: Alamofire.Manager {
                 //  字典转成模型
                 if success {
                     if let items = dict["json"].arrayObject {
-                        var listDatas = [PunishmentModel]()
+                        var listDatas = [UnPunishmentModel]()
                         for item in items {
-                            let homeItem = PunishmentModel(dict: item as! [String: AnyObject])
+                            let homeItem = UnPunishmentModel(dict: item as! [String: AnyObject])
                             listDatas.append(homeItem)
                         }
                         finished(datas: listDatas,error: nil,totalCount: totalCount)
@@ -1150,7 +1187,7 @@ class NetworkTool: Alamofire.Manager {
     }
     
     //上传重大隐患
-    func createDangerGorver(parameters:[String:AnyObject],finished: (datas: [PunishmentModel]!, error: String!)->()) {
+    func createDangerGorver(parameters:[String:AnyObject],finished: (datas: [UnPunishmentModel]!, error: String!)->()) {
         SVProgressHUD.showWithStatus("正在加载...")
         self.sendPostRequest(AppTools.getServiceURLWithYh("CREATE_DANGGER_GORVER"), parameters: parameters) { (response) in
             
@@ -1250,7 +1287,7 @@ class NetworkTool: Alamofire.Manager {
     
     //MARK:  行政处罚
     //获取未处罚列表
-    func loadUnpunLists(parameters:[String:AnyObject],finished: (datas: [PunishmentModel]!, error: String!,totalCount:Int!)->()) {
+    func loadUnpunLists(parameters:[String:AnyObject],finished: (datas: [UnPunishmentModel]!, error: String!,totalCount:Int!)->()) {
         SVProgressHUD.showWithStatus("正在加载...")
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_UNPUN_LIST"), parameters: parameters) { (response) in
             
@@ -1261,16 +1298,16 @@ class NetworkTool: Alamofire.Manager {
             }
             if let dictValue = response!.result.value{
                 let dict = JSON(dictValue)
-                print("loadProduceCallBacks.dict = \(dict)")
+                print("loadUnpunLists.dict = \(dict)")
                 let success = dict["success"].boolValue
                 let message = dict["msg"].stringValue
                 let totalCount = dict["totalCount"].intValue
                 //  字典转成模型
                 if success {
                     if let items = dict["json"].arrayObject {
-                        var listDatas = [PunishmentModel]()
+                        var listDatas = [UnPunishmentModel]()
                         for item in items {
-                            let homeItem = PunishmentModel(dict: item as! [String: AnyObject])
+                            let homeItem = UnPunishmentModel(dict: item as! [String: AnyObject])
                             listDatas.append(homeItem)
                         }
                         finished(datas: listDatas,error: nil,totalCount: totalCount)
@@ -1300,7 +1337,7 @@ class NetworkTool: Alamofire.Manager {
             }
             if let dictValue = response!.result.value{
                 let dict = JSON(dictValue)
-                print("loadProduceCallBacks.dict = \(dict)")
+                print("loadPunLists.dict = \(dict)")
                 let success = dict["success"].boolValue
                 let message = dict["msg"].stringValue
                 let totalCount = dict["totalCount"].intValue
@@ -1321,6 +1358,37 @@ class NetworkTool: Alamofire.Manager {
                     finished(datas: nil,error: message,totalCount: nil) //success  false
                 }
                  SVProgressHUD.dismiss()
+            }else {
+                finished(datas: nil,error: "数据异常",totalCount: nil)
+            }
+            
+        }
+    }
+    
+    //获取已处罚详情
+    func loadPunishment(parameters:[String:AnyObject],finished: (datas: PunishmentInfoModel!, error: String!,totalCount:Int!)->()) {
+        SVProgressHUD.showWithStatus("正在加载...")
+        self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_PUNISHMENT"), parameters: parameters) { (response) in
+            guard response!.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus("加载失败...")
+                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                return
+            }
+            if let dictValue = response!.result.value{
+                let dict = JSON(dictValue)
+                print("loadPunLists.dict = \(dict)")
+                let success = dict["success"].boolValue
+                let message = dict["msg"].stringValue
+                let totalCount = dict["totalCount"].intValue
+                //  字典转成模型
+                if success {
+                    let data = PunishmentInfoModel(dict:dict["entity"].dictionaryObject!)
+                    finished(datas: data,error: nil,totalCount: totalCount)
+         
+                }else{
+                    finished(datas: nil,error: message,totalCount: nil) //success  false
+                }
+                SVProgressHUD.dismiss()
             }else {
                 finished(datas: nil,error: "数据异常",totalCount: nil)
             }

@@ -8,9 +8,9 @@
 
 import UIKit
 
-//企业查询列表界面
+//企业处罚列表界面
 private let Identifier = "ReviewInfoCell"
-class LawPunListController:BaseTabViewController,UISearchBarDelegate{
+class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTableViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -20,8 +20,11 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
     var currentPage : Int = 0  //加载更多时候+10
     //总条数
     var totalCount : Int = 0
-    var listDatas  = [PunishmentModel]()
-    var result = [PunishmentModel]()
+    var UnPunListDatas  = [UnPunishmentModel]()
+    var PunListDatas = [PunishmentModel]()
+    
+    
+    var UnPunResult = [UnPunishmentModel]()
     // 是否加载更多
     private var toLoadMore = false
     var searchStr : String = ""
@@ -34,6 +37,18 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         //修改导航栏背景颜色
         self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
+        
+        let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
+        button2.setImage(UIImage(named: "daily_mgr_selected"), forState: .Normal)
+        button2.addTarget(self,action:#selector(self.sortButtonClick),forControlEvents:.TouchUpInside)
+        let barButton2 = UIBarButtonItem(customView: button2)
+         navigationItem.rightBarButtonItem = barButton2
+        popView.cells = ["未处罚", "已处罚"]
+        popView.sorts =  ["unPun", "Pun"]
+
+        
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "daily_mgr_selected"), style: .Plain, target: self, action: #selector(sortButtonClick))
 
         //修改导航栏按钮返回只有箭头
         let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
@@ -43,9 +58,36 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
     override func viewWillAppear(animated: Bool) {
         if isRefresh{
             reSet()
-            getDatas()
+            getUnPunDatas()
         }
     }
+    private lazy var popView: YMSortTableView = {
+        let popView = YMSortTableView()
+        popView.delegate = self
+        return popView
+    }()
+    /// 搜索条件点击
+    func sortButtonClick() {
+        popView.show()
+    }
+    var isPun :Bool = false // false 未处罚   true 已经处罚
+    // MARK: - YMSortTableViewDelegate
+    func sortView(sortView: YMSortTableView, didSelectSortAtIndexPath sort: String) {
+        print(sort)
+        sortView.dismiss()
+        if sort == "Pun"{
+            reSet()
+            isPun = true
+            getPunDatas()
+        }else{
+            reSet()
+            isPun = false
+            getUnPunDatas()
+        }
+    }
+    
+    
+ 
     
     private func initPage(){
         // 设置navigation
@@ -70,12 +112,69 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
         
         // 设置下拉刷新控件
         refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
+        if isPun {
+            refreshControl?.addTarget(self, action: #selector(self.getPunDatas), forControlEvents: .ValueChanged)
+        }else{
+            refreshControl?.addTarget(self, action: #selector(self.getUnPunDatas), forControlEvents: .ValueChanged)
+        }
         refreshControl?.beginRefreshing()
-        getDatas()
+        getUnPunDatas()
     }
     
-    func getDatas(){
+    func getPunDatas(){
+        
+        if refreshControl!.refreshing{
+            reSet()
+        }
+        var parameters = [String : AnyObject]()
+        parameters["pagination.pageSize"] = PAGE_SIZE
+        parameters["pagination.itemCount"] = currentPage
+        parameters["pagination.totalCount"] = totalCount
+        if !AppTools.isEmpty(searchStr){
+            parameters["companyName"] = searchStr
+        }
+        
+        //NetworkTool.sharedTools.loadPunLists
+        NetworkTool.sharedTools.loadPunLists(parameters) { (datas, error,totalCount) in
+            
+            // 停止加载数据
+            if self.refreshControl!.refreshing{
+                self.refreshControl!.endRefreshing()
+            }
+            
+            if error == nil{
+                if self.currentPage>totalCount{
+                    self.totalCount = totalCount!
+                    self.showHint("已经到最后了", duration: 2, yOffset: 0)
+                    self.currentPage -= 10
+                    return
+                }
+                self.toLoadMore = false
+                self.PunListDatas += datas!
+                
+            }else{
+                // 获取数据失败后
+                self.currentPage -= 10
+                if self.toLoadMore{
+                    self.toLoadMore = false
+                }
+                self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.alertNotice("提示", message: error, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }
+            }
+            
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+
+ 
+    func getUnPunDatas(){
         
         if refreshControl!.refreshing{
             reSet()
@@ -104,7 +203,7 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
                     return
                 }
                 self.toLoadMore = false
-                self.listDatas += datas!
+                self.UnPunListDatas += datas!
                 
             }else{
                 // 获取数据失败后
@@ -127,22 +226,40 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.listDatas.count ?? 0
+        if isPun{
+        return self.PunListDatas.count ?? 0
+        }else{
+        return self.UnPunListDatas.count ?? 0
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(Identifier, forIndexPath: indexPath) as! ReviewInfoCell
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        let count = listDatas.count ?? 0
+        if isPun{
+            let count = PunListDatas.count ?? 0
+            if count > 0 {
+                let data = PunListDatas[indexPath.row]
+                cell.punishmentModel = data
+            }
+            if count > 0 && indexPath.row == count-1 && !toLoadMore{
+                toLoadMore = true
+                currentPage += 10
+                getPunDatas()
+            }
+
+        }else{
+        let count = UnPunListDatas.count ?? 0
         if count > 0 {
-            let data = listDatas[indexPath.row]
-            cell.punishmentModel = data
+            let data = UnPunListDatas[indexPath.row]
+            cell.unPunishmentModel = data
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
             currentPage += 10
-            getDatas()
+            getUnPunDatas()
+        }
         }
         return cell
     }
@@ -151,10 +268,12 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        searchBar.resignFirstResponder()
         reSet()
-        getDatas()
-        
+        if isPun{
+            getPunDatas()
+        }else{
+            getUnPunDatas()
+        }
     }
     
     // 取消按钮触发事件
@@ -164,7 +283,11 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
         searchBar.text = ""
         searchStr = ""
         reSet()
-        getDatas()
+        if isPun{
+            getPunDatas()
+        }else{
+            getUnPunDatas()
+        }
     }
     
     
@@ -182,11 +305,18 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
 
      //给新进入的界面进行传值
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let controller = PunInfoController()
-        let object : PunishmentModel = listDatas[indexPath.row] as PunishmentModel
-        controller.converyJcjlId = object.jcjlId
-        controller.converyCompanyId = String(object.companyId)
-        self.navigationController?.pushViewController(controller, animated: true)
+        if isPun{
+            let controller = PunInfoController()
+            controller.punishmentId = String((self.PunListDatas[indexPath.row] as PunishmentModel).id)
+             self.navigationController?.pushViewController(controller, animated: true)
+        
+        }else{
+            let controller = UnPunInfoController()
+            let object : UnPunishmentModel = self.UnPunListDatas[indexPath.row] as UnPunishmentModel
+            controller.converyJcjlId = object.jcjlId
+            controller.converyCompanyId = String(object.companyId)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     
@@ -194,8 +324,14 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate{
         // 重置当前页
         currentPage = 0
         // 重置数组
-        listDatas.removeAll()
-        listDatas = [PunishmentModel]()
+        if isPun{
+            PunListDatas.removeAll()
+            PunListDatas = [PunishmentModel]()
+        }else{
+            UnPunListDatas.removeAll()
+            UnPunListDatas = [UnPunishmentModel]()
+        }
+    
     }
     
 }

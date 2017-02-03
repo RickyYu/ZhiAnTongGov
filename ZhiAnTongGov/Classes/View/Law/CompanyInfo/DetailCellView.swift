@@ -21,7 +21,7 @@ class DetailCellView: UIView {
     var rightImg  = UIImageView()
     var centerLabel = UILabel()
     var rightCheckBtn = UIButton()
-    
+    var textView = UITextView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,10 +46,13 @@ class DetailCellView: UIView {
         lineView.backgroundColor = UIColor.lightGrayColor()
         
         
-        
         self.addSubview(label)
         self.addSubview(textField)
         self.addSubview(lineView)
+    }
+    
+    func setLineViewHidden(){
+        self.lineView.hidden = true
     }
     
     func setLabelName(name:String) {
@@ -70,16 +73,30 @@ class DetailCellView: UIView {
         rightImg  = UIImageView()
         rightImg.image = UIImage(named: "right_arrow")
         rightImg.frame = CGRectMake(SCREEN_WIDTH-20, 10, 20, 20)
-        
-        
-        
         self.textField.removeFromSuperview()
         self.addSubview(rightLabel)
         self.addSubview(rightImg)
     }
     
+    func setTimeImg(){
+       self.rightImg.removeFromSuperview()
+       rightImg.image = UIImage(named: "daily_mgr_unselect")
+       self.addSubview(rightImg)
+    }
+    
+    func setTextViewShow(){
+      textView = UITextView(frame:CGRect(x:6, y:40, width:SCREEN_WIDTH-12, height:100))
+        textView.layer.borderWidth = 1  //边框粗细
+        textView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        textView.layer.cornerRadius = 8
+        textView.editable = true
+        textView.selectable = true
+        self.textField.removeFromSuperview()
+     self.lineView.removeFromSuperview()
+     self.addSubview(textView)
+    }
+    
     func setRCenterLabel(name:String){
-
         centerLabel.text = name
         centerLabel.font = UIFont.boldSystemFontOfSize(13)
         centerLabel.frame = CGRectMake(90, 5, SCREEN_WIDTH-80, 35)
@@ -89,7 +106,6 @@ class DetailCellView: UIView {
     }
     
     func setRMSDSCenterLabel(name:String){
-
         centerLabel.text = name
         centerLabel.font = UIFont.boldSystemFontOfSize(13)
         centerLabel.frame = CGRectMake(90, 5, SCREEN_WIDTH-80, 35)

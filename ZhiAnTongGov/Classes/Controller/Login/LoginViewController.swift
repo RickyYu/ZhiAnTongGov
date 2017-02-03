@@ -11,14 +11,14 @@ import Alamofire
 import SwiftyJSON
 
 
-class LoginViewController: BaseViewController, UIAlertViewDelegate {
+class LoginViewController: BaseViewController{
     
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passWordField: UITextField!
     @IBOutlet weak var isRmbPasBtn: UIButton!
     @IBOutlet weak var loginBtn: UIButton!
     ///记住密码标识符
-    let LOGIN_RECORD_STATE: String = "loginRecordState"
+    let LOGIN_RECORD_STATE: String = "loginRecordStates"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +26,12 @@ class LoginViewController: BaseViewController, UIAlertViewDelegate {
     }
     
     
+    
     @IBAction func login(sender: UIButton) {
       //  self.reloadData()
         let userName = userNameField.text!
         let passWord = passWordField.text!
+     
         if AppTools.isEmpty(userName) {
             alert("请输入您的用户名!", handler: {
                 self.userNameField.becomeFirstResponder()
@@ -69,11 +71,7 @@ class LoginViewController: BaseViewController, UIAlertViewDelegate {
                     AppTools.setNSUserDefaultsClassValue("login", login!)
                     AppTools.setNSUserDefaultsClassValue("user", user)
                     AppTools.setNSUserDefaultsValue("identify", (login?.identify)!)
-                    
                     self.performSegueWithIdentifier("toMain", sender: self)
-
-//                    UIAlertView(title: "提醒", message: login?.msg, delegate: self
-//                        , cancelButtonTitle: "确定").show()
                 }else{
                     self.alert((login?.msg)!)
                 }
@@ -130,7 +128,7 @@ class LoginViewController: BaseViewController, UIAlertViewDelegate {
     ///密码状态设置
     func setCheckboxBtnImage() {
         if AppTools.isEmpty(passWordField.text!) {
-            print("密码不能为空")
+            showHint("密码不能为空", duration: 2, yOffset: 2)
             return
         }
         
@@ -150,11 +148,9 @@ class LoginViewController: BaseViewController, UIAlertViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    
-//    //MARK:- Delegate
-//    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-//      
-//    }
+    @IBAction func DoneCloseKeyBoard(sender: AnyObject) {
+        passWordField.resignFirstResponder()
+    }
 
 }
 
