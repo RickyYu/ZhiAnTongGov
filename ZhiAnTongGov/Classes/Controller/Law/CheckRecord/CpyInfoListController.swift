@@ -135,7 +135,6 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
-            // 这儿写自增, 竟然有警告, swift语言更新确实有点快, 我记得1.2的时候还是可以的
             currentPage += 10
            getData()
         }

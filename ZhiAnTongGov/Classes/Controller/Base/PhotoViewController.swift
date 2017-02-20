@@ -245,7 +245,7 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIIm
         }
         
         alert.addAction(actionCancel)
-        alert.addAction(actionCamera)
+        //alert.addAction(actionCamera)
         alert.addAction(actionPhoto)
         
         self.presentViewController(alert, animated: true, completion: nil)

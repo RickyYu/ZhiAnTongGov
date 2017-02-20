@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LawViewController: UIViewController,UIScrollViewDelegate {
+class LawViewController: BaseViewController,UIScrollViewDelegate {
     
     
     
@@ -103,15 +103,15 @@ class LawViewController: UIViewController,UIScrollViewDelegate {
     
     func toCodeViewPad() -> Void
     {
-//        if currentPage == 0{
-//            firstViewController.getDates()
-//        }else if currentPage == 1 {
-//            secondViewController.getDates()
-//        }else{
-//            thirdViewController.getDates()
-//        }
+        if currentPage == 0{
+            firstViewController.getDates()
+        }else if currentPage == 1 {
+            secondViewController.getDates()
+        }else{
+            thirdViewController.getDates()
+        }
         
-       self.navigationController?.pushViewController(PViewController(), animated: true)
+//       self.navigationController?.pushViewController(PViewController(), animated: true)
         
        // self.navigationController?.pushViewController(PhotoViewController(), animated: true)
 

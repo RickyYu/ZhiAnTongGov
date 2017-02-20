@@ -826,7 +826,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_HIDDEN_TROUBLES"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: "服务器异常",totalCount: 0)
                 return
             }
             if let dictValue = response!.result.value{
@@ -849,11 +849,11 @@ class NetworkTool: Alamofire.Manager {
                     
                     
                 }else{
-                    finished(datas: nil,error: message,totalCount: nil) //success  false
+                    finished(datas: nil,error: message,totalCount: 0) //success  false
                 }
                 SVProgressHUD.dismiss()
             }else {
-                finished(datas: nil,error: "数据异常",totalCount: nil)
+                finished(datas: nil,error: "数据异常",totalCount: 0)
             }
             
         }
@@ -957,13 +957,14 @@ class NetworkTool: Alamofire.Manager {
                             infos.append(homeItem)
                         }
                         finished(infos: infos,error: nil,totalCount: totalCount)
-                        SVProgressHUD.dismiss()
+                       
                     }
                     
                     
                 }else{
                     finished(infos: nil,error: message,totalCount: nil) //success  false
                 }
+                 SVProgressHUD.dismiss()
             }else {
                 finished(infos: nil,error: "数据异常",totalCount: nil)
             }

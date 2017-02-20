@@ -144,8 +144,8 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
                 }
                 temp = array.joinWithSeparator(",")
             }
-            
             tempStr = "["+temp+"]"
+            
             parameters["dangerGorvers"]  = tempStr
             NetworkTool.sharedTools.createDangerGorver(parameters) { (datas, error) in
                 if error == nil{

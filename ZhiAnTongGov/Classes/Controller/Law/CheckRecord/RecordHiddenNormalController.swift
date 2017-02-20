@@ -202,6 +202,7 @@ class RecordHiddenNormalController: PhotoViewController {
     
     func submitCheck(){
         var parameters = [String : AnyObject]()
+        print("converyModels.companyId = \(converyModels.companyId)")
         parameters["produceLocaleNote.hzCompany.id"] = converyModels.companyId
         
         parameters["produceLocaleNote.checkTimeBegin"] = converyModels.checktime

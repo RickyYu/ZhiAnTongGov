@@ -150,6 +150,7 @@ class RecordHiddenMajorController: PhotoViewController {
         let customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()
         customView1.setLabelName("市级以上重点企业：")
+        customView1.setLabelMax()
         customView1.setRCheckBtn()
         customView1.rightCheckBtn.addTarget(self, action:#selector(majortapped1(_:)), forControlEvents:.TouchUpInside)
         
@@ -191,42 +192,50 @@ class RecordHiddenMajorController: PhotoViewController {
         let customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView9.setLabelName("是否需要政府协调：")
         customView9.setRCheckBtn()
+        customView9.setLabelMax()
         customView9.rightCheckBtn.addTarget(self, action:#selector(majortapped2(_:)), forControlEvents:.TouchUpInside)
         
         let customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
         customView10.setLabelName("是否需要局部停产停业：")
         customView10.setRCheckBtn()
+        customView10.setLabelMax()
         customView10.rightCheckBtn.addTarget(self, action:#selector(majortapped3(_:)), forControlEvents:.TouchUpInside)
         
         let customView11 = DetailCellView(frame:CGRectMake(0, 415, SCREEN_WIDTH, 45))
         customView11.setLabelName("是否需要全部停产停业：")
         customView11.setRCheckBtn()
+        customView11.setLabelMax()
         customView11.rightCheckBtn.addTarget(self, action:#selector(majortapped4(_:)), forControlEvents:.TouchUpInside)
         
         let customView12 = DetailCellView(frame:CGRectMake(0, 460, SCREEN_WIDTH, 45))
         customView12.setLabelName("落实治理目标：")
         customView12.setRCheckBtn()
+        customView12.setLabelMax()
         customView12.rightCheckBtn.addTarget(self, action:#selector(majortapped5(_:)), forControlEvents:.TouchUpInside)
         
         let customView13 = DetailCellView(frame:CGRectMake(0, 505, SCREEN_WIDTH, 45))
         customView13.setLabelName("落实治理机构人员：")
         customView13.setRCheckBtn()
+        customView13.setLabelMax()
         customView13.rightCheckBtn.addTarget(self, action:#selector(majortapped6(_:)), forControlEvents:.TouchUpInside)
         
         let customView14 = DetailCellView(frame:CGRectMake(0, 550, SCREEN_WIDTH, 45))
         customView14.setLabelName("落实安全促使及应急预案：")
         customView14.setRCheckBtn()
+        customView14.setLabelMax()
         customView14.rightCheckBtn.addTarget(self, action:#selector(majortapped7(_:)), forControlEvents:.TouchUpInside)
         
         let customView15 = DetailCellView(frame:CGRectMake(0, 595, SCREEN_WIDTH, 45))
         customView15.setLabelName("落实治理经费物资：")
         customView15.setRCheckBtn()
+        customView15.setLabelMax()
         customView15.rightCheckBtn.addTarget(self, action:#selector(majorTapped8(_:)), forControlEvents:.TouchUpInside)
         
         majorCustomView16 = DetailCellView(frame:CGRectMake(0, 640, SCREEN_WIDTH, 45))
         majorCustomView16.setLabelName("计划完成治理时间：")
         majorCustomView16.setRRightLabel("")
         majorCustomView16.setTimeImg()
+        majorCustomView16.setLabelMax()
         majorCustomView16.addOnClickListener(self, action: #selector(self.majorChoicePlanTimes))
         
         majorCustomView17 = DetailCellView(frame:CGRectMake(0, 685, SCREEN_WIDTH, 45))

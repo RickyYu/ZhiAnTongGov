@@ -131,7 +131,6 @@
 		9CB208D21E14E57F009DF235 /* GovReviewDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D11E14E57F009DF235 /* GovReviewDetailController.swift */; };
 		9CB208D51E14F405009DF235 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D41E14F405009DF235 /* ChartModel.swift */; };
 		9CB208D71E1500E1009DF235 /* McountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D61E1500E1009DF235 /* McountModel.swift */; };
-		9CD3CA011E44707600A33DBF /* PViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3CA001E44707600A33DBF /* PViewController.swift */; };
 		9CD75EDD1E2DA58A00097566 /* LocInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD75EDC1E2DA58A00097566 /* LocInfoModel.swift */; };
 		9CD75EDF1E2DDB9800097566 /* PunTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD75EDE1E2DDB9800097566 /* PunTypeEnum.swift */; };
 		9CE87D811E26528700A355F2 /* AlbumToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE87D6D1E26528700A355F2 /* AlbumToolbarView.swift */; };
@@ -315,7 +314,6 @@
 		9CB208D11E14E57F009DF235 /* GovReviewDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GovReviewDetailController.swift; sourceTree = "<group>"; };
 		9CB208D41E14F405009DF235 /* ChartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
 		9CB208D61E1500E1009DF235 /* McountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = McountModel.swift; sourceTree = "<group>"; };
-		9CD3CA001E44707600A33DBF /* PViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PViewController.swift; sourceTree = "<group>"; };
 		9CD75EDC1E2DA58A00097566 /* LocInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocInfoModel.swift; sourceTree = "<group>"; };
 		9CD75EDE1E2DDB9800097566 /* PunTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunTypeEnum.swift; sourceTree = "<group>"; };
 		9CE87D6D1E26528700A355F2 /* AlbumToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToolbarView.swift; sourceTree = "<group>"; };
@@ -449,7 +447,6 @@
 		9C8308D61DF4FFE3001B107E /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				9CD3CA001E44707600A33DBF /* PViewController.swift */,
 				9C8308D71DF4FFFE001B107E /* LawViewController.swift */,
 				9C1129901E31D3C200E2C73E /* TestController.swift */,
 				9C5FE6CA1E1B7357009DB317 /* TestSnapController.swift */,
@@ -497,9 +494,9 @@
 		9C8619E71DE55EC700CD00FC /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				9CB2083F1E077C4B009DF235 /* InfoDetailController.swift */,
 				9CA940CF1DF1624600550044 /* InfoTypeController.swift */,
 				9CB208321E03EED1009DF235 /* InfoListController.swift */,
+				9CB2083F1E077C4B009DF235 /* InfoDetailController.swift */,
 				9CB2083D1E0429F5009DF235 /* InfoMsdsListController.swift */,
 				9CB208831E07E5DA009DF235 /* InfoMsdsDetailController.swift */,
 			);
@@ -1329,7 +1326,6 @@
 				9CB2082F1E03D8A8009DF235 /* RefreshTipView.swift in Sources */,
 				9CB208CE1E135E13009DF235 /* HistoryRecordListController.swift in Sources */,
 				9C8308EF1DF7E7F3001B107E /* DetailCellView.swift in Sources */,
-				9CD3CA011E44707600A33DBF /* PViewController.swift in Sources */,
 				9CAA28CB1E1F5D650085BB96 /* DetailEditCellView.swift in Sources */,
 				9CE87D8F1E26528700A355F2 /* PhotoPreviewBottomBarView.swift in Sources */,
 				9CE87DA11E27A42C00A355F2 /* NormalHiddenDetail.swift in Sources */,
@@ -1451,7 +1447,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "ba269420-2374-41d6-9c04-ecd40d7d677a";
+				PROVISIONING_PROFILE = "6bb23e55-6d0a-403c-acc7-228fa1214835";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1490,7 +1486,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "ba269420-2374-41d6-9c04-ecd40d7d677a";
+				PROVISIONING_PROFILE = "6bb23e55-6d0a-403c-acc7-228fa1214835";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

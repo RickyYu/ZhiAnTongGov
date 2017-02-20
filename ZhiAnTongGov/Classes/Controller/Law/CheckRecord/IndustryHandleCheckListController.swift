@@ -286,10 +286,6 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
                 })
                 return
             }
-//            let userDefaults = NSUserDefaults.standardUserDefaults()
-//            userDefaults.setObject(converyModels, forKey: "converyModels")
-//            userDefaults.synchronize()
-            
             let controller = RecordHideenPassController()
             controller.converyModels = converyModels
             self.navigationController?.pushViewController(controller, animated: true)

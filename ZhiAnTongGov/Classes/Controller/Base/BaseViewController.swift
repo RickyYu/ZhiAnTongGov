@@ -27,18 +27,9 @@ class BaseViewController: UIViewController {
         self.navigationItem.backBarButtonItem = item;
         
         self.view.backgroundColor = UIColor.whiteColor()
-//        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
+        
     }
-    
-//    func resignEdit(sender: UITapGestureRecognizer) {
-//        if sender.state == .Ended {
-//            print("收回键盘")
-//            handleEditText({
-//            
-//          })
-//        }
-//        sender.cancelsTouchesInView = false
-//    }
+
     
     func handleEditText(handler: () -> Void){
        handler()

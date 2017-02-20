@@ -63,6 +63,11 @@ class DetailCellView: UIView {
         textField.text = text
     }
     
+    func setLabelMax(){
+        label.frame = CGRectMake(6, 5, 200, 35)
+        
+    }
+    
     func setRRightLabel(name:String){
 
         rightLabel.text = name

@@ -119,11 +119,7 @@ class HiddenConfirmListController: BaseTabViewController {
     
     //返回某个节中的行数
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-   
-      
             return hiddenModels.count ?? 0
-
     }
     
 
