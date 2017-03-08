@@ -167,6 +167,45 @@ class NetworkTool: Alamofire.Manager {
         }
     }
     
+    //未整改隐患列表
+    func loadVDangers(parameters:[String:AnyObject],finished:(datas:[UnModifyModel]!,error:String!,totalCount:Int!)->()){
+        SVProgressHUD.showWithStatus("正在加载...")
+        self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_VDANGERS"), parameters: parameters) { (response) in
+            guard response!.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus("加载失败...")
+                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                return
+            }
+            if let dictValue = response!.result.value{
+                let dict = JSON(dictValue)
+                print("LOAD_VDANGERS = \(dict)")
+                let success = dict["success"].boolValue
+                let message = dict["msg"].stringValue
+                let totalCount = dict["totalCount"].intValue
+                //  字典转成模型
+                if success {
+                    if let items = dict["json"].arrayObject {
+                        var cpyInfoModels = [UnModifyModel]()
+                        for item in items {
+                            let homeItem = UnModifyModel(dict: item as! [String: AnyObject])
+                            cpyInfoModels.append(homeItem)
+                        }
+                        finished(datas: cpyInfoModels,error: nil,totalCount: totalCount)
+                        //  保存在本地 暂无需使用
+                        // CpyInfoModel.savaCpyInfoModels(cpyInfoModels)
+                    }
+                    
+                }else{
+                    finished(datas: nil,error: message,totalCount: nil) //success  false
+                }
+                SVProgressHUD.dismiss()
+            }else {
+                finished(datas: nil,error: "数据异常",totalCount: nil)
+            }
+            
+        }
+    }
+    
     
     //MARK: - 更改企业信息
     func updateCompany(parameters:[String:AnyObject],finished:(cpyInfoModels:[CpyInfoModel]!,error:String!,totalCount:Int!)->()){
@@ -447,35 +486,7 @@ class NetworkTool: Alamofire.Manager {
     
     
     
-    //提交一般隐患记录
-//    func createHiddenTrouble(parameters:[String:AnyObject],finished:(data:CheckRecordInfoModel!,error:String!)->()){
-//        SVProgressHUD.showWithStatus("正在加载...")
-//        self.sendPostRequest(AppTools.getServiceURLWithYh("CREATE_HIDDEN_TROUBLE"), parameters: parameters) { (response) in
-//            guard response!.result.isSuccess else {
-//                SVProgressHUD.showErrorWithStatus("加载失败...")
-//                finished(data:nil,error: "服务器异常")
-//                return
-//            }
-//            if let dictValue = response!.result.value{
-//                let dict = JSON(dictValue)
-//                print("loadRecordDetail.dict = \(dict)")
-//                let success = dict["success"].boolValue
-//                let message = dict["msg"].stringValue
-//                //  字典转成模型
-//                if success {
-//                    let data = CheckRecordInfoModel(dict:dict)
-//                    finished(data: data, error: nil)
-//                    
-//                }else{
-//                    finished(data: nil,error: message) //success  false
-//                }
-//                SVProgressHUD.dismiss()
-//                
-//            }else {
-//                finished(data: nil,error: "数据异常")
-//            }
-//        }
-//    }
+
     //提交一般隐患
     func createHiddenTrouble(parameters:[String:AnyObject],imageArrays:[UIImage],finished:(data:CheckRecordInfoModel!,error:String!)->()){
         SVProgressHUD.showWithStatus("正在加载...")
@@ -757,8 +768,35 @@ class NetworkTool: Alamofire.Manager {
         }
     }
 
-    
-    
+    //MARK:  TAKE_DANGERS
+    func takeDangers(parameters:[String:AnyObject],finished:(data:String!,error:String!)->()){
+        SVProgressHUD.showWithStatus("正在加载...")
+        self.sendPostRequest(AppTools.getServiceURLWithYh("TAKE_DANGERS"), parameters: parameters) { (response) in
+            guard response!.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus("加载失败...")
+                finished(data:nil,error: "服务器异常")
+                return
+            }
+            if let dictValue = response!.result.value{
+                let dict = JSON(dictValue)
+                print("takeDangers = \(dict)")
+                let success = dict["success"].boolValue
+                let message = dict["msg"].stringValue
+                //  字典转成模型
+                if success {
+                    finished(data: "success", error: nil)
+                    
+                }else{
+                    finished(data: nil,error: message) //success  false
+                }
+                SVProgressHUD.dismiss()
+                
+            }else {
+                finished(data: nil,error: "数据异常")
+            }
+        }
+    }
+
     //MARK:  处罚模块 ->加载企业信息
     func loadCompanyInfo(parameters:[String:AnyObject],finished:(data:CompanyInfoModel!,error:String!)->()){
         SVProgressHUD.showWithStatus("正在加载...")
@@ -789,6 +827,67 @@ class NetworkTool: Alamofire.Manager {
         }
     }
     
+    //重大隐患查看
+    func loadDanger(parameters:[String:AnyObject],finished:(data:MajorCheckInfoModel!,error:String!)->()){
+        SVProgressHUD.showWithStatus("正在加载...")
+        print(AppTools.getServiceURLWithYh("LOAD_DANGER"))
+        self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_DANGER"), parameters: parameters) { (response) in
+            guard response!.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus("加载失败...")
+                finished(data:nil,error: "服务器异常")
+                return
+            }
+            if let dictValue = response!.result.value{
+                let dict = JSON(dictValue)
+                print("loadNormalDanger.dict = \(dict)")
+                let success = dict["success"].boolValue
+                let message = dict["msg"].stringValue
+                //  字典转成模型
+                if success {
+                    let data = MajorCheckInfoModel(dict:dict["json"].dictionaryObject!)
+                    finished(data: data, error: nil)
+                    
+                }else{
+                    finished(data: nil,error: message) //success  false
+                }
+                SVProgressHUD.dismiss()
+                
+            }else {
+                finished(data: nil,error: "数据异常")
+            }
+        }
+    }
+    
+    func loadNomalDangerView(parameters:[String:AnyObject],finished:(data:GeneralCheckInfoModel!,error:String!)->()){
+        SVProgressHUD.showWithStatus("正在加载...")
+        print(AppTools.getServiceURLWithYh("LOAD_NOMAL_DANGER_VIEW"))
+        self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_NOMAL_DANGER_VIEW"), parameters: parameters) { (response) in
+            guard response!.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus("加载失败...")
+                finished(data:nil,error: "服务器异常")
+                return
+            }
+            if let dictValue = response!.result.value{
+                let dict = JSON(dictValue)
+                print("loadNormalDanger.dict = \(dict)")
+                let success = dict["success"].boolValue
+                let message = dict["msg"].stringValue
+                //  字典转成模型
+                if success {
+                    let data = GeneralCheckInfoModel(dict:dict["entity"].dictionaryObject!)
+                    finished(data: data, error: nil)
+                    
+                }else{
+                    finished(data: nil,error: message) //success  false
+                }
+                SVProgressHUD.dismiss()
+                
+            }else {
+                finished(data: nil,error: "数据异常")
+            }
+        }
+    }
+
     //MARK:  一般隐患查看
     func loadNormalDanger(parameters:[String:AnyObject],finished:(data:HiddenDetailModel!,error:String!)->()){
         SVProgressHUD.showWithStatus("正在加载...")

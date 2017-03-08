@@ -41,6 +41,7 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
         let nib = UINib(nibName: Identifier,bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: Identifier)
         tableView.rowHeight = 53;
+       // tableView.tableFooterView = UIView()
 
         self.view.backgroundColor = UIColor.whiteColor()
         //配置搜索控制器
@@ -102,10 +103,7 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
             
@@ -149,6 +147,7 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.resignFirstResponder()
+        searchStr = countrySearchController.searchBar.text
         reSet()
         getDatas()
         

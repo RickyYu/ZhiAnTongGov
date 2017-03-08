@@ -26,8 +26,17 @@ class ModifyPwdController: BaseViewController {
         
         // 设置navigation
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(ModifyPwdController.back))
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
         
-        
+    }
+    
+   func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            newPwdField.resignFirstResponder()
+            confirmNewPwdField.resignFirstResponder()
+            oldPwdField.resignFirstResponder()
+        }
+        sender.cancelsTouchesInView = false
     }
     func back()
     {
@@ -74,8 +83,10 @@ class ModifyPwdController: BaseViewController {
              self.showHint("密码修改成功！", duration: 2, yOffset: 2)
             self.navigationController?.popViewControllerAnimated(true)
             }else{
-                
               self.showHint("密码修改失败！", duration: 2, yOffset: 2)
+                if error == NOTICE_SECURITY_NAME {
+                    self.toLoginView()
+                }
             }
             
         }

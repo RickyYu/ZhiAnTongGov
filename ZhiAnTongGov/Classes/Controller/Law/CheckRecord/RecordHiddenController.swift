@@ -8,7 +8,7 @@
 
 import UIKit
 
-//暂时弃用，UITabBarController 无法传值
+//暂时弃用，UITabBarController 无法初始化达到效果
 class RecordHiddenController: UITabBarController {
     var converyModels : CheckListVo!
     override func viewDidLoad() {

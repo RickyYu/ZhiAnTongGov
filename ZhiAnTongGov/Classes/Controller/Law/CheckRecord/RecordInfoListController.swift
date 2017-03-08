@@ -43,12 +43,11 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
         
         // 设置navigation
         navigationItem.title = "检查记录"
-        
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "新增", style: UIBarButtonItemStyle.Done, target: self, action: #selector(RecordInfoListController.addRecord))
+
         let barButton1 = UIBarButtonItem(title: "新增", style: UIBarButtonItemStyle.Done, target: self, action: #selector(RecordInfoListController.addRecord))
         //设置按钮
         let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
-        button2.setImage(UIImage(named: "daily_mgr_selected"), forState: .Normal)
+        button2.setImage(UIImage(named: "icon_sort"), forState: .Normal)
         button2.addTarget(self,action:#selector(self.sortButtonClick),forControlEvents:.TouchUpInside)
         let barButton2 = UIBarButtonItem(customView: button2)
         //按钮间的空隙
@@ -111,11 +110,12 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
         reSet()
         getData()
     }
-    
+    var isHavaReviewNum:Bool = false
     //新增
     func addRecord(){
         let controller = AddRecordController()
         controller.hzCompanyId = self.cpyId
+        controller.isHavaReviewNum = self.isHavaReviewNum
      self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -166,10 +166,7 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
                 }
                 self.showHint("\(error!)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
             self.tableView.reloadData()
@@ -218,6 +215,7 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        searchStr = countrySearchController.searchBar.text
         reSet()
         getData()
     }

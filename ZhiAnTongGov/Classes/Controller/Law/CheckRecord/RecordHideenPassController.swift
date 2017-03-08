@@ -44,7 +44,7 @@ class RecordHideenPassController:BaseViewController {
     
     func showNormal(){
         let controller = RecordHiddenNormalController()
-        print(converyModels.companyId)
+        
         controller.converyModels = converyModels
       self.navigationController?.pushViewController(controller, animated: true)
     }

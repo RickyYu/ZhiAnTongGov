@@ -10,6 +10,21 @@ import UIKit
 
 class BaseTabViewController:UITableViewController {
     override func viewDidLoad() {
+        setNavagation("")
+        tableView.tableFooterView = UIView()
+    }
+    func setNavagation(title:String){
+        //修改导航栏按钮颜色为白色
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //修改导航栏文字颜色
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //修改导航栏背景颜色
+        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
+        self.view.backgroundColor = UIColor.whiteColor()
+        //修改导航栏按钮返回只有箭头
+        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = item;
+        self.title = title
         
     }
     
@@ -28,5 +43,12 @@ class BaseTabViewController:UITableViewController {
         alertController.addAction(acCancel)
         self.presentViewController(alertController, animated: true, completion: nil)
         
+    }
+    
+    func toLoginView(){
+        self.alertNotice("提示", message: NOTICE_SECURITY_NAME, handler: {
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            self.presentViewController(controller, animated: true, completion: nil)
+        })
     }
 }

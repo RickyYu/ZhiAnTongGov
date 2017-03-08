@@ -13,6 +13,7 @@ let PAGE_SIZE = 15
 let LOAD_FINISH = "加载完毕"
 let NOTICE_CPY_NAME = "请输入企业名称"
 let NOTICE_SECURITY_NAME = "你的账号在另一台设备登录，如非本人操作，请注意账号安全!"
+let NOTICE_SEARCH_FINISH = "已经到最后了!"
 //最大上传图片数
 let IMAGE_MAX_SELECTEDNUM = 9
 

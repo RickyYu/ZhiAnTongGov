@@ -10,7 +10,7 @@ import UIKit
 
 //企业查询列表界面
 private let CpyInfoListReuseIdentifier = "CpyInfoCell"
-class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate{
+class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate,YMSortTableViewDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -25,19 +25,56 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate{
     // 是否加载更多
     private var toLoadMore = false
     var searchStr : String = ""
+    //排序规则
+    var orderProperty : String!
+    var orderType:Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //修改导航栏按钮颜色为白色
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        //修改导航栏文字颜色
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        //修改导航栏背景颜色
-        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
-
+        setNavagation("企业信息")
         //修改导航栏按钮返回只有箭头
         let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = item;
+        let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
+        button2.setImage(UIImage(named: "icon_sort"), forState: .Normal)
+        button2.addTarget(self,action:#selector(self.sortButtonClick),forControlEvents:.TouchUpInside)
+        let barButton2 = UIBarButtonItem(customView: button2)
+        navigationItem.rightBarButtonItem = barButton2
+        popView.cells = ["修改时间","隐患数升序", "隐患数降序"]
+        popView.sorts =  ["","up", "down"]
         initPage()
+    }
+    
+    private lazy var popView: YMSortTableView = {
+        let popView = YMSortTableView()
+        popView.delegate = self
+        return popView
+    }()
+    /// 搜索条件点击
+    func sortButtonClick() {
+        popView.show()
+    }
+    
+    var isPun :Bool = false // false 未处罚   true 已经处罚
+    // MARK: - YMSortTableViewDelegate
+    func sortView(sortView: YMSortTableView, didSelectSortAtIndexPath sort: String) {
+        print(sort)
+        sortView.dismiss()
+        //gridDangerNum
+        if sort == "up" {
+            orderProperty = "allDangerNum"
+            orderType = true
+            reSet()
+            getData()
+        }else if sort == "down"{
+            orderProperty = "allDangerNum"
+            orderType = false
+            reSet()
+            getData()
+        }else{
+            orderProperty = nil
+            reSet()
+            getData()
+        }
     }
     
     private func initPage(){
@@ -45,7 +82,7 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate{
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
 
         // 设置tableview相关
-        let nib = UINib(nibName: "CpyInfoCell",bundle: nil)
+        let nib = UINib(nibName: CpyInfoListReuseIdentifier,bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: CpyInfoListReuseIdentifier)
         tableView.rowHeight = 53;
         tableView.backgroundColor = UIColor.whiteColor()
@@ -83,6 +120,11 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate{
             parameters["company.companyName"] = searchStr
         }
         
+        if orderProperty != nil{
+            parameters["company.orderProperty"] = orderProperty
+            parameters["company.orderType"] = String(orderType)
+        }
+        
         
         NetworkTool.sharedTools.loadCompanys(parameters,isYh: true) { (cpyInfoModels, error,totalCount) in
             
@@ -109,10 +151,7 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate{
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
             
@@ -146,7 +185,7 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate{
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        searchBar.resignFirstResponder()
+        searchStr = countrySearchController.searchBar.text!
         reSet()
         getData()
         

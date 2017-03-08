@@ -10,7 +10,7 @@ import UIKit
 
 //信息查询MSDS查询列表界面
 private let InfoMsdsListIdentifier = "InfoMsdsListIdentifier"
-class InfoMsdsListController: UITableViewController {
+class InfoMsdsListController: BaseTabViewController {
     
     //信息列表
     var listLawmSDSInfoModels:NSMutableArray!
@@ -88,7 +88,9 @@ class InfoMsdsListController: UITableViewController {
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
-                
+                if error == NOTICE_SECURITY_NAME {
+                    self.toLoginView()
+                }
             }
         }
         

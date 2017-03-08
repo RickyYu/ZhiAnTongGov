@@ -45,6 +45,7 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
     func initPage(){
         customView1 =  DetailCellView(frame:CGRectMake(0, 66, SCREEN_WIDTH, 45))
         customView1.setLabelName("是否生成复查表：")
+        customView1.setLabelMax()
         customView1.setRCheckBtn()
         customView1.rightCheckBtn.addTarget(self, action:#selector(tapped3(_:)), forControlEvents:.TouchUpInside)
         
@@ -153,10 +154,7 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
                 }else{
                  self.showHint("\(error)", duration: 2, yOffset: 0)
                     if error == NOTICE_SECURITY_NAME {
-                        self.alertNotice("提示", message: error, handler: {
-                            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                            self.presentViewController(controller, animated: true, completion: nil)
-                        })
+                        self.toLoginView()
                     }
                 }
             }

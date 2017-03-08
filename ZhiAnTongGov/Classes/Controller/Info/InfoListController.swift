@@ -10,7 +10,7 @@ import UIKit
 
 //信息查询列表界面
 private let InfoListReuseIdentifier = "InfoListReuseIdentifier"
-class InfoListController: UITableViewController {
+class InfoListController: BaseTabViewController {
     
     //信息列表
     var listLawInfos:NSMutableArray!
@@ -96,6 +96,9 @@ class InfoListController: UITableViewController {
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.toLoginView()
+                }
                 
             }
         }

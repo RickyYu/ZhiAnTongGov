@@ -72,6 +72,15 @@
 		9C8858741E2C5B8900573C6D /* HiddenConfirmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8858731E2C5B8900573C6D /* HiddenConfirmCell.swift */; };
 		9C8858761E2C5B9A00573C6D /* HiddenConfirmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C8858751E2C5B9A00573C6D /* HiddenConfirmCell.xib */; };
 		9CA206AD1DEBC159004C8E99 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA206AC1DEBC159004C8E99 /* SettingController.swift */; };
+		9CA72A241E60114200D65515 /* RecordFunctionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA72A231E60114200D65515 /* RecordFunctionController.swift */; };
+		9CA72A261E601E9700D65515 /* UnModifyHiddenListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA72A251E601E9700D65515 /* UnModifyHiddenListController.swift */; };
+		9CA72A281E60286800D65515 /* UnModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA72A271E60286800D65515 /* UnModifyModel.swift */; };
+		9CA72A2A1E602CF600D65515 /* UnModifyHiddenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA72A291E602CF600D65515 /* UnModifyHiddenCell.swift */; };
+		9CA72A2C1E602D0500D65515 /* UnModifyHiddenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA72A2B1E602D0500D65515 /* UnModifyHiddenCell.xib */; };
+		9CA72A2E1E641E9F00D65515 /* HiddenInfoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA72A2D1E641E9F00D65515 /* HiddenInfoListController.swift */; };
+		9CA72A301E642E9400D65515 /* GeneralHiddenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA72A2F1E642E9400D65515 /* GeneralHiddenViewController.swift */; };
+		9CA72A321E6437B200D65515 /* GeneralCheckInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA72A311E6437B200D65515 /* GeneralCheckInfoModel.swift */; };
+		9CA72A341E643C9400D65515 /* MajorCheckInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA72A331E643C9400D65515 /* MajorCheckInfoModel.swift */; };
 		9CA940781DEEACB200550044 /* UIViewController+HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA940771DEEACB200550044 /* UIViewController+HUD.swift */; };
 		9CA9407C1DEEAD0D00550044 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA9407B1DEEAD0D00550044 /* MBProgressHUD.m */; };
 		9CA9407E1DEEC17F00550044 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA9407D1DEEC17F00550044 /* Info.swift */; };
@@ -253,6 +262,15 @@
 		9C8858731E2C5B8900573C6D /* HiddenConfirmCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenConfirmCell.swift; sourceTree = "<group>"; };
 		9C8858751E2C5B9A00573C6D /* HiddenConfirmCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HiddenConfirmCell.xib; sourceTree = "<group>"; };
 		9CA206AC1DEBC159004C8E99 /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
+		9CA72A231E60114200D65515 /* RecordFunctionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordFunctionController.swift; sourceTree = "<group>"; };
+		9CA72A251E601E9700D65515 /* UnModifyHiddenListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnModifyHiddenListController.swift; sourceTree = "<group>"; };
+		9CA72A271E60286800D65515 /* UnModifyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnModifyModel.swift; sourceTree = "<group>"; };
+		9CA72A291E602CF600D65515 /* UnModifyHiddenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnModifyHiddenCell.swift; sourceTree = "<group>"; };
+		9CA72A2B1E602D0500D65515 /* UnModifyHiddenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnModifyHiddenCell.xib; sourceTree = "<group>"; };
+		9CA72A2D1E641E9F00D65515 /* HiddenInfoListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenInfoListController.swift; sourceTree = "<group>"; };
+		9CA72A2F1E642E9400D65515 /* GeneralHiddenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralHiddenViewController.swift; sourceTree = "<group>"; };
+		9CA72A311E6437B200D65515 /* GeneralCheckInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralCheckInfoModel.swift; sourceTree = "<group>"; };
+		9CA72A331E643C9400D65515 /* MajorCheckInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorCheckInfoModel.swift; sourceTree = "<group>"; };
 		9CA940771DEEACB200550044 /* UIViewController+HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+HUD.swift"; sourceTree = "<group>"; };
 		9CA9407A1DEEAD0D00550044 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		9CA9407B1DEEAD0D00550044 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -526,6 +544,8 @@
 				9CB208AD1E0BE95D009DF235 /* RecordInfoDetailController.swift */,
 				9CAA28B41E1B9DF60085BB96 /* IndustryCheckListController.swift */,
 				9CAA28BC1E1C9B010085BB96 /* IndustryHandleCheckListController.swift */,
+				9CA72A231E60114200D65515 /* RecordFunctionController.swift */,
+				9CA72A251E601E9700D65515 /* UnModifyHiddenListController.swift */,
 				9CAA28C01E1CDE020085BB96 /* RecordHiddenController.swift */,
 				9C1129921E31F53F00E2C73E /* RecordHideenPassController.swift */,
 				9CAA28C21E1CF41F0085BB96 /* RecordHiddenNormalController.swift */,
@@ -541,6 +561,8 @@
 				9C8308E01DF64B8C001B107E /* CpyInfoListExController.swift */,
 				9C8308E61DF66D72001B107E /* CpyInfoDetailController.swift */,
 				9C8309001DFE6BA1001B107E /* LocationSaveController.swift */,
+				9CA72A2D1E641E9F00D65515 /* HiddenInfoListController.swift */,
+				9CA72A2F1E642E9400D65515 /* GeneralHiddenViewController.swift */,
 			);
 			path = CompanyInfo;
 			sourceTree = "<group>";
@@ -705,6 +727,7 @@
 				9C2BEB531E2369DC00C57F5D /* HyCheckItemInfo.swift */,
 				9CE87D9E1E279B2300A355F2 /* CheckHiddenModel.swift */,
 				9CE87DA21E27AD8900A355F2 /* HiddenDetailModel.swift */,
+				9CA72A271E60286800D65515 /* UnModifyModel.swift */,
 			);
 			path = CheckRecord;
 			sourceTree = "<group>";
@@ -713,6 +736,8 @@
 			isa = PBXGroup;
 			children = (
 				9CD75EDC1E2DA58A00097566 /* LocInfoModel.swift */,
+				9CA72A311E6437B200D65515 /* GeneralCheckInfoModel.swift */,
+				9CA72A331E643C9400D65515 /* MajorCheckInfoModel.swift */,
 			);
 			path = CompanyInfo;
 			sourceTree = "<group>";
@@ -855,6 +880,8 @@
 				9CAA28BA1E1BA4D30085BB96 /* IndustrySelectCell.xib */,
 				9CAA28CC1E1F745F0085BB96 /* IndustrySelectSwitchCell.swift */,
 				9CAA28CE1E1F747E0085BB96 /* IndustrySelectSwitchCell.xib */,
+				9CA72A291E602CF600D65515 /* UnModifyHiddenCell.swift */,
+				9CA72A2B1E602D0500D65515 /* UnModifyHiddenCell.xib */,
 			);
 			path = CheckRecord;
 			sourceTree = "<group>";
@@ -1139,6 +1166,7 @@
 				9C861A1D1DE55EC700CD00FC /* CODE BOLD.OTF in Resources */,
 				9CE87D861E26528700A355F2 /* PhotoAlbumTableViewCell.xib in Resources */,
 				9C8308F51DF95591001B107E /* Province.plist in Resources */,
+				9CA72A2C1E602D0500D65515 /* UnModifyHiddenCell.xib in Resources */,
 				9CB2088A1E0904BC009DF235 /* CpyInfoCell.xib in Resources */,
 				9C7D8AC71DE430B9005644E7 /* Classes in Resources */,
 				9CAA28BB1E1BA4D30085BB96 /* IndustrySelectCell.xib in Resources */,
@@ -1231,11 +1259,13 @@
 				9CB208861E07E663009DF235 /* InfoMsdsDetailCell.swift in Sources */,
 				9CB208BA1E124AEC009DF235 /* UnPunishmentModel.swift in Sources */,
 				9CB208C61E126BD0009DF235 /* RecordDetailModel.swift in Sources */,
+				9CA72A261E601E9700D65515 /* UnModifyHiddenListController.swift in Sources */,
 				9CA9407E1DEEC17F00550044 /* Info.swift in Sources */,
 				9CE87D8C1E26528700A355F2 /* PhotoImageManager.swift in Sources */,
 				9CAA28CD1E1F745F0085BB96 /* IndustrySelectSwitchCell.swift in Sources */,
 				9CB208B21E123EA0009DF235 /* GovReviewListController.swift in Sources */,
 				9CB208C01E1268F5009DF235 /* CompanyInfoModel.swift in Sources */,
+				9CA72A2A1E602CF600D65515 /* UnModifyHiddenCell.swift in Sources */,
 				9CB208291E0291D2009DF235 /* RecordInfoListController.swift in Sources */,
 				9CE87D811E26528700A355F2 /* AlbumToolbarView.swift in Sources */,
 				9CB208AE1E0BE95D009DF235 /* RecordInfoDetailController.swift in Sources */,
@@ -1264,9 +1294,11 @@
 				9CB2081F1E0233AB009DF235 /* CpyInfoCell.swift in Sources */,
 				9CA940CE1DF1615200550044 /* InfoTypeCell.swift in Sources */,
 				9CB208B61E1242C9009DF235 /* ReviewInfoCell.swift in Sources */,
+				9CA72A301E642E9400D65515 /* GeneralHiddenViewController.swift in Sources */,
 				9CA940D01DF1624600550044 /* InfoTypeController.swift in Sources */,
 				9C8308DF1DF5149E001B107E /* AllChartController.swift in Sources */,
 				9CB208D51E14F405009DF235 /* ChartModel.swift in Sources */,
+				9CA72A241E60114200D65515 /* RecordFunctionController.swift in Sources */,
 				9CB208D21E14E57F009DF235 /* GovReviewDetailController.swift in Sources */,
 				9C861A2A1DE5779C00CD00FC /* PlistTools.swift in Sources */,
 				9C861A2C1DE5784C00CD00FC /* AppTools.swift in Sources */,
@@ -1284,6 +1316,7 @@
 				9CB208251E02856E009DF235 /* RecordInfoModel.swift in Sources */,
 				9CAA28B51E1B9DF60085BB96 /* IndustryCheckListController.swift in Sources */,
 				9C861A471DE58B2800CD00FC /* NetworkTool.swift in Sources */,
+				9CA72A281E60286800D65515 /* UnModifyModel.swift in Sources */,
 				9C3B34A71DFFC1EB00CAB040 /* RouteCpyChoiceController.swift in Sources */,
 				9CE87DA31E27AD8900A355F2 /* HiddenDetailModel.swift in Sources */,
 				9C861A1C1DE55EC700CD00FC /* NewFeatureViewController.swift in Sources */,
@@ -1297,14 +1330,17 @@
 				9C861A3D1DE57F7F00CD00FC /* Cell.swift in Sources */,
 				9CE87D871E26528700A355F2 /* photoCollectionViewCell.swift in Sources */,
 				9CAA28B71E1BA3990085BB96 /* IndustrySelectModel.swift in Sources */,
+				9CA72A321E6437B200D65515 /* GeneralCheckInfoModel.swift in Sources */,
 				9CAA28BD1E1C9B010085BB96 /* IndustryHandleCheckListController.swift in Sources */,
 				9CE87D821E26528700A355F2 /* ImageModel.swift in Sources */,
 				9CAA28B91E1BA4BC0085BB96 /* IndustrySelectCell.swift in Sources */,
 				9CA9407C1DEEAD0D00550044 /* MBProgressHUD.m in Sources */,
+				9CA72A341E643C9400D65515 /* MajorCheckInfoModel.swift in Sources */,
 				9C1129951E32077300E2C73E /* BaseTabViewController.swift in Sources */,
 				9CE87D851E26528700A355F2 /* PhotoAlbumTableViewCell.swift in Sources */,
 				9C2BEB541E2369DC00C57F5D /* HyCheckItemInfo.swift in Sources */,
 				9CAA28BF1E1C9E690085BB96 /* IndustrySecondSelectModel.swift in Sources */,
+				9CA72A2E1E641E9F00D65515 /* HiddenInfoListController.swift in Sources */,
 				9C1129911E31D3C200E2C73E /* TestController.swift in Sources */,
 				9C8308F91DFA997A001B107E /* InfoListCell.swift in Sources */,
 				9C8308DD1DF51445001B107E /* CpyChartController.swift in Sources */,

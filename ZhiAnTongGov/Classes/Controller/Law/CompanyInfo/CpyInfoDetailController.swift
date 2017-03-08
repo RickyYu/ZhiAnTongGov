@@ -13,7 +13,7 @@ import UsefulPickerView
 class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXMLParserDelegate {
     
 
-    var scrollView: UIScrollView?
+    var scrollView: UIScrollView!
     var customView12 : DetailCellView!
     var customView11 : DetailCellView!
     var customView13 : DetailCellView!
@@ -28,15 +28,48 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
     let economyData = ["01国有经济", "02集体经济", "03私营经济","04有限责任公司","05联营经济","06股份合作","07外商投资","08港澳台投资","09其它经济","10股份有限公司"]
     
     override func viewDidLoad() {
-        self.navigationItem.title = "企业信息详情"
+        setNavagation("企业信息详情")
         self.view.backgroundColor = UIColor.whiteColor()
-        let locationBtn = UIBarButtonItem(image: UIImage(named: "dw2"), style: .Done, target: self, action: #selector(self.toLocation))
-        self.navigationItem.rightBarButtonItem = locationBtn
+//        let locationBtn = UIBarButtonItem(image: UIImage(named: "dw2"), style: .Done, target: self, action: #selector(self.toLocation))
+//        self.navigationItem.rightBarButtonItem = locationBtn
+        
+        
+        let button1 = UIButton(frame:CGRectMake(0, 0, 32, 32))
+        button1.setImage(UIImage(named: "dw2"), forState: .Normal)
+        button1.addTarget(self,action:#selector(self.toLocation),forControlEvents:.TouchUpInside)
+        let barButton1 = UIBarButtonItem(customView: button1)
+        
+        
+        //设置按钮
+        let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
+        button2.setImage(UIImage(named: "new_list"), forState: .Normal)
+        button2.addTarget(self,action:#selector(self.toHiddenList),forControlEvents:.TouchUpInside)
+        let barButton2 = UIBarButtonItem(customView: button2)
+        //按钮间的空隙
+        let gap = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
+                                  action: nil)
+        gap.width = 15;
+        
+        //用于消除右边边空隙，要不然按钮顶不到最边上
+        let spacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
+                                     action: nil)
+        spacer.width = -10;
+        
+        //设置按钮（注意顺序）
+        self.navigationItem.rightBarButtonItems = [spacer,barButton2,gap,barButton1]
+        
         self.initPage()
         getDatas()
         
         
     }
+    
+    func toHiddenList(){
+      let controller = HiddenInfoListController()
+         controller.companyId = String(self.converyDataModel.id)
+      self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     
     func getDatas(){
         var parameters = [String : AnyObject]()
@@ -48,6 +81,9 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
             self.setData()
         }else{
             self.showHint("\(error)", duration: 2, yOffset: 0)
+            if error == NOTICE_SECURITY_NAME {
+                self.toLoginView()
+            }
         }
         
         
@@ -78,16 +114,22 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
     var customView8  = DetailCellView()
     var customView9  = DetailCellView()
     var customView10  = DetailCellView()
+    var submitBtn = UIButton()
     func initPage(){
-        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 800))
-        print("SCREEN_WIDTH = \(SCREEN_WIDTH)+SCREEN_HEIGHT = \(SCREEN_HEIGHT)")
-
+        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 750))
+        print("\(SCREEN_HEIGHT)+++\(SCREEN_WIDTH)")
         scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
-        scrollView!.showsVerticalScrollIndicator = true
+        scrollView!.showsVerticalScrollIndicator = false
         scrollView!.scrollsToTop = false
         scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH,801)
+        
+        //submitBtn = UIButton(frame:CGRectMake(0, 565, SCREEN_WIDTH, 45))
+        submitBtn.setTitle("提交", forState:.Normal)
+        submitBtn.backgroundColor = YMGlobalDeapBlueColor()
+        submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+        submitBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
         
         customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()
@@ -141,12 +183,6 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
         
         let view = UIView(frame:CGRectMake(0, 600, SCREEN_WIDTH, 45))
         
-        
-        let  submitBtn = UIButton(frame:CGRectMake(0, 565, SCREEN_WIDTH, 45))
-        submitBtn.setTitle("提交", forState:.Normal)
-        submitBtn.backgroundColor = YMGlobalDeapBlueColor()
-        submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
-        submitBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
 
         self.scrollView!.addSubview(customView1)
         self.scrollView!.addSubview(customView2)
@@ -161,7 +197,7 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
         self.scrollView!.addSubview(customView11!)
         self.scrollView!.addSubview(customView12!)
         self.scrollView!.addSubview(customView13)
-        self.scrollView?.addSubview(view)
+        self.scrollView!.addSubview(view)
         self.scrollView!.addSubview(submitBtn)
         self.view.addSubview(scrollView!)
         
@@ -170,6 +206,13 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
             make.left.equalTo(self.view.snp_left).offset(50)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
         }
+        
+//        scrollView.snp_makeConstraints { make in
+//            make.top.equalTo(self.view.snp_top).offset(64)
+//            make.left.equalTo(self.view.snp_left)
+//            make.bottom.equalTo(submitBtn.snp_top).offset(-5)
+//            make.right.equalTo(self.view.snp_right)
+//        }
     }
     var secondAreaCode :String = ""
     var thirdAreaCode :String = ""
@@ -182,9 +225,9 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
        let thirdStr =  getThirdArea(String(dataModel.thirdArea))
         
         if secondStr != "" && thirdStr != ""{
-        areaArr = ["湖州",secondStr,thirdStr]
+        areaArr = ["湖州市",secondStr,thirdStr]
         }else{
-        areaArr = ["湖州", "长兴县", "画溪街道"]
+        areaArr = ["湖州市", "长兴县", "画溪街道"]
         }
         self.customView3.setRRightLabel("湖州 \(secondStr)\(thirdStr)")
         customView4.setRTextField(dataModel.businessRegNumber ?? "")
@@ -323,10 +366,7 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
             }else{
                 self.showHint("\(error)", duration: 1, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
         }

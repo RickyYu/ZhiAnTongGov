@@ -24,6 +24,8 @@
 	<string>/appCheckRecord/nosecuritycheck/loadCompanyGrid.xhtml</string>
 	<key>LOAD_PRODUCE_CALLBACKS</key>
 	<string>/appProduceLocaleNote/nosecuritycheck/loadProduceCallBacks.xhtml</string>
+	<key>LOAD_PUNISHMENT</key>
+	<string>/appPunishment/nosecuritycheck/loadPunishment.xhtml</string>
 	<key>New item</key>
 	<string></string>
 	<key>New item - 4</key>
@@ -32,8 +34,6 @@
 	<string>/appCheckRecord/nosecuritycheck/createCheckRecord.xhtml</string>
 	<key>LOAD_PUN_LIST</key>
 	<string>/appPunishment/nosecuritycheck/loadPunishmentList.xhtml</string>
-	<key>LOAD_PUNISHMENT</key>
-	<string>/appPunishment/nosecuritycheck/loadPunishment.xhtml</string>
 	<key>CHANGE_PASSWORD</key>
 	<string>/appUser/nosecuritycheck/changePassword.xhtml</string>
 	<key>GET_POINT</key>
@@ -82,5 +82,13 @@
 	<string>/appDanger/nosecuritycheck/loadProDangers.xhtml</string>
 	<key>LOAD_COUNT_COM</key>
 	<string>/appDanger/nosecuritycheck/loadCountCom.xhtml</string>
+	<key>LOAD_VDANGERS</key>
+	<string>/appDanger/nosecuritycheck/loadVDangers.xhtml</string>
+	<key>TAKE_DANGERS</key>
+	<string>/appDanger/nosecuritycheck/takeDangers.xhtml</string>
+	<key>LOAD_NOMAL_DANGER_VIEW</key>
+	<string>/appNomalDanger/nosecuritycheck/loadNomalDanger.xhtml</string>
+	<key>LOAD_DANGER</key>
+	<string>/appDanger/nosecuritycheck/loadDanger.xhtml</string>
 </dict>
 </plist>

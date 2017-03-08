@@ -21,6 +21,8 @@ class CpyInfoModel:BaseModel,NSCoding{
     var thirdArea:Int!
     var x:Double! //lng 经度
     var y:Double! //lat 纬度
+    var allDangerNum:Int!
+    var gridDangerNum:Int!
     
     override init() {
         super.init()
@@ -84,7 +86,8 @@ class CpyInfoModel:BaseModel,NSCoding{
         self.thirdArea = dict["thirdArea"] as? Int
         self.x = dict["x"] as? Double
         self.y = dict["y"] as? Double
-    
+        self.allDangerNum = dict["allDangerNum"] as? Int
+        self.gridDangerNum = dict["gridDangerNum"] as? Int
     }
     
     

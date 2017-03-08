@@ -81,6 +81,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         customView1.setLabelName("责令整改日期：")
         customView1.setRRightLabel("")
         customView1.addOnClickListener(self, action: #selector(self.choiceZgTimes))
+        customView1.setTimeImg()
         
         
         customView2 =  DetailCellView(frame:CGRectMake(0, 500, SCREEN_WIDTH, 45))
@@ -168,6 +169,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         let nib = UINib(nibName: Identifier,bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: Identifier)
         tableView.rowHeight = 53;
+        tableView.tableFooterView = UIView()
         self.view.addSubview(tableView)
         tableView.snp_makeConstraints { make in
             make.top.equalTo(self.view.snp_top).offset(66)
@@ -255,8 +257,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
             }
             
             parameters["produceLocaleNote.sendCleanUp"] = String(Int(converyModels.check))
-            
-            print("parameters = \(parameters)")
+
             print("converyModels.listfile = \(converyModels.listfile)")
             
             NetworkTool.sharedTools.createCheckRecordImage(parameters,imageArrays: converyModels.listfile,finished: { (data, error,notedId) in
@@ -270,10 +271,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
                 }else{
                     self.showHint("\(error)", duration: 2, yOffset: 0)
                     if error == NOTICE_SECURITY_NAME {
-                        self.alertNotice("提示", message: error, handler: {
-                            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                            self.presentViewController(controller, animated: true, completion: nil)
-                        })
+                        self.toLoginView()
                     }
                 }
                 
@@ -286,9 +284,13 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
                 })
                 return
             }
-            let controller = RecordHideenPassController()
+            //增加一个页面
+            
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecordFunctionController") as! RecordFunctionController
             controller.converyModels = converyModels
             self.navigationController?.pushViewController(controller, animated: true)
+
+            
         
         }
 
@@ -325,6 +327,9 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
                     self.toLoadMore = false
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.toLoginView()
+                }
             }
             
             self.tableView.reloadData()
@@ -374,16 +379,14 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
  
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchStr = searchText
-        print("searchTextStr = \(searchStr)")
-        
     }
     
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.resignFirstResponder()
+        searchStr = countrySearchController.searchBar.text
         reSet()
         getDatas()
         
@@ -481,13 +484,8 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         button.selected = !button.selected
         if button.selected{
             isReform = true
-            print("tapped3+\(isReform)")
         }else{
             isReform = false
-            print("tapped3+\(isReform)")
-            
         }
-        
-    
     }
 }

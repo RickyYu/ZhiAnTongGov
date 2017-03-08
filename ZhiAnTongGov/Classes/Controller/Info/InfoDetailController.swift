@@ -69,7 +69,9 @@ class InfoDetailController: BaseViewController {
             print("\(self.content.frame)")
         }else{
            self.showHint("\(error)", duration: 2, yOffset: 0)
-        
+            if error == NOTICE_SECURITY_NAME {
+                self.toLoginView()
+            }
           }
         }
     

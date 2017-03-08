@@ -62,9 +62,13 @@ class DetailCellView: UIView {
     func setRTextField(text:String){
         textField.text = text
     }
+    func setRCenterTextField(text:String){
+        textField.frame = CGRectMake(160, 5, SCREEN_WIDTH-80, 35)
+        textField.text = text
+    }
     
     func setLabelMax(){
-        label.frame = CGRectMake(6, 5, 200, 35)
+        label.frame = CGRectMake(6, 5, 160, 35)
         
     }
     
@@ -77,7 +81,7 @@ class DetailCellView: UIView {
         
         rightImg  = UIImageView()
         rightImg.image = UIImage(named: "right_arrow")
-        rightImg.frame = CGRectMake(SCREEN_WIDTH-20, 10, 20, 20)
+        rightImg.frame = CGRectMake(SCREEN_WIDTH-30, 10, 20, 20)
         self.textField.removeFromSuperview()
         self.addSubview(rightLabel)
         self.addSubview(rightImg)
@@ -88,7 +92,9 @@ class DetailCellView: UIView {
        rightImg.image = UIImage(named: "daily_mgr_unselect")
        self.addSubview(rightImg)
     }
-    
+    func setRTextView(text:String){
+        textView.text = text
+    }
     func setTextViewShow(){
       textView = UITextView(frame:CGRect(x:6, y:40, width:SCREEN_WIDTH-12, height:100))
         textView.layer.borderWidth = 1  //边框粗细

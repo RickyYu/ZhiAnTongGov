@@ -67,13 +67,14 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
     var list2 =  [Int]()
     
     var modelsCount = 0
-    
-    
+    //是否含有政府隐患未整改
+    var isHavaReviewNum:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "检查记录--基本信息"
         let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = item;
+     
         getDatas()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
     }
@@ -113,13 +114,18 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
                 self.checkRecordInfoModel = data!
                 self.initPage()
                 
+                if self.isHavaReviewNum {
+                    self.alertNotice("提示", message: "由于该企业存在未整改的政府检查隐患，是否现在对该企业进行隐患复查？", handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GovReviewListController") as! GovReviewListController
+                          controller.searchStr = data.companyName
+                            self.navigationController?.pushViewController(controller, animated: true)
+                    })
+                }
+                
             }else{
                 self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
         }
@@ -235,6 +241,7 @@ class AddRecordController: PhotoViewController,ParameterDelegate{
 
         customView11 = DetailCellView(frame:CGRectMake(0, 450, SCREEN_WIDTH, 45))
         customView11.setLabelName("选择行业检查表：")
+        customView11.setLabelMax()
         customView11.setRRightLabel("")
         customView11.addOnClickListener(self, action: #selector(self.skipCheck))
         

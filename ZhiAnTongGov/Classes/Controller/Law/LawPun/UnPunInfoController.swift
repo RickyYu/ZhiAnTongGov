@@ -96,7 +96,7 @@ class UnPunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDa
         customView7.setLabelName("处罚内容：")
          customView7.setRTextField("")
         
-        customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
+        customView8 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView8.setLabelName("处罚时间：")
         getSystemTime { (time) in
             self.customView8.setRRightLabel(time)
@@ -104,7 +104,7 @@ class UnPunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDa
         customView8.setTimeImg()
         customView8.addOnClickListener(self, action: #selector(self.choiceHandleTimes))
         
-       customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
+       customView9 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
         customView9.setLabelName("备注：")
         
         let  submitBtn = UIButton(frame:CGRectMake(80, 565, 200, 45))
@@ -225,10 +225,7 @@ class UnPunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDa
             }else{
              self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
             
@@ -248,7 +245,6 @@ class UnPunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDa
        var remark:String!
        func submit(sender: AnyObject) {
         unit = customView4.textField.text!
-        customView4.textField = editText
         if AppTools.isEmpty(unit) {
             alert("处罚单位不可为空", handler: {
                 self.customView4.textField.becomeFirstResponder()

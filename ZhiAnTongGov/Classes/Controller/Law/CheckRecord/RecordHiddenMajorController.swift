@@ -16,10 +16,16 @@ class RecordHiddenMajorController: PhotoViewController {
      var majorScrollView: UIScrollView!
      var majorRecordDetailModel : RecordDetailModel!
     
+    var hiddenId:String!
+    var majorHidden:MajorCheckInfoModel!
+    
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationItem.title = "重大隐患"
+        setNavagation("重大隐患查看")
         majorInitPage()
+        if hiddenId != nil{
+         getDatas()
+        }
     }
      //隐患地址
      var majorAddress = ""
@@ -33,89 +39,165 @@ class RecordHiddenMajorController: PhotoViewController {
     var majorChargePerson = ""
     var majorFillDate = ""
     var majorFillMan = ""
-    var majorCustomView2  = DetailCellView()
-    var majorCustomView3  = DetailCellView()
-    var majorCustomView4  = DetailCellView()
-    var majorCustomView5  = DetailCellView()
-    var majorCustomView6  = DetailCellView()
-    var majorCustomView7  = DetailCellView()
-    var majorCustomView16  = DetailCellView()
-    var majorCustomView17  = DetailCellView()
-    var majorCustomView18  = DetailCellView()
-    var majorCustomView19  = DetailCellView()
-    var majorCustomView20  = DetailCellView()
+    var customView1  = DetailCellView()
+    var customView2  = DetailCellView()
+    var customView3  = DetailCellView()
+    var customView4  = DetailCellView()
+    var customView5  = DetailCellView()
+    var customView6  = DetailCellView()
+    var customView7  = DetailCellView()
+    var customView8  = DetailCellView()
+    var customView9  = DetailCellView()
+    var customView10  = DetailCellView()
+    var customView11  = DetailCellView()
+    var customView12  = DetailCellView()
+    var customView13  = DetailCellView()
+    var customView14  = DetailCellView()
+    var customView15  = DetailCellView()
+    var customView16  = DetailCellView()
+    var customView17  = DetailCellView()
+    var customView18  = DetailCellView()
+    var customView19  = DetailCellView()
+    var customView20  = DetailCellView()
+    
+    func getDatas(){
+        var parameters = [String : AnyObject]()
+        parameters["danger.id"] = hiddenId
+        
+        NetworkTool.sharedTools.loadDanger(parameters) { (data, error) in
+            if error == nil{
+                self.majorHidden = data
+                self.setData()
+                
+            }else{
+                self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.toLoginView()
+                }
+            }
+        }
+    }
+    
+    func setData(){
+    customView1.rightCheckBtn.selected = majorHidden.emphasisProject
+    customView2.setRTextField(majorHidden.dangerAdd)
+    customView2.textField.enabled = false
+    
+        let address:String = "湖州市"+getSecondArea(String(majorHidden.secondArea))+getThirdArea(String(majorHidden.thirdArea))
+        customView3.setRTextField(address)
+        customView3.textField.enabled = false
+        
+        customView4.setRTextField(majorHidden.linkMan)
+        customView4.textField.enabled = false
+        
+        customView5.setRTextField(majorHidden.linkTel)
+        customView5.textField.enabled = false
+        
+        customView6.setRTextField(majorHidden.linkMobile)
+        customView6.textField.enabled = false
+        
+        customView7.setRTextField(majorHidden.descriptions)
+        customView7.textField.enabled = false
+        
+       customView9.rightCheckBtn.selected = majorHidden.govCoordination
+        customView10.rightCheckBtn.selected = majorHidden.partStopProduct
+        customView11.rightCheckBtn.selected = majorHidden.fullStopProduct
+        customView12.rightCheckBtn.selected = majorHidden.target
+        customView13.rightCheckBtn.selected = majorHidden.resource
+        customView14.rightCheckBtn.selected = majorHidden.goods
+        customView15.rightCheckBtn.selected = majorHidden.safetyMethod
+
+        
+        customView16.setRTextField(String(majorHidden.finishDate))
+        customView16.textField.enabled = false
+        
+        customView17.setRTextField(String(majorHidden.governMoney))
+        customView17.textField.enabled = false
+        
+        customView18.setRTextField(majorHidden.chargePerson)
+        customView18.textField.enabled = false
+        
+        customView19.setRTextField(majorHidden.fillDate)
+        customView19.textField.enabled = false
+        
+        customView20.setRTextField(majorHidden.fillMan)
+        customView20.textField.enabled = false
+        
+  
+    }
+    
     func submit(){
-         majorAddress = majorCustomView2.textField.text!
+         majorAddress = customView2.textField.text!
         if AppTools.isEmpty(majorAddress) {
             alert("隐患地址不可为空", handler: {
-                self.majorCustomView2.textField.becomeFirstResponder()
+                self.customView2.textField.becomeFirstResponder()
             })
             return
         }
-        majorPeople = majorCustomView4.textField.text!
+        majorPeople = customView4.textField.text!
         if AppTools.isEmpty(majorPeople) {
             alert("联系人不可为空", handler: {
-                self.majorCustomView4.textField.becomeFirstResponder()
+                self.customView4.textField.becomeFirstResponder()
             })
             return
         }
-        majorPhone = majorCustomView5.textField.text!
+        majorPhone = customView5.textField.text!
         if AppTools.isEmpty(majorPhone) {
             alert("联系电话不可为空", handler: {
-                self.majorCustomView5.textField.becomeFirstResponder()
+                self.customView5.textField.becomeFirstResponder()
             })
             return
         }
         
-         majorMobile = majorCustomView6.textField.text!
+         majorMobile = customView6.textField.text!
         if AppTools.isEmpty(majorMobile) {
             alert("手机不可为空", handler: {
-                self.majorCustomView6.textField.becomeFirstResponder()
+                self.customView6.textField.becomeFirstResponder()
             })
             return
         }
-         majorHiddenDes = majorCustomView7.textField.text!
+         majorHiddenDes = customView7.textField.text!
         if AppTools.isEmpty(majorHiddenDes) {
             alert("隐患基本情况不可为空", handler: {
-                self.majorCustomView7.textField.becomeFirstResponder()
+                self.customView7.textField.becomeFirstResponder()
             })
             return
         }
         
-        majorPlantTime = majorCustomView16.rightLabel.text!
+        majorPlantTime = customView16.rightLabel.text!
         if AppTools.isEmpty(majorPlantTime) {
             alert("计划完成治理时间不可为空", handler: {
-                self.majorCustomView7.textField.becomeFirstResponder()
+                self.customView7.textField.becomeFirstResponder()
             })
             return
         }
         
         
-        majorGovernMoney = majorCustomView17.textField.text!
-        if AppTools.isEmpty(majorPlantTime) {
+        majorGovernMoney = customView17.textField.text!
+        if AppTools.isEmpty(majorGovernMoney) {
             alert("治理经费不可为空", handler: {
-                self.majorCustomView17.textField.becomeFirstResponder()
+                self.customView17.textField.becomeFirstResponder()
             })
             return
         }
         
-        majorChargePerson = majorCustomView18.textField.text!
-        if AppTools.isEmpty(majorPlantTime) {
+        majorChargePerson = customView18.textField.text!
+        if AppTools.isEmpty(majorChargePerson) {
             alert("单位负责人不可为空", handler: {
-                self.majorCustomView18.textField.becomeFirstResponder()
+                self.customView18.textField.becomeFirstResponder()
             })
             return
         }
-        majorFillDate = majorCustomView19.rightLabel.text!
-        if AppTools.isEmpty(majorPlantTime) {
+        majorFillDate = customView19.rightLabel.text!
+        if AppTools.isEmpty(majorFillDate) {
             alert("录入时间不可为空", handler: {
                 
             })
             return
         }
         
-        majorFillMan = majorCustomView20.textField.text!
-        if AppTools.isEmpty(majorPlantTime) {
+        majorFillMan = customView20.textField.text!
+        if AppTools.isEmpty(majorFillMan) {
             alert("填报人不可为空", handler: {
                 
             })
@@ -146,117 +228,121 @@ class RecordHiddenMajorController: PhotoViewController {
         majorSubmitBtn.backgroundColor = YMGlobalDeapBlueColor()
         majorSubmitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
         majorSubmitBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
+        if hiddenId != nil {
+         majorSubmitBtn.hidden = true
+        }
         
-        let customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
+        customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()
         customView1.setLabelName("市级以上重点企业：")
         customView1.setLabelMax()
         customView1.setRCheckBtn()
         customView1.rightCheckBtn.addTarget(self, action:#selector(majortapped1(_:)), forControlEvents:.TouchUpInside)
         
-         majorCustomView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
-        majorCustomView2.setLabelName("隐患地址：")
-        majorCustomView2.setRTextField( "")
+         customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
+        customView2.setLabelName("隐患地址：")
+        customView2.setRTextField( "")
         
-         majorCustomView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
-        majorCustomView3.setLabelName("隐患区域：")
-        majorCustomView3.setRRightLabel("")
+         customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
+        customView3.setLabelName("隐患区域：")
+        customView3.setRRightLabel("")
         majorAreaArr = ["湖州", "长兴县", "画溪街道"]
-        majorCustomView3.addOnClickListener(self, action: #selector(self.majorChoiceArea))
+        customView3.addOnClickListener(self, action: #selector(self.majorChoiceArea))
         
         
         
-         majorCustomView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
-        majorCustomView4.setLabelName("联系人：")
-        majorCustomView4.setRTextField( "")
+         customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
+        customView4.setLabelName("联系人：")
+        customView4.setRTextField( "")
         
         
-        majorCustomView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
-        majorCustomView5.setLabelName("联系电话：")
-        majorCustomView5.setRTextField( "")
+        customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
+        customView5.setLabelName("联系电话：")
+        customView5.setRTextField( "")
         
         
-        majorCustomView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
-        majorCustomView6.setLabelName("手机:")
-        majorCustomView6.setRTextField( "")
+        customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
+        customView6.setLabelName("手机:")
+        customView6.setRTextField( "")
         
         
-        majorCustomView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
-        majorCustomView7.setLabelName("隐患基本情况：")
-        majorCustomView7.setRTextField( "") //ImagesInfo 字段
+        customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
+        customView7.setLabelName("隐患基本情况：")
+        customView7.setRTextField( "") //ImagesInfo 字段
         
-        let  customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
+        customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
         customView8.setLabelName("")
         customView8.setRCenterLabel("")
         
-        let customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
+        customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView9.setLabelName("是否需要政府协调：")
         customView9.setRCheckBtn()
         customView9.setLabelMax()
         customView9.rightCheckBtn.addTarget(self, action:#selector(majortapped2(_:)), forControlEvents:.TouchUpInside)
         
-        let customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
+        customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
         customView10.setLabelName("是否需要局部停产停业：")
         customView10.setRCheckBtn()
         customView10.setLabelMax()
         customView10.rightCheckBtn.addTarget(self, action:#selector(majortapped3(_:)), forControlEvents:.TouchUpInside)
         
-        let customView11 = DetailCellView(frame:CGRectMake(0, 415, SCREEN_WIDTH, 45))
+        customView11 = DetailCellView(frame:CGRectMake(0, 415, SCREEN_WIDTH, 45))
         customView11.setLabelName("是否需要全部停产停业：")
         customView11.setRCheckBtn()
         customView11.setLabelMax()
         customView11.rightCheckBtn.addTarget(self, action:#selector(majortapped4(_:)), forControlEvents:.TouchUpInside)
         
-        let customView12 = DetailCellView(frame:CGRectMake(0, 460, SCREEN_WIDTH, 45))
+        customView12 = DetailCellView(frame:CGRectMake(0, 460, SCREEN_WIDTH, 45))
         customView12.setLabelName("落实治理目标：")
         customView12.setRCheckBtn()
         customView12.setLabelMax()
         customView12.rightCheckBtn.addTarget(self, action:#selector(majortapped5(_:)), forControlEvents:.TouchUpInside)
         
-        let customView13 = DetailCellView(frame:CGRectMake(0, 505, SCREEN_WIDTH, 45))
+        customView13 = DetailCellView(frame:CGRectMake(0, 505, SCREEN_WIDTH, 45))
         customView13.setLabelName("落实治理机构人员：")
         customView13.setRCheckBtn()
         customView13.setLabelMax()
         customView13.rightCheckBtn.addTarget(self, action:#selector(majortapped6(_:)), forControlEvents:.TouchUpInside)
         
-        let customView14 = DetailCellView(frame:CGRectMake(0, 550, SCREEN_WIDTH, 45))
+        customView14 = DetailCellView(frame:CGRectMake(0, 550, SCREEN_WIDTH, 45))
         customView14.setLabelName("落实安全促使及应急预案：")
         customView14.setRCheckBtn()
         customView14.setLabelMax()
         customView14.rightCheckBtn.addTarget(self, action:#selector(majortapped7(_:)), forControlEvents:.TouchUpInside)
         
-        let customView15 = DetailCellView(frame:CGRectMake(0, 595, SCREEN_WIDTH, 45))
+        customView15 = DetailCellView(frame:CGRectMake(0, 595, SCREEN_WIDTH, 45))
         customView15.setLabelName("落实治理经费物资：")
         customView15.setRCheckBtn()
         customView15.setLabelMax()
         customView15.rightCheckBtn.addTarget(self, action:#selector(majorTapped8(_:)), forControlEvents:.TouchUpInside)
         
-        majorCustomView16 = DetailCellView(frame:CGRectMake(0, 640, SCREEN_WIDTH, 45))
-        majorCustomView16.setLabelName("计划完成治理时间：")
-        majorCustomView16.setRRightLabel("")
-        majorCustomView16.setTimeImg()
-        majorCustomView16.setLabelMax()
-        majorCustomView16.addOnClickListener(self, action: #selector(self.majorChoicePlanTimes))
+        customView16 = DetailCellView(frame:CGRectMake(0, 640, SCREEN_WIDTH, 45))
+        customView16.setLabelName("计划完成治理时间：")
+        customView16.setRRightLabel("")
+        customView16.setTimeImg()
+        customView16.setLabelMax()
+        customView16.addOnClickListener(self, action: #selector(self.majorChoicePlanTimes))
         
-        majorCustomView17 = DetailCellView(frame:CGRectMake(0, 685, SCREEN_WIDTH, 45))
-        majorCustomView17.setLabelName("落实治理经费:(单位：万)")
-        majorCustomView17.setRTextField( "")
+        customView17 = DetailCellView(frame:CGRectMake(0, 685, SCREEN_WIDTH, 45))
+        customView17.setLabelName("落实治理经费:(单位：万)")
+        customView17.setLabelMax()
+        customView17.setRCenterTextField( "")
         
-        majorCustomView18 = DetailCellView(frame:CGRectMake(0, 730, SCREEN_WIDTH, 45))
-        majorCustomView18.setLabelName("单位负责人：")
-        majorCustomView18.setRTextField( "")
+        customView18 = DetailCellView(frame:CGRectMake(0, 730, SCREEN_WIDTH, 45))
+        customView18.setLabelName("单位负责人：")
+        customView18.setRTextField( "")
         
         
-        majorCustomView19 = DetailCellView(frame:CGRectMake(0, 775, SCREEN_WIDTH, 45))
-        majorCustomView19.setLabelName("录入时间：")
+        customView19 = DetailCellView(frame:CGRectMake(0, 775, SCREEN_WIDTH, 45))
+        customView19.setLabelName("录入时间：")
         getSystemTime { (time) in
-            self.majorCustomView19.setRRightLabel(time)
+            self.customView19.setRRightLabel(time)
         }
-        majorCustomView19.setTimeImg()
+        customView19.setTimeImg()
         
-        majorCustomView20 = DetailCellView(frame:CGRectMake(0, 820, SCREEN_WIDTH, 45))
-        majorCustomView20.setLabelName("填报人：")
-        majorCustomView20.setRTextField( "")
+        customView20 = DetailCellView(frame:CGRectMake(0, 820, SCREEN_WIDTH, 45))
+        customView20.setLabelName("填报人：")
+        customView20.setRTextField( "")
         
         let  customView21 = DetailCellView(frame:CGRectMake(0, 865, SCREEN_WIDTH, 45))
         customView21.setLabelName("现场图片：")
@@ -271,12 +357,12 @@ class RecordHiddenMajorController: PhotoViewController {
         
         
         self.majorScrollView.addSubview(customView1)
-        self.majorScrollView.addSubview(majorCustomView2)
-        self.majorScrollView.addSubview(majorCustomView3)
-        self.majorScrollView.addSubview(majorCustomView4)
-        self.majorScrollView.addSubview(majorCustomView5)
-        self.majorScrollView.addSubview(majorCustomView6)
-        self.majorScrollView.addSubview(majorCustomView7)
+        self.majorScrollView.addSubview(customView2)
+        self.majorScrollView.addSubview(customView3)
+        self.majorScrollView.addSubview(customView4)
+        self.majorScrollView.addSubview(customView5)
+        self.majorScrollView.addSubview(customView6)
+        self.majorScrollView.addSubview(customView7)
         self.majorScrollView.addSubview(customView8)
         self.majorScrollView.addSubview(customView9)
         self.majorScrollView.addSubview(customView10)
@@ -286,11 +372,11 @@ class RecordHiddenMajorController: PhotoViewController {
         self.majorScrollView.addSubview(customView13)
         self.majorScrollView.addSubview(customView14)
         self.majorScrollView.addSubview(customView15)
-        self.majorScrollView.addSubview(majorCustomView16)
-        self.majorScrollView.addSubview(majorCustomView17)
-        self.majorScrollView.addSubview(majorCustomView18)
-        self.majorScrollView.addSubview(majorCustomView19)
-        self.majorScrollView.addSubview(majorCustomView20)
+        self.majorScrollView.addSubview(customView16)
+        self.majorScrollView.addSubview(customView17)
+        self.majorScrollView.addSubview(customView18)
+        self.majorScrollView.addSubview(customView19)
+        self.majorScrollView.addSubview(customView20)
         self.majorScrollView.addSubview(customView21)
         
         self.view.addSubview(majorSubmitBtn)
@@ -314,38 +400,38 @@ class RecordHiddenMajorController: PhotoViewController {
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        majorCustomView2.snp_makeConstraints { make in
+        customView2.snp_makeConstraints { make in
             make.top.equalTo(customView1.snp_bottom)
             make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        majorCustomView3.snp_makeConstraints { make in
-            make.top.equalTo(majorCustomView2.snp_bottom)
+        customView3.snp_makeConstraints { make in
+            make.top.equalTo(customView2.snp_bottom)
             make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        majorCustomView4.snp_makeConstraints { make in
-            make.top.equalTo(majorCustomView3.snp_bottom)
+        customView4.snp_makeConstraints { make in
+            make.top.equalTo(customView3.snp_bottom)
             make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        majorCustomView5.snp_makeConstraints { make in
-            make.top.equalTo(majorCustomView4.snp_bottom)
+        customView5.snp_makeConstraints { make in
+            make.top.equalTo(customView4.snp_bottom)
             make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        majorCustomView6.snp_makeConstraints { make in
-            make.top.equalTo(majorCustomView5.snp_bottom)
+        customView6.snp_makeConstraints { make in
+            make.top.equalTo(customView5.snp_bottom)
             make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
         
-        majorCustomView7.snp_makeConstraints { make in
-            make.top.equalTo(majorCustomView6.snp_bottom)
+        customView7.snp_makeConstraints { make in
+            make.top.equalTo(customView6.snp_bottom)
             make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
@@ -357,7 +443,7 @@ class RecordHiddenMajorController: PhotoViewController {
 //        }
         
         customView9.snp_makeConstraints { make in
-            make.top.equalTo(majorCustomView7.snp_bottom)
+            make.top.equalTo(customView7.snp_bottom)
             make.left.equalTo(self.majorScrollView.snp_left)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
@@ -387,8 +473,8 @@ class RecordHiddenMajorController: PhotoViewController {
     
     func majorChoicePlanTimes(){
         choiceTime { (time) in
-            self.majorCustomView16.setRRightLabel(time)
-            self.majorCustomView16.becomeFirstResponder()
+            self.customView16.setRRightLabel(time)
+            self.customView16.becomeFirstResponder()
         }
         
     }
@@ -400,7 +486,7 @@ class RecordHiddenMajorController: PhotoViewController {
         getChoiceArea(majorAreaArr) { (area,areaArr) in
             self.majorSecondAreaCode =  getSecondArea(areaArr[1])
             self.majorThirdAreaCode = getThirdArea(areaArr[2])
-            self.majorCustomView3.setRRightLabel(area)
+            self.customView3.setRRightLabel(area)
         }
     }
     
@@ -564,10 +650,7 @@ class RecordHiddenMajorController: PhotoViewController {
             }else{
                 self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
             
@@ -592,13 +675,13 @@ class RecordHiddenMajorController: PhotoViewController {
         parameters["danger.linkMobile"] = majorMobile
         parameters["danger.description"] = majorHiddenDes
         
-        parameters["danger.govCoordination"] = String(Int(majoris2))
-        parameters["danger.partStopProduct"] = String(Int(majoris3))
-        parameters["danger.fullStopProduct"] = String(Int(majoris4))
-        parameters["danger.target"] = String(Int(majoris5))
-        parameters["danger.resource"] = String(Int(majoris6))
-        parameters["danger.safetyMethod"] = String(Int(majoris7))
-        parameters["danger.goods"] = String(Int(majoris8))
+        parameters["danger.govCoordination"] = String(majoris2)
+        parameters["danger.partStopProduct"] = String(majoris3)
+        parameters["danger.fullStopProduct"] = String(majoris4)
+        parameters["danger.target"] = String(majoris5)
+        parameters["danger.resource"] = String(majoris6)
+        parameters["danger.safetyMethod"] = String(majoris7)
+        parameters["danger.goods"] = String(majoris8)
         
         
         parameters["danger.finishDate"] = majorPlantTime

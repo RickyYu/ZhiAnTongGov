@@ -8,7 +8,8 @@
 
 import UIKit
 
-class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
+private let CpyInfoListReuseIdentifier = "CpyInfoCell"
+class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTableViewDelegate{
 
     var cpyInfoModels  = [CpyInfoModel]()
     var result = [CpyInfoModel]()
@@ -16,21 +17,57 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
     var currentPage : Int = 0  //加载更多时候+10
     //总条数
     var totalCount : Int = 0
-  
+    //排序规则
+    var orderProperty : String!
+    var orderType:Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //修改导航栏按钮颜色为白色
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        //修改导航栏文字颜色
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        //修改导航栏背景颜色
-        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
-        //修改导航栏按钮返回只有箭头
-        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
-        self.navigationItem.backBarButtonItem = item;
+        setNavagation("检查记录")
+        let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
+        button2.setImage(UIImage(named: "icon_sort"), forState: .Normal)
+        button2.addTarget(self,action:#selector(self.sortButtonClick),forControlEvents:.TouchUpInside)
+        let barButton2 = UIBarButtonItem(customView: button2)
+        navigationItem.rightBarButtonItem = barButton2
+        popView.cells = ["修改时间","隐患数升序", "隐患数降序"]
+        popView.sorts =  ["","up", "down"]
+        
         initPage()
        
     }
+    
+    private lazy var popView: YMSortTableView = {
+        let popView = YMSortTableView()
+        popView.delegate = self
+        return popView
+    }()
+    /// 搜索条件点击
+    func sortButtonClick() {
+        popView.show()
+    }
+    
+    var isPun :Bool = false // false 未处罚   true 已经处罚
+    // MARK: - YMSortTableViewDelegate
+    func sortView(sortView: YMSortTableView, didSelectSortAtIndexPath sort: String) {
+        print(sort)
+        sortView.dismiss()
+        //gridDangerNum
+        if sort == "up" {
+        orderProperty = "gridDangerNum"
+            orderType = true
+            reSet()
+            getData()
+        }else if sort == "down"{
+            orderProperty = "gridDangerNum"
+            orderType = false
+            reSet()
+            getData()
+        }else{
+            orderProperty = nil
+            reSet()
+            getData()
+        }
+    }
+    
     //搜索控制器
     var countrySearchController = UISearchController()
       var searchStr : String! = ""
@@ -44,6 +81,12 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
         let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = item;
 
+        
+        // 设置tableview相关
+        let nib = UINib(nibName: CpyInfoListReuseIdentifier,bundle: nil)
+        self.tableView.registerNib(nib, forCellReuseIdentifier: CpyInfoListReuseIdentifier)
+        tableView.rowHeight = 53;
+        tableView.backgroundColor = UIColor.whiteColor()
         //配置搜索控制器
         self.countrySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -67,6 +110,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
     
 
     
+    
     func getData(){
         
         if refreshControl!.refreshing{
@@ -78,6 +122,11 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
         parameters["pagination.totalCount"] = totalCount
         if !AppTools.isEmpty(searchStr){
          parameters["company.companyName"] = searchStr
+        }
+        
+        if orderProperty != nil{
+        parameters["company.orderProperty"] = orderProperty
+        parameters["company.orderType"] = String(orderType)
         }
         
         
@@ -106,10 +155,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                   self.alertNotice("提示", message: error, handler: {
-                          let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                    self.presentViewController(controller, animated: true, completion: nil)
-                   })
+                    self.toLoginView()
                 }
             }
             
@@ -123,15 +169,12 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cellIdentifier: String = "CpyInfoListCell"
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CpyInfoCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(CpyInfoListReuseIdentifier, forIndexPath: indexPath) as! CpyInfoCell
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         let count = cpyInfoModels.count ?? 0
         if count > 0 {
             let cpyInfoModel = cpyInfoModels[indexPath.row]
-            cell.cpyInfoModel = cpyInfoModel
+            cell.cpyInfoModelByGrid = cpyInfoModel
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
@@ -142,7 +185,6 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchStr = searchText
         print("searchTextStr = \(searchStr)")
    
@@ -151,7 +193,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        searchBar.resignFirstResponder()
+        searchStr = countrySearchController.searchBar.text
         reSet()
         getData()
         
@@ -176,18 +218,18 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate{
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
+
     
-    //给新进入的界面进行传值
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "toRecordInfo" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                //                let object : NSDictionary = listVideos[indexPath.row] as! NSDictionary
-                //                (segue.destinationViewController as! InfoDetailController).detailItem = object
-                let model = cpyInfoModels[indexPath.row]
-                (segue.destinationViewController as! RecordInfoListController).cpyId = model.id
-       
-            }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecordInfoListController") as! RecordInfoListController
+        let model:CpyInfoModel = cpyInfoModels[indexPath.row]
+        controller.cpyId = model.id
+        if model.gridDangerNum > 0 {
+          controller.isHavaReviewNum = true
+        }else{
+         controller.isHavaReviewNum = false
         }
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - 内部控制方法

@@ -23,8 +23,17 @@ class LoginViewController: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initPage()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
+        
     }
     
+    func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            userNameField.resignFirstResponder()
+            passWordField.resignFirstResponder()
+        }
+        sender.cancelsTouchesInView = false
+    }
     
     
     @IBAction func login(sender: UIButton) {

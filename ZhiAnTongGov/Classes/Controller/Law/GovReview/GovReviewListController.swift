@@ -24,18 +24,10 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
     var result = [UnPunishmentModel]()
     // 是否加载更多
     private var toLoadMore = false
-    var searchStr : String = ""
+    var searchStr : String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //修改导航栏按钮颜色为白色
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        //修改导航栏文字颜色
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        //修改导航栏背景颜色
-        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
-        //修改导航栏按钮返回只有箭头
-        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
-        self.navigationItem.backBarButtonItem = item;
+  setNavagation("政府复查")
         initPage()
     }
     
@@ -50,7 +42,9 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         //配置搜索控制器
         self.countrySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
-        
+            if searchStr != nil{
+                controller.searchBar.text = searchStr
+            }
             controller.searchBar.delegate = self  //两个样例使用不同的代理
             controller.hidesNavigationBarDuringPresentation = false
             controller.dimsBackgroundDuringPresentation = false
@@ -77,7 +71,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
         parameters["pagination.totalCount"] = totalCount
-        if !AppTools.isEmpty(searchStr){
+         if searchStr != nil{
             parameters["companyName"] = searchStr
         }
         
@@ -107,10 +101,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
             
@@ -145,6 +136,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.resignFirstResponder()
+        searchStr = countrySearchController.searchBar.text
         reSet()
         getDatas()
         
@@ -171,17 +163,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         return 1;
     }
     
-    //给新进入的界面进行传值
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-//        
-//        if segue.identifier == "toCpyInfoDetail" {
-//            if let indexPath = self.tableView.indexPathForSelectedRow {
-//                let str = listDatas[indexPath.row].companyName
-//                self.navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: nil)
-//              //  (segue.destinationViewController as! CpyInfoDetailController).titleStr = str
-//            }
-//        }
-//    }
+
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let object = listDatas[indexPath.row]

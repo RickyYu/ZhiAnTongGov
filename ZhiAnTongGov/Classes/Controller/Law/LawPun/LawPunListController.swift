@@ -31,15 +31,10 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
      var isRefresh:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        //修改导航栏按钮颜色为白色
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        //修改导航栏文字颜色
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        //修改导航栏背景颜色
-        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
+        setNavagation("行政处罚")
         
         let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
-        button2.setImage(UIImage(named: "daily_mgr_selected"), forState: .Normal)
+        button2.setImage(UIImage(named: "icon_sort"), forState: .Normal)
         button2.addTarget(self,action:#selector(self.sortButtonClick),forControlEvents:.TouchUpInside)
         let barButton2 = UIBarButtonItem(customView: button2)
          navigationItem.rightBarButtonItem = barButton2
@@ -160,10 +155,7 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
                 }
                 self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
                 }
             }
             
@@ -268,6 +260,7 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        searchStr = countrySearchController.searchBar.text!
         reSet()
         if isPun{
             getPunDatas()
