@@ -6,8 +6,10 @@
 	<string></string>
 	<key>LOAD_COMPANY_INFO</key>
 	<string>/appCompany/nosecuritycheck/loadCompanyInfo.xhtml</string>
+	<key>LOAD_VDANGERS</key>
+	<string>/appDanger/nosecuritycheck/loadVDangers.xhtml</string>
 	<key>BASE_URL_DA</key>
-	<string>http://192.168.2.110:7091/huzhouArchives</string>
+	<string>http://192.168.2.224:8022/huzhouArchives</string>
 	<key>CREATE_HIDDEN_TROUBLE</key>
 	<string>/appCheckRecord/nosecuritycheck/createHiddenTrouble.xhtml</string>
 	<key>LOAD_INDUSTRY_SECOND_SELECT</key>
@@ -16,10 +18,14 @@
 	<string>/appCheckRecord/nosecuritycheck/loadIndustrySelect.xhtml</string>
 	<key>LOAD_HISTORY_PRODUCE</key>
 	<string>/appProduceLocaleNote/nosecuritycheck/loadHistoryProduceCallBacks.xhtml</string>
+	<key>TAKE_DANGERS</key>
+	<string>/appDanger/nosecuritycheck/takeDangers.xhtml</string>
 	<key>LOAD_COMPANYS</key>
 	<string>/appCompany/nosecuritycheck/loadCompanys.xhtml</string>
 	<key>UPDATE_COMPANY</key>
 	<string>/appCompany/nosecuritycheck/updateCompany.xhtml</string>
+	<key>LOAD_DANGER</key>
+	<string>/appDanger/nosecuritycheck/loadDanger.xhtml</string>
 	<key>GET_COMPANY_GRID</key>
 	<string>/appCheckRecord/nosecuritycheck/loadCompanyGrid.xhtml</string>
 	<key>LOAD_PRODUCE_CALLBACKS</key>
@@ -40,6 +46,8 @@
 	<string>/appCompany/nosecuritycheck/getPoint.xhtml</string>
 	<key>GET_LAW_INFO_LIST_DETAIL</key>
 	<string>/appArticle/nosecuritycheck/loadArticle.xhtml</string>
+	<key>LOAD_NOMAL_DANGER_VIEW</key>
+	<string>/appNomalDanger/nosecuritycheck/loadNomalDanger.xhtml</string>
 	<key>LOAD_UNPUN_LIST</key>
 	<string>/appPunishment/nosecuritycheck/loadNotPunishmentList.xhtml</string>
 	<key>CREATE_DANGER</key>
@@ -75,20 +83,12 @@
 	<key>LOAD_GOV_COUNT</key>
 	<string>/appDanger/nosecuritycheck/loadGovCount.xhtml</string>
 	<key>BASE_URL_YH</key>
-	<string>http://192.168.2.110:7090/huzhou</string>
+	<string>http://192.168.2.224:8029/huzhou</string>
 	<key>CREATE_PUNISHMENT</key>
 	<string>/appPunishment/nosecuritycheck/createPunishment.xhtml</string>
 	<key>LOAD_PRO_DANGERS</key>
 	<string>/appDanger/nosecuritycheck/loadProDangers.xhtml</string>
 	<key>LOAD_COUNT_COM</key>
 	<string>/appDanger/nosecuritycheck/loadCountCom.xhtml</string>
-	<key>LOAD_VDANGERS</key>
-	<string>/appDanger/nosecuritycheck/loadVDangers.xhtml</string>
-	<key>TAKE_DANGERS</key>
-	<string>/appDanger/nosecuritycheck/takeDangers.xhtml</string>
-	<key>LOAD_NOMAL_DANGER_VIEW</key>
-	<string>/appNomalDanger/nosecuritycheck/loadNomalDanger.xhtml</string>
-	<key>LOAD_DANGER</key>
-	<string>/appDanger/nosecuritycheck/loadDanger.xhtml</string>
 </dict>
 </plist>

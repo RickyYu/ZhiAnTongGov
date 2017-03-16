@@ -45,6 +45,10 @@ class HiddenConfirmListController: BaseTabViewController {
         tableView.separatorStyle = .None
         tableView.tableFooterView = UIView()
         
+        let rightBar = UIBarButtonItem(title: "检查", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.back))
+        self.navigationItem.rightBarButtonItem = rightBar
+
+        
         
         // 设置下拉刷新控件
         refreshControl = RefreshControl(frame: CGRectZero)

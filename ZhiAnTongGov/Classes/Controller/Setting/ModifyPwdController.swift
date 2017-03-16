@@ -25,6 +25,7 @@ class ModifyPwdController: BaseViewController {
     private func initPage(){
         
         // 设置navigation
+        setNavagation("密码修改")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(ModifyPwdController.back))
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
         
