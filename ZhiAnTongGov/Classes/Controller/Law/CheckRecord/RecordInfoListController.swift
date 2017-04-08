@@ -16,10 +16,10 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
     var result = [RecordInfoModel]()
     //搜索控制器
     //搜索控制器
-    var countrySearchController = UISearchController()
+    //var countrySearchController = UISearchController()
     var searchStr : String! = ""
     // 当前页
-    var currentPage : Int = 0  //加载更多时候+10
+    var currentPage : Int = 0  //加载更多时候+PAGE_SIZE
     //总条数
     var totalCount : Int = 0
     // 是否加载更多
@@ -36,13 +36,12 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
          reSet()
          getData()
         }
-       
     }
     
     private func initPage(){
         
         // 设置navigation
-        navigationItem.title = "检查记录"
+        navigationItem.title = "企业信息列表"
 
         let barButton1 = UIBarButtonItem(title: "新增", style: UIBarButtonItemStyle.Done, target: self, action: #selector(RecordInfoListController.addRecord))
         //设置按钮
@@ -82,11 +81,7 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
-        
-        // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl!.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
-        refreshControl!.beginRefreshing()
+
         getData()
         
         
@@ -120,9 +115,7 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
     }
     
     func getData(){
-        if refreshControl!.refreshing{
-            reSet()
-        }
+
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -140,33 +133,29 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
        
         
         NetworkTool.sharedTools.loadGovRecords(parameters) { (recordInfoModels, error,totalCount) in
-                                    // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
-          
-            
-            
+
             if error == nil{
                 self.totalCount = totalCount!
 
                 if self.currentPage>totalCount{
                     self.showHint("数据加载完毕", duration: 2, yOffset: 0)
-                    self.currentPage -= 10
+                    self.currentPage -= PAGE_SIZE
                     return
                 }
-                 self.toLoadMore = false
+                //当currentPage<totalCount
+                self.toLoadMore = false
                 self.recordInfoModels += recordInfoModels!
                 
             }else{
                 // 获取数据失败后
-                self.currentPage -= 10
+                self.currentPage -= PAGE_SIZE
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
-                self.showHint("\(error!)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.toLoginView()
+                  self.toLoginView()
+                }else {
+                  self.showHint("\(error!)", duration: 2, yOffset: 0)
                 }
             }
             self.tableView.reloadData()
@@ -190,9 +179,9 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
             cell.recordInfoModel = recordInfoModel
         }
         
-        if count > 0 && indexPath.row == count-1 && !toLoadMore{
+        if count > 0 && indexPath.row == count-1 && !toLoadMore && totalCount>PAGE_SIZE{
             toLoadMore = true
-            currentPage += 10
+            currentPage += PAGE_SIZE
             getData()
         }
         
@@ -248,6 +237,7 @@ class RecordInfoListController:BaseTabViewController,UISearchBarDelegate, YMSort
     func reSet(){
         // 重置当前页
         currentPage = 0
+         totalCount = 0
         // 重置数组
         recordInfoModels.removeAll()
         recordInfoModels = [RecordInfoModel]()

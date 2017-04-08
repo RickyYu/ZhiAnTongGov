@@ -16,6 +16,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
     
     //传过来的model
     var converyModels = CheckListVo()
+    // 获取到的检查选项
     var industrySecondSelectModels  = [IndustrySecondSelectModel]()
     var result = [IndustrySelectModel]()
     // 当前页
@@ -50,21 +51,20 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
     var falseBtn = UIButton()
     //检查选项
     var listHy = [IndustrySecondSelectModel]()
+    var listHyId = [Int]()
     //检查选项是否通过
     var listCheck = [Int]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(converyModels.listfile.count)
         initPage()
         getDatas()
         
     }
  
     private func initPage(){
-        
+        setNavagation("检查记录-行业检查表")
         backBtn.setTitle("上一步（基本信息）", forState:.Normal)
         backBtn.titleLabel?.font  = UIFont.boldSystemFontOfSize(13)
         backBtn.backgroundColor = YMGlobalDeapBlueColor()
@@ -87,6 +87,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         customView2 =  DetailCellView(frame:CGRectMake(0, 500, SCREEN_WIDTH, 45))
         customView2.setLabelName("发送整改通知书：")
         customView2.setRCheckBtn()
+        customView2.setLabelMax()
         customView2.rightCheckBtn.addTarget(self, action:#selector(tapped3(_:)), forControlEvents:.TouchUpInside)
 
         
@@ -163,7 +164,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
             make.size.equalTo(CGSizeMake(30, 30))
         }
         
-       self.title = "检查记录-行业检查表"
+        self.title = "检查记录-行业检查表"
         tableView.delegate = self
         tableView.dataSource = self
         let nib = UINib(nibName: Identifier,bundle: nil)
@@ -196,6 +197,8 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
     func backBaseInfo(){
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+
     
     func nextRecordHidden(){
         
@@ -285,16 +288,12 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
                 return
             }
             //增加一个页面
-            
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecordFunctionController") as! RecordFunctionController
             controller.converyModels = converyModels
             self.navigationController?.pushViewController(controller, animated: true)
 
-            
-        
         }
 
-    
     }
     
 
@@ -304,9 +303,8 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         var parameters = [String : AnyObject]()
         parameters["hzTemplateCheckTable.id"] = converyModels.checkId
         if !AppTools.isEmpty(searchStr){
-            parameters["hzTemplateCheckTable.title"] = searchStr
+            parameters["hzTemplateCheckTableInfo.content"] = searchStr
         }
-        
         
         NetworkTool.sharedTools.loadIndustrySecondSelect(parameters) { (datas, error,totalCount) in
             
@@ -314,7 +312,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
                     //  self.showHint(LOAD_FINISH, duration: 2, yOffset: 0)
-                    self.currentPage -= 10
+                    self.currentPage -= PAGE_SIZE
                     return
                 }
                 self.toLoadMore = false
@@ -322,7 +320,7 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
                 
             }else{
                 // 获取数据失败后
-                self.currentPage -= 10
+                self.currentPage -= PAGE_SIZE
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
@@ -341,36 +339,90 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         return self.industrySecondSelectModels.count ?? 0
     }
     
+      var listHyTemp = [IndustrySecondSelectModel]()
+//    //listHy 将最终检查结果放入
+    var isFirst = true
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
         var cell = tableView.dequeueReusableCellWithIdentifier(Identifier, forIndexPath: indexPath) as! IndustrySelectSwitchCell
         if cell.isEqual(nil){
             cell = IndustrySelectSwitchCell(style: UITableViewCellStyle.Default, reuseIdentifier: Identifier)
         }
         let count = industrySecondSelectModels.count ?? 0
+        
         if count > 0 {
             let industrySecondSelectModel = industrySecondSelectModels[indexPath.row]
-            cell.industrySecondSelectModel = industrySecondSelectModel
-            
             cell.customSwitch.addTarget(self, action:  #selector(self.switchDidChange), forControlEvents: .ValueChanged)
             if cell.customSwitch.selected{
             industrySecondSelectModel.descriptions = "1"
             }else{
             industrySecondSelectModel.descriptions = "0"
             }
-             listHy.append(industrySecondSelectModel)
+//            
+//             listHyTemp.append(industrySecondSelectModel)
+//            
+//            if listHyTemp[indexPath.row].id == industrySecondSelectModel.id {
+//                industrySecondSelectModel.descriptions = listHyTemp[indexPath.row].descriptions
+//                listHyTemp.removeAtIndex(indexPath.row)
+//                listHyTemp.insert(industrySecondSelectModel, atIndex: indexPath.row)
+//            }else{
+//                listHyTemp.append(industrySecondSelectModel)
+//            }
+//
+//            
+//            
+////            let listHyTempCount = listHyTemp.count ?? 0
+//            if isFirst {
+//                isFirst = false
+//                listHyTemp.append(industrySecondSelectModel)
+//                listHyId.append(industrySecondSelectModel.id)
+//            }else {
+//                    if listHyTemp[indexPath.row].id == industrySecondSelectModel.id {
+//                        industrySecondSelectModel.descriptions = listHyTemp[indexPath.row].descriptions
+//                        listHyTemp.removeAtIndex(indexPath.row)
+//                        listHyTemp.insert(industrySecondSelectModel, atIndex: indexPath.row)
+//                    }else{
+//                        listHyTemp.append(industrySecondSelectModel)
+//                    }
+//                
+//            }
+            
+            
+            if isFirst {
+            isFirst = false
+            listHy.append(industrySecondSelectModel)
+            listHyId.append(industrySecondSelectModel.id)
+            }else{
+                for list in listHy {
+                    if listHyId.contains(industrySecondSelectModel.id)  {
+                     industrySecondSelectModel.descriptions = list.descriptions
+                    }else {
+                    listHy.append(industrySecondSelectModel)
+                    listHyId.append(industrySecondSelectModel.id)
+                    }
+                }
+            }
+            
+           //每次加载数据listHy内都是需要重新放入的数据
+            cell.industrySecondSelectModel = industrySecondSelectModel
         }
       
-        if count > 0 && indexPath.row == count-1 && !toLoadMore{
+        if count > 0 && indexPath.row == count-1 && !toLoadMore && totalCount>PAGE_SIZE{
             toLoadMore = true
-            currentPage += 10
+            currentPage += PAGE_SIZE
             getDatas()
         }
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
     func switchDidChange(){
+        
+        for list in listHy {
+           print(list.descriptions)
+        }
         
         print("change")
         
@@ -384,7 +436,6 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
     
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
         searchBar.resignFirstResponder()
         searchStr = countrySearchController.searchBar.text
         reSet()
@@ -421,6 +472,8 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
         // 重置当前页
         currentPage = 0
         // 重置数组
+        totalCount = 0
+        
         industrySecondSelectModels.removeAll()
         industrySecondSelectModels = [IndustrySecondSelectModel]()
     }

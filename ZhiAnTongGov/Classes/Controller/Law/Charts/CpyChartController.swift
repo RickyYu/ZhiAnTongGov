@@ -11,6 +11,7 @@ import Charts
 class CpyChartController:BaseViewController,ChartViewDelegate{
     
     @IBOutlet weak var chartView: BarChartView!
+
         var mCountModels = [McountModel]()
     @IBOutlet weak var label3: UILabel!
     @IBOutlet weak var label4: UILabel!
@@ -68,7 +69,7 @@ class CpyChartController:BaseViewController,ChartViewDelegate{
         chartView.leftAxis.enabled = true
         //图表背景色
         // chartView.gridBackgroundColor = UIColor.grayColor()
-        chartView.backgroundColor = UIColor.lightGrayColor()
+     
         //设置X轴
         let xAxis = chartView.xAxis
         xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
@@ -94,7 +95,7 @@ class CpyChartController:BaseViewController,ChartViewDelegate{
         for item in mCountModels{
             let month = item.dateMonth.substringFromIndex(item.dateMonth.startIndex.advancedBy(3))+"月"
             months.append(month)
-            valuesYh.append(Double(item.byGov))
+            valuesYh.append(Double(item.byCom))
             valuesZg.append(Double(item.repairedNum))
             
         }
@@ -113,7 +114,8 @@ class CpyChartController:BaseViewController,ChartViewDelegate{
         
         let sortArray = valuesYh.sort(){ $1 < $0 }
         let leftAxis = chartView.leftAxis
-        leftAxis.axisMaxValue = sortArray[0]
+        //设置y轴数字
+        leftAxis.axisMaxValue = sortArray[0]*1.2
         
         let chartDataSet = BarChartDataSet(yVals: dataEntriesYh, label: "隐患数量")
         let chartDataSet1 = BarChartDataSet(yVals: dataEntriesZg, label: "整改数量")

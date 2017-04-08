@@ -15,23 +15,33 @@ class ModifyPwdController: BaseViewController {
     @IBOutlet weak var newPwdField: UITextField!
     @IBOutlet weak var confirmNewPwdField: UITextField!
     @IBOutlet weak var oldPwdField: UITextField!
-    
+     var submitBtn = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavagation("密码修改")
         initPage()
     }
     
     private func initPage(){
+        submitBtn.setTitle("提交", forState:.Normal)
+        submitBtn.backgroundColor = YMGlobalDeapBlueColor()
+        submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+        submitBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(submitBtn)
         
+        submitBtn.snp_makeConstraints { make in
+            make.bottom.equalTo(self.view.snp_bottom).offset(-30)
+            make.left.equalTo(self.view.snp_left).offset(50)
+            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
+        }
         // 设置navigation
-        setNavagation("密码修改")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(ModifyPwdController.back))
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
         
     }
     
-   func resignEdit(sender: UITapGestureRecognizer) {
+     override func resignEdit(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             newPwdField.resignFirstResponder()
             confirmNewPwdField.resignFirstResponder()
@@ -43,8 +53,8 @@ class ModifyPwdController: BaseViewController {
     {
         navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
-
-    @IBAction func submit(sender: AnyObject) {
+    
+    func submit(){
         let newPwd = newPwdField.text!
         let confirmNewPwd = confirmNewPwdField.text!
         let oldPwd = oldPwdField.text!
@@ -73,6 +83,7 @@ class ModifyPwdController: BaseViewController {
             return
         }
         self.updatePwd(confirmNewPwd, oldPwd: oldPwd)
+    
     }
     
     func updatePwd(confirmNewPwd:String,oldPwd:String){
@@ -81,13 +92,19 @@ class ModifyPwdController: BaseViewController {
         parameters["password"] = oldPwd
         NetworkTool.sharedTools.changePwd(parameters) { (login, error) in
             if error == nil {
-             self.showHint("密码修改成功！", duration: 2, yOffset: 2)
-            self.navigationController?.popViewControllerAnimated(true)
+             self.showHint("密码修改成功！", duration: 1, yOffset: 1)
+             self.toLoginView()
             }else{
-              self.showHint("密码修改失败！", duration: 2, yOffset: 2)
                 if error == NOTICE_SECURITY_NAME {
-                    self.toLoginView()
+                    self.alertNotice("提示", message: NOTICE_SECURITY_SUCCESS, handler: {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                        self.presentViewController(controller, animated: true, completion: nil)
+                    })
+                }else{
+                    self.showHint("\(error!)", duration: 2, yOffset: 0)
+                    
                 }
+
             }
             
         }

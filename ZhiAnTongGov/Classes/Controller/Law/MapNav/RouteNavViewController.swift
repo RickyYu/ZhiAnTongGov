@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMapViewDelegate, BMKRouteSearchDelegate, UITextFieldDelegate {
+class RouteNavViewController: BaseViewController, BMKLocationServiceDelegate,BMKMapViewDelegate, BMKRouteSearchDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var _mapView: BMKMapView!
     @IBOutlet weak var fromAddressField: UITextField!
@@ -27,18 +27,9 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
     var cityName :String = "宁波"
     override func viewDidLoad() {
         super.viewDidLoad()
-        //修改导航栏按钮颜色为白色
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        //修改导航栏文字颜色
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        //修改导航栏背景颜色
-        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
-
-        //修改导航栏按钮返回只有箭头
-        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
-        self.navigationItem.backBarButtonItem = item;
+        setNavagation("地图导航")
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
         routeSearch = BMKRouteSearch()
-        
         // 界面初始化
         fromAddressField.placeholder = "默认当前位置"
         fromAddressField.text = ""
@@ -48,8 +39,6 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
         fromAddressField.delegate = self
         toAddressField.delegate = self
         
-        
-         self.navigationItem.title = "地图导航"
         // 在导航栏上添加“途径点”按钮
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(RouteNavViewController.back))
          navigationItem.rightBarButtonItem = UIBarButtonItem(title: "选择企业", style: .Plain, target: self, action: #selector(self.choiceCpy))
@@ -64,6 +53,14 @@ class RouteNavViewController: UIViewController, BMKLocationServiceDelegate,BMKMa
         //定位万金大厦
         _mapView!.centerCoordinate = CLLocationCoordinate2DMake(29.8673, 121.5995)
         _mapView!.zoomLevel=16
+    }
+    
+    override func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            fromAddressField.resignFirstResponder()
+            toAddressField.resignFirstResponder()
+        }
+        sender.cancelsTouchesInView = false
     }
     
     func choiceCpy(){

@@ -12,12 +12,60 @@ import UsefulPickerView
 
 class BaseViewController: UIViewController {
     
-//    var editText : UITextField!
-//    var editView : UITextView!
+    var keyBoardNeedLayout: Bool = true
     override func viewDidLoad() {
-        setNavagation("")
-        
+        //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        //        //当键盘收起的时候会向系统发出一个通知，
+        //        //这个时候需要注册另外一个监听器响应该通知
+        //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+//          self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
     }
+    func keyboardWillShow(notification: NSNotification) {
+        if let userInfo = notification.userInfo,
+            value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+            curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+            let frame = value.CGRectValue()
+            let intersection = CGRectIntersection(frame, self.view.frame)
+            let deltaY = CGRectGetHeight(intersection)
+            if keyBoardNeedLayout {
+                UIView.animateWithDuration(duration, delay: 0.0,
+                                           options: UIViewAnimationOptions(rawValue: curve),
+                                           animations: { _ in
+                                            self.view.frame = CGRectMake(0,-deltaY,self.view.bounds.width,self.view.bounds.height)
+                                            self.keyBoardNeedLayout = false
+                                            self.view.layoutIfNeeded()
+                    }, completion: nil)
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        print("hide")
+        if let userInfo = notification.userInfo,
+            value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+            curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+            let frame = value.CGRectValue()
+            let intersection = CGRectIntersection(frame, self.view.frame)
+            let deltaY = CGRectGetHeight(intersection)
+            UIView.animateWithDuration(duration, delay: 0.0,
+                                       options: UIViewAnimationOptions(rawValue: curve),
+                                       animations: { _ in
+                                        self.view.frame = CGRectMake(0,deltaY,self.view.bounds.width,self.view.bounds.height)
+                                        self.keyBoardNeedLayout = true
+                                        self.view.layoutIfNeeded()
+                }, completion: nil)
+        }
+    }
+    
+    func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            
+        }
+        sender.cancelsTouchesInView = false
+    }
+    
     func setNavagation(title:String){
         //修改导航栏按钮颜色为白色
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -170,10 +218,7 @@ class BaseViewController: UIViewController {
     }
     
     internal func getChoiceArea(areaArr:[String],finished:(area:String,areaArr:[String])->()){
-//        UsefulPickerView.showCitiesPicker("市区镇选择", defaultSelectedValues: areaArr) { (selectedIndexs, selectedValues) in
-//          
-//        }
-        UsefulPickerView.showCitiesPicker("市区镇选择", defaultSelectedValues: areaArr) {[unowned self] (selectedIndexs, selectedValues) in
+        UsefulPickerView.showCitiesPicker("市区镇选择", defaultSelectedValues: areaArr) { (selectedIndexs, selectedValues) in
             // 处理数据
             let combinedString = selectedValues.reduce("", combine: { (result, value) -> String in
                 result + " " + value
@@ -190,4 +235,56 @@ class BaseViewController: UIViewController {
         })
     }
     
+    //去除HTML标签
+    func trimHtml(text:String)->NSAttributedString{
+        var str = NSAttributedString()
+        do{
+            str = try  NSAttributedString(data: ((text).dataUsingEncoding(NSUnicodeStringEncoding,allowLossyConversion: true)!), options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType], documentAttributes: nil)
+            return str
+        }catch{
+            return str
+        }
+        
+    }
+    
+    //长度提示  name：行名称  count:输入长度
+    func lenthLimit(name:String,count:String){
+        if count.characters.count > MAX_INPUT_NUM {
+            alert("\(name))长度不能大于\(MAX_INPUT_NUM)字")
+            return
+        }
+    }
+    
+    //输入值替换
+    //tfDocumentNum.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+    func textDidChange(sender:UITextField) {
+        let lang = textInputMode?.primaryLanguage
+        if lang == "zh-Hans" {
+            let range = sender.markedTextRange
+            if range == nil {
+                if sender.text?.characters.count >= MAX_INPUT_NUM {
+                    sender.text = sender.text?.substringToIndex((sender.text?.startIndex.advancedBy(MAX_INPUT_NUM))!)
+                }
+            }
+        }
+        else {
+            if sender.text?.characters.count >= MAX_INPUT_NUM {
+                sender.text = sender.text?.substringToIndex((sender.text?.startIndex.advancedBy(MAX_INPUT_NUM))!)
+            }
+        }
+    }
+    
+    //去除空字符
+    func trimSpace(text:String)->String{
+        //前后空格去除
+        let whiteSpace = NSCharacterSet.whitespaceCharacterSet()
+        return text.stringByTrimmingCharactersInSet(whiteSpace)
+        //        var tempArray = ss.componentsSeparatedByCharactersInSet(whiteSpace)
+        //        tempArray = tempArray.filter($o != "")
+        
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }

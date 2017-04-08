@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import SwiftyJSON
 
-class RecordHiddenMajorController: PhotoViewController {
+class RecordHiddenMajorController: SinglePhotoViewController {
      var converyModels : CheckListVo!
      var majorSubmitBtn = UIButton()
      var majorScrollView: UIScrollView!
@@ -21,11 +21,12 @@ class RecordHiddenMajorController: PhotoViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
-        setNavagation("重大隐患查看")
+        setNavagation("重大隐患录入")
         majorInitPage()
         if hiddenId != nil{
          getDatas()
         }
+     
     }
      //隐患地址
      var majorAddress = ""
@@ -59,7 +60,7 @@ class RecordHiddenMajorController: PhotoViewController {
     var customView18  = DetailCellView()
     var customView19  = DetailCellView()
     var customView20  = DetailCellView()
-    
+    var  customView21 = DetailCellView()
     func getDatas(){
         var parameters = [String : AnyObject]()
         parameters["danger.id"] = hiddenId
@@ -70,60 +71,69 @@ class RecordHiddenMajorController: PhotoViewController {
                 self.setData()
                 
             }else{
-                self.showHint("\(error)", duration: 2, yOffset: 0)
+                
                 if error == NOTICE_SECURITY_NAME {
                     self.toLoginView()
+                }else {
+                self.showHint("\(error)", duration: 2, yOffset: 0)
                 }
             }
         }
     }
     
     func setData(){
-    customView1.rightCheckBtn.selected = majorHidden.emphasisProject
-    customView2.setRTextField(majorHidden.dangerAdd)
-    customView2.textField.enabled = false
-    
-        let address:String = "湖州市"+getSecondArea(String(majorHidden.secondArea))+getThirdArea(String(majorHidden.thirdArea))
-        customView3.setRTextField(address)
-        customView3.textField.enabled = false
-        
-        customView4.setRTextField(majorHidden.linkMan)
-        customView4.textField.enabled = false
-        
-        customView5.setRTextField(majorHidden.linkTel)
-        customView5.textField.enabled = false
-        
-        customView6.setRTextField(majorHidden.linkMobile)
-        customView6.textField.enabled = false
-        
-        customView7.setRTextField(majorHidden.descriptions)
-        customView7.textField.enabled = false
-        
-       customView9.rightCheckBtn.selected = majorHidden.govCoordination
+           customView1.rightCheckBtn.selected = majorHidden.emphasisProject
+        customView9.rightCheckBtn.selected = majorHidden.govCoordination
         customView10.rightCheckBtn.selected = majorHidden.partStopProduct
         customView11.rightCheckBtn.selected = majorHidden.fullStopProduct
         customView12.rightCheckBtn.selected = majorHidden.target
         customView13.rightCheckBtn.selected = majorHidden.resource
         customView14.rightCheckBtn.selected = majorHidden.goods
         customView15.rightCheckBtn.selected = majorHidden.safetyMethod
-
+        let address:String = "湖州市"+getSecondArea(String(majorHidden.secondArea))+getThirdArea(String(majorHidden.thirdArea))
+        if hiddenId != nil{
+            customView2.textField.enabled = false
+            customView3.textField.enabled = false
+            customView4.textField.enabled = false
+            customView5.textField.enabled = false
+            customView6.textField.enabled = false
+            customView7.textField.enabled = false
+            customView16.textField.enabled = false
+            customView17.textField.enabled = false
+            customView18.textField.enabled = false
+            customView19.textField.enabled = false
+            customView20.textField.enabled = false
+            
+            customView2.setRTextFieldGray(majorHidden.dangerAdd)
+            customView3.setRRightLabelGray(address)
+            customView4.setRTextFieldGray(majorHidden.linkMan)
+            customView5.setRTextFieldGray(majorHidden.linkTel)
+            customView6.setRTextFieldGray(majorHidden.linkMobile)
+            customView7.setRTextFieldGray(majorHidden.descriptions)
+            customView16.setRTextFieldGray(String(majorHidden.finishDate))
+            customView17.setRTextFieldGray(String(majorHidden.governMoney))
+            customView18.setRTextFieldGray(majorHidden.chargePerson)
+            customView19.setRRightLabelGray(majorHidden.fillDate)
+            //customView19.setTimeImg()
+            customView20.setRTextFieldGray(majorHidden.fillMan)
+            customView21.hidden = true
+            majorSubmitBtn.hidden = true
+        }else{
+            customView2.setRTextField(majorHidden.dangerAdd)
+            customView3.setRRightLabel(address)
+            customView4.setRTextField(majorHidden.linkMan)
+            customView5.setRTextField(majorHidden.linkTel)
+            customView6.setRTextField(majorHidden.linkMobile)
+            customView7.setRTextField(majorHidden.descriptions)
+            customView16.setRTextField(String(majorHidden.finishDate))
+            customView17.setRTextField(String(majorHidden.governMoney))
+            customView18.setRTextField(majorHidden.chargePerson)
+            customView19.setRRightLabel(majorHidden.fillDate)
+            customView20.setRTextField(majorHidden.fillMan)
+            customView21.hidden = false
+            majorSubmitBtn.hidden = false
         
-        customView16.setRTextField(String(majorHidden.finishDate))
-        customView16.textField.enabled = false
-        
-        customView17.setRTextField(String(majorHidden.governMoney))
-        customView17.textField.enabled = false
-        
-        customView18.setRTextField(majorHidden.chargePerson)
-        customView18.textField.enabled = false
-        
-        customView19.setRTextField(majorHidden.fillDate)
-        customView19.textField.enabled = false
-        
-        customView20.setRTextField(majorHidden.fillMan)
-        customView20.textField.enabled = false
-        
-  
+        }
     }
     
     func submit(){
@@ -148,6 +158,13 @@ class RecordHiddenMajorController: PhotoViewController {
             })
             return
         }
+        lenthLimit("联系电话", count: majorPhone)
+        if !ValidateEnum.phoneNum(majorPhone).isRight {
+            alert("联系电话格式错误，请重新输入！", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
         
          majorMobile = customView6.textField.text!
         if AppTools.isEmpty(majorMobile) {
@@ -156,6 +173,14 @@ class RecordHiddenMajorController: PhotoViewController {
             })
             return
         }
+        lenthLimit("手机", count: majorMobile)
+        if !ValidateEnum.phoneNum(majorMobile).isRight {
+            alert("手机格式错误，请重新输入！", handler: {
+                self.customView5.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
          majorHiddenDes = customView7.textField.text!
         if AppTools.isEmpty(majorHiddenDes) {
             alert("隐患基本情况不可为空", handler: {
@@ -204,25 +229,36 @@ class RecordHiddenMajorController: PhotoViewController {
             return
         }
        
-        
         alertNotice("提示", message: "确认提交后，本次检查信息及隐患无法再更改") {
             self.submitCheck()
         }
     }
 
- 
+    override func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            customView2.textField.resignFirstResponder()
+            customView4.textField.resignFirstResponder()
+            customView5.textField.resignFirstResponder()
+            customView6.textField.resignFirstResponder()
+            customView7.textField.resignFirstResponder()
+            customView17.textField.resignFirstResponder()
+            customView18.textField.resignFirstResponder()
+            customView20.textField.resignFirstResponder()
+        }
+        sender.cancelsTouchesInView = false
+    }
+
     
     func majorInitPage(){
-        
-        
-        majorScrollView = UIScrollView(frame: CGRectMake(0, 0, SCREEN_WIDTH, 950))
-        majorScrollView!.pagingEnabled = true
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
+
+        majorScrollView = UIScrollView(frame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
+        //majorScrollView!.pagingEnabled = true
         majorScrollView!.scrollEnabled = true
         majorScrollView!.showsHorizontalScrollIndicator = true
         majorScrollView!.showsVerticalScrollIndicator = false
         majorScrollView!.scrollsToTop = true
-        majorScrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 950)
-        
+        majorScrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 1100)
         
         majorSubmitBtn.setTitle("保存", forState:.Normal)
         majorSubmitBtn.backgroundColor = YMGlobalDeapBlueColor()
@@ -246,9 +282,7 @@ class RecordHiddenMajorController: PhotoViewController {
          customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
         customView3.setLabelName("隐患区域：")
         customView3.setRRightLabel("")
-        majorAreaArr = ["湖州", "长兴县", "画溪街道"]
         customView3.addOnClickListener(self, action: #selector(self.majorChoiceArea))
-        
         
         
          customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
@@ -259,12 +293,12 @@ class RecordHiddenMajorController: PhotoViewController {
         customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("联系电话：")
         customView5.setRTextField( "")
-        
+        customView5.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
         customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
         customView6.setLabelName("手机:")
         customView6.setRTextField( "")
-        
+          customView6.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
         customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
         customView7.setLabelName("隐患基本情况：")
@@ -344,17 +378,12 @@ class RecordHiddenMajorController: PhotoViewController {
         customView20.setLabelName("填报人：")
         customView20.setRTextField( "")
         
-        let  customView21 = DetailCellView(frame:CGRectMake(0, 865, SCREEN_WIDTH, 45))
+        customView21 = DetailCellView(frame:CGRectMake(0, 865, SCREEN_WIDTH, 45))
         customView21.setLabelName("现场图片：")
-        customView21.setRCenterLabel("")
-         customView21.addOnClickListener(self, action: #selector(self.majorChoiceImage))
-        
-        majorInitPhoto()
-        
-        
-        
-        
-        
+        customView21.setRRightLabel("")
+        customView21.addOnClickListener(self, action: #selector(self.majorChoiceImage))
+        setImageViewLoc(0, y: 910)
+        self.majorScrollView.addSubview(scrollView)
         
         self.majorScrollView.addSubview(customView1)
         self.majorScrollView.addSubview(customView2)
@@ -457,19 +486,11 @@ class RecordHiddenMajorController: PhotoViewController {
     }
     
     func majorChoiceImage(){
-        containerView.hidden = false
+        self.takeImage()
+        customView21.setLineViewHidden()
     }
     
-    func majorInitPhoto(){
-        setLoc(0, y: 910)
-        var listImageFile = [UIImage]()
-        listImageFile = getListImage()
-        listImageFile.removeAll()
-        checkNeedAddButton()
-        renderView()
-        self.majorScrollView.addSubview(containerView)
-        containerView.hidden = true
-    }
+
     
     func majorChoicePlanTimes(){
         choiceTime { (time) in
@@ -478,17 +499,18 @@ class RecordHiddenMajorController: PhotoViewController {
         }
         
     }
-     var majorAreaArr = [String]()
+    
     var majorFirstAreaCode :String = "330500"
     var majorSecondAreaCode :String = ""
     var majorThirdAreaCode :String = ""
     func majorChoiceArea(){
-        getChoiceArea(majorAreaArr) { (area,areaArr) in
+        getChoiceArea(DEFAULT_AREA_ARRAY) { (area,areaArr) in
             self.majorSecondAreaCode =  getSecondArea(areaArr[1])
             self.majorThirdAreaCode = getThirdArea(areaArr[2])
             self.customView3.setRRightLabel(area)
         }
     }
+    
     
     
     //市级以上重点企业
@@ -497,13 +519,9 @@ class RecordHiddenMajorController: PhotoViewController {
         button.selected = !button.selected
         if button.selected{
             majorisMagorCpy = true
-            print("tapped1+\(button.selected)")
         }else{
             majorisMagorCpy = false
-            print("tapped1+\(button.selected)")
-            
         }
-        
     }
     //是否需要政府协调
     var majoris2 = false
@@ -511,13 +529,10 @@ class RecordHiddenMajorController: PhotoViewController {
         button.selected = !button.selected
         if button.selected{
             majoris2 = true
-            print("tapped1+\(button.selected)")
         }else{
             majoris2 = false
-            print("tapped1+\(button.selected)")
-            
+  
         }
-        
     }
     //是否需局部停产停业
     var majoris3 = false
@@ -525,10 +540,8 @@ class RecordHiddenMajorController: PhotoViewController {
         button.selected = !button.selected
         if button.selected{
             majoris3 = true
-            print("tapped1+\(button.selected)")
         }else{
             majoris3 = false
-            print("tapped1+\(button.selected)")
             
         }
         
@@ -539,13 +552,9 @@ class RecordHiddenMajorController: PhotoViewController {
         button.selected = !button.selected
         if button.selected{
             majoris4 = true
-            print("tapped1+\(button.selected)")
         }else{
             majoris4 = false
-            print("tapped1+\(button.selected)")
-            
         }
-        
     }
     
     //落实治理目标
@@ -557,7 +566,6 @@ class RecordHiddenMajorController: PhotoViewController {
         }else{
             majoris5 = false
         }
-        
     }
     //落实治理机构人员
     var majoris6 = false
@@ -692,21 +700,28 @@ class RecordHiddenMajorController: PhotoViewController {
         parameters["danger.fillMan"] = majorFillMan
         
         // parameters["file"] = converyModels.companyId
-        NetworkTool.sharedTools.createDanger(parameters,imageArrays: getListImage()) { (data, error) in
+        NetworkTool.sharedTools.createDanger(parameters,imageArrays: getTakeImages()) { (data, error) in
             if error == nil{
                 self.showHint("重大隐患上传成功", duration: 1, yOffset: 0)
-                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
-                viewController.isRefresh = true
-                self.navigationController?.popToViewController(viewController , animated: true)
-
+                
+               self.lastNavigationPage()
+                
+//                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
+//                viewController.isRefresh = true
+//                self.navigationController?.popToViewController(viewController , animated: true)
+                
+//                                let viewController = self.navigationController?.viewControllers[5] as! RecordFunctionController
+//                               // viewController.isRefresh = true
+//                                self.navigationController?.popToViewController(viewController , animated: true)
+                let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecordFunctionController") as! RecordFunctionController
+                controller.converyModels = self.converyModels
+                self.navigationController?.pushViewController(controller, animated: true)
                 
             }else{
-                self.showHint("\(error!)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
+                }else {
+                 self.showHint("\(error!)", duration: 2, yOffset: 0)
                 }
             }
 

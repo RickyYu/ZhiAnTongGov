@@ -28,9 +28,17 @@ class InfoMsdsListController: BaseTabViewController {
         initPage()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = true
+        self.tabBarController?.hidesBottomBarWhenPushed = true
+//        self.automaticallyAdjustsScrollViewInsets = false
+      
+    }
+    
     private func initPage(){
         if let detail : NSDictionary = self.detailItem {
-            self.navigationItem.title = detail.objectForKey("name") as? String
+            setNavagation((detail.objectForKey("name") as? String)!)
+            //self.navigationItem.title = detail.objectForKey("name") as? String
             self.infoType = detail.objectForKey("value") as? String
         }
         // 设置navigation
@@ -47,18 +55,18 @@ class InfoMsdsListController: BaseTabViewController {
         
         
         // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(InfoListController.getLawLists), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
+//        refreshControl = RefreshControl(frame: CGRectZero)
+//        refreshControl?.addTarget(self, action: #selector(InfoListController.getLawLists), forControlEvents: .ValueChanged)
+//        refreshControl?.beginRefreshing()
         
         getLawLists()
     }
     
     func getLawLists(){
-        if refreshControl!.refreshing{
-            reSet()
-            
-        }
+//        if refreshControl!.refreshing{
+//            reSet()
+//            
+//        }
         var parameters = [String : AnyObject]()
         parameters["code"] = self.infoType
         parameters["pagination.pageSize"] = 10
@@ -66,10 +74,10 @@ class InfoMsdsListController: BaseTabViewController {
         parameters["pagination.totalCount"] = totalCount
         
         NetworkTool.sharedTools.getMSDSInfo(parameters) { (mSDSInfoModels, error,totalCount) in
-            // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
+//            // 停止加载数据
+//            if self.refreshControl!.refreshing{
+//                self.refreshControl!.endRefreshing()
+//            }
             
             if self.currentPage>totalCount{
                 self.showHint("已经到最后了", duration: 2, yOffset: 0)
@@ -192,6 +200,7 @@ class InfoMsdsListController: BaseTabViewController {
         // 重置当前页
         currentPage = 0
         // 重置数组
+         totalCount = 0
         mSDSInfoModels.removeAll()
         mSDSInfoModels = [MSDSInfoModel]()
     }

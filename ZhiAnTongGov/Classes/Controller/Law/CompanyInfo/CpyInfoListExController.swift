@@ -15,7 +15,7 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate,YMSortTa
     @IBOutlet weak var searchBar: UISearchBar!
     
     //搜索控制器
-    var countrySearchController = UISearchController()
+   
     // 当前页
     var currentPage : Int = 0  //加载更多时候+10
     //总条数
@@ -30,7 +30,7 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate,YMSortTa
     var orderType:Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavagation("企业信息")
+        setNavagation("企业信息列表")
         //修改导航栏按钮返回只有箭头
         let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = item;
@@ -43,6 +43,8 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate,YMSortTa
         popView.sorts =  ["","up", "down"]
         initPage()
     }
+    
+ 
     
     private lazy var popView: YMSortTableView = {
         let popView = YMSortTableView()
@@ -101,17 +103,17 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate,YMSortTa
         })()
         
         // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
+//        refreshControl = RefreshControl(frame: CGRectZero)
+//        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
+//        refreshControl?.beginRefreshing()
         getData()
     }
     
     func getData(){
-        
-        if refreshControl!.refreshing{
-            reSet()
-        }
+//        
+//        if refreshControl!.refreshing{
+//            reSet()
+//        }
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -128,10 +130,10 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate,YMSortTa
         
         NetworkTool.sharedTools.loadCompanys(parameters,isYh: true) { (cpyInfoModels, error,totalCount) in
             
-            // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
+//            // 停止加载数据
+//            if self.refreshControl!.refreshing{
+//                self.refreshControl!.endRefreshing()
+//            }
             
             if error == nil{
                 if self.currentPage>totalCount{
@@ -236,6 +238,7 @@ class CpyInfoListExController:BaseTabViewController,UISearchBarDelegate,YMSortTa
         // 重置当前页
         currentPage = 0
         // 重置数组
+         totalCount = 0
         cpyInfoModels.removeAll()
         cpyInfoModels = [CpyInfoModel]()
     }

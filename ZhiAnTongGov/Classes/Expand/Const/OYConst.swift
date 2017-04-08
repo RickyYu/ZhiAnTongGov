@@ -10,13 +10,22 @@ import UIKit
 
 
 let PAGE_SIZE = 15
-let LOAD_FINISH = "加载完毕"
+let LOAD_FINISH = "数据加载完!"
 let NOTICE_CPY_NAME = "请输入企业名称"
 let NOTICE_SECURITY_NAME = "你的账号在另一台设备登录，如非本人操作，请注意账号安全!"
+let NOTICE_SECURITY_SUCCESS = "密码修改成功,请重新登录!"
 let NOTICE_SEARCH_FINISH = "已经到最后了!"
+let NOTICE_NETWORK_ERROR = "网络连接失败，请检查是否开启网络!"
 //最大上传图片数
 let IMAGE_MAX_SELECTEDNUM = 9
+//最大输入字数
+let MAX_INPUT_NUM = 30
 
+let NOTICE_MAX_IMAGE = "已选取\(IMAGE_MAX_SELECTEDNUM)张照片！"
+
+let  DEFAULT_AREA_ARRAY = ["湖州", "德清县", "武康镇"]
+
+let  FIRST_AREA_CODE = "330500"
 
 let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
 let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height

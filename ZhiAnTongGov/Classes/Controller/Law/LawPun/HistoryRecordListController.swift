@@ -40,13 +40,7 @@ class HistoryRecordListController: BaseTabViewController {
     }
     
     private func initPage(){
-   
-        
-//        if converyDataStr == "隐患列表"{
-//            isHidden = true
-//        }else{
-//            isHidden = false
-//        }
+
         self.navigationItem.title = converyDataStr
         // 设置tableview相关
         // tableView.registerClass(InfoDemoCell.self, forCellReuseIdentifier: InfoListReuseIdentifier)
@@ -57,20 +51,11 @@ class HistoryRecordListController: BaseTabViewController {
         tableView.separatorStyle = .None
         tableView.tableFooterView = UIView()
         
-        
-        // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
-        
         getDatas()
     }
     var isCheckHidden:Bool = false
     func getDatas(){
-        if refreshControl!.refreshing{
-            reSet()
-            
-        }
+
         var parameters = [String : AnyObject]()
         parameters["produceLocaleNote.id"] = converyJcjlId
         
@@ -78,11 +63,6 @@ class HistoryRecordListController: BaseTabViewController {
         
         if isCheckHidden{
             NetworkTool.sharedTools.loadProDangers(parameters) { (datas, error,totalCount) in
-                // 停止加载数据
-                if self.refreshControl!.refreshing{
-                    self.refreshControl!.endRefreshing()
-                }
-                
                 if totalCount == 0{
                     self.showHint("当前无数据", duration: 2, yOffset: 0)
                     return
@@ -115,11 +95,6 @@ class HistoryRecordListController: BaseTabViewController {
         
         if isHidden{
         NetworkTool.sharedTools.loadHideenTroubles(parameters) { (datas, error,totalCount) in
-            // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
-            
   
             if totalCount == 0{
                 self.showHint("当前无数据", duration: 2, yOffset: 0)
@@ -149,10 +124,7 @@ class HistoryRecordListController: BaseTabViewController {
         
         if isHistoryHidden{
             NetworkTool.sharedTools.loadHistoryProduces(parameters) { (datas, error,totalCount) in
-                // 停止加载数据
-                if self.refreshControl!.refreshing{
-                    self.refreshControl!.endRefreshing()
-                }
+
                 if totalCount == 0{
                     self.showHint("当前无数据", duration: 2, yOffset: 0)
                     return
@@ -287,6 +259,7 @@ class HistoryRecordListController: BaseTabViewController {
     func reSet(){
         // 重置当前页
         currentPage = 0
+         totalCount = 0
         // 重置数组
         if isHidden{
             hiddenModels.removeAll()

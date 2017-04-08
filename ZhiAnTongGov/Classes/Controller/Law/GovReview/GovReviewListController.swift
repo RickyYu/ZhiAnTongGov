@@ -15,9 +15,9 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
     @IBOutlet weak var searchBar: UISearchBar!
     
     //搜索控制器
-    var countrySearchController = UISearchController()
+   // var countrySearchController = UISearchController()
     // 当前页
-    var currentPage : Int = 0  //加载更多时候+10
+    var currentPage : Int = 0  //加载更多时候+PAGE_SIZE
     //总条数
     var totalCount : Int = 0
     var listDatas  = [UnPunishmentModel]()
@@ -27,12 +27,11 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
     var searchStr : String!
     override func viewDidLoad() {
         super.viewDidLoad()
-  setNavagation("政府复查")
+       setNavagation("政府待复查列表")
         initPage()
     }
     
     private func initPage(){
-        self.view.backgroundColor = UIColor.whiteColor()
         // 设置navigation
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
         // 设置tableview相关
@@ -56,17 +55,17 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         })()
         
         // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
+//        refreshControl = RefreshControl(frame: CGRectZero)
+//        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
+//        refreshControl?.beginRefreshing()
         getDatas()
     }
     
     func getDatas(){
         
-        if refreshControl!.refreshing{
-            reSet()
-        }
+//        if refreshControl!.refreshing{
+//            reSet()
+//        }
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -79,15 +78,15 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         NetworkTool.sharedTools.loadProduceCallBacks(parameters) { (datas, error,totalCount) in
             
             // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
+//            if self.refreshControl!.refreshing{
+//                self.refreshControl!.endRefreshing()
+//            }
             
             if error == nil{
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
-                    self.showHint("已经到最后了", duration: 2, yOffset: 0)
-                    self.currentPage -= 10
+                    //self.showHint("已经到最后了", duration: 2, yOffset: 0)
+                    self.currentPage -= PAGE_SIZE
                     return
                 }
                 self.toLoadMore = false
@@ -95,7 +94,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
                 
             }else{
                 // 获取数据失败后
-                self.currentPage -= 10
+                self.currentPage -= PAGE_SIZE
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
@@ -125,7 +124,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
-            currentPage += 10
+            currentPage += PAGE_SIZE
             getDatas()
         }
         return cell
@@ -177,6 +176,7 @@ class GovReviewListController:BaseTabViewController,UISearchBarDelegate{
         // 重置当前页
         currentPage = 0
         // 重置数组
+         totalCount = 0
         listDatas.removeAll()
         listDatas = [UnPunishmentModel]()
     }

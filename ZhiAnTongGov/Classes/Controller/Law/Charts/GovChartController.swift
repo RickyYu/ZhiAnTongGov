@@ -41,15 +41,14 @@ class GovChartController:BaseViewController,ChartViewDelegate{
                 self.mCountModels = self.dataModel.mcountModels
                 self.setChartData()
             }else{
-                self.showHint("\(error)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
                    self.toLoginView()
+                }else{
+                  self.showHint("\(error)", duration: 2, yOffset: 0)
                 }
             }
             
         }
-     
-    
     }
     
     
@@ -72,7 +71,7 @@ class GovChartController:BaseViewController,ChartViewDelegate{
         chartView.leftAxis.enabled = true
         //图表背景色
         // chartView.gridBackgroundColor = UIColor.grayColor()
-        chartView.backgroundColor = UIColor.lightGrayColor()
+        //chartView.backgroundColor = UIColor.lightGrayColor()
         //设置X轴
         let xAxis = chartView.xAxis
         xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
@@ -117,7 +116,8 @@ class GovChartController:BaseViewController,ChartViewDelegate{
         
         let sortArray = valuesYh.sort(){ $1 < $0 }
         let leftAxis = chartView.leftAxis
-        leftAxis.axisMaxValue = sortArray[0]
+        //设置y轴数字
+        leftAxis.axisMaxValue = sortArray[0]*1.2
         
         let chartDataSet = BarChartDataSet(yVals: dataEntriesYh, label: "隐患数量")
         let chartDataSet1 = BarChartDataSet(yVals: dataEntriesZg, label: "整改数量")

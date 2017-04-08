@@ -27,8 +27,8 @@ class InfoDetailController: BaseViewController {
     }
     
     func configureView() {
-        self.navigationItem.title = navTitle
-        scrollView!.pagingEnabled = true
+        setNavagation(navTitle!)
+        //scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
@@ -57,16 +57,12 @@ class InfoDetailController: BaseViewController {
     }
     
     func getData(){
-        
         var parameters = [String : AnyObject]()
         parameters["article.id"] = detailObject?.id
     NetworkTool.sharedTools.getArticle(parameters) { (info, error) in
-        
         if error == nil{
-   
-           self.content.text = info?.detail
+           self.content.attributedText = self.trimHtml(info.detail)
            self.content.textLeftToAlign()
-            print("\(self.content.frame)")
         }else{
            self.showHint("\(error)", duration: 2, yOffset: 0)
             if error == NOTICE_SECURITY_NAME {
@@ -74,9 +70,9 @@ class InfoDetailController: BaseViewController {
             }
           }
         }
-    
-    
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

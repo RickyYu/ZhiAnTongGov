@@ -15,9 +15,9 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
     @IBOutlet weak var searchBar: UISearchBar!
     
     //搜索控制器
-    var countrySearchController = UISearchController()
+   // var countrySearchController = UISearchController()
     // 当前页
-    var currentPage : Int = 0  //加载更多时候+10
+    var currentPage : Int = 0  //加载更多时候+PAGE_SIZE
     //总条数
     var totalCount : Int = 0
     var UnPunListDatas  = [UnPunishmentModel]()
@@ -38,23 +38,26 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
         button2.addTarget(self,action:#selector(self.sortButtonClick),forControlEvents:.TouchUpInside)
         let barButton2 = UIBarButtonItem(customView: button2)
          navigationItem.rightBarButtonItem = barButton2
-        popView.cells = ["未处罚", "已处罚"]
-        popView.sorts =  ["unPun", "Pun"]
-
-        
-        
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "daily_mgr_selected"), style: .Plain, target: self, action: #selector(sortButtonClick))
+        popView.cells = ["默认","未处罚", "已处罚"]
+        popView.sorts =  ["All","unPun", "Pun"]
 
         //修改导航栏按钮返回只有箭头
         let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = item;
         initPage()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
     }
     override func viewWillAppear(animated: Bool) {
         if isRefresh{
             reSet()
             getUnPunDatas()
         }
+    }
+  func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            popView.dismiss()
+        }
+        sender.cancelsTouchesInView = false
     }
     private lazy var popView: YMSortTableView = {
         let popView = YMSortTableView()
@@ -66,24 +69,26 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
         popView.show()
     }
     var isPun :Bool = false // false 未处罚   true 已经处罚
+    var sView = YMSortTableView()
     // MARK: - YMSortTableViewDelegate
     func sortView(sortView: YMSortTableView, didSelectSortAtIndexPath sort: String) {
-        print(sort)
+        sView = sortView
         sortView.dismiss()
         if sort == "Pun"{
             reSet()
             isPun = true
             getPunDatas()
-        }else{
+        }else if sort == "unPun"{
             reSet()
             isPun = false
             getUnPunDatas()
+        }else{
+            reSet()
+            isPun = true
+            getUnPunDatas()
         }
     }
-    
-    
- 
-    
+
     private func initPage(){
         // 设置navigation
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(CpyInfoListController.back))
@@ -106,21 +111,21 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
         })()
         
         // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        if isPun {
-            refreshControl?.addTarget(self, action: #selector(self.getPunDatas), forControlEvents: .ValueChanged)
-        }else{
-            refreshControl?.addTarget(self, action: #selector(self.getUnPunDatas), forControlEvents: .ValueChanged)
-        }
-        refreshControl?.beginRefreshing()
+//        refreshControl = RefreshControl(frame: CGRectZero)
+//        if isPun {
+//            refreshControl?.addTarget(self, action: #selector(self.getPunDatas), forControlEvents: .ValueChanged)
+//        }else{
+//            refreshControl?.addTarget(self, action: #selector(self.getUnPunDatas), forControlEvents: .ValueChanged)
+//        }
+//        refreshControl?.beginRefreshing()
         getUnPunDatas()
     }
     
     func getPunDatas(){
         
-        if refreshControl!.refreshing{
-            reSet()
-        }
+//        if refreshControl!.refreshing{
+//            reSet()
+//        }
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -133,15 +138,15 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
         NetworkTool.sharedTools.loadPunLists(parameters) { (datas, error,totalCount) in
             
             // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
+//            if self.refreshControl!.refreshing{
+//                self.refreshControl!.endRefreshing()
+//            }
             
             if error == nil{
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
-                    self.showHint("已经到最后了", duration: 2, yOffset: 0)
-                    self.currentPage -= 10
+                   // self.showHint("已经到最后了", duration: 2, yOffset: 0)
+                    self.currentPage -= PAGE_SIZE
                     return
                 }
                 self.toLoadMore = false
@@ -149,7 +154,7 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
                 
             }else{
                 // 获取数据失败后
-                self.currentPage -= 10
+                self.currentPage -= PAGE_SIZE
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
@@ -168,9 +173,9 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
  
     func getUnPunDatas(){
         
-        if refreshControl!.refreshing{
-            reSet()
-        }
+//        if refreshControl!.refreshing{
+//            reSet()
+//        }
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -182,16 +187,16 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
         //NetworkTool.sharedTools.loadPunLists
         NetworkTool.sharedTools.loadUnpunLists(parameters) { (datas, error,totalCount) in
             
-            // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
+//            // 停止加载数据
+//            if self.refreshControl!.refreshing{
+//                self.refreshControl!.endRefreshing()
+//            }
             
             if error == nil{
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
-                    self.showHint("已经到最后了", duration: 2, yOffset: 0)
-                    self.currentPage -= 10
+                    //self.showHint("已经到最后了", duration: 2, yOffset: 0)
+                    self.currentPage -= PAGE_SIZE
                     return
                 }
                 self.toLoadMore = false
@@ -199,7 +204,7 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
                 
             }else{
                 // 获取数据失败后
-                self.currentPage -= 10
+                self.currentPage -= PAGE_SIZE
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
@@ -237,7 +242,7 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
             }
             if count > 0 && indexPath.row == count-1 && !toLoadMore{
                 toLoadMore = true
-                currentPage += 10
+                currentPage += PAGE_SIZE
                 getPunDatas()
             }
 
@@ -249,7 +254,7 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
-            currentPage += 10
+            currentPage += PAGE_SIZE
             getUnPunDatas()
         }
         }
@@ -317,6 +322,7 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
         // 重置当前页
         currentPage = 0
         // 重置数组
+         totalCount = 0
         if isPun{
             PunListDatas.removeAll()
             PunListDatas = [PunishmentModel]()

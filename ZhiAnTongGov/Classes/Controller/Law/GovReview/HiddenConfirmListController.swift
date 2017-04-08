@@ -51,25 +51,25 @@ class HiddenConfirmListController: BaseTabViewController {
         
         
         // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
+//        refreshControl = RefreshControl(frame: CGRectZero)
+//        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
+//        refreshControl?.beginRefreshing()
         getDatas()
     }
     var isCheckHidden:Bool = false
     func getDatas(){
-        if refreshControl!.refreshing{
-            reSet()
-            
-        }
+//        if refreshControl!.refreshing{
+//            reSet()
+//            
+//        }
         var parameters = [String : AnyObject]()
         parameters["produceLocaleNote.id"] = converyJcjlId
         
         NetworkTool.sharedTools.loadHideenTroubles(parameters) { (datas, error,totalCount) in
             // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
+//            if self.refreshControl!.refreshing{
+//                self.refreshControl!.endRefreshing()
+//            }
             
             if error == nil{
                 if self.currentPage>totalCount{

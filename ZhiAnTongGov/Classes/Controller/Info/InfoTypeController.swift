@@ -80,19 +80,7 @@ class InfoTypeController: BaseViewController,UITableViewDelegate,UITableViewData
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //    if segue.identifier == "toInfoServer" {
-   //         if let indexPath = self.table.indexPathForSelectedRow {
-    //            let object : NSDictionary = arrayData[indexPath.row] as NSDictionary
-                //解决跳转到NavgationController需要使用以下代码
-   //             let destinationNavigationController = segue.destinationViewController as! UINavigationController
-   //             let destinationController = destinationNavigationController.topViewController as! InfoServerController
-   //             destinationController.detailItem = object
-   //         }
-            
-  //     }
-  //  }
+
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let infoList = InfoListController()

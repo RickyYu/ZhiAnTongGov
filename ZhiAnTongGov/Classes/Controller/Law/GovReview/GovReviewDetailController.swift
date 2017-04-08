@@ -7,22 +7,23 @@
 //
 
 import UIKit
+import SnapKit
 private let Identifier = "HandleTypeCell"
-class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITableViewDataSource,HiddenParameterDelegate  {
+class GovReviewDetailController: SinglePhotoViewController,UITableViewDelegate,UITableViewDataSource,HiddenParameterDelegate  {
 
     var converyDataModel = UnPunishmentModel()
     var tableView: UITableView!
     let arrayData = ["初查记录", "隐患列表确认", "历史复查记录"]
     override func viewDidLoad() {
        super.viewDidLoad()
-        self.navigationItem.title = "政府复查"
+        setNavagation("政府复查")
         initTableView()
         initPage()
         getDatas()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
     }
     
-    func resignEdit(sender: UITapGestureRecognizer) {
+    override func resignEdit(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             customView3.textField.resignFirstResponder()
             customView4.textField.resignFirstResponder()
@@ -42,14 +43,22 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
     var var4:String!//复查编号
     var var5:String!//隐患整改情况
         var majorHiddenId = [String]()
+    var cstScrollVoew:UIScrollView!
     func initPage(){
-        customView1 =  DetailCellView(frame:CGRectMake(0, 66, SCREEN_WIDTH, 45))
+        cstScrollVoew = UIScrollView(frame: CGRectMake(0, 64, SCREEN_WIDTH, 385))
+        cstScrollVoew!.scrollEnabled = true
+        cstScrollVoew!.showsHorizontalScrollIndicator = true
+        cstScrollVoew!.showsVerticalScrollIndicator = false
+        cstScrollVoew!.scrollsToTop = true
+        cstScrollVoew!.contentSize = CGSizeMake(SCREEN_WIDTH, 500)
+        
+        customView1 =  DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.setLabelName("是否生成复查表：")
         customView1.setLabelMax()
         customView1.setRCheckBtn()
         customView1.rightCheckBtn.addTarget(self, action:#selector(tapped3(_:)), forControlEvents:.TouchUpInside)
         
-        customView2 = DetailCellView(frame:CGRectMake(0, 111, SCREEN_WIDTH, 45))
+        customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
         customView2.setLabelName("复查时间：")
         getSystemTime { (time) in
              self.customView2.setRRightLabel(time)
@@ -58,28 +67,27 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
         customView2.setTimeImg()
         
         
-        customView3 = DetailCellView(frame:CGRectMake(0, 156, SCREEN_WIDTH, 45))
+        customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
         customView3.setLabelName("复查人员：")
         customView3.setRTextField("")
         
         
-        customView4 = DetailCellView(frame:CGRectMake(0, 201, SCREEN_WIDTH, 45))
+        customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
         customView4.setLabelName("复查编号：")
         customView4.setRTextField("")
         
         
-        customView5 = DetailCellView(frame:CGRectMake(0, 246, SCREEN_WIDTH, 145))
+        customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 145))
         customView5.setLabelName("隐患整改情况：")
         customView5.setTextViewShow()
         
         
-        customView6 = DetailCellView(frame:CGRectMake(0, 381, SCREEN_WIDTH, 45))
+        customView6 = DetailCellView(frame:CGRectMake(0, 325, SCREEN_WIDTH, 45))
         customView6.setLabelName("图片:")
          customView6.setRRightLabel("")
-        customView6.setLineViewHidden()
         customView6.addOnClickListener(self, action: #selector(self.choiceImage))
-        initPhoto()
-        
+        setImageViewLoc(0, y: 365)
+        self.cstScrollVoew.addSubview(scrollView)
         
         let  nextBtn = UIButton(frame:CGRectMake(0, 565, SCREEN_WIDTH, 45))
         nextBtn.setTitle("提交", forState:.Normal)
@@ -87,12 +95,19 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
         nextBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
         nextBtn.addTarget(self, action: #selector(self.submit), forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(customView1)
-        self.view.addSubview(customView2)
-        self.view.addSubview(customView3)
-        self.view.addSubview(customView4)
-        self.view.addSubview(customView5)
-        self.view.addSubview(customView6)
+//        self.view.addSubview(customView1)
+//        self.view.addSubview(customView2)
+//        self.view.addSubview(customView3)
+//        self.view.addSubview(customView4)
+//        self.view.addSubview(customView5)
+//        self.view.addSubview(customView6)
+        self.cstScrollVoew.addSubview(customView1)
+        self.cstScrollVoew.addSubview(customView2)
+        self.cstScrollVoew.addSubview(customView3)
+        self.cstScrollVoew.addSubview(customView4)
+        self.cstScrollVoew.addSubview(customView5)
+        self.cstScrollVoew.addSubview(customView6)
+        self.view.addSubview(cstScrollVoew)
         self.view.addSubview(nextBtn)
         
         nextBtn.snp_makeConstraints { make in
@@ -193,7 +208,7 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
         let tempStr = "["+temp+"]"
         print(tempStr)
         parameters["result.list"]  = tempStr
-        NetworkTool.sharedTools.createProduceCallBack(parameters, imageArrays: listfile) { (data, error) in
+        NetworkTool.sharedTools.createProduceCallBack(parameters, imageArrays: getTakeImages()) { (data, error) in
             
             if error == nil{
             self.showHint("新增成功", duration: 2, yOffset: 0)
@@ -202,20 +217,11 @@ class GovReviewDetailController: PhotoViewController,UITableViewDelegate,UITable
             }
         
         }
-        
-        
-    
-    }
-    
-    func initPhoto(){
-        setLoc(0, y: 406)
-        checkNeedAddButton()
-        renderView()
-        containerView.hidden = true
     }
     
     func choiceImage(){
-        containerView.hidden = false
+        self.takeImage()
+        customView6.setLineViewHidden()
     }
     
     func initTableView(){

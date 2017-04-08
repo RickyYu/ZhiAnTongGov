@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//代码太烂，日后必须重构
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate {
 

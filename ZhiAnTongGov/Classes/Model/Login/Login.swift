@@ -14,15 +14,17 @@ class Login: BaseModel {
     var identify: String
     var success: Bool
     var user: User!
+
     
     init(json: JSON) {
         self.msg = json["msg"].string!
         self.identify = json["identify"].string!
         self.success = json["success"].bool!
-        let entityJson = json["entity"].dictionaryObject
-        let userCompany = entityJson!["userCompany"] as? String ?? ""
-        let factName = entityJson!["factName"] as? String ?? ""
+        if let entityJson = json["entity"].dictionaryObject {
+        let userCompany = entityJson["userCompany"] as? String ?? ""
+        let factName = entityJson["factName"] as? String ?? ""
         self.user = User(userCompany: userCompany,factName: factName)
+        }
     }
     init(success:Bool, msg: String,identify:String){
         self.success = success

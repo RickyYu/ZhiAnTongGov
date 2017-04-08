@@ -10,6 +10,7 @@ import UIKit
 import Charts
 class AllChartController:BaseViewController,ChartViewDelegate{
     
+
     @IBOutlet weak var chartView: BarChartView!
     var mCountModels = [McountModel]()
     @IBOutlet weak var label1: UILabel!
@@ -72,8 +73,7 @@ class AllChartController:BaseViewController,ChartViewDelegate{
         chartView.leftAxis.enabled = true
         //图表背景色
         // chartView.gridBackgroundColor = UIColor.grayColor()
-        chartView.backgroundColor = UIColor.lightGrayColor()
-        //设置X轴
+            //设置X轴
         let xAxis = chartView.xAxis
         xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
         xAxis.drawGridLinesEnabled = true
@@ -125,7 +125,8 @@ class AllChartController:BaseViewController,ChartViewDelegate{
         
         let sortArray = valuesGovYh.sort(){ $1 < $0 }
         let leftAxis = chartView.leftAxis
-        leftAxis.axisMaxValue = sortArray[0]
+        //设置y轴数字
+        leftAxis.axisMaxValue = sortArray[0]*1.2
         
         let chartDataSet = BarChartDataSet(yVals: dataEntriesCpyYh, label: "企业自查隐患")
         let chartDataSet1 = BarChartDataSet(yVals: dataEntriesGovYh, label: "政府检查隐患")

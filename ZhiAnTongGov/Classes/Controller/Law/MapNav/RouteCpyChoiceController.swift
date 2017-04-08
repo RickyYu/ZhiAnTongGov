@@ -15,9 +15,9 @@ class RouteCpyChoiceController:BaseTabViewController,UISearchBarDelegate{
     @IBOutlet weak var searchBar: UISearchBar!
     
     //搜索控制器
-    var countrySearchController = UISearchController()
+   // var countrySearchController = UISearchController()
     // 当前页
-    var currentPage : Int = 0  //加载更多时候+10
+    var currentPage : Int = 0  //加载更多时候+PAGE_SIZE
     //总条数
     var totalCount : Int = 0
     var cpyInfoModels  = [CpyInfoModel]()
@@ -27,14 +27,12 @@ class RouteCpyChoiceController:BaseTabViewController,UISearchBarDelegate{
     var searchStr : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initPage()
     }
     
     private func initPage(){
-        
         // 设置navigation
-        self.navigationItem.title = "选择企业"
+       setNavagation("企业信息列表")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(self.back))
         // 设置tableview相关
         let nib = UINib(nibName: "CpyInfoCell",bundle: nil)
@@ -54,17 +52,17 @@ class RouteCpyChoiceController:BaseTabViewController,UISearchBarDelegate{
         })()
         
         // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
+//        refreshControl = RefreshControl(frame: CGRectZero)
+//        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
+//        refreshControl?.beginRefreshing()
         getData()
     }
     
     func getData(){
         
-        if refreshControl!.refreshing{
-            reSet()
-        }
+//        if refreshControl!.refreshing{
+//            reSet()
+//        }
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -73,19 +71,18 @@ class RouteCpyChoiceController:BaseTabViewController,UISearchBarDelegate{
             parameters["company.companyName"] = searchStr
         }
         
-        
         NetworkTool.sharedTools.loadCompanys(parameters,isYh: false) { (cpyInfoModels, error,totalCount) in
             
-            // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
+//            // 停止加载数据
+//            if self.refreshControl!.refreshing{
+//                self.refreshControl!.endRefreshing()
+//            }
             
             if error == nil{
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
                     self.showHint("已经到最后了", duration: 2, yOffset: 0)
-                    self.currentPage -= 10
+                    self.currentPage -= PAGE_SIZE
                     return
                 }
                 self.toLoadMore = false
@@ -93,7 +90,7 @@ class RouteCpyChoiceController:BaseTabViewController,UISearchBarDelegate{
                 
             }else{
                 // 获取数据失败后
-                self.currentPage -= 10
+                self.currentPage -= PAGE_SIZE
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
@@ -123,7 +120,7 @@ class RouteCpyChoiceController:BaseTabViewController,UISearchBarDelegate{
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
-            currentPage += 10
+            currentPage += PAGE_SIZE
             getData()
         }
         return cell
@@ -174,6 +171,7 @@ class RouteCpyChoiceController:BaseTabViewController,UISearchBarDelegate{
     func reSet(){
         // 重置当前页
         currentPage = 0
+         totalCount = 0
         // 重置数组
         cpyInfoModels.removeAll()
         cpyInfoModels = [CpyInfoModel]()

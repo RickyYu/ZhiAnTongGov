@@ -17,8 +17,8 @@ class IndustrySecondSelectModel:BaseModel{
     
     init(dict: [String: AnyObject]) {
         self.id = dict["id"] as? Int
-        self.content = dict["content"] as? String
-        self.descriptions = dict["description"] as? String
+        self.content = dict["content"] as? String ?? ""
+        self.descriptions = dict["description"] as? String ?? ""
     }
     func getParams() -> Dictionary<String, String> {
         var params = Dictionary<String, String>()
@@ -34,7 +34,7 @@ class IndustrySecondSelectModel:BaseModel{
         params = [
         "id":String(self.id),
         "content":self.content,
-        "description:":self.descriptions
+        "description":self.descriptions
         ]
         return  params
     }

@@ -34,7 +34,8 @@ class RecordInfoDetailController: BaseViewController {
     var isHandle :Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "记录详情"
+        setNavagation("记录详情")
+       
         print(converyDataModel.punishState)
         isHandle = converyDataModel.punishState
         if !isHandle{
@@ -90,15 +91,11 @@ class RecordInfoDetailController: BaseViewController {
             submitBtn = UIButton(frame:CGRectMake(0, 560, SCREEN_WIDTH, 45))
         }
         
-        submitBtn.setTitle("隐患列表", forState:.Normal)
-        submitBtn.backgroundColor = YMGlobalDeapBlueColor()
-        submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
-        submitBtn.addTarget(self, action: #selector(self.SkipYh), forControlEvents: UIControlEvents.TouchUpInside)
-        self.scrollView.addSubview(submitBtn)
+  
     }
     func initPage(){
         scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT))
-        scrollView!.pagingEnabled = true
+        //scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
@@ -124,9 +121,9 @@ class RecordInfoDetailController: BaseViewController {
         customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView9.setLabelName("执法单位：")
         
-        customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
-        customView10.setLabelName("行业检查表：")
-        customView12 = DetailCellView(frame:CGRectMake(0, 450, SCREEN_WIDTH, 45))
+//        customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
+//        customView10.setLabelName("行业检查表：")
+        customView12 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
         customView12.setLabelName("图片：")
         customView12.setLineViewHidden()
 
@@ -144,7 +141,17 @@ class RecordInfoDetailController: BaseViewController {
         self.scrollView.addSubview(customView11)
         self.scrollView.addSubview(customView12)
         self.view.addSubview(scrollView)
+        submitBtn.setTitle("隐患列表", forState:.Normal)
+        submitBtn.backgroundColor = YMGlobalDeapBlueColor()
+        submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+        submitBtn.addTarget(self, action: #selector(self.SkipYh), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(submitBtn)
         
+        submitBtn.snp_makeConstraints { make in
+            make.bottom.equalTo(self.view.snp_bottom).offset(-25)
+            make.left.equalTo(self.view.snp_left)
+            make.size.equalTo(CGSizeMake(SCREEN_WIDTH, 35))
+        }
     }
 
     

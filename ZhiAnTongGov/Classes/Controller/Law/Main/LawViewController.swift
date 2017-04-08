@@ -9,9 +9,6 @@
 import UIKit
 
 class LawViewController: BaseViewController,UIScrollViewDelegate {
-    
-    
-    
     @IBOutlet weak var contentView: UIView!
     var pageControl: UIPageControl?
     var scrollView: UIScrollView?
@@ -23,23 +20,11 @@ class LawViewController: BaseViewController,UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //修改导航栏按钮颜色为白色
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        //修改导航栏文字颜色
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        //修改导航栏背景颜色
-        self.navigationController?.navigationBar.barTintColor = YMGlobalBlueColor()
-
-        //修改导航栏按钮返回只有箭头
-        let item = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
-        self.navigationItem.backBarButtonItem = item;
-        self.title="行政执法"
-        let rightBar = UIBarButtonItem(title: "刷新", style: UIBarButtonItemStyle.Done, target: self, action: #selector(LawViewController.toCodeViewPad))
-        self.navigationItem.rightBarButtonItem = rightBar
-      
+        setNavagation("行政执法")
         let screenWidth = self.contentView.bounds.width
         let screenHeight = self.contentView.bounds.height
-
+        let rightBar = UIBarButtonItem(title: "刷新", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.refresh))
+        self.navigationItem.rightBarButtonItem = rightBar
         scrollView = UIScrollView(frame: CGRectMake(0, 52, screenWidth, screenHeight - 55))
         pageControl = UIPageControl(frame: CGRectMake(0, screenHeight - 40, screenWidth, 40))
         scrollView!.pagingEnabled = true
@@ -75,6 +60,10 @@ class LawViewController: BaseViewController,UIScrollViewDelegate {
  
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = false
+    }
+    
     func pageDidChanged(obj : UIPageControl) -> Void
     {
         let currentPage = obj.currentPage
@@ -101,7 +90,7 @@ class LawViewController: BaseViewController,UIScrollViewDelegate {
          isPageControlUsed = false
     }
     
-    func toCodeViewPad() -> Void
+    func refresh() -> Void
     {
         if currentPage == 0{
             firstViewController.getDates()
@@ -111,7 +100,7 @@ class LawViewController: BaseViewController,UIScrollViewDelegate {
             thirdViewController.getDates()
         }
         
-//       self.navigationController?.pushViewController(PViewController(), animated: true)
+//      self.navigationController?.pushViewController(TestController(), animated: true)
         
        // self.navigationController?.pushViewController(PhotoViewController(), animated: true)
 

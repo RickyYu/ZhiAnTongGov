@@ -14,7 +14,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
     var cpyInfoModels  = [CpyInfoModel]()
     var result = [CpyInfoModel]()
     // 当前页
-    var currentPage : Int = 0  //加载更多时候+10
+    var currentPage : Int = 0  //加载更多时候+PAGE_SIZE
     //总条数
     var totalCount : Int = 0
     //排序规则
@@ -69,7 +69,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
     }
     
     //搜索控制器
-    var countrySearchController = UISearchController()
+   // var countrySearchController = UISearchController()
       var searchStr : String! = ""
     // 是否加载更多
     private var toLoadMore = false
@@ -100,10 +100,10 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
             return controller
         })()
         
-        // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
+//        // 设置下拉刷新控件
+//        refreshControl = RefreshControl(frame: CGRectZero)
+//        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
+//        refreshControl?.beginRefreshing()
         getData()
 
     }
@@ -113,9 +113,9 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
     
     func getData(){
         
-        if refreshControl!.refreshing{
-          reSet()
-        }
+//        if refreshControl!.refreshing{
+//          reSet()
+//        }
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -132,16 +132,18 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
         
         NetworkTool.sharedTools.loadCompanys(parameters,isYh: true) { (cpyInfoModels, error,totalCount) in
             
-            // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
-            
+//            // 停止加载数据
+//            if self.refreshControl!.refreshing{
+//                self.refreshControl!.endRefreshing()
+//            }
+//            
             if error == nil{
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
-                    self.showHint("已经到最后了", duration: 2, yOffset: 0)
-                    self.currentPage -= 10
+                    if self.toLoadMore {
+                        self.showHint("已经到最后了", duration: 2, yOffset: 0)
+                    }
+                    self.currentPage -= PAGE_SIZE
                     return
                 }
                     self.toLoadMore = false
@@ -149,7 +151,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
                
             }else{
                 // 获取数据失败后
-                self.currentPage -= 10
+                self.currentPage -= PAGE_SIZE
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
@@ -178,7 +180,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
         }
         if count > 0 && indexPath.row == count-1 && !toLoadMore{
             toLoadMore = true
-            currentPage += 10
+            currentPage += PAGE_SIZE
            getData()
         }
         return cell
@@ -240,6 +242,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
         // 重置当前页
         currentPage = 0
         // 重置数组
+        totalCount = 0
         cpyInfoModels.removeAll()
         cpyInfoModels = [CpyInfoModel]()
     }

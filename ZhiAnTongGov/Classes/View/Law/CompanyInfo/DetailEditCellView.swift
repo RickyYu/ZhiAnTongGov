@@ -19,12 +19,11 @@ class DetailEditCellView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
         label.font = UIFont.boldSystemFontOfSize(13)
         label.frame = CGRectMake(6, 5, 100, 35)
         label.textColor = YMGlobalDeapBlueColor()
         
-        lineView.frame = CGRectMake(3, 42, SCREEN_WIDTH-6, 2)
+        lineView.frame = CGRectMake(3, 42, SCREEN_WIDTH-6, 1)
         lineView.backgroundColor = UIColor.lightGrayColor()
         
         textField = UITextField(frame: CGRect(x:10, y:60, width:200, height:30))

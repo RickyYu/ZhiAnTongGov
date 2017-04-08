@@ -33,9 +33,14 @@ class GeneralHiddenViewController: PhotoViewController {
     var scrollView: UIScrollView!
     var model:GeneralCheckInfoModel!
     var hiddenId:String!
+    var tag:Int!
     override func viewDidLoad() {
+        if tag == 1 {
+        setNavagation("一般隐患查看")
+        }else {
         setNavagation("一般隐患整改历史记录")
-        InitPage()
+        }
+        initPage()
         getDatas()
         
     }
@@ -47,24 +52,24 @@ class GeneralHiddenViewController: PhotoViewController {
         }else{
             customView1.rightCheckBtn.selected = false
         }
-        customView2.setRTextField(model.linkMan)
         customView2.textField.enabled = false
-        customView3.setRTextField(model.linkTel)
         customView3.textField.enabled = false
-        customView4.setRTextField(model.descriptions)
         customView4.textField.enabled = false
-        customView5.setRTextField(getTroubleType(String(model.type)))
         customView5.textField.enabled = false
-        customView6.setRTextField(model.rectificationPlanTime)
         customView6.textField.enabled = false
-        customView7.setRTextView(model.remarks)
         customView7.textView.editable = false
         
+        customView2.setRTextFieldGray(model.linkMan)
+        customView3.setRTextFieldGray(model.linkTel)
+        customView4.setRTextFieldGray(model.descriptions)
+        customView5.setRTextFieldGray(getTroubleType(String(model.type)))
+        customView6.setRTextFieldGray(model.rectificationPlanTime)
+        customView7.setRTextViewGray(model.remarks)
     }
     
-    func InitPage(){
+    func initPage(){
         scrollView = UIScrollView(frame: CGRectMake(0, 0, SCREEN_WIDTH, 550))
-        scrollView!.pagingEnabled = true
+        //scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = false

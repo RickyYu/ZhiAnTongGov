@@ -11,7 +11,7 @@ import SnapKit
 import UsefulPickerView
 import SwiftyJSON
 
-class RecordHiddenNormalController: PhotoViewController {
+class RecordHiddenNormalController: SinglePhotoViewController {
     
 
     var normalType : String = ""
@@ -44,7 +44,7 @@ class RecordHiddenNormalController: PhotoViewController {
     }
 
     func initNormalPage(){
-
+      self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
         submitBtnnormal.setTitle("保存", forState:.Normal)
         submitBtnnormal.backgroundColor = YMGlobalDeapBlueColor()
         submitBtnnormal.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
@@ -57,7 +57,8 @@ class RecordHiddenNormalController: PhotoViewController {
         
         customView2normal.setLabelName("隐患描述：")
         customView2normal.setRTextField( "")
-
+         customView2normal.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        
         customView3normal.setLabelName("计划整改时间：")
         customView3normal.setRRightLabel("")
         customView3normal.setTimeImg()
@@ -77,7 +78,8 @@ class RecordHiddenNormalController: PhotoViewController {
         customView6normal.setLabelName("现场图片：")
         customView6normal.setRRightLabel("")
         customView6normal.addOnClickListener(self, action: #selector(self.choiceNormalImage))
-        initNormalPhoto()
+        setImageViewLoc(0, y: 325)
+        self.view.addSubview(scrollView)
         
         self.view.addSubview(submitBtnnormal)
         self.view.addSubview(customView1normal)
@@ -125,25 +127,32 @@ class RecordHiddenNormalController: PhotoViewController {
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-30, 45))
         }
 
+//        submitBtnnormal.snp_makeConstraints { make in
+//            make.bottom.equalTo(self.view.snp_bottom)
+//            make.left.equalTo(self.view.snp_left).offset(50)
+//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
+//        }
+        
         submitBtnnormal.snp_makeConstraints { make in
-            make.bottom.equalTo(self.view.snp_bottom)
+            make.bottom.equalTo(self.view.snp_bottom).offset(-15)
             make.left.equalTo(self.view.snp_left).offset(50)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
         }
     
     }
-   
     
-    func initNormalPhoto(){
-        setLoc(0, y: 325)
-        checkNeedAddButton()
-        renderView()
-        self.view.addSubview(containerView)
-        containerView.hidden = true
+    
+    override func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            customView2normal.textField.resignFirstResponder()
+        }
+        sender.cancelsTouchesInView = false
     }
+
     
     func choiceNormalImage(){
-        containerView.hidden = false
+        self.takeImage()
+        customView6normal.setLineViewHidden()
     }
     
     func normalSubmit(){
@@ -175,11 +184,8 @@ class RecordHiddenNormalController: PhotoViewController {
         button.selected = !button.selected
         if button.selected{
             normalIsReform = true
-            print("tapped1+\(button.selected)")
         }else{
             normalIsReform = false
-            print("tapped1+\(button.selected)")
-            
         }
         
     }
@@ -194,7 +200,7 @@ class RecordHiddenNormalController: PhotoViewController {
     
     func normalChoicePlanTime(){
         choiceTime { (time) in
-            self.customView3normal.setRRightLabel(time)
+            self.customView3normal.rightLabel.text = time
             self.customView3normal.becomeFirstResponder()
         }
         
@@ -282,21 +288,21 @@ class RecordHiddenNormalController: PhotoViewController {
         parameters["nomalDanger.content"] = normalDes
         parameters["nomalDanger.cleanUp"] = String(Int(normalIsReform))
         parameters["nomalDanger.governDate"] = normalPlanTime
-        NetworkTool.sharedTools.createHiddenTrouble(parameters,imageArrays: getListImage()) { (data, error) in
+        NetworkTool.sharedTools.createHiddenTrouble(parameters,imageArrays: getTakeImages()) { (data, error) in
             if error == nil{
                 self.showHint("添加成功", duration: 1, yOffset: 0)
-                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
-                viewController.isRefresh = true
-                self.navigationController?.popToViewController(viewController , animated: true)
-
+//                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
+//                viewController.isRefresh = true
+//                self.navigationController?.popToViewController(viewController , animated: true)
+                let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecordFunctionController") as! RecordFunctionController
+                 controller.converyModels = self.converyModels
+                self.navigationController?.pushViewController(controller, animated: true)
                 
             }else{
-                self.showHint("\(error!)", duration: 2, yOffset: 0)
                 if error == NOTICE_SECURITY_NAME {
-                    self.alertNotice("提示", message: error, handler: {
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    })
+                    self.toLoginView()
+                }else{
+                 self.showHint("\(error!)", duration: 2, yOffset: 0)
                 }
             }
         }

@@ -29,39 +29,25 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
     
     override func viewDidLoad() {
         setNavagation("企业信息详情")
-        self.view.backgroundColor = UIColor.whiteColor()
-//        let locationBtn = UIBarButtonItem(image: UIImage(named: "dw2"), style: .Done, target: self, action: #selector(self.toLocation))
-//        self.navigationItem.rightBarButtonItem = locationBtn
-        
-        
-        let button1 = UIButton(frame:CGRectMake(0, 0, 32, 32))
-        button1.setImage(UIImage(named: "dw2"), forState: .Normal)
-        button1.addTarget(self,action:#selector(self.toLocation),forControlEvents:.TouchUpInside)
-        let barButton1 = UIBarButtonItem(customView: button1)
-        
-        
-        //设置按钮
-        let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
-        button2.setImage(UIImage(named: "new_list"), forState: .Normal)
-        button2.addTarget(self,action:#selector(self.toHiddenList),forControlEvents:.TouchUpInside)
-        let barButton2 = UIBarButtonItem(customView: button2)
-        //按钮间的空隙
-        let gap = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
-                                  action: nil)
-        gap.width = 15;
-        
-        //用于消除右边边空隙，要不然按钮顶不到最边上
-        let spacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
-                                     action: nil)
-        spacer.width = -10;
-        
-        //设置按钮（注意顺序）
-        self.navigationItem.rightBarButtonItems = [spacer,barButton2,gap,barButton1]
-        
-        self.initPage()
+        handleKeyboard()
+        initPage()
         getDatas()
-        
-        
+    }
+    
+    func handleKeyboard(){
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
+    }
+    
+    override func resignEdit(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+          customView1.textField.resignFirstResponder()
+          customView2.textField.resignFirstResponder()
+            customView4.textField.resignFirstResponder()
+            customView9.textField.resignFirstResponder()
+            customView10.textField.resignFirstResponder()
+            customView13.textField.resignFirstResponder()
+        }
+        sender.cancelsTouchesInView = false
     }
     
     func toHiddenList(){
@@ -116,9 +102,32 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
     var customView10  = DetailCellView()
     var submitBtn = UIButton()
     func initPage(){
-        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 750))
-        print("\(SCREEN_HEIGHT)+++\(SCREEN_WIDTH)")
-        scrollView!.pagingEnabled = true
+        
+        let button1 = UIButton(frame:CGRectMake(0, 0, 32, 32))
+        button1.setImage(UIImage(named: "dw2"), forState: .Normal)
+        button1.addTarget(self,action:#selector(self.toLocation),forControlEvents:.TouchUpInside)
+        let barButton1 = UIBarButtonItem(customView: button1)
+        
+        
+        //设置按钮
+        let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
+        button2.setImage(UIImage(named: "new_list"), forState: .Normal)
+        button2.addTarget(self,action:#selector(self.toHiddenList),forControlEvents:.TouchUpInside)
+        let barButton2 = UIBarButtonItem(customView: button2)
+        //按钮间的空隙
+        let gap = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
+                                  action: nil)
+        gap.width = 15;
+        
+        //用于消除右边边空隙，要不然按钮顶不到最边上
+        let spacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil,
+                                     action: nil)
+        spacer.width = -10;
+        
+        //设置按钮（注意顺序）
+        self.navigationItem.rightBarButtonItems = [spacer,barButton2,gap,barButton1]
+        scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT))
+        //scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = false
@@ -134,13 +143,9 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
         customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()
         customView1.setLabelName("单位名称：")
-      
-
-        
+    
         customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
         customView2.setLabelName("单位地址：")
-        
-     
         
         customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
         customView3.setLabelName("所属区域：")
@@ -152,7 +157,6 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
         customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("行业分类：")
 
-        
         customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
         customView6.setLabelName("行业大类：")
     
@@ -165,24 +169,19 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
         customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView9.setLabelName("法定代表：")
 
-       customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
+        customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
         customView10.setLabelName("联系电话：")
         
         customView11 = DetailCellView(frame:CGRectMake(0, 450, SCREEN_WIDTH, 45))
         customView11!.setLabelName("经济类型：")
         
-        
         customView12 = DetailCellView(frame:CGRectMake(0, 495, SCREEN_WIDTH, 45))
         customView12!.setLabelName("规模情况：")
   
-        
-        
         customView13 = DetailCellView(frame:CGRectMake(0, 540, SCREEN_WIDTH, 45))
         customView13.setLabelName("是否生产：")
 
-        
         let view = UIView(frame:CGRectMake(0, 600, SCREEN_WIDTH, 45))
-        
 
         self.scrollView!.addSubview(customView1)
         self.scrollView!.addSubview(customView2)
@@ -198,7 +197,7 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
         self.scrollView!.addSubview(customView12!)
         self.scrollView!.addSubview(customView13)
         self.scrollView!.addSubview(view)
-        self.scrollView!.addSubview(submitBtn)
+        self.view.addSubview(submitBtn)
         self.view.addSubview(scrollView!)
         
         submitBtn.snp_makeConstraints { make in
@@ -206,13 +205,13 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
             make.left.equalTo(self.view.snp_left).offset(50)
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
         }
-        
-//        scrollView.snp_makeConstraints { make in
-//            make.top.equalTo(self.view.snp_top).offset(64)
-//            make.left.equalTo(self.view.snp_left)
-//            make.bottom.equalTo(submitBtn.snp_top).offset(-5)
-//            make.right.equalTo(self.view.snp_right)
-//        }
+        scrollView.snp_makeConstraints { make in
+            make.top.equalTo(self.view.snp_top).offset(64)
+            make.left.equalTo(self.view.snp_left)
+            make.bottom.equalTo(submitBtn.snp_top).offset(-5)
+            make.right.equalTo(self.view.snp_right)
+        }
+
     }
     var secondAreaCode :String = ""
     var thirdAreaCode :String = ""
@@ -225,13 +224,12 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
        let thirdStr =  getThirdArea(String(dataModel.thirdArea))
         
         if secondStr != "" && thirdStr != ""{
-        areaArr = ["湖州市",secondStr,thirdStr]
+        areaArr = ["湖州",secondStr,thirdStr]
         }else{
-        areaArr = ["湖州市", "长兴县", "画溪街道"]
+        areaArr = ["湖州", "长兴县", "画溪街道"]
         }
         self.customView3.setRRightLabel("湖州 \(secondStr)\(thirdStr)")
         customView4.setRTextField(dataModel.businessRegNumber ?? "")
-        print(dataModel.tradeTypes)
         customView5.setRCenterLabel(dataModel.tradeTypes)
         let parse:NSXMLParser = NSXMLParser(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("huzhou_enum", ofType: "xml")!))!
         parse.delegate = self
@@ -254,7 +252,6 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
         }
     
     }
-    
     
     func toLocation(){
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LocationSaveController") as! LocationSaveController
@@ -308,30 +305,52 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
             })
             return
         }
+        
+        lenthLimit("单位名称", count: str1)
+        
         if AppTools.isEmpty(str2) {
             alert("单位地址不可为空", handler: {
                 self.customView2.textField.becomeFirstResponder()
             })
             return
         }
+        
+         lenthLimit("单位地址", count: str2)
+        
         if AppTools.isEmpty(str3) {
             alert("工商注册号不可为空", handler: {
                 self.customView4.textField.becomeFirstResponder()
             })
             return
         }
+        
+        lenthLimit("工商注册号", count: str3)
+        
         if AppTools.isEmpty(str4) {
-            alert("联系人不可为空", handler: {
+            alert("法定代表不可为空", handler: {
                 self.customView9.textField.becomeFirstResponder()
             })
             return
         }
+        
+         lenthLimit("法定代表", count: str4)
+        
         if AppTools.isEmpty(str5) {
-            alert("联系人不可为空", handler: {
+            alert("联系电话不可为空", handler: {
                 self.customView10.textField.becomeFirstResponder()
             })
             return
         }
+        
+        lenthLimit("联系电话", count: str5)
+        
+        if !ValidateEnum.phoneNum(str5).isRight{
+            alert("联系电话格式错误，请重新输入！", handler: {
+                self.customView10.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
         
         var parameters = [String : AnyObject]()
            parameters["company.id"] = converyDataModel.id
@@ -354,8 +373,6 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
             parameters["point.x"] = lng
             parameters["point.y"] = lat
         }
- 
-        
 
         NetworkTool.sharedTools.updateCompany(parameters) { (cpyInfoModels, error, totalCount) in
         
@@ -370,9 +387,6 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
                 }
             }
         }
-        
-    
-   
     }
     
     func passParams(lng: String, lat: String) {
@@ -384,6 +398,7 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
         // 保存当前的解析到的节点名称
       //  self.currentNodeName = elementName
+
         if(elementName == dataModel.tradeBig){
              customView6.setRCenterLabel(attributeDict["name"]!)
         }

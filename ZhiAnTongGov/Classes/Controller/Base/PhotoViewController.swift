@@ -10,14 +10,21 @@ import UIKit
 import Photos
 
 class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-    let IMAGE_MAX_SELECTEDNUM = 9
+    //获取到的每一个button图片
     var selectModel = [PhotoImageModel]()
+    //button按钮栏
     var containerView = UIView()
     var triggerRefresh = false
     var x:CGFloat = 0.0
     var y:CGFloat = 0.0
+    //获取到的图片数据
     private var listImageFile = [UIImage]()
   
+    //设置初始定位
+    func setLoc(x:CGFloat,y:CGFloat){
+        self.x = x
+        self.y = y
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +33,14 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIIm
         self.renderView()
     }
     
-    func setLoc(x:CGFloat,y:CGFloat){
-    self.x = x
-    self.y = y
-    }
-    
+    //检查是否需要添加+号按钮
      func checkNeedAddButton(){
         if self.selectModel.count < PhotoPickerController.imageMaxSelectedNum && !hasButton() {
             selectModel.append(PhotoImageModel(type: ModelType.Button, data: nil))
         }
     }
     
+    //判断是否含有button
      func hasButton() -> Bool{
         for item in self.selectModel {
             if item.type == ModelType.Button {
@@ -78,8 +82,8 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIIm
         self.renderView()
     }
     
+    //绘制图片展示界面
     func renderView(){
-        
         if selectModel.count <= 0 {return;}
         
         let totalWidth = UIScreen.mainScreen().bounds.width
@@ -108,47 +112,14 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIIm
             let index = line * lineImageTotal + i
             self.renderItemView(itemX, itemY: itemY, itemWidth: itemWidth, index: index)
         }
-//  
-//        listImageFile.removeAll()
-//
-//        for i in 0 ..< selectModel.count-1{
-//         let itemModel = self.selectModel[i]
-//            if let asset = itemModel.data {
-//                let pixSize = UIScreen.mainScreen().scale * itemWidth
-//                PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSizeMake(pixSize, pixSize), contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: { (image, info) -> Void in
-//                    if image != nil {
-////                        let imageData = UIImageJPEGRepresentation(image!, 1.0)
-////                        self.listImageFile.append(imageData!)
-//                        self.listImageFile.append(image!)
-//                        print("listImageFile\(self.listImageFile.count)")
-//                   
-//                        //将选择的图片保存到Document目录下
-//                        let fileManager = NSFileManager.defaultManager()
-//                        
-//                        let rootPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
-//                            .UserDomainMask, true)[0] as String
-//                        let i:Int = self.createRandomMan(1, end: 1000000)()
-//                        let filePath = "\(rootPath)/pickedimage\(i).jpg"
-//                        let imageData = UIImageJPEGRepresentation(image!, 1.0)
-//                        fileManager.createFileAtPath(filePath, contents: imageData, attributes: nil)
-//                        //上传图片
-//                        if (fileManager.fileExistsAtPath(filePath)){
-//                            //取得NSURL
-//                            let imageNSURL:NSURL = NSURL.init(fileURLWithPath: filePath)
-//                               self.listImageFile.append(imageNSURL)
-//                        }
-//                        
-//                    }
-//                })
-//            }
-//       
-//        }
+
 
         let totalLine = ceil(Double(self.selectModel.count) / Double(lineImageTotal))
         let containerHeight = CGFloat(totalLine) * itemWidth + (CGFloat(totalLine) + 1) *  space
         self.containerView.frame = CGRectMake(x, y, totalWidth,  containerHeight)
     }
     
+    //获取所有图片数据
     func getListImage() ->[UIImage]{
         if listImageFile.count != 0 {
             listImageFile.removeAtIndex(0)
@@ -156,6 +127,7 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIIm
        return self.listImageFile
     }
     
+    //绘制图片按钮栏界面
     private func renderItemView(itemX:CGFloat,itemY:CGFloat,itemWidth:CGFloat,index:Int){
         let itemModel = self.selectModel[index]
         let button = UIButton(frame: CGRectMake(itemX, itemY, itemWidth, itemWidth))
@@ -170,14 +142,15 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIIm
             button.layer.borderColor = UIColor.init(red: 200/255, green: 200/255, blue: 200/255, alpha: 1).CGColor
             button.setImage(UIImage(named: "image_select"), forState: UIControlState.Normal)
         } else {
-               listImageFile.removeAll()
+            listImageFile.removeAll()
+            
             button.addTarget(self, action: #selector(self.eventPreview(_:)), forControlEvents: .TouchUpInside)
-            if let asset = itemModel.data {
+            if let asset = itemModel.data {  //获取招聘数据
                 let pixSize = UIScreen.mainScreen().scale * itemWidth
+                //asset格式数据转换成图片
                 PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSizeMake(pixSize, pixSize), contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: { (image, info) -> Void in
                     if image != nil {
                         self.listImageFile.append(image!)
-                        print("listImageFile\(self.listImageFile.count)")
                         button.setImage(image, forState: UIControlState.Normal)
                         button.contentMode = .ScaleAspectFill
                         button.clipsToBounds = true
@@ -185,6 +158,7 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIIm
                 })
             }
         }
+        
         self.containerView.addSubview(button)
     }
     //随机数生成器函数
@@ -245,33 +219,51 @@ class PhotoViewController: BaseViewController,PhotoPickerControllerDelegate,UIIm
         }
         
         alert.addAction(actionCancel)
-        //alert.addAction(actionCamera)
+        alert.addAction(actionCamera)
         alert.addAction(actionPhoto)
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
+    var imagePicker:UIImagePickerController!
     /**
      拍照获取
      */
-    let imagePicker  = UIImagePickerController()
     private func selectByCamera(){
         // todo take photo task
-        dispatch_async(dispatch_get_main_queue()) {
-            let imagePicker  = UIImagePickerController()
-            imagePicker.delegate      = self
-            imagePicker.allowsEditing = true
-            imagePicker.sourceType = .Camera
-            imagePicker.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-            self.presentViewController(imagePicker, animated: true, completion: nil)
-        }
-        
+
+            self.imagePicker  = UIImagePickerController()
+            self.imagePicker.delegate = self
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .Camera
+            self.imagePicker.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+       
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        self.listImageFile.append(image)
-       imagePicker.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        //self.listImageFile.append((info[UIImagePickerControllerOriginalImage] as? UIImage)!)
         
+        print(info)
+//        let ass
+//        if #available(iOS 9.0, *) {
+//             = PHAssetCreationRequest.creationRequestForAssetFromImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!)
+//        } else {
+//            self.alert("拍照支持9.0以上版本")
+//        }
+        
+        
+        self.selectModel.insert(PhotoImageModel(type: ModelType.Image, data: info[UIImagePickerControllerOriginalImage] as? PHAsset), atIndex: 0)
+        if self.selectModel.count > PhotoPickerController.imageMaxSelectedNum {
+            for i in 0 ..< self.selectModel.count {
+                let item = self.selectModel[i]
+                if item.type == .Button {
+                    self.selectModel.removeAtIndex(i)
+                }
+            }
+        }
+        self.renderView()
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        renderView()
     }
     
     /**

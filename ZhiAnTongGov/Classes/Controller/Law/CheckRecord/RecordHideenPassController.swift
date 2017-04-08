@@ -12,8 +12,7 @@ class RecordHideenPassController:BaseViewController {
     var converyModels : CheckListVo!
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationItem.title = "隐患录入"
+        setNavagation("隐患录入")
         let buttonNormal = UIButton(frame:CGRectMake((SCREEN_WIDTH-200)/2, 200, 200, 100))
         buttonNormal.setTitle("一般隐患", forState:.Normal)
         buttonNormal.backgroundColor = YMGlobalDeapBlueColor()

@@ -19,7 +19,7 @@ class CheckRecordDetailController: BaseViewController {
     var recordDetailModel : RecordDetailModel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "初查记录"
+        setNavagation("初查记录")
         getDatas()
         
     }
@@ -45,7 +45,7 @@ class CheckRecordDetailController: BaseViewController {
     func initPage(){
         
         scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT))
-        scrollView!.pagingEnabled = true
+        //scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
@@ -106,8 +106,8 @@ class CheckRecordDetailController: BaseViewController {
         if !imageArray.isEmpty{
             let base_path = PlistTools.loadStringValue("BASE_URL_YH")
             for i in 0..<self.imageArray.count{
-                let x = 70*i+5+5*i
-                let image = UIImageView(frame: CGRectMake(CGFloat(x), 500, 70, 100))
+                let x = 75*i+5
+                let image = UIImageView(frame: CGRectMake(CGFloat(x), 500, 75, 100))
                 image.kf_setImageWithURL(NSURL(string: base_path+self.imageArray[i].path)!, placeholderImage: UIImage(named: "default"))
                 
                 self.scrollView.addSubview(image)

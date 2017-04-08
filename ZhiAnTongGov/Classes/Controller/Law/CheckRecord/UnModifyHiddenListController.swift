@@ -91,11 +91,14 @@ class UnModifyHiddenListController: BaseViewController, UITableViewDelegate, UIT
         sortView.dismiss()
        if sort == "unModify" {
             isRepaired = false
+        reSet()
         getDatas()
         }else if sort == "Modify"{
             isRepaired = true
+         reSet()
         getDatas()
        }else {
+         reSet()
         getDatas()
         }
 
@@ -304,6 +307,7 @@ class UnModifyHiddenListController: BaseViewController, UITableViewDelegate, UIT
     func reSet(){
         // 重置当前页
         currentPage = 0
+         totalCount = 0
         // 重置数组
         unModifyModels.removeAll()
         unModifyModels = [UnModifyModel]()

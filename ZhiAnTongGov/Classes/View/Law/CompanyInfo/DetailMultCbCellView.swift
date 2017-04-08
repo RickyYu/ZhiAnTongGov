@@ -41,7 +41,7 @@ class DetailMultCbCellView: UIView {
         label1.textColor = UIColor.blackColor()
         label1.hidden = true
 
-        lineView.frame = CGRectMake(3, 42, SCREEN_WIDTH-6, 2)
+        lineView.frame = CGRectMake(3, 42, SCREEN_WIDTH-6, 1)
         lineView.backgroundColor = UIColor.lightGrayColor()
         
         

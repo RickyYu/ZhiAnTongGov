@@ -25,6 +25,7 @@ class RecordFunctionController: BaseViewController, UITableViewDelegate, UITable
     var submitBtn = UIButton()
     override func viewDidLoad() {
         setNavagation("检查记录-隐患列表")
+             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(self.back))
         submitBtn.setTitle("提交", forState:.Normal)
         submitBtn.backgroundColor = YMGlobalDeapBlueColor()
         submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
@@ -49,13 +50,24 @@ class RecordFunctionController: BaseViewController, UITableViewDelegate, UITable
             make.size.equalTo(CGSizeMake(SCREEN_WIDTH, 400))
         }
         
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         if noteId != nil{
-         table.hidden = false
-         getProDangers()
-        
+            table.hidden = false
+            getProDangers()
+            
         }else{
-          table.hidden = true
+            table.hidden = true
         }
+    }
+    
+    func back(){
+      self.lastNavigationPage()
+        //                let viewController = self.navigationController?.viewControllers[1] as! RecordInfoListController
+        //                viewController.isRefresh = true
+        //                self.navigationController?.popToViewController(viewController , animated: true)
     }
     
     func getProDangers(){
@@ -153,6 +165,7 @@ class RecordFunctionController: BaseViewController, UITableViewDelegate, UITable
     func reSet(){
         // 重置当前页
         currentPage = 0
+         totalCount = 0
         // 重置数组
         checkHiddenModels.removeAll()
         checkHiddenModels = [CheckHiddenModel]()

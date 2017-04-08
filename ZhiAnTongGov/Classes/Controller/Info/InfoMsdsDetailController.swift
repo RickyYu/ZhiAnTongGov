@@ -18,19 +18,18 @@ class InfoMsdsDetailController: BaseViewController {
     
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationItem.title = "MSDS查询"
+        setNavagation("MSDS查询")
         initPage()
         
     }
     func initPage(){
-        scrollView = UIScrollView(frame: CGRectMake(0, 0, SCREEN_WIDTH, 2650))
-        scrollView!.pagingEnabled = true
+        scrollView = UIScrollView(frame: CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT))
+        //scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
         scrollView!.scrollsToTop = true
-        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 2650)
+        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 1700)
         
         let customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()
@@ -80,7 +79,6 @@ class InfoMsdsDetailController: BaseViewController {
         let customView12 = DetailCellView(frame:CGRectMake(0, 495, SCREEN_WIDTH, 45))
         customView12.setLabelName("溶解性：")
         customView12.setRMSDSCenterLabel(msdsInfoModel.solubility)
-        
         
         let customView13 = DetailCellView(frame:CGRectMake(0, 540, SCREEN_WIDTH, 45))
         customView13.setLabelName("燃烧性：")
@@ -176,20 +174,6 @@ class InfoMsdsDetailController: BaseViewController {
         let customView36 = DetailCellView(frame:CGRectMake(0, 1575, SCREEN_WIDTH, 45))
         customView36.setLabelName("其他注意事项：")
         customView36.setRMSDSCenterLabel(msdsInfoModel.attentions)
-    
-        
-  
-        
-        
-        
-        
-    
-        
-        
-        
-        
-        
-        
         
         self.scrollView!.addSubview(customView1)
         self.scrollView!.addSubview(customView2)
@@ -204,39 +188,29 @@ class InfoMsdsDetailController: BaseViewController {
         self.scrollView!.addSubview(customView11)
         self.scrollView!.addSubview(customView12)
         self.scrollView!.addSubview(customView13)
-        
-        
         self.scrollView!.addSubview(customView14)
         self.scrollView!.addSubview(customView15)
         self.scrollView!.addSubview(customView16)
         self.scrollView!.addSubview(customView17)
-    
         self.scrollView!.addSubview(customView18)
         self.scrollView!.addSubview(customView19)
         self.scrollView!.addSubview(customView20)
         self.scrollView!.addSubview(customView21)
-        
         self.scrollView!.addSubview(customView22)
         self.scrollView!.addSubview(customView23)
         self.scrollView!.addSubview(customView24)
         self.scrollView!.addSubview(customView25)
-        
         self.scrollView!.addSubview(customView26)
         self.scrollView!.addSubview(customView27)
         self.scrollView!.addSubview(customView28)
         self.scrollView!.addSubview(customView29)
-        
         self.scrollView!.addSubview(customView30)
         self.scrollView!.addSubview(customView31)
         self.scrollView!.addSubview(customView32)
         self.scrollView!.addSubview(customView33)
-        
         self.scrollView!.addSubview(customView34)
         self.scrollView!.addSubview(customView35)
         self.scrollView!.addSubview(customView36)
- 
-        
- 
         self.view.addSubview(scrollView!)
     }
 

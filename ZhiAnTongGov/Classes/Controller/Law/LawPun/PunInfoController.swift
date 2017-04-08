@@ -29,7 +29,7 @@ class PunInfoController: BaseViewController {
     }
     func initPage(){
         scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 600))
-        scrollView!.pagingEnabled = true
+        //scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
@@ -53,6 +53,7 @@ class PunInfoController: BaseViewController {
         customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("处罚原因：")
         customView5.setRTextField("")
+        customView5.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
         customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
         customView6.setLabelName("处罚类别")
@@ -62,6 +63,7 @@ class PunInfoController: BaseViewController {
         customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
         customView7.setLabelName("处罚内容：")
         customView7.setRTextField("")
+        customView7.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
         customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
         customView8.setLabelName("处罚时间：")
@@ -71,6 +73,7 @@ class PunInfoController: BaseViewController {
         
         customView9 = DetailCellView(frame:CGRectMake(0, 360, SCREEN_WIDTH, 45))
         customView9.setLabelName("备注：")
+        customView9.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         self.scrollView.addSubview(customView1)
         self.scrollView.addSubview(customView2)
         self.scrollView.addSubview(customView3)

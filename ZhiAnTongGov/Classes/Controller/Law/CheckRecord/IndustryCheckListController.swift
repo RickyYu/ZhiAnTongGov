@@ -24,24 +24,27 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
     var totalCount : Int = 0
     
     var delegate:ParameterDelegate!
-    
+    //是否为第一次访问
+    var first :Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initPage()
         
     }
     //搜索控制器
-    var countrySearchController = UISearchController()
+   // var countrySearchController = UISearchController()
     var searchStr : String! = ""
     // 是否加载更多
     private var toLoadMore = false
     private func initPage(){
-        
+        first = true
+        let rightBar = UIBarButtonItem(title: "区域选择", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.choiceArea))
+        self.navigationItem.rightBarButtonItem = rightBar
         self.title = "检查记录-选择行业检查表"
         let nib = UINib(nibName: Identifier,bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: Identifier)
         tableView.rowHeight = 53;
-       // tableView.tableFooterView = UIView()
 
         self.view.backgroundColor = UIColor.whiteColor()
         //配置搜索控制器
@@ -56,39 +59,59 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
-        
-        // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
+    
         getDatas()
-        
     }
     
-    
-    
-    func getDatas(){
-        
-        if refreshControl!.refreshing{
-            reSet()
+    var secondAreaCode:String!
+    var thirdAreaCode:String!
+    var isCity:Bool = false
+    func choiceArea(){
+        first = false
+        getChoiceArea(DEFAULT_AREA_ARRAY) { (area,areaArr) in
+            self.secondAreaCode =  getSecondArea(areaArr[1])
+            self.thirdAreaCode = getThirdArea(areaArr[2])
+            self.alertNoticeWithCancel("市本级", message: "是否选择市本级", handlerSure: {
+                self.reSet()
+                self.getDatas()
+                self.isCity = true
+                }, handlerCancel: {
+                self.isCity = false
+                self.reSet()
+                self.getDatas()
+            })
         }
+    }
+    func getDatas(){
         var parameters = [String : AnyObject]()
         if !AppTools.isEmpty(searchStr){
             parameters["hzTemplateCheckTable.title"] = searchStr
         }
         
+        if first {
+           parameters["first"] = first
+        }
         
+        if secondAreaCode != nil {
+            parameters["hzTemplateCheckTable.firstArea"] = FIRST_AREA_CODE
+            parameters["hzTemplateCheckTable.secondArea"] = self.secondAreaCode
+            parameters["hzTemplateCheckTable.thirdArea"] = self.thirdAreaCode
+        
+        }
+        
+        parameters["hzTemplateCheckTable.city"] = isCity
+        parameters["pagination.pageSize"] = PAGE_SIZE
+        parameters["pagination.itemCount"] = currentPage
+        parameters["pagination.totalCount"] = totalCount
+
+
         NetworkTool.sharedTools.loadIndustrySelect(parameters) { (datas, error,totalCount) in
             
-            // 停止加载数据
-            if self.refreshControl!.refreshing{
-                self.refreshControl!.endRefreshing()
-            }
             
             if error == nil{
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
-                  //  self.showHint(LOAD_FINISH, duration: 2, yOffset: 0)
+                    self.showHint(LOAD_FINISH, duration: 2, yOffset: 0)
                     self.currentPage -= 10
                     return
                 }
@@ -101,9 +124,11 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
                 if self.toLoadMore{
                     self.toLoadMore = false
                 }
-                self.showHint("\(error)", duration: 2, yOffset: 0)
+                
                 if error == NOTICE_SECURITY_NAME {
                     self.toLoginView()
+                }else{
+                   self.showHint("\(error)", duration: 2, yOffset: 0)
                 }
             }
             
@@ -128,7 +153,7 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
             let industrySelectModel = industrySelectModels[indexPath.row]
             cell.industrySelectModel = industrySelectModel
         }
-        if count > 0 && indexPath.row == count-1 && !toLoadMore{
+        if count > 0 && indexPath.row == count-1 && !toLoadMore && totalCount>PAGE_SIZE{
             toLoadMore = true
             currentPage += 10
             getDatas()
@@ -137,16 +162,14 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchStr = searchText
-        print("searchTextStr = \(searchStr)")
-        
     }
     
     // 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.resignFirstResponder()
+        first = false
         searchStr = countrySearchController.searchBar.text
         reSet()
         getDatas()
@@ -201,6 +224,8 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
     func reSet(){
         // 重置当前页
         currentPage = 0
+        totalCount = 0
+         totalCount = 0
         // 重置数组
         industrySelectModels.removeAll()
         industrySelectModels = [IndustrySelectModel]()

@@ -67,14 +67,12 @@ class HiddenInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortT
     }
     
     //搜索控制器
-    var countrySearchController = UISearchController()
+   // var countrySearchController = UISearchController()
     var searchStr : String! = ""
     // 是否加载更多
     private var toLoadMore = false
     private func initPage(){
 
-        
-        
         // 设置tableview相关
         let nib = UINib(nibName: CpyInfoListReuseIdentifier,bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: CpyInfoListReuseIdentifier)
@@ -88,15 +86,11 @@ class HiddenInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortT
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
-            controller.searchBar.placeholder = NOTICE_CPY_NAME
+            controller.searchBar.placeholder = "请输入隐患描述"
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
-        
-        // 设置下拉刷新控件
-        refreshControl = RefreshControl(frame: CGRectZero)
-        refreshControl?.addTarget(self, action: #selector(self.getDatas), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
+
         getDatas()
         
     }
@@ -212,6 +206,7 @@ class HiddenInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortT
         if model.type == 1{
             let controller = GeneralHiddenViewController()
             controller.hiddenId = String(model.id)
+            controller.tag = 1
             self.navigationController?.pushViewController(controller, animated: true)
         
         }else{
@@ -231,6 +226,7 @@ class HiddenInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortT
         // 重置当前页
         currentPage = 0
         // 重置数组
+         totalCount = 0
         unModifyModels.removeAll()
         unModifyModels = [UnModifyModel]()
     }

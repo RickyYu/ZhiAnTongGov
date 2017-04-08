@@ -38,14 +38,16 @@ class CpyInfoCell: UITableViewCell {
                 let secondStr =  getSecondArea(String(art.secondArea))
                 let thirdStr =  getThirdArea(String(art.thirdArea))
                 area.text = "所属区域："+String("湖州市 \(secondStr)\(thirdStr)")
-                if art.allDangerNum > 0 {
-                 unDangerNum.text = "未整改隐患数量：\(art.allDangerNum)个"
-                 unDangerNum.textColor = UIColor.redColor()
-                }else{
-                  unDangerNum.text = "未整改隐患数量：0个"
-                  unDangerNum.textColor = UIColor.lightGrayColor()
+                unDangerNum.text = ""
+                if (art.allDangerNum != nil) {
+                    if art.allDangerNum > 0 {
+                        unDangerNum.text = "未整改隐患数量：\(art.allDangerNum)个"
+                        unDangerNum.textColor = UIColor.redColor()
+                    }else{
+                        unDangerNum.text = "未整改隐患数量：0个"
+                        unDangerNum.textColor = UIColor.lightGrayColor()
+                    }
                 }
-                
             }
         }
     }

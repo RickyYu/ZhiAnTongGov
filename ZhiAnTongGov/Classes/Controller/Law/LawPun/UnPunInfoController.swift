@@ -38,14 +38,13 @@ class UnPunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "行政处罚"
-        self.view.backgroundColor = UIColor.whiteColor()
+        setNavagation("行政处罚")
         self.initPage()
-         getDatas()
+        getDatas()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
     }
 
-    func resignEdit(sender: UITapGestureRecognizer) {
+    override func resignEdit(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             customView4.textField.resignFirstResponder()
             customView5.textField.resignFirstResponder()
@@ -58,7 +57,7 @@ class UnPunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDa
     func initPage(){
         
         scrollView = UIScrollView(frame: CGRectMake(0, 66, SCREEN_WIDTH, 600))
-        scrollView!.pagingEnabled = true
+        //scrollView!.pagingEnabled = true
         scrollView!.scrollEnabled = true
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
@@ -79,8 +78,6 @@ class UnPunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDa
         customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
         customView4.setLabelName("处罚单位：")
         customView4.setRTextField("")
-        self.customView4.textField.becomeFirstResponder()
-
         
         customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("处罚原因：")
@@ -123,8 +120,22 @@ class UnPunInfoController: BaseViewController ,UITableViewDelegate,UITableViewDa
           self.scrollView.addSubview(customView7)
           self.scrollView.addSubview(customView8)
           self.scrollView.addSubview(customView9)
-        self.scrollView.addSubview(submitBtn)
+//        self.view.addSubview(submitBtn)
         self.view.addSubview(scrollView)
+        
+//        submitBtn.snp_makeConstraints { make in
+//            make.bottom.equalTo(self.view.snp_bottom).offset(-15)
+//            make.left.equalTo(self.view.snp_left).offset(50)
+//            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
+//        }
+//        scrollView.snp_makeConstraints { make in
+//            make.top.equalTo(self.view.snp_top).offset(64)
+//            make.left.equalTo(self.view.snp_left)
+//            make.bottom.equalTo(submitBtn.snp_top).offset(-5)
+//            make.right.equalTo(self.view.snp_right)
+//        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .Plain, target: self, action: #selector(self.submit))
+        
         
     }
     

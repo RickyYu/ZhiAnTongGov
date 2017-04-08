@@ -37,7 +37,7 @@ class NetworkTool: Alamofire.Manager {
         request(.POST, AppTools.getServiceURLWithYh("LOGIN"), parameters: addParameters, encoding: .URL, headers: headers).responseJSON(queue: dispatch_get_main_queue(), options: []){(response) in
             guard response.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(login:nil,error: "服务器异常")
+                finished(login:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response.result.value{
@@ -65,7 +65,7 @@ class NetworkTool: Alamofire.Manager {
 //        sendPostRequest(AppTools.getServiceURLWithYh("LOGIN"), parameters: parameters) { (response) in
 //            guard response!.result.isSuccess else {
 //                SVProgressHUD.showErrorWithStatus("加载失败...")
-//                finished(login:nil,error: "服务器异常")
+//                finished(login:nil,error: NOTICE_NETWORK_ERROR)
 //                return
 //            }
 //            if let dictValue = response!.result.value{
@@ -91,25 +91,25 @@ class NetworkTool: Alamofire.Manager {
 //        }
         
     }
+    
     //MARK: - 修改密码
-    func changePwd(parameters:[String:AnyObject],finished:(login:Login!,error:String!)->()){
+    func changePwd(parameters:[String:AnyObject],finished:(login:String!,error:String!)->()){
          SVProgressHUD.showWithStatus("正在加载...")
-        sendPostRequest(AppTools.getServiceURLWithYh("CHANGE_PASSWORD"), parameters: parameters) { (response) in
+        sendPostRequest(AppTools.getServiceURLWithDa("CHANGE_PASSWORD"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(login:nil,error: "服务器异常")
+                finished(login:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
                 let dict = JSON(dictValue)
-                print("getArticle.dict = \(dict)")
-                let login = Login(json:dict)
+                print("changePwd.dict = \(dict)")
+//                let login = Login(json:dict)
                 let success = dict["success"].boolValue
                 let message = dict["msg"].stringValue
                 //  字典转成模型
                 if success {
-                        finished(login: login, error: nil)
-                    
+                    finished(login: "success", error: nil)
                 }else{
                     finished(login: nil,error: message) //success  false
                 }
@@ -134,7 +134,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(url, parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(cpyInfoModels:nil,error: "服务器异常",totalCount: nil)
+                finished(cpyInfoModels:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -173,7 +173,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_VDANGERS"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -214,7 +214,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithDa("UPDATE_COMPANY"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(cpyInfoModels:nil,error: "服务器异常",totalCount: nil)
+                finished(cpyInfoModels:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -256,7 +256,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithDa("GET_POINT"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(locInfoModel:nil,error: "服务器异常")
+                finished(locInfoModel:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -287,7 +287,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithDa("SAVE_POINT"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(cpyInfoModels:nil,error: "服务器异常",totalCount: nil)
+                finished(cpyInfoModels:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -321,7 +321,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_GOV_RECORD_LIST"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(recordInfoModels:nil,error: "服务器异常",totalCount: nil)
+                finished(recordInfoModels:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -360,7 +360,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("GET_COMPANY_GRID"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -408,6 +408,7 @@ class NetworkTool: Alamofire.Manager {
                 print("imageName = \(imageName)")
                 multipartFormData.appendBodyPart(data: data!, name: "file[\(i)]", fileName: imageName, mimeType: "image/jpg")
                 multipartFormData.appendBodyPart(data: imageName.dataUsingEncoding(NSUTF8StringEncoding)!, name: "fileFileName[\(i)]" )
+                
               }
             }
 
@@ -446,7 +447,7 @@ class NetworkTool: Alamofire.Manager {
                 })
             case .Failure( _):
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常",noteId: "")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR,noteId: "")
             }
         }
     }
@@ -458,7 +459,7 @@ class NetworkTool: Alamofire.Manager {
 //                    print("createCheckRecord.dict = \(response!)")
 //                    guard response!.result.isSuccess else {
 //                        SVProgressHUD.showErrorWithStatus("加载失败...")
-//                        finished(data:nil,error: "服务器异常")
+//                        finished(data:nil,error: NOTICE_NETWORK_ERROR)
 //                        return
 //                    }
 //                    if let dictValue = response!.result.value{
@@ -510,6 +511,8 @@ class NetworkTool: Alamofire.Manager {
                     print("imageName = \(imageName)")
                     multipartFormData.appendBodyPart(data: data!, name: "file[\(i)]", fileName: imageName, mimeType: "image/jpg")
                     multipartFormData.appendBodyPart(data: imageName.dataUsingEncoding(NSUTF8StringEncoding)!, name: "fileFileName[\(i)]" )
+                    
+                  
                 }
             }
             
@@ -548,7 +551,7 @@ class NetworkTool: Alamofire.Manager {
                 })
             case .Failure( _):
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
             }
         }
     }
@@ -616,7 +619,7 @@ class NetworkTool: Alamofire.Manager {
                 })
             case .Failure( _):
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
             }
         }
     }
@@ -629,12 +632,12 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_CHECK_RECORD"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
                 let dict = JSON(dictValue)
-                print("loadRecordDetail.dict = \(dict)")
+                print("LOAD_CHECK_RECORD = \(dict)")
                 let success = dict["success"].boolValue
                 let message = dict["msg"].stringValue
                 //  字典转成模型
@@ -660,7 +663,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_PRO_DANGERS"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -699,7 +702,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_INDUSTRY_SELECT"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -737,7 +740,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_INDUSTRY_SECOND_SELECT"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -774,7 +777,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("TAKE_DANGERS"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -803,7 +806,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_COMPANY_INFO"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -834,7 +837,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_DANGER"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -864,7 +867,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_NOMAL_DANGER_VIEW"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -895,7 +898,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_NORMAL_DANGER"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -925,7 +928,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_HIDDEN_TROUBLES"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: 0)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: 0)
                 return
             }
             if let dictValue = response!.result.value{
@@ -967,7 +970,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1004,7 +1007,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("CREATE_PUNISHMENT"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(recordInfoModels:nil,error: "服务器异常")
+                finished(recordInfoModels:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1038,7 +1041,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(infos:nil,error: "服务器异常",totalCount: nil)
+                finished(infos:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1077,7 +1080,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithDa("LOAD_DANGEROUS_CHEMICALS"), parameters: parameters) { (response) in
             
             guard response!.result.isSuccess else {
-                finished(mSDSInfoModels:nil,error: "服务器异常",totalCount: nil)
+                finished(mSDSInfoModels:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1115,7 +1118,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                  SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(info:nil,error: "服务器异常")
+                finished(info:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1149,7 +1152,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                  SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1183,7 +1186,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 //print("\(response!.response.)")
                 return
             }
@@ -1218,7 +1221,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1253,7 +1256,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1280,6 +1283,7 @@ class NetworkTool: Alamofire.Manager {
                 }
                  SVProgressHUD.dismiss()
             }else {
+                SVProgressHUD.dismiss()
                 finished(datas: nil,error: "数据异常",totalCount: nil)
             }
             
@@ -1293,7 +1297,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常")
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1377,7 +1381,7 @@ class NetworkTool: Alamofire.Manager {
                 })
             case .Failure( _):
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+                finished(data:nil,error: NOTICE_NETWORK_ERROR)
             }
         }
     }
@@ -1393,7 +1397,7 @@ class NetworkTool: Alamofire.Manager {
             
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1432,7 +1436,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_PUN_LIST"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{
@@ -1471,7 +1475,7 @@ class NetworkTool: Alamofire.Manager {
         self.sendPostRequest(AppTools.getServiceURLWithYh("LOAD_PUNISHMENT"), parameters: parameters) { (response) in
             guard response!.result.isSuccess else {
                 SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(datas:nil,error: "服务器异常",totalCount: nil)
+                finished(datas:nil,error: NOTICE_NETWORK_ERROR,totalCount: nil)
                 return
             }
             if let dictValue = response!.result.value{

@@ -221,8 +221,8 @@ public class PickerView: UIView {
                     var row: Int? = nil
 
                     if component == 0 {
+                       
                         let firstData = multipleAssociatedColsData![0]
-                    
                         for (index,associatedModel) in firstData.enumerate() {
                             if associatedModel.first!.0 == element {
                                 row = index
@@ -241,11 +241,12 @@ public class PickerView: UIView {
                                 break
                             }
                         }
+                   
                         row = arr?.indexOf(element)
                         
                     }
-                    
-                    assert(row != nil, "第\(component)列设置的默认值有误")
+    
+                  // assert(row != nil, "第\(component)列设置的默认值有误")
                     if row == nil {
                         row = 0
                         print("第\(component)列设置的默认值有误")

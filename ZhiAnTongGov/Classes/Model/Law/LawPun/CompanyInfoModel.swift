@@ -41,9 +41,9 @@ class CompanyInfoModel:BaseModel{
         self.secondArea = dict["secondArea"] as? Int
         self.thirdArea = dict["thirdArea"] as? Int
         self.companyName = dict["companyName"] as? String
-        self.tradeBig = dict["tradeBig"] as? String
+        self.tradeBig = dict["tradeBig"] as? String ?? ""
         self.businessRegNumber = dict["businessRegNumber"] as? String
-        self.phone = dict["phone"] as? String
+        self.phone = dict["phone"] as? String ?? ""
         self.tradeSma = dict["tradeSma"] as? String ?? ""
         self.isProduction = dict["isProduction"] as? Bool
         self.tradeMid = dict["tradeMid"] as? String ?? ""
