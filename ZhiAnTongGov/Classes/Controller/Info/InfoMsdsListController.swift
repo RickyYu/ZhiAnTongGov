@@ -53,20 +53,11 @@ class InfoMsdsListController: BaseTabViewController {
         tableView.separatorStyle = .None
         tableView.tableFooterView = UIView()
         
-        
-        // 设置下拉刷新控件
-//        refreshControl = RefreshControl(frame: CGRectZero)
-//        refreshControl?.addTarget(self, action: #selector(InfoListController.getLawLists), forControlEvents: .ValueChanged)
-//        refreshControl?.beginRefreshing()
-        
         getLawLists()
     }
     
     func getLawLists(){
-//        if refreshControl!.refreshing{
-//            reSet()
-//            
-//        }
+
         var parameters = [String : AnyObject]()
         parameters["code"] = self.infoType
         parameters["pagination.pageSize"] = 10
@@ -74,11 +65,7 @@ class InfoMsdsListController: BaseTabViewController {
         parameters["pagination.totalCount"] = totalCount
         
         NetworkTool.sharedTools.getMSDSInfo(parameters) { (mSDSInfoModels, error,totalCount) in
-//            // 停止加载数据
-//            if self.refreshControl!.refreshing{
-//                self.refreshControl!.endRefreshing()
-//            }
-            
+
             if self.currentPage>totalCount{
                 self.showHint("已经到最后了", duration: 2, yOffset: 0)
                 self.currentPage -= 10

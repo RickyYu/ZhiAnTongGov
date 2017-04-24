@@ -84,7 +84,7 @@ class GovReviewDetailController: SinglePhotoViewController,UITableViewDelegate,U
         
         customView6 = DetailCellView(frame:CGRectMake(0, 325, SCREEN_WIDTH, 45))
         customView6.setLabelName("图片:")
-         customView6.setRRightLabel("")
+         customView6.setPhotoImg()
         customView6.addOnClickListener(self, action: #selector(self.choiceImage))
         setImageViewLoc(0, y: 365)
         self.cstScrollVoew.addSubview(scrollView)

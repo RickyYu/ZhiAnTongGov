@@ -1563,7 +1563,7 @@
 				INFOPLIST_FILE = ZhiAnTongGov/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.smartergov.ZhiAnTongGov;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.ZhiAnTongGov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ZhiAnTongGov/Classes/ZhiAnTongGov_Bridge.h;
@@ -1589,7 +1589,7 @@
 				INFOPLIST_FILE = ZhiAnTongGov/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.smartergov.ZhiAnTongGov;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.ZhiAnTongGov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ZhiAnTongGov/Classes/ZhiAnTongGov_Bridge.h;

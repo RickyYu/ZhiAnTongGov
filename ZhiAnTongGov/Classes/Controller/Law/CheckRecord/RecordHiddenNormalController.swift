@@ -76,7 +76,7 @@ class RecordHiddenNormalController: SinglePhotoViewController {
         customView5normal.rightCheckBtn.addTarget(self, action:#selector(normalTapped1(_:)), forControlEvents:.TouchUpInside)
         
         customView6normal.setLabelName("现场图片：")
-        customView6normal.setRRightLabel("")
+        customView6normal.setPhotoImg()
         customView6normal.addOnClickListener(self, action: #selector(self.choiceNormalImage))
         setImageViewLoc(0, y: 325)
         self.view.addSubview(scrollView)

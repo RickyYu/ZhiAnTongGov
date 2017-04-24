@@ -99,11 +99,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
-        
-//        // 设置下拉刷新控件
-//        refreshControl = RefreshControl(frame: CGRectZero)
-//        refreshControl?.addTarget(self, action: #selector(self.getData), forControlEvents: .ValueChanged)
-//        refreshControl?.beginRefreshing()
+
         getData()
 
     }
@@ -112,10 +108,6 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
     
     
     func getData(){
-        
-//        if refreshControl!.refreshing{
-//          reSet()
-//        }
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -131,12 +123,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
         
         
         NetworkTool.sharedTools.loadCompanys(parameters,isYh: true) { (cpyInfoModels, error,totalCount) in
-            
-//            // 停止加载数据
-//            if self.refreshControl!.refreshing{
-//                self.refreshControl!.endRefreshing()
-//            }
-//            
+
             if error == nil{
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!

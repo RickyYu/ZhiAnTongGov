@@ -46,7 +46,7 @@ class AddRecordController: SinglePhotoViewController,ParameterDelegate{
     var checkTime:String!//检查时间
     var nowcontent:String!//现场检查记录
     var check:Bool = false//发送整改通知书
-    var zgTime:String!//整改时间
+    var zgTime:String = ""//整改时间
     var c1:Int!
     var c2:Int!
     var c3:Int!
@@ -201,7 +201,7 @@ class AddRecordController: SinglePhotoViewController,ParameterDelegate{
         
         customView10 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
         customView10.setLabelName("图片：")
-        customView10.setRRightLabel("")
+        customView10.setPhotoImg()
         customView10.addOnClickListener(self, action: #selector(self.choiceImage))
         setImageViewLoc(0, y: 450)
         self.cstScrollView.addSubview(scrollView)
@@ -411,13 +411,13 @@ class AddRecordController: SinglePhotoViewController,ParameterDelegate{
             
         }
         
-        if AppTools.isEmpty(zgTime) {
-            alert("责令整改日期不可为空", handler: {
-                // self.customView6.textField.becomeFirstResponder()
-            })
-            return
-            
-        }
+//        if AppTools.isEmpty(zgTime) {
+//            alert("责令整改日期不可为空", handler: {
+//                // self.customView6.textField.becomeFirstResponder()
+//            })
+//            return
+//            
+//        }
         
         checkList.companyname = companyName
         checkList.companyadress = address

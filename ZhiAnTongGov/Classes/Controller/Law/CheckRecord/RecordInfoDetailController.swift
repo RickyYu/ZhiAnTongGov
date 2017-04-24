@@ -17,7 +17,7 @@ class RecordInfoDetailController: BaseViewController {
      var converyDataModel : RecordInfoModel!
      var recordDetailModel : RecordDetailModel!
         var imageArray = [ImageInfoModel]()
-      var customViewT  = DetailCellView()
+      var customView1  = DetailCellView()
       var customView2  = DetailCellView()
       var customView3  = DetailCellView()
       var customView4  = DetailCellView()
@@ -65,7 +65,8 @@ class RecordInfoDetailController: BaseViewController {
     
     }
     func setData(){
-        customViewT.setRCenterLabel(recordDetailModel.companyName ?? "")
+//        customView1.setRCenterLabel(recordDetailModel.companyName ?? "")
+    
         customView2.setRCenterLabel(recordDetailModel.address ?? "")
         customView3.setRCenterLabel(recordDetailModel.fdDelegate ?? "")
         customView4.setRCenterLabel(recordDetailModel.checkTimeBegin ?? "")
@@ -101,8 +102,8 @@ class RecordInfoDetailController: BaseViewController {
         scrollView!.showsVerticalScrollIndicator = true
         scrollView!.scrollsToTop = false
         scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT+150)
-        customViewT = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
-        customViewT.setLabelName("企业名称：")
+        customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
+        customView1.setLabelName("企业名称：")
         customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
         customView2.setLabelName("企业地址：")
         customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
@@ -125,10 +126,11 @@ class RecordInfoDetailController: BaseViewController {
 //        customView10.setLabelName("行业检查表：")
         customView12 = DetailCellView(frame:CGRectMake(0, 405, SCREEN_WIDTH, 45))
         customView12.setLabelName("图片：")
+        customView12.setPhotoImg()
         customView12.setLineViewHidden()
 
 
-        self.scrollView.addSubview(customViewT)
+        self.scrollView.addSubview(customView1)
         self.scrollView.addSubview(customView2)
         self.scrollView.addSubview(customView3)
         self.scrollView.addSubview(customView4)

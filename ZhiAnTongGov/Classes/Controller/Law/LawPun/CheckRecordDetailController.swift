@@ -99,7 +99,7 @@ class CheckRecordDetailController: BaseViewController {
 
         let customView11 = DetailCellView(frame:CGRectMake(0, 460, SCREEN_WIDTH, 45))
         customView11.setLabelName("图片：")
-        customView11.setRCenterLabel("")
+        customView11.setPhotoImg()
         customView11.setLineViewHidden()
 
         self.imageArray = (recordDetailModel?.imageInfos)!

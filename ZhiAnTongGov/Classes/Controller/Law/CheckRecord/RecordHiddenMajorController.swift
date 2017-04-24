@@ -380,7 +380,7 @@ class RecordHiddenMajorController: SinglePhotoViewController {
         
         customView21 = DetailCellView(frame:CGRectMake(0, 865, SCREEN_WIDTH, 45))
         customView21.setLabelName("现场图片：")
-        customView21.setRRightLabel("")
+        customView21.setPhotoImg()
         customView21.addOnClickListener(self, action: #selector(self.majorChoiceImage))
         setImageViewLoc(0, y: 910)
         self.majorScrollView.addSubview(scrollView)

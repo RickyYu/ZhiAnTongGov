@@ -118,6 +118,13 @@ class DetailCellView: UIView,UITextFieldDelegate,UITextViewDelegate {
        rightImg.image = UIImage(named: "daily_mgr_unselect")
        self.addSubview(rightImg)
     }
+    func setPhotoImg(){
+        rightImg  = UIImageView()
+        rightImg.image = UIImage(named: "icon_photo_bg")
+        rightImg.frame = CGRectMake(SCREEN_WIDTH-40, 2.5, 40, 40)
+        self.textField.removeFromSuperview()
+        self.addSubview(rightImg)
+    }
     
     
     func setRTextView(text:String){

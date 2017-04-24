@@ -28,6 +28,9 @@ class InfoTypeController: BaseViewController,UITableViewDelegate,UITableViewData
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = false
+        self.tabBarController?.hidesBottomBarWhenPushed = false
+        self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.navigationBar.hidden = true
          if (table.indexPathForSelectedRow != nil) {
              table.deselectRowAtIndexPath(table.indexPathForSelectedRow!, animated: true)
