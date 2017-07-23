@@ -29,8 +29,7 @@ class RecordHiddenMajorController: SinglePhotoViewController {
      
     }
      //隐患地址
-     var majorAddress = ""
-        //联系人
+    var majorAddress = ""
     var majorPeople = ""
     var majorPhone  = ""
     var majorMobile = ""
@@ -82,7 +81,7 @@ class RecordHiddenMajorController: SinglePhotoViewController {
     }
     
     func setData(){
-           customView1.rightCheckBtn.selected = majorHidden.emphasisProject
+        customView1.rightCheckBtn.selected = majorHidden.emphasisProject
         customView9.rightCheckBtn.selected = majorHidden.govCoordination
         customView10.rightCheckBtn.selected = majorHidden.partStopProduct
         customView11.rightCheckBtn.selected = majorHidden.fullStopProduct
@@ -92,12 +91,13 @@ class RecordHiddenMajorController: SinglePhotoViewController {
         customView15.rightCheckBtn.selected = majorHidden.safetyMethod
         let address:String = "湖州市"+getSecondArea(String(majorHidden.secondArea))+getThirdArea(String(majorHidden.thirdArea))
         if hiddenId != nil{
+            setNavagation("重大隐患查看")
             customView2.textField.enabled = false
             customView3.textField.enabled = false
             customView4.textField.enabled = false
             customView5.textField.enabled = false
             customView6.textField.enabled = false
-            customView7.textField.enabled = false
+            customView7.textView.editable = false
             customView16.textField.enabled = false
             customView17.textField.enabled = false
             customView18.textField.enabled = false
@@ -109,7 +109,7 @@ class RecordHiddenMajorController: SinglePhotoViewController {
             customView4.setRTextFieldGray(majorHidden.linkMan)
             customView5.setRTextFieldGray(majorHidden.linkTel)
             customView6.setRTextFieldGray(majorHidden.linkMobile)
-            customView7.setRTextFieldGray(majorHidden.descriptions)
+            customView7.setRTextViewGray(majorHidden.descriptions)
             customView16.setRTextFieldGray(String(majorHidden.finishDate))
             customView17.setRTextFieldGray(String(majorHidden.governMoney))
             customView18.setRTextFieldGray(majorHidden.chargePerson)
@@ -124,7 +124,7 @@ class RecordHiddenMajorController: SinglePhotoViewController {
             customView4.setRTextField(majorHidden.linkMan)
             customView5.setRTextField(majorHidden.linkTel)
             customView6.setRTextField(majorHidden.linkMobile)
-            customView7.setRTextField(majorHidden.descriptions)
+            customView7.setRTextView(majorHidden.descriptions)
             customView16.setRTextField(String(majorHidden.finishDate))
             customView17.setRTextField(String(majorHidden.governMoney))
             customView18.setRTextField(majorHidden.chargePerson)
@@ -181,12 +181,21 @@ class RecordHiddenMajorController: SinglePhotoViewController {
             return
         }
         
-         majorHiddenDes = customView7.textField.text!
+         majorHiddenDes = customView7.textView.text!
         if AppTools.isEmpty(majorHiddenDes) {
             alert("隐患基本情况不可为空", handler: {
                 self.customView7.textField.becomeFirstResponder()
             })
             return
+        }
+        
+        if majorHiddenDes.characters.count>200{
+            if AppTools.isEmpty(majorHiddenDes) {
+                alert("隐患基本情况描述不可超过200字", handler: {
+                    self.customView7.textField.becomeFirstResponder()
+                })
+                return
+            }
         }
         
         majorPlantTime = customView16.rightLabel.text!
@@ -275,20 +284,18 @@ class RecordHiddenMajorController: SinglePhotoViewController {
         customView1.setRCheckBtn()
         customView1.rightCheckBtn.addTarget(self, action:#selector(majortapped1(_:)), forControlEvents:.TouchUpInside)
         
-         customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
+        customView2 = DetailCellView(frame:CGRectMake(0, 45, SCREEN_WIDTH, 45))
         customView2.setLabelName("隐患地址：")
         customView2.setRTextField( "")
         
-         customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
+        customView3 = DetailCellView(frame:CGRectMake(0, 90, SCREEN_WIDTH, 45))
         customView3.setLabelName("隐患区域：")
         customView3.setRRightLabel("")
         customView3.addOnClickListener(self, action: #selector(self.majorChoiceArea))
         
-        
-         customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
+        customView4 = DetailCellView(frame:CGRectMake(0, 135, SCREEN_WIDTH, 45))
         customView4.setLabelName("联系人：")
         customView4.setRTextField( "")
-        
         
         customView5 = DetailCellView(frame:CGRectMake(0, 180, SCREEN_WIDTH, 45))
         customView5.setLabelName("联系电话：")
@@ -298,11 +305,12 @@ class RecordHiddenMajorController: SinglePhotoViewController {
         customView6 = DetailCellView(frame:CGRectMake(0, 225, SCREEN_WIDTH, 45))
         customView6.setLabelName("手机:")
         customView6.setRTextField( "")
+        customView6.textField.keyboardType = .DecimalPad
           customView6.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
         customView7 = DetailCellView(frame:CGRectMake(0, 270, SCREEN_WIDTH, 45))
         customView7.setLabelName("隐患基本情况：")
-        customView7.setRTextField( "") //ImagesInfo 字段
+        customView7.setMinTextViewShow() //ImagesInfo 字段
         
         customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
         customView8.setLabelName("")

@@ -29,7 +29,7 @@ class InfoMsdsDetailController: BaseViewController {
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
         scrollView!.scrollsToTop = true
-        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, 1700)
+        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH*2)
         
         let customView1 = DetailCellView(frame:CGRectMake(0, 0, SCREEN_WIDTH, 45))
         customView1.backgroundColor = UIColor.whiteColor()

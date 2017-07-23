@@ -13,16 +13,19 @@ class RecordHideenPassController:BaseViewController {
     
     override func viewDidLoad() {
         setNavagation("隐患录入")
-        let buttonNormal = UIButton(frame:CGRectMake((SCREEN_WIDTH-200)/2, 200, 200, 100))
-        buttonNormal.setTitle("一般隐患", forState:.Normal)
-        buttonNormal.backgroundColor = YMGlobalDeapBlueColor()
+
+        let imageView = UIImageView(frame: CGRectMake(0, 64, SCREEN_WIDTH, 225))
+        imageView.image = UIImage(named: "banner_hidden")
+        self.view.addSubview(imageView)
+        
+        let buttonNormal = UIButton(frame:CGRectMake(10, 300, SCREEN_WIDTH/2-20, 100))
+        buttonNormal.setBackgroundImage(UIImage(named: "bg_general_hidden"), forState: .Normal)
         buttonNormal.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
         buttonNormal.addTarget(self, action: #selector(self.showNormal), forControlEvents: UIControlEvents.TouchUpInside)
         
         
-       let buttonMajor = UIButton(frame:CGRectMake((SCREEN_WIDTH-200)/2, 350, 200, 100))
-        buttonMajor.setTitle("重大隐患", forState:.Normal)
-        buttonMajor.backgroundColor = YMGlobalDeapBlueColor()
+        let buttonMajor = UIButton(frame:CGRectMake(SCREEN_WIDTH/2+7, 300, SCREEN_WIDTH/2-20, 100))
+        buttonMajor.setBackgroundImage(UIImage(named: "bg_major_hidden"), forState: .Normal)
         buttonMajor.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
         buttonMajor.addTarget(self, action: #selector(self.showMajor), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -32,9 +35,6 @@ class RecordHideenPassController:BaseViewController {
         
     }
     
-    override func viewWillLayoutSubviews() {
-        
-    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -43,9 +43,8 @@ class RecordHideenPassController:BaseViewController {
     
     func showNormal(){
         let controller = RecordHiddenNormalController()
-        
         controller.converyModels = converyModels
-      self.navigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func showMajor(){

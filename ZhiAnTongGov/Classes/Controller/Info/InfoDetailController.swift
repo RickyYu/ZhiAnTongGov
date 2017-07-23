@@ -33,7 +33,7 @@ class InfoDetailController: BaseViewController {
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = true
         scrollView!.scrollsToTop = true
-        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT*4)
+        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT*2)
         
         scrollView?.addSubview(publisher)
         scrollView?.addSubview(pubTime)
@@ -47,28 +47,22 @@ class InfoDetailController: BaseViewController {
             self.pubTime.text = object.createTime
         
         }
-        
-        
-//        if let url = self.urlStr {
-//            let dataImg : NSData = NSData(contentsOfURL: NSURL(string : url)!)!
-//            self.big_video_img.image = UIImage(data: dataImg)
-//            self.title = titleStr
-//        }
+
     }
     
     func getData(){
         var parameters = [String : AnyObject]()
         parameters["article.id"] = detailObject?.id
-    NetworkTool.sharedTools.getArticle(parameters) { (info, error) in
-        if error == nil{
-           self.content.attributedText = self.trimHtml(info.detail)
-           self.content.textLeftToAlign()
-        }else{
-           self.showHint("\(error)", duration: 2, yOffset: 0)
-            if error == NOTICE_SECURITY_NAME {
-                self.toLoginView()
+        NetworkTool.sharedTools.getArticle(parameters) { (info, error) in
+            if error == nil{
+                self.content.attributedText = self.trimHtml(info.detail)
+                self.content.textLeftToAlign()
+            }else{
+                self.showHint("\(error)", duration: 2, yOffset: 0)
+                if error == NOTICE_SECURITY_NAME {
+                    self.toLoginView()
+                }
             }
-          }
         }
     }
     

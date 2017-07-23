@@ -109,23 +109,12 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
-        
-        // 设置下拉刷新控件
-//        refreshControl = RefreshControl(frame: CGRectZero)
-//        if isPun {
-//            refreshControl?.addTarget(self, action: #selector(self.getPunDatas), forControlEvents: .ValueChanged)
-//        }else{
-//            refreshControl?.addTarget(self, action: #selector(self.getUnPunDatas), forControlEvents: .ValueChanged)
-//        }
-//        refreshControl?.beginRefreshing()
+
         getUnPunDatas()
     }
     
     func getPunDatas(){
-        
-//        if refreshControl!.refreshing{
-//            reSet()
-//        }
+
         var parameters = [String : AnyObject]()
         parameters["pagination.pageSize"] = PAGE_SIZE
         parameters["pagination.itemCount"] = currentPage
@@ -134,13 +123,8 @@ class LawPunListController:BaseTabViewController,UISearchBarDelegate, YMSortTabl
             parameters["companyName"] = searchStr
         }
         
-        //NetworkTool.sharedTools.loadPunLists
+
         NetworkTool.sharedTools.loadPunLists(parameters) { (datas, error,totalCount) in
-            
-            // 停止加载数据
-//            if self.refreshControl!.refreshing{
-//                self.refreshControl!.endRefreshing()
-//            }
             
             if error == nil{
                 if self.currentPage>totalCount{

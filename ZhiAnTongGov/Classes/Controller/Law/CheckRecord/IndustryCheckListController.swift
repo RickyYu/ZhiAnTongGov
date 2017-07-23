@@ -39,9 +39,16 @@ class IndustryCheckListController: BaseTabViewController ,UISearchBarDelegate{
     private var toLoadMore = false
     private func initPage(){
         first = true
-        let rightBar = UIBarButtonItem(title: "区域选择", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.choiceArea))
-        self.navigationItem.rightBarButtonItem = rightBar
-        self.title = "检查记录-选择行业检查表"
+//        let rightBar = UIBarButtonItem(title: "区域选择", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.choiceArea))
+        
+        let rightBar = UIButton(frame:CGRectMake(0, 0, 35, 32))
+        rightBar.setImage(UIImage(named: "icon_area_bar"), forState: .Normal)
+        rightBar.addTarget(self,action:#selector(self.choiceArea),forControlEvents:.TouchUpInside)
+        let rightBarItem = UIBarButtonItem(customView: rightBar)
+        navigationItem.rightBarButtonItem = rightBarItem
+//        
+//        self.navigationItem.rightBarButtonItem = rightBar
+        self.title = "选择行业检查表"
         let nib = UINib(nibName: Identifier,bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: Identifier)
         tableView.rowHeight = 53;

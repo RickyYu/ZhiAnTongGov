@@ -357,34 +357,6 @@ class IndustryHandleCheckListController: BaseViewController, UITableViewDelegate
             }else{
             industrySecondSelectModel.descriptions = "0"
             }
-//            
-//             listHyTemp.append(industrySecondSelectModel)
-//            
-//            if listHyTemp[indexPath.row].id == industrySecondSelectModel.id {
-//                industrySecondSelectModel.descriptions = listHyTemp[indexPath.row].descriptions
-//                listHyTemp.removeAtIndex(indexPath.row)
-//                listHyTemp.insert(industrySecondSelectModel, atIndex: indexPath.row)
-//            }else{
-//                listHyTemp.append(industrySecondSelectModel)
-//            }
-//
-//            
-//            
-////            let listHyTempCount = listHyTemp.count ?? 0
-//            if isFirst {
-//                isFirst = false
-//                listHyTemp.append(industrySecondSelectModel)
-//                listHyId.append(industrySecondSelectModel.id)
-//            }else {
-//                    if listHyTemp[indexPath.row].id == industrySecondSelectModel.id {
-//                        industrySecondSelectModel.descriptions = listHyTemp[indexPath.row].descriptions
-//                        listHyTemp.removeAtIndex(indexPath.row)
-//                        listHyTemp.insert(industrySecondSelectModel, atIndex: indexPath.row)
-//                    }else{
-//                        listHyTemp.append(industrySecondSelectModel)
-//                    }
-//                
-//            }
             
             
             if isFirst {

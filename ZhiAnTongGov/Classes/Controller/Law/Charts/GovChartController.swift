@@ -99,6 +99,7 @@ class GovChartController:BaseViewController,ChartViewDelegate{
             months.append(month)
             valuesYh.append(Double(item.byGov))
             valuesZg.append(Double(item.repairedNum))
+            print("month = \(month)  byGov = \(Double(item.byGov)) Double(item.repairedNum) = \(Double(item.repairedNum))")
             
         }
         

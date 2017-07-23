@@ -139,6 +139,7 @@ class InfoMsdsListController: BaseTabViewController {
         let controller = InfoMsdsDetailController()
         let object : MSDSInfoModel = mSDSInfoModels[indexPath.row] as MSDSInfoModel
         controller.msdsInfoModel = object
+        tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

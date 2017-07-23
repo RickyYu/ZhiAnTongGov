@@ -34,7 +34,6 @@ class InfoListController: BaseTabViewController {
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = true
         self.tabBarController?.hidesBottomBarWhenPushed = true
-//        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     private func initPage(){
@@ -47,29 +46,17 @@ class InfoListController: BaseTabViewController {
         // 设置navigation
         self.navigationController?.navigationBar.hidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_white"), style: .Done, target: self, action: #selector(InfoListController.back))
-        // 设置tableview相关
-       // tableView.registerClass(InfoDemoCell.self, forCellReuseIdentifier: InfoListReuseIdentifier)
-       //  self.tableView.registerNib("InfoDemoCell", forCellReuseIdentifier: InfoListReuseIdentifier)
         let nib = UINib(nibName: "InfoDemoCell",bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: InfoListReuseIdentifier)
         tableView.rowHeight = 53;
         tableView.separatorStyle = .None
         tableView.tableFooterView = UIView()
-
-        
-        // 设置下拉刷新控件
-//        refreshControl = RefreshControl(frame: CGRectZero)
-//        refreshControl?.addTarget(self, action: #selector(InfoListController.getLawLists), forControlEvents: .ValueChanged)
-//        refreshControl?.beginRefreshing()
         
         getLawLists()
     }
     
     func getLawLists(){
-//        if refreshControl!.refreshing{
-//            reSet()
-//            
-//        }
+
         var parameters = [String : AnyObject]()
         parameters["code"] = self.infoType
         parameters["pagination.pageSize"] = 10
@@ -77,12 +64,7 @@ class InfoListController: BaseTabViewController {
         parameters["pagination.totalCount"] = totalCount
         
         NetworkTool.sharedTools.getLawInfoList(parameters) { (infos, error,totalCount) in
-//            // 停止加载数据
-//            if self.refreshControl!.refreshing{
-//                self.refreshControl!.endRefreshing()
-//            }
-//            
- 
+          
             if error == nil{
                 if self.currentPage>totalCount{
                     //self.showHint("已经到最后了", duration: 2, yOffset: 0)
@@ -191,6 +173,7 @@ class InfoListController: BaseTabViewController {
          let object : Info = infos[indexPath.row] as Info
          infoDetail.detailObject = object
          infoDetail.navTitle = self.infoName + "详情"
+        tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
          self.navigationController?.pushViewController(infoDetail, animated: true)
     }
     

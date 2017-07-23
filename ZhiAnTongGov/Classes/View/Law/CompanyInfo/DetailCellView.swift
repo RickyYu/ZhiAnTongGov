@@ -72,6 +72,10 @@ class DetailCellView: UIView,UITextFieldDelegate,UITextViewDelegate {
         textField.text = text
     }
     
+    func setRTextView(text:String){
+        textView.text = text
+    }
+    
     func setRCenterTextField(text:String){
         textField.frame = CGRectMake(160, 5, SCREEN_WIDTH-80, 35)
         textField.text = text
@@ -121,15 +125,13 @@ class DetailCellView: UIView,UITextFieldDelegate,UITextViewDelegate {
     func setPhotoImg(){
         rightImg  = UIImageView()
         rightImg.image = UIImage(named: "icon_photo_bg")
-        rightImg.frame = CGRectMake(SCREEN_WIDTH-40, 2.5, 40, 40)
+        rightImg.frame = CGRectMake(SCREEN_WIDTH-50, 2.5, 40, 40)
         self.textField.removeFromSuperview()
         self.addSubview(rightImg)
     }
     
     
-    func setRTextView(text:String){
-        textView.text = text
-    }
+
     func setTextViewShow(){
       textView = UITextView(frame:CGRect(x:6, y:40, width:SCREEN_WIDTH-12, height:100))
         textView.layer.borderWidth = 1  //边框粗细
@@ -150,6 +152,17 @@ class DetailCellView: UIView,UITextFieldDelegate,UITextViewDelegate {
         centerLabel.textColor = UIColor.lightGrayColor()
         self.textField.removeFromSuperview()
         self.addSubview(centerLabel)
+    }
+    
+    func setMinTextViewShow(){
+        textView = UITextView(frame:CGRect(x:90, y:5, width:SCREEN_WIDTH-90, height:35))
+        //        textView.layer.borderWidth = 1  //边框粗细
+        //        textView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        //        textView.layer.cornerRadius = 8
+        textView.editable = true
+        textView.selectable = true
+        self.textField.removeFromSuperview()
+        self.addSubview(textView)
     }
     
     func setRMSDSCenterLabel(name:String){

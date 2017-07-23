@@ -132,7 +132,7 @@ class CpyInfoDetailController: BaseViewController,LocationParameterDelegate,NSXM
         scrollView!.showsHorizontalScrollIndicator = true
         scrollView!.showsVerticalScrollIndicator = false
         scrollView!.scrollsToTop = false
-        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH,801)
+        scrollView!.contentSize = CGSizeMake(SCREEN_WIDTH,660)
         
         //submitBtn = UIButton(frame:CGRectMake(0, 565, SCREEN_WIDTH, 45))
         submitBtn.setTitle("提交", forState:.Normal)

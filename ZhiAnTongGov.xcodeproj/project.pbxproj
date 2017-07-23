@@ -144,6 +144,7 @@
 		9CB208D71E1500E1009DF235 /* McountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB208D61E1500E1009DF235 /* McountModel.swift */; };
 		9CD75EDD1E2DA58A00097566 /* LocInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD75EDC1E2DA58A00097566 /* LocInfoModel.swift */; };
 		9CD75EDF1E2DDB9800097566 /* PunTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD75EDE1E2DDB9800097566 /* PunTypeEnum.swift */; };
+		9CE1210A1EB31E18003676A9 /* ShowSingleImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE121091EB31E18003676A9 /* ShowSingleImageController.swift */; };
 		9CE87D811E26528700A355F2 /* AlbumToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE87D6D1E26528700A355F2 /* AlbumToolbarView.swift */; };
 		9CE87D821E26528700A355F2 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE87D6E1E26528700A355F2 /* ImageModel.swift */; };
 		9CE87D831E26528700A355F2 /* NSIndexSet+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE87D6F1E26528700A355F2 /* NSIndexSet+Extension.swift */; };
@@ -340,6 +341,7 @@
 		9CB208D61E1500E1009DF235 /* McountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = McountModel.swift; sourceTree = "<group>"; };
 		9CD75EDC1E2DA58A00097566 /* LocInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocInfoModel.swift; sourceTree = "<group>"; };
 		9CD75EDE1E2DDB9800097566 /* PunTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunTypeEnum.swift; sourceTree = "<group>"; };
+		9CE121091EB31E18003676A9 /* ShowSingleImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowSingleImageController.swift; sourceTree = "<group>"; };
 		9CE87D6D1E26528700A355F2 /* AlbumToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToolbarView.swift; sourceTree = "<group>"; };
 		9CE87D6E1E26528700A355F2 /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		9CE87D6F1E26528700A355F2 /* NSIndexSet+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSIndexSet+Extension.swift"; sourceTree = "<group>"; };
@@ -981,6 +983,7 @@
 		9C861A431DE5886200CD00FC /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				9CE121091EB31E18003676A9 /* ShowSingleImageController.swift */,
 				9C861A441DE5886F00CD00FC /* BaseViewController.swift */,
 				9CE87D9C1E2657F100A355F2 /* PhotoViewController.swift */,
 				9C1129941E32077300E2C73E /* BaseTabViewController.swift */,
@@ -1390,6 +1393,7 @@
 				9C11299F1E36FB0B00E2C73E /* PunInfoController.swift in Sources */,
 				9CB208C21E126AA7009DF235 /* HiddenModel.swift in Sources */,
 				9CB208271E028C55009DF235 /* RecordInfoCell.swift in Sources */,
+				9CE1210A1EB31E18003676A9 /* ShowSingleImageController.swift in Sources */,
 				9C1129991E35F1E300E2C73E /* YMSortCell.swift in Sources */,
 				9CB208841E07E5DA009DF235 /* InfoMsdsDetailController.swift in Sources */,
 				9CB208401E077C4B009DF235 /* InfoDetailController.swift in Sources */,

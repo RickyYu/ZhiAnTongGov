@@ -56,8 +56,8 @@ class RecordHiddenNormalController: SinglePhotoViewController {
         customView1normal.addOnClickListener(self, action: #selector(self.normalHiddenType))
         
         customView2normal.setLabelName("隐患描述：")
-        customView2normal.setRTextField( "")
-         customView2normal.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        customView2normal.setMinTextViewShow()
+//         customView2normal.textField.addTarget(self, action: #selector(self.textDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
         customView3normal.setLabelName("计划整改时间：")
         customView3normal.setRRightLabel("")
@@ -144,7 +144,7 @@ class RecordHiddenNormalController: SinglePhotoViewController {
     
     override func resignEdit(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
-            customView2normal.textField.resignFirstResponder()
+            customView2normal.textView.resignFirstResponder()
         }
         sender.cancelsTouchesInView = false
     }
@@ -159,13 +159,21 @@ class RecordHiddenNormalController: SinglePhotoViewController {
     
         normalType = customView1normal.rightLabel.text!
         normalTypeCode = getTroubleType(normalType)
-        normalDes = customView2normal.textField.text!
+        normalDes = customView2normal.textView.text!
         if AppTools.isEmpty(normalDes) {
             alert("隐患描述不可为空", handler: {
                 self.customView5normal.textField.becomeFirstResponder()
             })
             return
         }
+        
+        if normalDes.characters.count > 200 {
+            alert("隐患描述内容不可多于200字！", handler: {
+                self.customView5normal.textField.becomeFirstResponder()
+            })
+            return
+        }
+        
         normalPlanTime = customView3normal.rightLabel.text!
         if AppTools.isEmpty(normalPlanTime) {
             alert("计划整改时间不可为空", handler: {

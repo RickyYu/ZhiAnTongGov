@@ -22,7 +22,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
     var orderType:Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavagation("检查记录")
+        setNavagation("企业信息列表")
         let button2 = UIButton(frame:CGRectMake(0, 0, 32, 32))
         button2.setImage(UIImage(named: "icon_sort"), forState: .Normal)
         button2.addTarget(self,action:#selector(self.sortButtonClick),forControlEvents:.TouchUpInside)
@@ -128,7 +128,7 @@ class CpyInfoListController:BaseTabViewController,UISearchBarDelegate,YMSortTabl
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
                     if self.toLoadMore {
-                        self.showHint("已经到最后了", duration: 2, yOffset: 0)
+//                        self.showHint("已经到最后了", duration: 2, yOffset: 0)
                     }
                     self.currentPage -= PAGE_SIZE
                     return

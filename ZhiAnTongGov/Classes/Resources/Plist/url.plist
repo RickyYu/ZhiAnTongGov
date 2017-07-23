@@ -9,15 +9,15 @@
 	<key>LOAD_VDANGERS</key>
 	<string>/appDanger/nosecuritycheck/loadVDangers.xhtml</string>
 	<key>BASE_URL_DA</key>
-	<string>http://192.168.2.224:8022/huzhouArchives</string>
+	<string>http://192.168.2.110:7091/huzhouArchives</string>
 	<key>CREATE_HIDDEN_TROUBLE</key>
 	<string>/appCheckRecord/nosecuritycheck/createHiddenTrouble.xhtml</string>
 	<key>LOAD_INDUSTRY_SECOND_SELECT</key>
 	<string>/appCheckRecord/nosecuritycheck/loadIndustrySecondSelect.xhtml</string>
+	<key>BASE_URL_YH--</key>
+	<string>http://192.168.2.213:8080/huzhou</string>
 	<key>LOAD_INDUSTRY_SELECT</key>
 	<string>/appCheckRecord/nosecuritycheck/loadIndustrySelect.xhtml</string>
-	<key>BASE_URL_YH=tmp</key>
-	<string>http://192.168.2.110:7090/huzhou</string>
 	<key>BASE_URL_DA--</key>
 	<string>http://192.168.2.213:8080/huzhouArchives</string>
 	<key>LOAD_HISTORY_PRODUCE</key>
@@ -28,8 +28,6 @@
 	<string>/appCompany/nosecuritycheck/loadCompanys.xhtml</string>
 	<key>UPDATE_COMPANY</key>
 	<string>/appCompany/nosecuritycheck/updateCompany.xhtml</string>
-	<key>BASE_URL_YH--</key>
-	<string>http://192.168.2.213:8080/huzhou</string>
 	<key>LOAD_DANGER</key>
 	<string>/appDanger/nosecuritycheck/loadDanger.xhtml</string>
 	<key>GET_COMPANY_GRID</key>
@@ -40,6 +38,8 @@
 	<string>/appPunishment/nosecuritycheck/loadPunishment.xhtml</string>
 	<key>CREATE_CHECK_RECORD</key>
 	<string>/appCheckRecord/nosecuritycheck/createCheckRecord.xhtml</string>
+	<key>BASE_URL_DA-te</key>
+	<string>http://192.168.2.224:8022/huzhouArchives</string>
 	<key>LOAD_PUN_LIST</key>
 	<string>/appPunishment/nosecuritycheck/loadPunishmentList.xhtml</string>
 	<key>CHANGE_PASSWORD</key>
@@ -62,8 +62,6 @@
 	<string>/appCheckRecord/nosecuritycheck/loadCompanyGrid.xhtml</string>
 	<key>LOAD_CHECK_RECORD</key>
 	<string>/appCheckRecord/nosecuritycheck/loadCheckRecord.xhtml</string>
-	<key>BASE_URL_DA-temp</key>
-	<string>http://192.168.2.110:7091/huzhouArchives</string>
 	<key>CREATE_DANGGER_GORVER</key>
 	<string>/appDangerGorver/nosecuritycheck/createDangerGorverGov.xhtml</string>
 	<key>GET_LAW_INFO_LIST</key>
@@ -80,12 +78,14 @@
 	<string>/appProduceLocaleNote/nosecuritycheck/createProduceCallBack.xhtml</string>
 	<key>LOGIN</key>
 	<string>/appUser/nosecuritycheck/login.xhtml</string>
+	<key>BASE_URL_YH---</key>
+	<string>http://192.168.2.224:8029/huzhou</string>
 	<key>LOAD_HIDDEN_TROUBLES</key>
 	<string>/appProduceLocaleNote/nosecuritycheck/loadHzHiddenTroubles.xhtml</string>
 	<key>LOAD_GOV_COUNT</key>
 	<string>/appDanger/nosecuritycheck/loadGovCount.xhtml</string>
 	<key>BASE_URL_YH</key>
-	<string>http://192.168.2.224:8029/huzhou</string>
+	<string>http://121.41.101.87:7090/huzhou</string>
 	<key>CREATE_PUNISHMENT</key>
 	<string>/appPunishment/nosecuritycheck/createPunishment.xhtml</string>
 	<key>LOAD_PRO_DANGERS</key>

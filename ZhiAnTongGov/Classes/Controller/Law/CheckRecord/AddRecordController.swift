@@ -184,7 +184,7 @@ class AddRecordController: SinglePhotoViewController,ParameterDelegate{
         }
         
          customView8 = DetailCellView(frame:CGRectMake(0, 315, SCREEN_WIDTH, 45))
-        customView8.setLabelName("检查人/记录人：")
+        customView8.setLabelName("检查/记录人：")
         if checkRecordInfoModel.noter.isEmpty {
         customView8.setRTextField("")
         }else{
@@ -411,14 +411,6 @@ class AddRecordController: SinglePhotoViewController,ParameterDelegate{
             
         }
         
-//        if AppTools.isEmpty(zgTime) {
-//            alert("责令整改日期不可为空", handler: {
-//                // self.customView6.textField.becomeFirstResponder()
-//            })
-//            return
-//            
-//        }
-        
         checkList.companyname = companyName
         checkList.companyadress = address
         checkList.companylxr = cpyContact
@@ -438,11 +430,6 @@ class AddRecordController: SinglePhotoViewController,ParameterDelegate{
         
         //
         checkList.listCb = list2
-        
-//        checkList.listCheck 可为空
-//        checkList.listAll  可为空
-//        checkList.listHy     可为空
-//        checkList.listfile   图片要传
         checkList.lxr = phone
 //
         checkList.c1 = c1

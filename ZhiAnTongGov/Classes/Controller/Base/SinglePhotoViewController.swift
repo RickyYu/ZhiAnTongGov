@@ -101,8 +101,12 @@ class SinglePhotoViewController: BaseViewController,UIImagePickerControllerDeleg
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        if imagePicker.sourceType == UIImagePickerControllerSourceType.Camera {
+            UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+        }
         let imageView = UIImageView()
-        imageView.image = image.reSizeImage(CGSize(width: 300, height: 200))
+        imageView.addOnClickListener(self, action: #selector(showImage))
+        imageView.image = image
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         self.addImageView(imageView)
     }
@@ -115,7 +119,7 @@ class SinglePhotoViewController: BaseViewController,UIImagePickerControllerDeleg
         imageViews.append(imageView)
         
         let closeView = UIImageView()
-        closeView.frame = CGRectMake(IMAGE_WIDTH-25, 0, 25, 25)
+        closeView.frame = CGRectMake(IMAGE_WIDTH-15, 0, 15, 15)
         closeView.image = UIImage(named: "delete")
         closeView.tag = imageTag
         
@@ -127,6 +131,15 @@ class SinglePhotoViewController: BaseViewController,UIImagePickerControllerDeleg
         //设置图片占用大小
         scrollView.contentSize = CGSize(width: leftWidth + 80, height: IMAGE_HEIGHT)
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func showImage(sender: AnyObject){
+        let tap = sender as! UITapGestureRecognizer
+        let views = tap.view!
+        let imageView = scrollView.viewWithTag(views.tag) as! UIImageView
+        let controller = ShowSingleImageController()
+        controller.image = imageView.image
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     func deleteImage(sender: AnyObject) {
